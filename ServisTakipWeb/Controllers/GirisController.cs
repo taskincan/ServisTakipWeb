@@ -30,13 +30,10 @@ namespace ServisTakipWeb.Controllers
             bool userNameVarMi = false;
             bool sifreAyniMi = false;
             bool girisIzni = false;
-
             
-
-
             if (_girisModel.UserName[0] == 'C' && _girisModel.UserName[1] == 'H' && _girisModel.UserName[2] == 'P' && _girisModel.UserName[3] == '_' ) //Admin Girisi
             {
-                var context = new ServisTakipWebEntities();
+                var context = new ServisTakipWebEntities1();
 
                 string adminUserName = ""; 
                 string adminPassword = _girisModel.Password.ToString().Trim();
@@ -46,7 +43,7 @@ namespace ServisTakipWeb.Controllers
                     adminUserName += _girisModel.UserName[temp].ToString();
                 }
 
-                for (temp = 0; temp < context.Admin.Count(); temp++)
+                for (temp = 0; temp < context.Admin.Count() ; temp++)
                 {
 
                     if (adminUserName == context.Admin.ToList()[temp].UserName.ToString()) //database de, girilen kullanici adi varmi sorgusu.

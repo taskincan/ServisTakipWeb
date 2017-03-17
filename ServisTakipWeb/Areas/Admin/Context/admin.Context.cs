@@ -13,10 +13,10 @@ namespace ServisTakipWeb.Areas.Admin.Context
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ServisTakipWebEntities : DbContext
+    public partial class ServisTakipWebEntities1 : DbContext
     {
-        public ServisTakipWebEntities()
-            : base("name=ServisTakipWebEntities")
+        public ServisTakipWebEntities1()
+            : base("name=ServisTakipWebEntities1")
         {
         }
     

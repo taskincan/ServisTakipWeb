@@ -13,7 +13,6 @@ c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWe
 c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\System.Web.WebPages.Deployment.dll
 c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\System.Web.WebPages.dll
 c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\System.Web.WebPages.Razor.dll
-c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\Newtonsoft.Json.xml
 c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\System.Net.Http.Formatting.xml
 c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\System.Web.Helpers.xml
 c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\System.Web.Http.xml
@@ -23,7 +22,6 @@ c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWe
 c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\System.Web.WebPages.xml
 c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\System.Web.WebPages.Deployment.xml
 c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\System.Web.WebPages.Razor.xml
-c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\obj\Debug\ServisTakipWeb.csprojResolveAssemblyReference.cache
 c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\obj\Debug\ServisTakipWeb.dll
 c:\users\utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\obj\Debug\ServisTakipWeb.pdb
 c:\Users\Utku\Documents\Visual Studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\EntityFramework.dll
@@ -35,3 +33,4 @@ c:\Users\Utku\Documents\Visual Studio 2013\Projects\ServisTakipWeb\ServisTakipWe
 c:\Users\Utku\Documents\Visual Studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\WebGrease.dll
 c:\Users\Utku\Documents\Visual Studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\Antlr3.Runtime.pdb
 c:\Users\Utku\Documents\Visual Studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\System.Web.Optimization.xml
+C:\Users\Utku\documents\visual studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\obj\Debug\ServisTakipWeb.csprojResolveAssemblyReference.cache

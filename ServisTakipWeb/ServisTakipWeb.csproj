@@ -53,10 +53,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -133,25 +129,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Context\admin.Context.cs">
+    <Compile Include="Areas\Admin\Context\Admin.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>admin.Context.tt</DependentUpon>
+      <DependentUpon>Admin.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\Admin\Context\Admin.cs">
-      <DependentUpon>admin.tt</DependentUpon>
+      <DependentUpon>Admin.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Admin\Context\admin.Designer.cs">
+    <Compile Include="Areas\Admin\Context\Admin.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>admin.edmx</DependentUpon>
+      <DependentUpon>Admin.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Admin\Context\admin1.cs">
+    <Compile Include="Areas\Admin\Context\Admin1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>admin.tt</DependentUpon>
+      <DependentUpon>Admin.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Admin\Controllers\AdminBilgileriController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FirmaBilgileriController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Models\AdminBilgileri.cs" />
     <Compile Include="Controllers\GirisController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -163,15 +162,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="Areas\Admin\Context\admin.Context.tt">
+    <Content Include="Areas\Admin\Context\Admin.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>admin.edmx</DependentUpon>
-      <LastGenOutput>admin.Context.cs</LastGenOutput>
+      <DependentUpon>Admin.edmx</DependentUpon>
+      <LastGenOutput>Admin.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Areas\Admin\Context\admin.tt">
+    <Content Include="Areas\Admin\Context\Admin.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>admin.edmx</DependentUpon>
-      <LastGenOutput>admin1.cs</LastGenOutput>
+      <DependentUpon>Admin.edmx</DependentUpon>
+      <LastGenOutput>Admin1.cs</LastGenOutput>
     </Content>
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap-theme.min.css" />
@@ -187,17 +186,17 @@
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\LoginUserLogo.png" />
-    <Content Include="Content\js\jquery.js" />
-    <Content Include="Content\js\plugins\flot\excanvas.min.js" />
-    <Content Include="Content\js\plugins\flot\flot-data.js" />
-    <Content Include="Content\js\plugins\flot\jquery.flot.js" />
-    <Content Include="Content\js\plugins\flot\jquery.flot.pie.js" />
-    <Content Include="Content\js\plugins\flot\jquery.flot.resize.js" />
-    <Content Include="Content\js\plugins\flot\jquery.flot.tooltip.min.js" />
-    <Content Include="Content\js\plugins\morris\morris-data.js" />
-    <Content Include="Content\js\plugins\morris\morris.js" />
-    <Content Include="Content\js\plugins\morris\morris.min.js" />
-    <Content Include="Content\js\plugins\morris\raphael.min.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\plugins\flot\excanvas.min.js" />
+    <Content Include="js\plugins\flot\flot-data.js" />
+    <Content Include="js\plugins\flot\jquery.flot.js" />
+    <Content Include="js\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="js\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="js\plugins\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="js\plugins\morris\morris-data.js" />
+    <Content Include="js\plugins\morris\morris.js" />
+    <Content Include="js\plugins\morris\morris.min.js" />
+    <Content Include="js\plugins\morris\raphael.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -208,21 +207,9 @@
     <Content Include="Content\css\bootstrap-theme.css.map" />
     <Content Include="Content\css\bootstrap.min.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
-    <Content Include="Content\js\bootstrap.js" />
-    <Content Include="Content\js\bootstrap.min.js" />
-    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <EntityDeploy Include="Areas\Admin\Context\admin.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>admin.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Areas\Admin\Context\admin.edmx.diagram">
-      <DependentUpon>admin.edmx</DependentUpon>
-    </Content>
-    <None Include="Content\js\jquery-3.1.1.intellisense.js" />
-    <Content Include="Content\js\jquery-3.1.1.js" />
-    <Content Include="Content\js\jquery-3.1.1.min.js" />
-    <Content Include="Content\js\jquery-3.1.1.slim.js" />
-    <Content Include="Content\js\jquery-3.1.1.slim.min.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\Shared\AdminLayout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -231,13 +218,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Content\js\jquery-3.1.1.slim.min.map" />
-    <Content Include="Content\js\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
@@ -293,6 +276,26 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\FirmaBilgileri\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\AdminBilgileri\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Areas\Admin\Context\Admin.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Admin.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Context\Admin.edmx.diagram">
+      <DependentUpon>Admin.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
