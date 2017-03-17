@@ -30,7 +30,6 @@ namespace ServisTakipWeb.Areas.Admin.Models
             [Display(Name = "Kayıt Tarihi")]
             public DateTime CreateDate { get; set; }
 
-            //public static List<AdminBilgileri> adminList = new List<AdminBilgileri>();
             public static List<AdminBilgileri> adminList = new List<AdminBilgileri>();
     }
 

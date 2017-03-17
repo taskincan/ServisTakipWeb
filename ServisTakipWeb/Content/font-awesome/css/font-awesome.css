@@ -4,6 +4,17 @@
  */
 /* FONT PATH
  * -------------------------- */
+#container {
+    width: 1194px;
+    /*height: 600px;*/  
+    position: relative;
+    margin: 13px auto;
+    box-shadow: 0 0 10px black;
+    border: 1px solid white;
+    background: white;
+    background: white;
+    border-radius: 0 26px; /*sadece aþaðý köþeleri 26px lik yumuþattýk*/
+}
 @font-face {
   font-family: 'FontAwesome';
   src: url('../fonts/fontawesome-webfont.eot?v=4.2.0');

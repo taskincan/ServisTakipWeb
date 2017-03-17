@@ -5,7 +5,17 @@
  */
 
 /* Global Styles */
-
+#container {
+    
+    height: 590px; 
+    position: relative;
+    margin: 13px auto;
+    box-shadow: 0 0 10px black;
+    border: 1px solid white;
+    background: white;
+    background: white;
+    border-radius: 0 26px; /*sadece aþaðý köþeleri 26px lik yumuþattýk*/
+}
 body {
     margin-top: 100px;
     background-color: #222;
