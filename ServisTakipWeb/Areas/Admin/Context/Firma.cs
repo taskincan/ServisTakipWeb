@@ -12,20 +12,22 @@ namespace ServisTakipWeb.Areas.Admin.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class Admin
+    public partial class Firma
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Admin()
-        {
-            this.Firma = new HashSet<Firma>();
-        }
-    
         public int ID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public string FirmaKodu { get; set; }
+        public string FirmaAdi { get; set; }
+        public string YetkiliKisi { get; set; }
+        public string Gsm { get; set; }
+        public string FirmaTel { get; set; }
+        public string webSitesi { get; set; }
+        public string YoneticiUserName { get; set; }
+        public string YoneticiPassword { get; set; }
+        public string Adres { get; set; }
+        public string Email { get; set; }
+        public int AdminID { get; set; }
         public System.DateTime CreateDate { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Firma> Firma { get; set; }
+        public virtual Admin Admin { get; set; }
     }
 }

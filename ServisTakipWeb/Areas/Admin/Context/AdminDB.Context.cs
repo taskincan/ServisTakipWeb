@@ -13,10 +13,10 @@ namespace ServisTakipWeb.Areas.Admin.Context
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ServisTakipWebEntities1 : DbContext
+    public partial class ServisTakipAdminEntities : DbContext
     {
-        public ServisTakipWebEntities1()
-            : base("name=ServisTakipWebEntities1")
+        public ServisTakipAdminEntities()
+            : base("name=ServisTakipAdminEntities")
         {
         }
     
@@ -26,5 +26,6 @@ namespace ServisTakipWeb.Areas.Admin.Context
         }
     
         public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<Firma> Firma { get; set; }
     }
 }

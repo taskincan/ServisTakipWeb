@@ -31,9 +31,9 @@ namespace ServisTakipWeb.Controllers
             bool sifreAyniMi = false;
             bool girisIzni = false;
             
-            if (_girisModel.UserName[0] == 'C' && _girisModel.UserName[1] == 'H' && _girisModel.UserName[2] == 'P' && _girisModel.UserName[3] == '_' ) //Admin Girisi
+            if (_girisModel.UserName[0] == 'A' && _girisModel.UserName[1] == 'D' && _girisModel.UserName[2] == 'M' && _girisModel.UserName[3] == '_' ) //Admin Girisi
             {
-                var context = new ServisTakipWebEntities1();
+                var context = new ServisTakipAdminEntities();
 
                 string adminUserName = ""; 
                 string adminPassword = _girisModel.Password.ToString().Trim();

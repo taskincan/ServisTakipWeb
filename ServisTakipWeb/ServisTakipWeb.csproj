@@ -129,23 +129,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Context\Admin.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Admin.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="Areas\Admin\Context\Admin.cs">
-      <DependentUpon>Admin.tt</DependentUpon>
+      <DependentUpon>AdminDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Admin\Context\Admin.Designer.cs">
+    <Compile Include="Areas\Admin\Context\AdminDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Admin.edmx</DependentUpon>
+      <DependentUpon>AdminDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Admin\Context\Admin1.cs">
+    <Compile Include="Areas\Admin\Context\AdminDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Admin.tt</DependentUpon>
+      <DependentUpon>AdminDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Context\AdminDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdminDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Admin\Context\Firma.cs">
+      <DependentUpon>AdminDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\Admin\Controllers\AdminBilgileriController.cs" />
     <Compile Include="Areas\Admin\Controllers\FirmaBilgileriController.cs" />
@@ -162,15 +165,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="Areas\Admin\Context\Admin.Context.tt">
+    <Content Include="Areas\Admin\Context\AdminDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Admin.edmx</DependentUpon>
-      <LastGenOutput>Admin.Context.cs</LastGenOutput>
+      <DependentUpon>AdminDB.edmx</DependentUpon>
+      <LastGenOutput>AdminDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Areas\Admin\Context\Admin.tt">
+    <Content Include="Areas\Admin\Context\AdminDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Admin.edmx</DependentUpon>
-      <LastGenOutput>Admin1.cs</LastGenOutput>
+      <DependentUpon>AdminDB.edmx</DependentUpon>
+      <LastGenOutput>AdminDB.cs</LastGenOutput>
     </Content>
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap-theme.min.css" />
@@ -288,18 +291,18 @@
     <Content Include="Areas\Admin\Views\AdminBilgileri\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Areas\Admin\Context\Admin.edmx">
+    <Content Include="Areas\Admin\Views\AdminBilgileri\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Areas\Admin\Context\AdminDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Admin.Designer.cs</LastGenOutput>
+      <LastGenOutput>AdminDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Context\Admin.edmx.diagram">
-      <DependentUpon>Admin.edmx</DependentUpon>
+    <Content Include="Areas\Admin\Context\AdminDB.edmx.diagram">
+      <DependentUpon>AdminDB.edmx</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Admin\Views\AdminBilgileri\Edit.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

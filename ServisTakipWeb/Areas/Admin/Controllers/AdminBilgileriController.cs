@@ -11,14 +11,14 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
 {
     public class AdminBilgileriController : Controller
     {
-        private Context.ServisTakipWebEntities1 db = new Context.ServisTakipWebEntities1();
+        private Context.ServisTakipAdminEntities db = new Context.ServisTakipAdminEntities();
 
         //
         // GET: /Admin/AdminBilgileri/
 
         public ActionResult Index()
         {
-            var context = new ServisTakipWebEntities1();
+            var context = new ServisTakipAdminEntities();
             ListTemizle();
             ListYarat();
             
@@ -76,7 +76,7 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
         {
             int temp;
 
-            var context = new ServisTakipWebEntities1();
+            var context = new Context.ServisTakipAdminEntities();
 
             for (temp = 0; temp < context.Admin.Count(); temp++)
             {
