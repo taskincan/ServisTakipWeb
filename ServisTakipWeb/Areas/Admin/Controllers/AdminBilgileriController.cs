@@ -17,8 +17,7 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
         // GET: /Admin/AdminBilgileri/
 
         public ActionResult Index()
-        {
-            var context = new ServisTakipAdminEntities();
+        { 
             ListTemizle();
             ListYarat();
             

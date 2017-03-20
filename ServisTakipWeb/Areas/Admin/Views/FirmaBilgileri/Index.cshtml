@@ -1,7 +1,153 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model IEnumerable<ServisTakipWeb.Areas.Admin.Models.FirmaBilgileri>
+
+@{
+    ViewBag.Title = "Admin|Firma Bilgileri";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
+ 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<title>Admin |Firma Bilgileri </title>
-<h2>Firma Bilgileri</h2>
+    <title>Admin | Firma Bilgileri</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="~/Content/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading panel-body-center">
+                <strong> Firma Bilgileri</strong>
+            </div>
+            <div class="panel-body">
+
+                <fieldset>
+                    <div class="col-md-2">
+                        <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-block">
+                            @Html.ActionLink("Yeni Kayıt", "")
+                        </button>
+                    </div>
+
+
+                    <table id="data" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th class="col-md-2">
+                                    @Html.DisplayNameFor(model => model.FirmaKodu)
+                                </th>
+                                <th class="col-md-4">
+                                    @Html.DisplayNameFor(model => model.FirmaAdi)
+                                </th>
+                                <th class="col-md-2">
+                                    @Html.DisplayNameFor(model => model.YetkiliKisi)
+                                </th> 
+                                @*<th class="col-md-2">
+                                    @Html.DisplayNameFor(model => model.Gsm)
+                                </th>*@
+                                <th class="col-md-2">
+                                    @Html.DisplayNameFor(model => model.FirmaTel)
+                                </th>
+                                @*<th class="col-md-2">
+                                    @Html.DisplayNameFor(model => model.WebSite)
+                                </th>*@ 
+                                <th class="col-md-4">
+                                    @Html.DisplayNameFor(model => model.YoneticiUserName)
+                                </th>
+                                <th class="col-md-4">
+                                    @Html.DisplayNameFor(model => model.YonetciPassword)
+                                </th>
+                                @*<th class="col-md-2">
+                                    @Html.DisplayNameFor(model => model.Adres)
+                                </th>*@ 
+                                <th class="col-md-4">
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                @*<th class="col-md-4">
+                                    @Html.DisplayNameFor(model => model.AdminID)
+                                </th>*@
+                                <th class="col-md-2">
+                                    @Html.DisplayNameFor(model => model.CreateDate)
+                                </th> 
+                                <th class="col-md-6">
+                                </th> 
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr></tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                
+                                <tr>
+                                    <td class="col-md-2">
+                                        @Html.DisplayFor(modelItem => item.FirmaKodu)
+                                    </td>
+                                    <td class="col-md-4">
+                                        @Html.DisplayFor(modelItem => item.FirmaAdi)
+                                    </td>
+                                    <td class="col-md-2">
+                                        @Html.DisplayFor(modelItem => item.YetkiliKisi)
+                                    </td>
+                                    @*<td class="col-md-4">
+                                        @Html.DisplayFor(modelItem => item.Gsm)
+                                    </td>*@
+                                    <td class="col-md-2">
+                                        @Html.DisplayFor(modelItem => item.FirmaTel)
+                                    </td>
+                                    @*<td class="col-md-2">
+                                        @Html.DisplayFor(modelItem => item.WebSite)
+                                    </td>*@
+                                    <td class="col-md-4">
+                                        @Html.DisplayFor(modelItem => item.YoneticiUserName)
+                                    </td>
+                                    <td class="col-md-4">
+                                        @Html.DisplayFor(modelItem => item.YonetciPassword)
+                                    </td>
+                                    @*<td class="col-md-2">
+                                        @Html.DisplayFor(modelItem => item.Adres)
+                                    </td>*@
+                                    <td class="col-md-4">
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    @*<td class="col-md-4">
+                                        @Html.DisplayFor(modelItem => item.AdminID)
+                                    </td>*@
+                                    <td class="col-md-2">
+                                        @Html.DisplayFor(modelItem => item.CreateDate)
+                                    </td> 
+                                    <td class="col-md-6">
+                                         
+                                            <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-block">
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                                            </button>
+                                         
+                                            <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-default">
+                                                @Html.ActionLink("Delete", "", new { id = item.ID })
+                                            </button>
+
+                                            @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                            @Html.ActionLink("Delete", "", new { id = item.ID })*@
+                                        </td>
+                                    
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>  

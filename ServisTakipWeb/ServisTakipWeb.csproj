@@ -154,6 +154,7 @@
     <Compile Include="Areas\Admin\Controllers\FirmaBilgileriController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Models\AdminBilgileri.cs" />
+    <Compile Include="Areas\Admin\Models\FirmaBilgileri.cs" />
     <Compile Include="Controllers\GirisController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
