@@ -35,10 +35,9 @@
                 <fieldset>
                     <div class="col-md-2">
                         <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-block">
-                            @Html.ActionLink("Yeni Kayıt", "")
+                            @Html.ActionLink("Yeni Kayıt", "Create")
                         </button>
                     </div>
-
 
                     <table id="data" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
@@ -65,7 +64,7 @@
                                     @Html.DisplayNameFor(model => model.YoneticiUserName)
                                 </th>
                                 <th class="col-md-4">
-                                    @Html.DisplayNameFor(model => model.YonetciPassword)
+                                    @Html.DisplayNameFor(model => model.YoneticiPassword)
                                 </th>
                                 @*<th class="col-md-2">
                                     @Html.DisplayNameFor(model => model.Adres)
@@ -113,7 +112,7 @@
                                         @Html.DisplayFor(modelItem => item.YoneticiUserName)
                                     </td>
                                     <td class="col-md-4">
-                                        @Html.DisplayFor(modelItem => item.YonetciPassword)
+                                        @Html.DisplayFor(modelItem => item.YoneticiPassword)
                                     </td>
                                     @*<td class="col-md-2">
                                         @Html.DisplayFor(modelItem => item.Adres)

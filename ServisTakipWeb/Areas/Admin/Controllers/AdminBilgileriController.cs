@@ -65,6 +65,7 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
 
                 db.Entry(_user).State = EntityState.Modified;
                 db.SaveChanges();
+                ModelState.Clear();
                 return RedirectToAction("Index");
             }
             return View(_adminBilgileri);

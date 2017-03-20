@@ -53,6 +53,9 @@ namespace ServisTakipWeb.Controllers
                         {
                             sifreAyniMi = true;
                             girisIzni = true;
+
+                            Connection.ID = context.Admin.ToList()[temp].ID;
+                            Connection.userName = context.Admin.ToList()[temp].UserName;
                         }
                         else
                             sifreAyniMi = false;
@@ -61,6 +64,7 @@ namespace ServisTakipWeb.Controllers
 
                 if (girisIzni)
                 {
+                    
                     return RedirectToAction("Index", "Home", new { area = "Admin" });
                 }
                 else

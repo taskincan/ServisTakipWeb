@@ -65,7 +65,13 @@ namespace ServisTakipWeb.Areas.Admin.Models
         [DataType(DataType.Password)]
         [MinLength(1)]
         [MaxLength(50)]
-        public string YonetciPassword { get; set; }
+        public string YoneticiPassword { get; set; }
+
+        [Display(Name = "Şifre")] 
+        [DataType(DataType.Password)]
+        [MinLength(1)]
+        [MaxLength(50)]
+        public string YoneteciPassword2 { get; set; }
 
         [Display(Name = "Adres")]
         [DataType(DataType.Text)]

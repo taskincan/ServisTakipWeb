@@ -1,0 +1,147 @@
+﻿@using ServisTakipWeb.Areas.Admin.Models
+@model FirmaBilgileri
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+} 
+
+<title>Admin - Firma Bilgileri</title>
+ 
+@using (Html.BeginForm("Edit", "FirmaBilgileri", FormMethod.Post, new { id = "frmEdit", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    @Html.HiddenFor(model => model.ID)
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.FirmaKodu)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="FirmaKodu" name="FirmaKodu" type="text" value="@Model.FirmaKodu" required>
+            @ViewBag.Message
+        </div>
+         
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.FirmaAdi)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="FirmaAdi" name="FirmaAdi" type="text" value="@Model.FirmaAdi" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.YetkiliKisi)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="YetkiliKisi" name="YetkiliKisi" type="text" value="@Model.YetkiliKisi" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Gsm)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Gsm" name="Gsm" type="text" value="@Model.Gsm" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.FirmaTel)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="FirmaTel" name="FirmaTel" type="text" value="@Model.FirmaTel" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.WebSite)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="WebSite" name="WebSite" type="text" value="@Model.WebSite">
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.YoneticiUserName)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="YoneticiUserName" name="YoneticiUserName" type="text" value="@Model.YoneticiUserName">
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.YoneticiPassword)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="YoneticiPassword" name="YoneticiPassword" type="text" value="@Model.YoneticiPassword">
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Adres)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Adres" name="Adres" type="text" value="@Model.Adres">
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Email" name="Email" type="text" value="@Model.Email">
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.AdminID)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="AdminID" name="AdminID" type="text" value="@Model.AdminID" readonly>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:10px ">
+        <div class="col-md-4"></div>
+
+        <div class="col-md-2">
+            <button class=" btn btn-outline-primary btn-block" type="submit" value="Kaydet">
+                Kaydet
+            </button>
+        </div>
+    </div>
+
+}
+
+<script>
+    function SubmitForm() {
+        $("#frmEdit").submit();
+    }
+</script>
