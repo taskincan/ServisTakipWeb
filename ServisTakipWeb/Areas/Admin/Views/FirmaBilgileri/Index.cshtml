@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
  
-<head>
+@*<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,10 +22,9 @@
 
     <!-- Custom Fonts -->
     <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-</head>
+</head>*@
 
 <div class="row">
-    <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading panel-body-center">
                 <strong> Firma Bilgileri</strong>
@@ -39,47 +38,30 @@
                         </button>
                     </div>
 
-                    <table id="data" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <table id="data" class="table table-striped table-bordered" cellspacing="0">
                         <thead>
                             <tr>
-                                <th class="col-md-2">
-                                    @Html.DisplayNameFor(model => model.FirmaKodu)
-                                </th>
-                                <th class="col-md-4">
-                                    @Html.DisplayNameFor(model => model.FirmaAdi)
-                                </th>
-                                <th class="col-md-2">
-                                    @Html.DisplayNameFor(model => model.YetkiliKisi)
-                                </th> 
+                                <th class="col-md-2">@Html.DisplayNameFor(model => model.FirmaKodu)</th>
+                                <th class="col-md-4">@Html.DisplayNameFor(model => model.FirmaAdi)</th>
+                                <th class="col-md-2">@Html.DisplayNameFor(model => model.YetkiliKisi)</th> 
+                                <th class="col-md-2">@Html.DisplayNameFor(model => model.FirmaTel)</th>
+                                <th class="col-md-4">@Html.DisplayNameFor(model => model.YoneticiUserName)</th>
+                                <th class="col-md-4">@Html.DisplayNameFor(model => model.YoneticiPassword)</th>
+                                <th class="col-md-4">@Html.DisplayNameFor(model => model.Email)</th>
+                                <th class="col-md-2">@Html.DisplayNameFor(model => model.CreateDate)</th> 
+                                <th class="col-md-6"></th> 
                                 @*<th class="col-md-2">
-                                    @Html.DisplayNameFor(model => model.Gsm)
+                                @Html.DisplayNameFor(model => model.Gsm)
                                 </th>*@
-                                <th class="col-md-2">
-                                    @Html.DisplayNameFor(model => model.FirmaTel)
-                                </th>
-                                @*<th class="col-md-2">
-                                    @Html.DisplayNameFor(model => model.WebSite)
-                                </th>*@ 
-                                <th class="col-md-4">
-                                    @Html.DisplayNameFor(model => model.YoneticiUserName)
-                                </th>
-                                <th class="col-md-4">
-                                    @Html.DisplayNameFor(model => model.YoneticiPassword)
-                                </th>
-                                @*<th class="col-md-2">
-                                    @Html.DisplayNameFor(model => model.Adres)
-                                </th>*@ 
-                                <th class="col-md-4">
-                                    @Html.DisplayNameFor(model => model.Email)
-                                </th>
                                 @*<th class="col-md-4">
-                                    @Html.DisplayNameFor(model => model.AdminID)
+                                @Html.DisplayNameFor(model => model.AdminID)
                                 </th>*@
-                                <th class="col-md-2">
-                                    @Html.DisplayNameFor(model => model.CreateDate)
-                                </th> 
-                                <th class="col-md-6">
-                                </th> 
+                                @*<th class="col-md-2">
+                                @Html.DisplayNameFor(model => model.Adres)
+                                </th>*@
+                                @*<th class="col-md-2">
+                                @Html.DisplayNameFor(model => model.WebSite)
+                                </th>*@ 
                             </tr>
                         </thead>
                         <tfoot>
@@ -88,59 +70,38 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                
                                 <tr>
-                                    <td class="col-md-2">
-                                        @Html.DisplayFor(modelItem => item.FirmaKodu)
-                                    </td>
-                                    <td class="col-md-4">
-                                        @Html.DisplayFor(modelItem => item.FirmaAdi)
-                                    </td>
-                                    <td class="col-md-2">
-                                        @Html.DisplayFor(modelItem => item.YetkiliKisi)
-                                    </td>
-                                    @*<td class="col-md-4">
-                                        @Html.DisplayFor(modelItem => item.Gsm)
-                                    </td>*@
-                                    <td class="col-md-2">
-                                        @Html.DisplayFor(modelItem => item.FirmaTel)
-                                    </td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.FirmaKodu)</td>
+                                    <td class="col-md-4">@Html.DisplayFor(modelItem => item.FirmaAdi)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.YetkiliKisi)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.FirmaTel)</td>
+                                    <td class="col-md-4">@Html.DisplayFor(modelItem => item.YoneticiUserName)</td>
+                                    <td class="col-md-4">@Html.DisplayFor(modelItem => item.YoneticiPassword)</td>
+                                    <td class="col-md-4">@Html.DisplayFor(modelItem => item.Email)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.CreateDate)</td> 
                                     @*<td class="col-md-2">
-                                        @Html.DisplayFor(modelItem => item.WebSite)
+                                    @Html.DisplayFor(modelItem => item.WebSite)
+                                    </td>*@@*<td class="col-md-4">
+                                    @Html.DisplayFor(modelItem => item.AdminID)
                                     </td>*@
-                                    <td class="col-md-4">
-                                        @Html.DisplayFor(modelItem => item.YoneticiUserName)
-                                    </td>
-                                    <td class="col-md-4">
-                                        @Html.DisplayFor(modelItem => item.YoneticiPassword)
-                                    </td>
                                     @*<td class="col-md-2">
-                                        @Html.DisplayFor(modelItem => item.Adres)
+                                    @Html.DisplayFor(modelItem => item.Adres)
                                     </td>*@
-                                    <td class="col-md-4">
-                                        @Html.DisplayFor(modelItem => item.Email)
-                                    </td>
                                     @*<td class="col-md-4">
-                                        @Html.DisplayFor(modelItem => item.AdminID)
+                                    @Html.DisplayFor(modelItem => item.Gsm)
                                     </td>*@
-                                    <td class="col-md-2">
-                                        @Html.DisplayFor(modelItem => item.CreateDate)
-                                    </td> 
                                     <td class="col-md-6">
-                                         
-                                            <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-block">
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                                            </button>
-                                         
-                                            <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-default">
-                                                @Html.ActionLink("Delete", "", new { id = item.ID })
-                                            </button>
+                                        <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-block">
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                                        </button>
+                                        <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-default">
+                                            @Html.ActionLink("Delete", "", new { id = item.ID })
+                                        </button>
 
-                                            @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                                            @Html.ActionLink("Delete", "", new { id = item.ID })*@
-                                        </td>
-                                    
+                                        @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                        @Html.ActionLink("Delete", "", new { id = item.ID })*@
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -148,5 +109,31 @@
                 </fieldset>
             </div>
         </div>
-    </div>
 </div>  
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#data").dataTable({
+                "pagingType": "full_numbers"
+                        , "scrollY": "600px"
+                        , "columnDefs": [
+                            { "width": "45px", "targets": 0 }
+                            , { "width": "45px", "targets": 1 }
+                            , { "width": "45px", "targets": 2 }
+                            , { "width": "45px", "targets": 3 }
+                            , { "width": "45px", "targets": 4 }
+                            , { "width": "45px", "targets": 5 }
+                            , { "width": "45px", "targets": 6 }
+                            , { "width": "45px", "targets": 7 }
+                            , { "width": "45px", "targets": 8 }
+                        ]
+                        , "order": [[1, "desc"]]
+                        , "dom": 'Rlfrtip'
+                        , "stateSave": "true"
+                        , "lengthMenu": [[-1, 10, 20, 50, 100], ["All", 10, 20, 50, 100]]
+            });
+        });
+</script>
+}
