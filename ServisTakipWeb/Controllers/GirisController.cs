@@ -65,7 +65,7 @@ namespace ServisTakipWeb.Controllers
                 if (girisIzni)
                 {
                     
-                    return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    return RedirectToAction("Index", "AnaSayfa", new { area = "Admin" });
                 }
                 else
                 {
