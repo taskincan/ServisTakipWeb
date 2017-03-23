@@ -155,6 +155,48 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Models\AdminBilgileri.cs" />
     <Compile Include="Areas\Admin\Models\FirmaBilgileri.cs" />
+    <Compile Include="Areas\Firma\Context\Firma.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Firma.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Firma\Context\Firma.cs">
+      <DependentUpon>Firma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Firma\Context\Firma.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Firma.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Firma\Context\Firma1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Firma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Firma\Context\FirmaCalisani.cs">
+      <DependentUpon>Firma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Firma\Context\FirmaYonetici.cs">
+      <DependentUpon>Firma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Firma\Context\Musteri.cs">
+      <DependentUpon>Firma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Firma\Context\MusteriCalisani.cs">
+      <DependentUpon>Firma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Firma\Context\MusteriYonetici.cs">
+      <DependentUpon>Firma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Firma\Context\Sozlesme.cs">
+      <DependentUpon>Firma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Firma\Context\SozlesmeYapma.cs">
+      <DependentUpon>Firma.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Firma\Controllers\AnaSayfaController.cs" />
+    <Compile Include="Areas\Firma\FirmaAreaRegistration.cs" />
+    <Compile Include="Areas\Musteri\MusteriAreaRegistration.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Controllers\GirisController.cs" />
     <Compile Include="Global.asax.cs">
@@ -176,6 +218,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AdminDB.edmx</DependentUpon>
       <LastGenOutput>AdminDB.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Firma\Context\Firma.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Firma.edmx</DependentUpon>
+      <LastGenOutput>Firma.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Firma\Context\Firma.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Firma.edmx</DependentUpon>
+      <LastGenOutput>Firma1.cs</LastGenOutput>
     </Content>
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap-theme.min.css" />
@@ -229,7 +281,9 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\Shared\AdminLayout.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -240,6 +294,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Firma\Models\" />
+    <Folder Include="Areas\Musteri\Controllers\" />
+    <Folder Include="Areas\Musteri\Models\" />
+    <Folder Include="Areas\Musteri\Views\Shared\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +382,29 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\FirmaBilgileri\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Firma\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Musteri\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Areas\Firma\Context\Firma.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Firma.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Firma\Context\Firma.edmx.diagram">
+      <DependentUpon>Firma.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Firma\Views\Shared\FirmaLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Firma\Views\AnaSayfa\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

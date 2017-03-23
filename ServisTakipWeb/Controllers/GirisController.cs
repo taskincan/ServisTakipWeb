@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ServisTakipWeb.Models;
 using ServisTakipWeb.Areas.Admin.Context;
+using ServisTakipWeb.Areas.Firma.Context;
 
 namespace ServisTakipWeb.Controllers
 {
@@ -45,7 +46,6 @@ namespace ServisTakipWeb.Controllers
 
                 for (temp = 0; temp < context.Admin.Count() ; temp++)
                 {
-
                     if (adminUserName == context.Admin.ToList()[temp].UserName.ToString()) //database de, girilen kullanici adi varmi sorgusu.
                     {
                         userNameVarMi = true;
@@ -73,12 +73,52 @@ namespace ServisTakipWeb.Controllers
                 }
                 
             }
-            else // Firma veya Yonetici Girisi
+            else if (_girisModel.UserName[0]=='F') //Firma Girisi
+            {
+                var context = new ServisTakipFirmaEntities();
+
+                string firmaUserName = "";
+                string firmaPassword = _girisModel.Password.ToString().Trim();
+
+                for (temp = 1; temp < _girisModel.UserName.Count(); temp++)
+                {
+                    firmaUserName += _girisModel.UserName[temp].ToString();
+                }
+
+                for (temp = 0; temp < context.Firma.Count(); temp++)
+                {
+                    if (firmaUserName == context.Firma.ToList()[temp].YoneticiUserName.ToString()) //database de, girilen kullanici adi varmi sorgusu.
+                    {
+                        userNameVarMi = true;
+                        if (_girisModel.Password == context.Firma.ToList()[temp].YoneticiPassword.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mu sorgusu.
+                        {
+                            sifreAyniMi = true;
+                            girisIzni = true;
+
+                            Connection.ID = context.Firma.ToList()[temp].ID;
+                            Connection.userName = context.Firma.ToList()[temp].YoneticiUserName;
+                        }
+                        else
+                            sifreAyniMi = false;
+                    }
+                }
+
+                if (girisIzni)
+                {
+
+                    return RedirectToAction("Index", "AnaSayfa", new { area = "Firma" });
+                }
+                else
+                {
+                    return View("Index", _girisModel);
+                }
+            }
+            else if(_girisModel.UserName[0]=='M')
             {
                 return View("Index",_girisModel);
             }
-
-            
+            else
+                return View("Index", _girisModel);
 
             //if (girisIzni == true) //Girilen bilgiler ile sisteme giris yapilabilir.
             //{

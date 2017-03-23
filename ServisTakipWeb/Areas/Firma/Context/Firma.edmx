@@ -1,0 +1,675 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ServisTakipFirmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Firma">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirmaKodu" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FirmaAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="YetkiliKisi" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Gsm" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="FirmaTel" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="webSitesi" Type="nvarchar" MaxLength="50" />
+          <Property Name="YoneticiUserName" Type="nvarchar" MaxLength="30" />
+          <Property Name="YoneticiPassword" Type="nvarchar" MaxLength="20" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="AdminID" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FirmaCalisani">
+          <Key>
+            <PropertyRef Name="FcID" />
+          </Key>
+          <Property Name="FcID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Gsm" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="FirmaID" Type="int" Nullable="false" />
+          <Property Name="CreateUserID" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FirmaYonetici">
+          <Key>
+            <PropertyRef Name="FyID" />
+          </Key>
+          <Property Name="FyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Gsm" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="FirmaID" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MusteriKodu" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="MusteriAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="YetkiliKisi" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="VergiDairesi" Type="nvarchar" MaxLength="50" />
+          <Property Name="VergiNumarasi" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MusteriTel" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="MusteriTel2" Type="varchar" MaxLength="11" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MusteriCalisani">
+          <Key>
+            <PropertyRef Name="McID" />
+          </Key>
+          <Property Name="McID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="MusteriID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MusteriYonetici">
+          <Key>
+            <PropertyRef Name="MyID" />
+          </Key>
+          <Property Name="MyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Gsm" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="MusteriID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sozlesme">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SozlesmeAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AnlasmaUcreti" Type="money" Nullable="false" />
+          <Property Name="SlaSuresi" Type="int" Nullable="false" />
+          <Property Name="BaslangicTarih" Type="datetime" Nullable="false" />
+          <Property Name="BitisTarih" Type="datetime" Nullable="false" />
+          <Property Name="ParcaDahilMi" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SozlesmeYapma">
+          <Key>
+            <PropertyRef Name="SozlesmeID" />
+            <PropertyRef Name="FyID" />
+            <PropertyRef Name="MyID" />
+          </Key>
+          <Property Name="SozlesmeID" Type="int" Nullable="false" />
+          <Property Name="FyID" Type="int" Nullable="false" />
+          <Property Name="MyID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__FirmaCali__Creat__55009F39">
+          <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
+          <End Role="FirmaCalisani" Type="Self.FirmaCalisani" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaYonetici">
+              <PropertyRef Name="FyID" />
+            </Principal>
+            <Dependent Role="FirmaCalisani">
+              <PropertyRef Name="CreateUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FirmaCali__Firma__540C7B00">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="FirmaCalisani" Type="Self.FirmaCalisani" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FirmaCalisani">
+              <PropertyRef Name="FirmaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FirmaYone__Firma__503BEA1C">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FirmaYonetici">
+              <PropertyRef Name="FirmaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MusteriCa__Muste__671F4F74">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="MusteriCalisani" Type="Self.MusteriCalisani" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MusteriCalisani">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MusteriYo__Muste__5F7E2DAC">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="MusteriYonetici" Type="Self.MusteriYonetici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MusteriYonetici">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SozlesmeY__Sozle__0C50D423">
+          <End Role="Sozlesme" Type="Self.Sozlesme" Multiplicity="1" />
+          <End Role="SozlesmeYapma" Type="Self.SozlesmeYapma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sozlesme">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SozlesmeYapma">
+              <PropertyRef Name="SozlesmeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SozlesmeYa__FyID__0D44F85C">
+          <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
+          <End Role="SozlesmeYapma" Type="Self.SozlesmeYapma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaYonetici">
+              <PropertyRef Name="FyID" />
+            </Principal>
+            <Dependent Role="SozlesmeYapma">
+              <PropertyRef Name="FyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SozlesmeYa__MyID__0E391C95">
+          <End Role="MusteriYonetici" Type="Self.MusteriYonetici" Multiplicity="1" />
+          <End Role="SozlesmeYapma" Type="Self.SozlesmeYapma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MusteriYonetici">
+              <PropertyRef Name="MyID" />
+            </Principal>
+            <Dependent Role="SozlesmeYapma">
+              <PropertyRef Name="MyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ServisTakipFirmaModelStoreContainer">
+          <EntitySet Name="Firma" EntityType="Self.Firma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FirmaCalisani" EntityType="Self.FirmaCalisani" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FirmaYonetici" EntityType="Self.FirmaYonetici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MusteriCalisani" EntityType="Self.MusteriCalisani" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MusteriYonetici" EntityType="Self.MusteriYonetici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sozlesme" EntityType="Self.Sozlesme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SozlesmeYapma" EntityType="Self.SozlesmeYapma" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SozlesmeYapma].[SozlesmeID] AS [SozlesmeID], 
+    [SozlesmeYapma].[FyID] AS [FyID], 
+    [SozlesmeYapma].[MyID] AS [MyID]
+    FROM [dbo].[SozlesmeYapma] AS [SozlesmeYapma]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__FirmaCali__Creat__55009F39" Association="Self.FK__FirmaCali__Creat__55009F39">
+            <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
+            <End Role="FirmaCalisani" EntitySet="FirmaCalisani" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FirmaCali__Firma__540C7B00" Association="Self.FK__FirmaCali__Firma__540C7B00">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="FirmaCalisani" EntitySet="FirmaCalisani" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FirmaYone__Firma__503BEA1C" Association="Self.FK__FirmaYone__Firma__503BEA1C">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MusteriCa__Muste__671F4F74" Association="Self.FK__MusteriCa__Muste__671F4F74">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="MusteriCalisani" EntitySet="MusteriCalisani" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MusteriYo__Muste__5F7E2DAC" Association="Self.FK__MusteriYo__Muste__5F7E2DAC">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="MusteriYonetici" EntitySet="MusteriYonetici" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SozlesmeY__Sozle__0C50D423" Association="Self.FK__SozlesmeY__Sozle__0C50D423">
+            <End Role="Sozlesme" EntitySet="Sozlesme" />
+            <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SozlesmeYa__FyID__0D44F85C" Association="Self.FK__SozlesmeYa__FyID__0D44F85C">
+            <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
+            <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SozlesmeYa__MyID__0E391C95" Association="Self.FK__SozlesmeYa__MyID__0E391C95">
+            <End Role="MusteriYonetici" EntitySet="MusteriYonetici" />
+            <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ServisTakipFirmaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Firma">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirmaKodu" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirmaAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="YetkiliKisi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gsm" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirmaTel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="webSitesi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="YoneticiUserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="YoneticiPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdminID" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="FirmaCalisani" Relationship="Self.FK__FirmaCali__Firma__540C7B00" FromRole="Firma" ToRole="FirmaCalisani" />
+          <NavigationProperty Name="FirmaYonetici" Relationship="Self.FK__FirmaYone__Firma__503BEA1C" FromRole="Firma" ToRole="FirmaYonetici" />
+        </EntityType>
+        <EntityType Name="FirmaCalisani">
+          <Key>
+            <PropertyRef Name="FcID" />
+          </Key>
+          <Property Name="FcID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Soyad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gsm" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirmaID" Type="Int32" Nullable="false" />
+          <Property Name="CreateUserID" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Firma" Relationship="Self.FK__FirmaCali__Firma__540C7B00" FromRole="FirmaCalisani" ToRole="Firma" />
+          <NavigationProperty Name="FirmaYonetici" Relationship="Self.FK__FirmaCali__Creat__55009F39" FromRole="FirmaCalisani" ToRole="FirmaYonetici" />
+        </EntityType>
+        <EntityType Name="FirmaYonetici">
+          <Key>
+            <PropertyRef Name="FyID" />
+          </Key>
+          <Property Name="FyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Soyad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gsm" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirmaID" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Firma" Relationship="Self.FK__FirmaYone__Firma__503BEA1C" FromRole="FirmaYonetici" ToRole="Firma" />
+          <NavigationProperty Name="FirmaCalisani" Relationship="Self.FK__FirmaCali__Creat__55009F39" FromRole="FirmaYonetici" ToRole="FirmaCalisani" />
+          <NavigationProperty Name="SozlesmeYapma" Relationship="Self.FK__SozlesmeYa__FyID__0D44F85C" FromRole="FirmaYonetici" ToRole="SozlesmeYapma" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MusteriKodu" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MusteriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="YetkiliKisi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VergiDairesi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VergiNumarasi" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MusteriTel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MusteriTel2" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MusteriCalisani" Relationship="Self.FK__MusteriCa__Muste__671F4F74" FromRole="Musteri" ToRole="MusteriCalisani" />
+          <NavigationProperty Name="MusteriYonetici" Relationship="Self.FK__MusteriYo__Muste__5F7E2DAC" FromRole="Musteri" ToRole="MusteriYonetici" />
+        </EntityType>
+        <EntityType Name="MusteriCalisani">
+          <Key>
+            <PropertyRef Name="McID" />
+          </Key>
+          <Property Name="McID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MusteriID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK__MusteriCa__Muste__671F4F74" FromRole="MusteriCalisani" ToRole="Musteri" />
+        </EntityType>
+        <EntityType Name="MusteriYonetici">
+          <Key>
+            <PropertyRef Name="MyID" />
+          </Key>
+          <Property Name="MyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gsm" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MusteriID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK__MusteriYo__Muste__5F7E2DAC" FromRole="MusteriYonetici" ToRole="Musteri" />
+          <NavigationProperty Name="SozlesmeYapma" Relationship="Self.FK__SozlesmeYa__MyID__0E391C95" FromRole="MusteriYonetici" ToRole="SozlesmeYapma" />
+        </EntityType>
+        <EntityType Name="Sozlesme">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SozlesmeAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AnlasmaUcreti" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="SlaSuresi" Type="Int32" Nullable="false" />
+          <Property Name="BaslangicTarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BitisTarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ParcaDahilMi" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SozlesmeYapma" Relationship="Self.FK__SozlesmeY__Sozle__0C50D423" FromRole="Sozlesme" ToRole="SozlesmeYapma" />
+        </EntityType>
+        <EntityType Name="SozlesmeYapma">
+          <Key>
+            <PropertyRef Name="SozlesmeID" />
+            <PropertyRef Name="FyID" />
+            <PropertyRef Name="MyID" />
+          </Key>
+          <Property Name="SozlesmeID" Type="Int32" Nullable="false" />
+          <Property Name="FyID" Type="Int32" Nullable="false" />
+          <Property Name="MyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FirmaYonetici" Relationship="Self.FK__SozlesmeYa__FyID__0D44F85C" FromRole="SozlesmeYapma" ToRole="FirmaYonetici" />
+          <NavigationProperty Name="MusteriYonetici" Relationship="Self.FK__SozlesmeYa__MyID__0E391C95" FromRole="SozlesmeYapma" ToRole="MusteriYonetici" />
+          <NavigationProperty Name="Sozlesme" Relationship="Self.FK__SozlesmeY__Sozle__0C50D423" FromRole="SozlesmeYapma" ToRole="Sozlesme" />
+        </EntityType>
+        <Association Name="FK__FirmaCali__Firma__540C7B00">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="FirmaCalisani" Type="Self.FirmaCalisani" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FirmaCalisani">
+              <PropertyRef Name="FirmaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FirmaYone__Firma__503BEA1C">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FirmaYonetici">
+              <PropertyRef Name="FirmaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FirmaCali__Creat__55009F39">
+          <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
+          <End Role="FirmaCalisani" Type="Self.FirmaCalisani" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaYonetici">
+              <PropertyRef Name="FyID" />
+            </Principal>
+            <Dependent Role="FirmaCalisani">
+              <PropertyRef Name="CreateUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SozlesmeYa__FyID__0D44F85C">
+          <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
+          <End Role="SozlesmeYapma" Type="Self.SozlesmeYapma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaYonetici">
+              <PropertyRef Name="FyID" />
+            </Principal>
+            <Dependent Role="SozlesmeYapma">
+              <PropertyRef Name="FyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MusteriCa__Muste__671F4F74">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="MusteriCalisani" Type="Self.MusteriCalisani" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MusteriCalisani">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MusteriYo__Muste__5F7E2DAC">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="MusteriYonetici" Type="Self.MusteriYonetici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MusteriYonetici">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SozlesmeYa__MyID__0E391C95">
+          <End Role="MusteriYonetici" Type="Self.MusteriYonetici" Multiplicity="1" />
+          <End Role="SozlesmeYapma" Type="Self.SozlesmeYapma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MusteriYonetici">
+              <PropertyRef Name="MyID" />
+            </Principal>
+            <Dependent Role="SozlesmeYapma">
+              <PropertyRef Name="MyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SozlesmeY__Sozle__0C50D423">
+          <End Role="Sozlesme" Type="Self.Sozlesme" Multiplicity="1" />
+          <End Role="SozlesmeYapma" Type="Self.SozlesmeYapma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sozlesme">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SozlesmeYapma">
+              <PropertyRef Name="SozlesmeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ServisTakipFirmaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Firma" EntityType="Self.Firma" />
+          <EntitySet Name="FirmaCalisani" EntityType="Self.FirmaCalisani" />
+          <EntitySet Name="FirmaYonetici" EntityType="Self.FirmaYonetici" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+          <EntitySet Name="MusteriCalisani" EntityType="Self.MusteriCalisani" />
+          <EntitySet Name="MusteriYonetici" EntityType="Self.MusteriYonetici" />
+          <EntitySet Name="Sozlesme" EntityType="Self.Sozlesme" />
+          <EntitySet Name="SozlesmeYapma" EntityType="Self.SozlesmeYapma" />
+          <AssociationSet Name="FK__FirmaCali__Firma__540C7B00" Association="Self.FK__FirmaCali__Firma__540C7B00">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="FirmaCalisani" EntitySet="FirmaCalisani" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FirmaYone__Firma__503BEA1C" Association="Self.FK__FirmaYone__Firma__503BEA1C">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FirmaCali__Creat__55009F39" Association="Self.FK__FirmaCali__Creat__55009F39">
+            <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
+            <End Role="FirmaCalisani" EntitySet="FirmaCalisani" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SozlesmeYa__FyID__0D44F85C" Association="Self.FK__SozlesmeYa__FyID__0D44F85C">
+            <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
+            <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MusteriCa__Muste__671F4F74" Association="Self.FK__MusteriCa__Muste__671F4F74">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="MusteriCalisani" EntitySet="MusteriCalisani" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MusteriYo__Muste__5F7E2DAC" Association="Self.FK__MusteriYo__Muste__5F7E2DAC">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="MusteriYonetici" EntitySet="MusteriYonetici" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SozlesmeYa__MyID__0E391C95" Association="Self.FK__SozlesmeYa__MyID__0E391C95">
+            <End Role="MusteriYonetici" EntitySet="MusteriYonetici" />
+            <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SozlesmeY__Sozle__0C50D423" Association="Self.FK__SozlesmeY__Sozle__0C50D423">
+            <End Role="Sozlesme" EntitySet="Sozlesme" />
+            <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ServisTakipFirmaModelStoreContainer" CdmEntityContainer="ServisTakipFirmaEntities">
+          <EntitySetMapping Name="Firma">
+            <EntityTypeMapping TypeName="ServisTakipFirmaModel.Firma">
+              <MappingFragment StoreEntitySet="Firma">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirmaKodu" ColumnName="FirmaKodu" />
+                <ScalarProperty Name="FirmaAdi" ColumnName="FirmaAdi" />
+                <ScalarProperty Name="YetkiliKisi" ColumnName="YetkiliKisi" />
+                <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+                <ScalarProperty Name="FirmaTel" ColumnName="FirmaTel" />
+                <ScalarProperty Name="webSitesi" ColumnName="webSitesi" />
+                <ScalarProperty Name="YoneticiUserName" ColumnName="YoneticiUserName" />
+                <ScalarProperty Name="YoneticiPassword" ColumnName="YoneticiPassword" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FirmaCalisani">
+            <EntityTypeMapping TypeName="ServisTakipFirmaModel.FirmaCalisani">
+              <MappingFragment StoreEntitySet="FirmaCalisani">
+                <ScalarProperty Name="FcID" ColumnName="FcID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FirmaID" ColumnName="FirmaID" />
+                <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FirmaYonetici">
+            <EntityTypeMapping TypeName="ServisTakipFirmaModel.FirmaYonetici">
+              <MappingFragment StoreEntitySet="FirmaYonetici">
+                <ScalarProperty Name="FyID" ColumnName="FyID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FirmaID" ColumnName="FirmaID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musteri">
+            <EntityTypeMapping TypeName="ServisTakipFirmaModel.Musteri">
+              <MappingFragment StoreEntitySet="Musteri">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MusteriKodu" ColumnName="MusteriKodu" />
+                <ScalarProperty Name="MusteriAdi" ColumnName="MusteriAdi" />
+                <ScalarProperty Name="YetkiliKisi" ColumnName="YetkiliKisi" />
+                <ScalarProperty Name="VergiDairesi" ColumnName="VergiDairesi" />
+                <ScalarProperty Name="VergiNumarasi" ColumnName="VergiNumarasi" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="MusteriTel" ColumnName="MusteriTel" />
+                <ScalarProperty Name="MusteriTel2" ColumnName="MusteriTel2" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusteriCalisani">
+            <EntityTypeMapping TypeName="ServisTakipFirmaModel.MusteriCalisani">
+              <MappingFragment StoreEntitySet="MusteriCalisani">
+                <ScalarProperty Name="McID" ColumnName="McID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusteriYonetici">
+            <EntityTypeMapping TypeName="ServisTakipFirmaModel.MusteriYonetici">
+              <MappingFragment StoreEntitySet="MusteriYonetici">
+                <ScalarProperty Name="MyID" ColumnName="MyID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sozlesme">
+            <EntityTypeMapping TypeName="ServisTakipFirmaModel.Sozlesme">
+              <MappingFragment StoreEntitySet="Sozlesme">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SozlesmeAdi" ColumnName="SozlesmeAdi" />
+                <ScalarProperty Name="AnlasmaUcreti" ColumnName="AnlasmaUcreti" />
+                <ScalarProperty Name="SlaSuresi" ColumnName="SlaSuresi" />
+                <ScalarProperty Name="BaslangicTarih" ColumnName="BaslangicTarih" />
+                <ScalarProperty Name="BitisTarih" ColumnName="BitisTarih" />
+                <ScalarProperty Name="ParcaDahilMi" ColumnName="ParcaDahilMi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SozlesmeYapma">
+            <EntityTypeMapping TypeName="ServisTakipFirmaModel.SozlesmeYapma">
+              <MappingFragment StoreEntitySet="SozlesmeYapma">
+                <ScalarProperty Name="SozlesmeID" ColumnName="SozlesmeID" />
+                <ScalarProperty Name="FyID" ColumnName="FyID" />
+                <ScalarProperty Name="MyID" ColumnName="MyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
