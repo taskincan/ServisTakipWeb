@@ -19,6 +19,8 @@ namespace ServisTakipWeb.Areas.Admin.Context
             : base("name=ServisTakipAdminEntities")
         {
         }
+
+
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

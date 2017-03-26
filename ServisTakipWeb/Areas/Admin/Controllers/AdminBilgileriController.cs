@@ -6,12 +6,29 @@ using System.Web.Mvc;
 using ServisTakipWeb.Areas.Admin.Models;
 using ServisTakipWeb.Areas.Admin.Context;
 using System.Data.Entity;
+using ServisTakipWeb.Areas.Firma.Context;
+using ServisTakipWeb.Controllers;
 
 namespace ServisTakipWeb.Areas.Admin.Controllers
 {
-    public class AdminBilgileriController : Controller
+    public class AdminBilgileriController : BaseController
     {
-        private Context.ServisTakipAdminEntities db = new Context.ServisTakipAdminEntities();
+        private ServisTakipAdminEntities _db = null;
+
+        public ServisTakipAdminEntities db
+        {
+            get
+            {
+                if (_db == null)
+                {
+                    _db = new ServisTakipAdminEntities();
+                    _db.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
+                }
+                return _db;
+            }
+        }
+
+       // private Context.ServisTakipAdminEntities db = new Context.ServisTakipAdminEntities();
 
         //
         // GET: /Admin/AdminBilgileri/
@@ -23,7 +40,6 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
             
             return View(Models.AdminBilgileri.adminList.ToList());
         }
-
 
         public ActionResult Edit(int id = 0)
         {
@@ -56,36 +72,33 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
                 var _user = new Context.Admin();
 
                 _user.ID = _adminBilgileri.ID;
-
                 _user.UserName = _adminBilgileri.UserName;
                 _user.Password = _adminBilgileri.Password;
                 _user.CreateDate = DateTime.Now;
-
-                //db.Entry(_user).State = EntityState.Modified;
-
+                 
                 db.Entry(_user).State = EntityState.Modified;
                 db.SaveChanges();
                 ModelState.Clear();
+
                 return RedirectToAction("Index");
             }
             return View(_adminBilgileri);
         }
 
-
         private void ListYarat()
         {
-            int temp;
+            int temp, count=0;
 
-            var context = new Context.ServisTakipAdminEntities();
+            count = db.Admin.Count();
 
-            for (temp = 0; temp < context.Admin.Count(); temp++)
+            for (temp = 0; temp < count; temp++)
             {
                 var _adminlist  = new Models.AdminBilgileri();
-
-                _adminlist.ID = context.Admin.ToList()[temp].ID;
-                _adminlist.UserName = context.Admin.ToList()[temp].UserName;
-                _adminlist.Password = context.Admin.ToList()[temp].Password;
-                _adminlist.CreateDate = Convert.ToDateTime(context.Admin.ToList()[temp].CreateDate);
+                  
+                _adminlist.ID = db.Admin.ToList()[temp].ID;
+                _adminlist.UserName = db.Admin.ToList()[temp].UserName;
+                _adminlist.Password = db.Admin.ToList()[temp].Password;
+                _adminlist.CreateDate = Convert.ToDateTime(db.Admin.ToList()[temp].CreateDate);
 
                 Models.AdminBilgileri.adminList.Add(_adminlist);
             }

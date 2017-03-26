@@ -198,8 +198,11 @@
     <Compile Include="Areas\Firma\Controllers\FirmaBilgileriController.cs" />
     <Compile Include="Areas\Firma\Controllers\YoneticiBilgileriController.cs" />
     <Compile Include="Areas\Firma\FirmaAreaRegistration.cs" />
+    <Compile Include="Areas\Firma\Models\FirmaBilgileri.cs" />
+    <Compile Include="Areas\Firma\Models\FirmaYönetici.cs" />
     <Compile Include="Areas\Musteri\MusteriAreaRegistration.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\GirisController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -296,7 +299,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Firma\Models\" />
     <Folder Include="Areas\Musteri\Controllers\" />
     <Folder Include="Areas\Musteri\Models\" />
     <Folder Include="Areas\Musteri\Views\Shared\" />

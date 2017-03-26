@@ -6,13 +6,29 @@ using System.Web;
 using System.Web.Mvc;
 using ServisTakipWeb.Areas.Admin.Models;
 using ServisTakipWeb.Areas.Admin.Context;
+using ServisTakipWeb.Controllers;
 
 namespace ServisTakipWeb.Areas.Admin.Controllers
 {
-    public class FirmaBilgileriController : Controller
+    public class FirmaBilgileriController : BaseController
     {
-        private ServisTakipAdminEntities db = new ServisTakipAdminEntities();
-        private ServisTakipAdminEntities db2 = new ServisTakipAdminEntities();
+        private ServisTakipAdminEntities _db = null;
+
+        public ServisTakipAdminEntities db
+        {
+            get
+            {
+                if (_db == null)
+                {
+                    _db = new ServisTakipAdminEntities();
+                    _db.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
+                }
+                return _db;
+            }
+        }
+
+        //private ServisTakipAdminEntities db = new ServisTakipAdminEntities();
+        //private ServisTakipAdminEntities db2 = new ServisTakipAdminEntities();
 
         //
         // GET: /Admin/FirmaBilgileri/
@@ -32,7 +48,7 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
             foreach (var item in FirmaBilgileri.firmaList)
             {
                 if (item.ID == id)
-                {
+                { 
                     _firmaList.ID = item.ID;
                     _firmaList.FirmaKodu = item.FirmaKodu;
                     _firmaList.FirmaAdi = item.FirmaAdi;
@@ -80,7 +96,6 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     var _firma = new Context.Firma();
-                    db = new ServisTakipAdminEntities();
 
                     _firma.ID = _firmaBilgileri.ID;
                     _firma.FirmaKodu = _firmaBilgileri.FirmaKodu;
@@ -93,16 +108,13 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
                     _firma.YoneticiPassword = _firmaBilgileri.YoneticiPassword;
                     _firma.Adres = _firmaBilgileri.Adres;
                     _firma.Email = _firmaBilgileri.Email;
-
                     _firma.AdminID = _firmaBilgileri.AdminID;
-
                     _firma.CreateDate = DateTime.Now;
-
-                    //db.Entry(_user).State = EntityState.Modified;
 
                     db.Entry(_firma).State = EntityState.Modified;
                     db.SaveChanges();
                     ModelState.Clear();
+
                     return RedirectToAction("Index");
                 }
             }
@@ -123,11 +135,13 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create (FirmaBilgileri _firmaBilgileri)
         {
-            int temp;
+            int temp, count=0 ;
             bool firmaKoduVarMi = false;
-            ViewBag.Message = "";
 
-            for (temp = 0; temp < db.Firma.Count(); temp++)
+            ViewBag.Message = "";
+            count = db.Firma.Count();
+
+            for (temp = 0; temp < count; temp++)
             {
                 if (_firmaBilgileri.FirmaKodu == db.Firma.ToList()[temp].FirmaKodu)
                 {
@@ -172,35 +186,34 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
         {
             FirmaBilgileri.firmaList.Clear();
 
-            int temp, passLength=0;
+            int temp, passLength=0, count=0;
+            count = db.Firma.Count();
 
-            var context = new ServisTakipAdminEntities();
-
-            for (temp = 0; temp < context.Firma.Count(); temp++)
+            for (temp = 0; temp < count; temp++)
             {
                 var _firmaList = new FirmaBilgileri();
 
-                _firmaList.ID = context.Firma.ToList()[temp].ID;
-                _firmaList.FirmaKodu = context.Firma.ToList()[temp].FirmaKodu;
-                _firmaList.FirmaAdi = context.Firma.ToList()[temp].FirmaAdi;
-                _firmaList.YetkiliKisi = context.Firma.ToList()[temp].YetkiliKisi;
-                _firmaList.Gsm = context.Firma.ToList()[temp].Gsm;
-                _firmaList.FirmaTel = context.Firma.ToList()[temp].FirmaTel;
-                _firmaList.WebSite = context.Firma.ToList()[temp].webSitesi;
-                _firmaList.YoneticiUserName = context.Firma.ToList()[temp].YoneticiUserName;
-                _firmaList.YoneticiPassword = context.Firma.ToList()[temp].YoneticiPassword;
+                _firmaList.ID = db.Firma.ToList()[temp].ID;
+                _firmaList.FirmaKodu = db.Firma.ToList()[temp].FirmaKodu;
+                _firmaList.FirmaAdi = db.Firma.ToList()[temp].FirmaAdi;
+                _firmaList.YetkiliKisi = db.Firma.ToList()[temp].YetkiliKisi;
+                _firmaList.Gsm = db.Firma.ToList()[temp].Gsm;
+                _firmaList.FirmaTel = db.Firma.ToList()[temp].FirmaTel;
+                _firmaList.WebSite = db.Firma.ToList()[temp].webSitesi;
+                _firmaList.YoneticiUserName = db.Firma.ToList()[temp].YoneticiUserName;
+                _firmaList.YoneticiPassword = db.Firma.ToList()[temp].YoneticiPassword;
 
-                passLength = (context.Firma.ToList()[temp].YoneticiPassword).Length;
+                passLength = (db.Firma.ToList()[temp].YoneticiPassword).Length;
 
                 for (int temp2 = 0; temp2 < passLength; temp2++)
                 {
                     _firmaList.YoneteciPassword2 += "*";
                 }
 
-                _firmaList.Adres = context.Firma.ToList()[temp].Adres;
-                _firmaList.Email = context.Firma.ToList()[temp].Email;
-                _firmaList.AdminID = context.Firma.ToList()[temp].AdminID;
-                _firmaList.CreateDate = Convert.ToDateTime(context.Firma.ToList()[temp].CreateDate.ToShortDateString());
+                _firmaList.Adres = db.Firma.ToList()[temp].Adres;
+                _firmaList.Email = db.Firma.ToList()[temp].Email;
+                _firmaList.AdminID = db.Firma.ToList()[temp].AdminID;
+                _firmaList.CreateDate = Convert.ToDateTime(db.Firma.ToList()[temp].CreateDate.ToShortDateString());
 
                 FirmaBilgileri.firmaList.Add(_firmaList);
             }
