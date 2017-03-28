@@ -41,11 +41,12 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
             return View(Models.AdminBilgileri.adminList.ToList());
         }
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(int id = -1)
         {
-            var _adminlist = new Models.AdminBilgileri();
 
-            foreach (var item in Models.AdminBilgileri.adminList)
+            var _adminlist = new AdminBilgileri();
+
+            foreach (var item in AdminBilgileri.adminList)
             {
                 if (item.ID == id)
                 {
@@ -56,9 +57,10 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
                 }
             }
 
-            if (_adminlist == null)
+            if (_adminlist.ID == 0)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
+                //return HttpNotFound();
             }
             return View(_adminlist);
         }

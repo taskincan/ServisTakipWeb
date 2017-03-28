@@ -1,24 +1,27 @@
 ﻿@using ServisTakipWeb.Areas.Firma.Models
 @model FirmaYönetici
+
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Areas/Firma/Views/Shared/FirmaLayout.cshtml";
 }
  
-<h2>Create</h2>
-
-@using (Html.BeginForm("Create", "YoneticiBilgileri", FormMethod.Post, new { id = "frmEdit", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "FirmaYonetici", FormMethod.Post, new { id = "frmEdit", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
+
+    @Html.HiddenFor(model => model.FyID)
 
     <div class="row">
         <div class="col-md-2">
             @Html.LabelFor(model => model.UserName)
         </div>
         <div class="col-md-4">
-            <input class="form-control" placeholder="User Name" name="UserName" type="text" value="@Model.UserName" required>
+            <input class="form-control" placeholder="UserName" name="UserName" type="text" value="@Model.UserName" required>
+            @ViewBag.Message
         </div>
+
         <div class="col-md-6">
         </div>
     </div>
@@ -27,7 +30,7 @@
             @Html.LabelFor(model => model.Password)
         </div>
         <div class="col-md-4">
-            <input class="form-control" placeholder="Password" name="Password" type="password" value="@Model.Password" required>
+            <input class="form-control" placeholder="Password" name="Password" type="text" value="@Model.Password" required>
         </div>
         <div class="col-md-6">
         </div>
@@ -82,8 +85,7 @@
         <div class="col-md-6">
         </div>
     </div>
-    
-   
+
 
     <div class="row" style="margin-top:10px ">
         <div class="col-md-4"></div>

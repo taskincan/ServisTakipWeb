@@ -27,9 +27,6 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
             }
         }
 
-        //private ServisTakipAdminEntities db = new ServisTakipAdminEntities();
-        //private ServisTakipAdminEntities db2 = new ServisTakipAdminEntities();
-
         //
         // GET: /Admin/FirmaBilgileri/
 
@@ -38,7 +35,7 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
             ListTemizle();
             ListYarat();
 
-            return View(Models.FirmaBilgileri.firmaList.ToList());
+            return View(FirmaBilgileri.firmaList.ToList());
         }
 
         public ActionResult Edit(int id = 0)
@@ -48,7 +45,7 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
             foreach (var item in FirmaBilgileri.firmaList)
             {
                 if (item.ID == id)
-                { 
+                {
                     _firmaList.ID = item.ID;
                     _firmaList.FirmaKodu = item.FirmaKodu;
                     _firmaList.FirmaAdi = item.FirmaAdi;
@@ -60,10 +57,11 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
                     _firmaList.YoneticiPassword = item.YoneticiPassword;
                     _firmaList.Adres = item.Adres;
                     _firmaList.Email = item.Email;
-                    _firmaList.AdminID = item.AdminID;  
+                    _firmaList.AdminID = item.AdminID;
                     _firmaList.CreateDate = Convert.ToDateTime(item.CreateDate.ToShortDateString());
                 }
-            }
+            } 
+           
 
             if (_firmaList == null)
             {
@@ -73,13 +71,15 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit (FirmaBilgileri _firmaBilgileri)
+        public ActionResult Edit(FirmaBilgileri _firmaBilgileri)
         {
-            int temp;
+            int temp, count = 0;
             bool firmaKoduVarMi = false;
             ViewBag.Message = "";
+ 
+            count = db.Firma.Count();
 
-            for (temp = 0; temp < db.Firma.Count(); temp++)
+            for (temp = 0; temp < count; temp++)
             {
                 if (_firmaBilgileri.FirmaKodu == db.Firma.ToList()[temp].FirmaKodu)
                 {
@@ -119,23 +119,23 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
                 }
             }
 
-             return View(_firmaBilgileri);
+            return View(_firmaBilgileri);
         }
 
-        public ActionResult Create( )
+        public ActionResult Create()
         {
             var _firmaList = new FirmaBilgileri();
 
             _firmaList.AdminID = Connection.ID;
-            
+
             return View(_firmaList);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create (FirmaBilgileri _firmaBilgileri)
+        public ActionResult Create(FirmaBilgileri _firmaBilgileri)
         {
-            int temp, count=0 ;
+            int temp, count = 0;
             bool firmaKoduVarMi = false;
 
             ViewBag.Message = "";
@@ -157,7 +157,7 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var _firma = new Context.Firma(); 
+                    var _firma = new Context.Firma();
 
                     _firma.ID = _firmaBilgileri.ID;
                     _firma.FirmaKodu = _firmaBilgileri.FirmaKodu;
@@ -172,7 +172,7 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
                     _firma.Email = _firmaBilgileri.Email;
                     _firma.AdminID = _firmaBilgileri.AdminID;
                     _firma.CreateDate = DateTime.Now;
-                     
+
                     db.Firma.Add(_firma);
                     db.SaveChanges();
 
@@ -186,7 +186,7 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
         {
             FirmaBilgileri.firmaList.Clear();
 
-            int temp, passLength=0, count=0;
+            int temp, passLength = 0, count = 0;
             count = db.Firma.Count();
 
             for (temp = 0; temp < count; temp++)
@@ -217,7 +217,7 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
 
                 FirmaBilgileri.firmaList.Add(_firmaList);
             }
-        } 
+        }
 
         private void ListTemizle()
         {

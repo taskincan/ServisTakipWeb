@@ -31,19 +31,20 @@
                             <th class="col-md-4">@Html.DisplayNameFor(model => model.YoneticiPassword)</th>
                             <th class="col-md-4">@Html.DisplayNameFor(model => model.Email)</th>
                             <th class="col-md-2">@Html.DisplayNameFor(model => model.CreateDate)</th>
-                            <th class="col-md-6"></th>
+                            <th class="col-md-3"></th>
+                            <th class="col-md-3"></th>
                             @*<th class="col-md-2">
-                            @Html.DisplayNameFor(model => model.Gsm)
-                            </th>*@
+                                @Html.DisplayNameFor(model => model.Gsm)
+                                </th>*@
                             @*<th class="col-md-4">
-                            @Html.DisplayNameFor(model => model.AdminID)
-                            </th>*@
+                                @Html.DisplayNameFor(model => model.AdminID)
+                                </th>*@
                             @*<th class="col-md-2">
-                            @Html.DisplayNameFor(model => model.Adres)
-                            </th>*@
+                                @Html.DisplayNameFor(model => model.Adres)
+                                </th>*@
                             @*<th class="col-md-2">
-                            @Html.DisplayNameFor(model => model.WebSite)
-                            </th>*@
+                                @Html.DisplayNameFor(model => model.WebSite)
+                                </th>*@
                         </tr>
                     </thead>
                     <tbody>
@@ -58,30 +59,17 @@
                                 <td class="col-md-4">@Html.DisplayFor(modelItem => item.YoneticiPassword)</td>
                                 <td class="col-md-4">@Html.DisplayFor(modelItem => item.Email)</td>
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.CreateDate)</td>
-                                @*<td class="col-md-2">
-                    @Html.DisplayFor(modelItem => item.WebSite)
-                    </td>*@@*<td class="col-md-4">
-                    @Html.DisplayFor(modelItem => item.AdminID)
-                    </td>*@
-                    @*<td class="col-md-2">
-        @Html.DisplayFor(modelItem => item.Adres)
-        </td>*@
-                    @*<td class="col-md-4">
-        @Html.DisplayFor(modelItem => item.Gsm)
-        </td>*@
-                    <td class="col-md-6">
-                        <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-block">
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                        </button>
-                        <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-default">
-                            @Html.ActionLink("Delete", "", new { id = item.ID })
-                        </button>
-
-                        @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "", new { id = item.ID })*@
-                    </td>
-                </tr>
+                                <td class="col-md-3">
+                                    <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-block">
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                                    </button>
+                                </td>
+                                <td class="col-md-3">
+                                    <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-default">
+                                        @Html.ActionLink("Delete", "", new { id = item.ID })
+                                    </button>
+                                </td>
+                            </tr>
                         }
                     </tbody>
 
@@ -93,8 +81,8 @@
         </div>
     </div>
 
-       
-</div>  
+
+</div>
 
 @section Scripts
 {
@@ -120,5 +108,5 @@
                         , "lengthMenu": [[-1, 10, 20, 50, 100], ["All", 10, 20, 50, 100]]
             });
         });
-</script>
+    </script>
 }
