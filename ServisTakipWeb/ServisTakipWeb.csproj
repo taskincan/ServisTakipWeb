@@ -265,7 +265,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\FirmaYonetici\Models\" />
-    <Folder Include="Areas\FirmaYonetici\Views\Shared\" />
     <Folder Include="Areas\Musteri\Controllers\" />
     <Folder Include="Areas\Musteri\Models\" />
     <Folder Include="Areas\Musteri\Views\Shared\" />
@@ -414,6 +413,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\FirmaYonetici\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\Shared\FirmaYoneticiLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\FirmaYonetici\Views\AnaSayfa\Index.cshtml" />
