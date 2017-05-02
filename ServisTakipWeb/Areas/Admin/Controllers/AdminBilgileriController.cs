@@ -13,15 +13,15 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
 {
     public class AdminBilgileriController : BaseController
     {
-        private ServisTakipAdminEntities _db = null;
+        private ServisTakipAdminDbEntities _db = null;
 
-        public ServisTakipAdminEntities db
+        public ServisTakipAdminDbEntities db
         {
             get
             {
                 if (_db == null)
                 {
-                    _db = new ServisTakipAdminEntities();
+                    _db = new ServisTakipAdminDbEntities();
                     _db.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
                 }
                 return _db;
@@ -43,7 +43,6 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
 
         public ActionResult Edit(int id = -1)
         {
-
             var _adminlist = new AdminBilgileri();
 
             foreach (var item in AdminBilgileri.adminList)

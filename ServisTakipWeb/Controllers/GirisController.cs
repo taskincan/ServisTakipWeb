@@ -11,29 +11,30 @@ namespace ServisTakipWeb.Controllers
 {
     public class GirisController : BaseController
     {
-        private ServisTakipFirmaEntities _dbFirma = null;
-        private ServisTakipAdminEntities _dbAdmin = null;
+        private ServisTakipFirmaDbEntities _dbFirma = null;
+        private ServisTakipAdminDbEntities _dbAdmin = null;
 
-        public ServisTakipFirmaEntities dbFirma
+        public ServisTakipFirmaDbEntities dbFirma
         {
             get
             {
                 if (_dbFirma == null)
                 {
-                    _dbFirma = new ServisTakipFirmaEntities();
+                    _dbFirma = new ServisTakipFirmaDbEntities();
                     _dbFirma.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
                 }
                 return _dbFirma;
             }
         }
 
-        public ServisTakipAdminEntities dbAdmin
+        public ServisTakipAdminDbEntities dbAdmin
         {
             get
             {
                 if (_dbAdmin == null)
                 {
-                    _dbAdmin = new ServisTakipAdminEntities();
+                    _dbAdmin = new ServisTakipAdminDbEntities();
+
                     _dbAdmin.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
                 }
                 return _dbAdmin;
@@ -64,13 +65,47 @@ namespace ServisTakipWeb.Controllers
 
             bool adminMi = false;
             bool firmaMi = false, firmaYoneticisiMi = false, firmaCalisaniMi = false;
-            bool musteriYoneticisiMi = false, musteriCalisaniMi = false;
+            bool musteriMi=false, musteriYoneticisiMi = false, musteriCalisaniMi = false;
 
             bool userNameVarMi = false;
             bool sifreAyniMi = false;
             bool girisIzni = false;
 
-            if (_girisModel.UserName[0] == 'A' && _girisModel.UserName[1] == 'D' && _girisModel.UserName[2] == 'M' && _girisModel.UserName[3] == '_' ) //Admin Girisi
+            if (_girisModel.UserName[0] == 'A' && _girisModel.UserName[1] == 'D' && _girisModel.UserName[2] == 'M' && _girisModel.UserName[3] == '_') //Admin Girisi
+            {
+                adminMi = true;
+            }
+            else if (_girisModel.UserName[0] == 'F')  
+            {
+                if (_girisModel.UserName[1] == 'Y')//Firma Yonetici Girisi
+                    firmaYoneticisiMi = true;
+                else if (_girisModel.UserName[1] == 'C')//Firma Calisani Girisi
+                    firmaCalisaniMi = true;
+                else //Firma Girisi
+                    firmaMi = true;
+            }
+            else if (_girisModel.UserName[0] == 'M') //Musteri Girisi
+            {
+                if (_girisModel.UserName[1] == 'Y')//Musteri Yonetici Girisi   
+                    musteriYoneticisiMi = true;
+                else if (_girisModel.UserName[1] == 'C') // Musteri Calisani Girisi
+                    musteriCalisaniMi = true;
+                else //Musteri Girisi
+                    musteriMi = true; 
+            }
+            else
+            {
+                adminMi = false;
+                firmaMi = false; 
+                firmaYoneticisiMi = false; 
+                firmaCalisaniMi = false;
+                musteriMi=false; 
+                musteriYoneticisiMi = false; 
+                musteriCalisaniMi = false;
+                return View("Index", _girisModel);
+            }  
+
+            if ( adminMi ) //Admin Girisi
             { 
 
                 string adminUserName = "";
@@ -96,13 +131,15 @@ namespace ServisTakipWeb.Controllers
                             Connection.ID = dbAdmin.Admin.ToList()[temp].ID;
                             Connection.userName = dbAdmin.Admin.ToList()[temp].UserName;
                             Connection.adi = "Admin";
+
+                            return RedirectToAction("Index", "AnaSayfa", new { area = "Admin" });
                         }
                         else
                             sifreAyniMi = false;
                     } 
                 }                 
             }
-            else if (_girisModel.UserName[0]=='F') //Firma Girisi
+            else if (firmaMi) //Firma Girisi
             { 
                 string firmaUserName = "";
                 string firmaPassword = _girisModel.Password.ToString().Trim();
@@ -116,18 +153,55 @@ namespace ServisTakipWeb.Controllers
 
                 for (temp = 0; temp < count; temp++)
                 {
-                    if (firmaUserName == dbFirma.Firma.ToList()[temp].YoneticiUserName.ToString()) //database de, girilen kullanici adi varmi sorgusu.
+                    if (firmaUserName == dbFirma.Firma.ToList()[temp].UserName.ToString()) //database de, girilen kullanici adi varmi sorgusu.
                     {
                         userNameVarMi = true;
-                        if (_girisModel.Password == dbFirma.Firma.ToList()[temp].YoneticiPassword.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mu sorgusu.
+                        if (_girisModel.Password == dbFirma.Firma.ToList()[temp].Password.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mus sorgusu.
                         {
                             sifreAyniMi = true;
                             girisIzni = true;
                             firmaMi = true;
 
                             Connection.ID = dbFirma.Firma.ToList()[temp].ID;
-                            Connection.userName = dbFirma.Firma.ToList()[temp].YoneticiUserName;
+                            Connection.userName = dbFirma.Firma.ToList()[temp].UserName;
                             Connection.adi = dbFirma.Firma.ToList()[temp].FirmaAdi;
+
+                            return RedirectToAction("Index", "AnaSayfa", new { area = "Firma" });
+                        }
+                        else
+                            sifreAyniMi = false;
+                    }
+                } 
+            }
+            else if (firmaYoneticisiMi) // Firma Yonetici Girisi
+            { 
+                string firmaYoneticiUserName = "";
+                string firmaYoneticiPassword = _girisModel.Password.ToString().Trim();
+
+                count = dbFirma.FirmaYonetici.Count();
+
+                for (temp = 2; temp < _girisModel.UserName.Count(); temp++)
+                {
+                    firmaYoneticiUserName += _girisModel.UserName[temp].ToString();
+                }
+
+                for (temp = 0; temp < count; temp++)
+                {
+                    if (firmaYoneticiUserName == dbFirma.FirmaYonetici.ToList()[temp].UserName.ToString()) //database de, girilen kullanici adi varmi sorgusu.
+                    {
+                        userNameVarMi = true;
+                        if (_girisModel.Password == dbFirma.FirmaYonetici.ToList()[temp].Password.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mu sorgusu.
+                        {
+                            sifreAyniMi = true;
+                            girisIzni = true;
+                            firmaMi = true;
+
+                            Connection.ID = dbFirma.FirmaYonetici.ToList()[temp].FyID;
+                            Connection.userName = dbFirma.FirmaYonetici.ToList()[temp].UserName;
+                            Connection.adi = dbFirma.FirmaYonetici.ToList()[temp].Ad;
+                            Connection.parentID = dbFirma.FirmaYonetici.ToList()[temp].FirmaID;
+
+                            return RedirectToAction("Index", "AnaSayfa", new { area = "FirmaYonetici" });
                         }
                         else
                             sifreAyniMi = false;
@@ -149,12 +223,14 @@ namespace ServisTakipWeb.Controllers
                     return RedirectToAction("Index", "AnaSayfa", new { area = "Admin" });
                 else if (firmaMi)
                     return RedirectToAction("Index", "AnaSayfa", new { area = "Firma" });
+                else if (firmaYoneticisiMi)
+                    return RedirectToAction("Index", "AnaSayfa", new { area = "FirmaYonetici" });
                 else
                     return View("Index", _girisModel);
-                //TODO:
-                //else if (firmaYoneticisiMi)
-                //    return RedirectToAction("Index", "AnaSayfa", new { area = "Firma" });
+                //TODO: 
                 //else if (firmaCalisaniMi)
+                //    return RedirectToAction("Index", "AnaSayfa", new { area = "Firma" });
+                //else if (musteriMi)
                 //    return RedirectToAction("Index", "AnaSayfa", new { area = "Firma" });
                 //else if (musteriYoneticisiMi)
                 //    return RedirectToAction("Index", "AnaSayfa", new { area = "Musteri" });
@@ -172,11 +248,5 @@ namespace ServisTakipWeb.Controllers
                 return View("Index", _girisModel);
             } 
         }
-
-        //private string GirisIzni(Giris _girisModel)
-        //{
-        //    return " ";
-        //}
-
     }
 }

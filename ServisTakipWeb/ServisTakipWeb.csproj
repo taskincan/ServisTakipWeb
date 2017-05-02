@@ -130,69 +130,53 @@
   <ItemGroup>
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Context\Admin.cs">
-      <DependentUpon>AdminDB.tt</DependentUpon>
+      <DependentUpon>AdminDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Admin\Context\AdminDB.Context.cs">
+    <Compile Include="Areas\Admin\Context\AdminDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AdminDB.Context.tt</DependentUpon>
+      <DependentUpon>AdminDb.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Admin\Context\AdminDB.cs">
+    <Compile Include="Areas\Admin\Context\AdminDb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AdminDB.tt</DependentUpon>
+      <DependentUpon>AdminDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Admin\Context\AdminDB.Designer.cs">
+    <Compile Include="Areas\Admin\Context\AdminDb.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AdminDB.edmx</DependentUpon>
+      <DependentUpon>AdminDb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Areas\Admin\Context\Firma.cs">
-      <DependentUpon>AdminDB.tt</DependentUpon>
+      <DependentUpon>AdminDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\Admin\Controllers\AdminBilgileriController.cs" />
     <Compile Include="Areas\Admin\Controllers\AnaSayfaController.cs" />
     <Compile Include="Areas\Admin\Controllers\FirmaBilgileriController.cs" />
     <Compile Include="Areas\Admin\Models\AdminBilgileri.cs" />
     <Compile Include="Areas\Admin\Models\FirmaBilgileri.cs" />
-    <Compile Include="Areas\Firma\Context\Firma.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Firma.Context.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Areas\FirmaYonetici\Controllers\AnaSayfaController.cs" />
+    <Compile Include="Areas\FirmaYonetici\FirmaYoneticiAreaRegistration.cs" />
     <Compile Include="Areas\Firma\Context\Firma.cs">
-      <DependentUpon>Firma.tt</DependentUpon>
+      <DependentUpon>FirmaDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Firma\Context\Firma.Designer.cs">
+    <Compile Include="Areas\Firma\Context\FirmaDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Firma.edmx</DependentUpon>
+      <DependentUpon>FirmaDb.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Firma\Context\Firma1.cs">
+    <Compile Include="Areas\Firma\Context\FirmaDb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Firma.tt</DependentUpon>
+      <DependentUpon>FirmaDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Firma\Context\FirmaCalisani.cs">
-      <DependentUpon>Firma.tt</DependentUpon>
+    <Compile Include="Areas\Firma\Context\FirmaDb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FirmaDb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Areas\Firma\Context\FirmaYonetici.cs">
-      <DependentUpon>Firma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Firma\Context\Musteri.cs">
-      <DependentUpon>Firma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Firma\Context\MusteriCalisani.cs">
-      <DependentUpon>Firma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Firma\Context\MusteriYonetici.cs">
-      <DependentUpon>Firma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Firma\Context\Sozlesme.cs">
-      <DependentUpon>Firma.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Firma\Context\SozlesmeYapma.cs">
-      <DependentUpon>Firma.tt</DependentUpon>
+      <DependentUpon>FirmaDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\Firma\Controllers\AnaSayfaController.cs" />
     <Compile Include="Areas\Firma\Controllers\FirmaBilgileriController.cs" />
@@ -207,6 +191,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Giris.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -214,26 +199,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="Areas\Admin\Context\AdminDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AdminDB.edmx</DependentUpon>
-      <LastGenOutput>AdminDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Areas\Admin\Context\AdminDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AdminDB.edmx</DependentUpon>
-      <LastGenOutput>AdminDB.cs</LastGenOutput>
-    </Content>
-    <Content Include="Areas\Firma\Context\Firma.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Firma.edmx</DependentUpon>
-      <LastGenOutput>Firma.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Areas\Firma\Context\Firma.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Firma.edmx</DependentUpon>
-      <LastGenOutput>Firma1.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -299,6 +264,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\FirmaYonetici\Models\" />
+    <Folder Include="Areas\FirmaYonetici\Views\Shared\" />
     <Folder Include="Areas\Musteri\Controllers\" />
     <Folder Include="Areas\Musteri\Models\" />
     <Folder Include="Areas\Musteri\Views\Shared\" />
@@ -368,17 +335,6 @@
     <Content Include="Areas\Admin\Views\AdminBilgileri\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Areas\Admin\Context\AdminDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AdminDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Admin\Context\AdminDB.edmx.diagram">
-      <DependentUpon>AdminDB.edmx</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\Admin\Views\FirmaBilgileri\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -389,17 +345,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Musteri\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Areas\Firma\Context\Firma.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Firma.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Firma\Context\Firma.edmx.diagram">
-      <DependentUpon>Firma.edmx</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Firma\Views\Shared\FirmaLayout.cshtml" />
@@ -424,6 +369,54 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Firma\Views\YoneticiBilgileri\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Areas\Admin\Context\AdminDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AdminDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Context\AdminDb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AdminDb.edmx</DependentUpon>
+      <LastGenOutput>AdminDb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Admin\Context\AdminDb.edmx.diagram">
+      <DependentUpon>AdminDb.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Context\AdminDb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AdminDb.edmx</DependentUpon>
+      <LastGenOutput>AdminDb.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Areas\Firma\Context\FirmaDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FirmaDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Firma\Context\FirmaDb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FirmaDb.edmx</DependentUpon>
+      <LastGenOutput>FirmaDb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Firma\Context\FirmaDb.edmx.diagram">
+      <DependentUpon>FirmaDb.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Firma\Context\FirmaDb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FirmaDb.edmx</DependentUpon>
+      <LastGenOutput>FirmaDb.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\AnaSayfa\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

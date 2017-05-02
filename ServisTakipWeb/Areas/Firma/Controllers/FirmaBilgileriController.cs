@@ -12,15 +12,15 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
 { 
     public class FirmaBilgileriController : BaseController
     {
-        private ServisTakipFirmaEntities _db = null;
+        private ServisTakipFirmaDbEntities _db = null;
 
-        public ServisTakipFirmaEntities db
+        public ServisTakipFirmaDbEntities db
         {
             get
             {
                 if (_db == null)
                 {
-                    _db = new ServisTakipFirmaEntities();
+                    _db = new ServisTakipFirmaDbEntities();
                     _db.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
                 }
                 return _db;
@@ -47,14 +47,14 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
                     _firmaList.Gsm = item.Gsm;
                     _firmaList.FirmaTel = item.FirmaTel;
                     _firmaList.WebSite = item.webSitesi;
-                    _firmaList.YoneticiUserName = item.YoneticiUserName;
-                    _firmaList.YoneticiPassword = item.YoneticiPassword;
+                    _firmaList.UserName = item.UserName;
+                    _firmaList.Password = item.Password;
 
-                    passLength = (item.YoneticiPassword).Length;
+                    passLength = (item.Password).Length;
 
                     for (int temp2 = 0; temp2 < passLength; temp2++)
                     {
-                        _firmaList.YoneteciPassword2 += "*";
+                        _firmaList.Password2 += "*";
                     }
                     _firmaList.Adres = item.Adres;
                     _firmaList.Email = item.Email;
@@ -85,8 +85,8 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
                     _firmaList.Gsm = item.Gsm;
                     _firmaList.FirmaTel = item.FirmaTel;
                     _firmaList.WebSite = item.WebSite;
-                    _firmaList.YoneticiUserName = item.YoneticiUserName;
-                    _firmaList.YoneticiPassword = item.YoneticiPassword;
+                    _firmaList.UserName = item.UserName;
+                    _firmaList.Password = item.Password;
                     _firmaList.Adres = item.Adres;
                     _firmaList.Email = item.Email;
                     _firmaList.AdminID = item.AdminID;
@@ -133,8 +133,8 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
                     _firma.Gsm = _firmaBilgileri.Gsm;
                     _firma.FirmaTel = _firmaBilgileri.FirmaTel;
                     _firma.webSitesi = _firmaBilgileri.WebSite;
-                    _firma.YoneticiUserName = _firmaBilgileri.YoneticiUserName;
-                    _firma.YoneticiPassword = _firmaBilgileri.YoneticiPassword;
+                    _firma.UserName = _firmaBilgileri.UserName;
+                    _firma.Password = _firmaBilgileri.Password;
                     _firma.Adres = _firmaBilgileri.Adres;
                     _firma.Email = _firmaBilgileri.Email;
                     _firma.AdminID = _firmaBilgileri.AdminID;
@@ -195,8 +195,8 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
                     _firma.Gsm = _firmaBilgileri.Gsm;
                     _firma.FirmaTel = _firmaBilgileri.FirmaTel;
                     _firma.webSitesi = _firmaBilgileri.WebSite;
-                    _firma.YoneticiUserName = _firmaBilgileri.YoneticiUserName;
-                    _firma.YoneticiPassword = _firmaBilgileri.YoneticiPassword;
+                    _firma.UserName = _firmaBilgileri.UserName;
+                    _firma.Password = _firmaBilgileri.Password;
                     _firma.Adres = _firmaBilgileri.Adres;
                     _firma.Email = _firmaBilgileri.Email;
                     _firma.AdminID = _firmaBilgileri.AdminID;
@@ -231,14 +231,14 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
                     _firmaList.Gsm = db.Firma.ToList()[temp].Gsm;
                     _firmaList.FirmaTel = db.Firma.ToList()[temp].FirmaTel;
                     _firmaList.WebSite = db.Firma.ToList()[temp].webSitesi;
-                    _firmaList.YoneticiUserName = db.Firma.ToList()[temp].YoneticiUserName;
-                    _firmaList.YoneticiPassword = db.Firma.ToList()[temp].YoneticiPassword;
+                    _firmaList.UserName = db.Firma.ToList()[temp].UserName;
+                    _firmaList.Password = db.Firma.ToList()[temp].Password;
 
-                    passLength = (db.Firma.ToList()[temp].YoneticiPassword).Length;
+                    passLength = (db.Firma.ToList()[temp].Password).Length;
 
                     for (int temp2 = 0; temp2 < passLength; temp2++)
                     {
-                        _firmaList.YoneteciPassword2 += "*";
+                        _firmaList.Password2 += "*";
                     }
 
                     _firmaList.Adres = db.Firma.ToList()[temp].Adres;

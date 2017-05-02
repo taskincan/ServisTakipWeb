@@ -14,13 +14,6 @@ namespace ServisTakipWeb.Areas.Firma.Context
     
     public partial class FirmaYonetici
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FirmaYonetici()
-        {
-            this.FirmaCalisani = new HashSet<FirmaCalisani>();
-            this.SozlesmeYapma = new HashSet<SozlesmeYapma>();
-        }
-    
         public int FyID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
@@ -32,9 +25,5 @@ namespace ServisTakipWeb.Areas.Firma.Context
         public System.DateTime CreateDate { get; set; }
     
         public virtual Firma Firma { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FirmaCalisani> FirmaCalisani { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SozlesmeYapma> SozlesmeYapma { get; set; }
     }
 }

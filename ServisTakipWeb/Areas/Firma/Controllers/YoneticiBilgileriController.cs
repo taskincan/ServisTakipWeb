@@ -12,15 +12,15 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
 {
     public class YoneticiBilgileriController : BaseController
     {
-        private ServisTakipFirmaEntities _db = null;
+        private ServisTakipFirmaDbEntities _db = null;
 
-        public ServisTakipFirmaEntities db
+        public ServisTakipFirmaDbEntities db
         {
             get
             {
                 if (_db == null)
                 {
-                    _db = new ServisTakipFirmaEntities();
+                    _db = new ServisTakipFirmaDbEntities();
                     _db.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
                 }
                 return _db;
@@ -71,15 +71,16 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
         {
             if (ModelState.IsValid)
             {
-                var _user = new FirmaYonetici();
+                var _user = new Context.FirmaYonetici();
 
+                _user.FyID = _firmaYoneticiBilgileri.FyID;
                 _user.UserName = _firmaYoneticiBilgileri.UserName;
                 _user.Password = _firmaYoneticiBilgileri.Password;
-                _user.Ad = _firmaYoneticiBilgileri.Ad; 
+                _user.Ad = _firmaYoneticiBilgileri.Ad;
                 _user.Soyad = _firmaYoneticiBilgileri.Soyad;
-                _user.Gsm = _firmaYoneticiBilgileri.Gsm; 
-                _user.Email = _firmaYoneticiBilgileri.Email; 
-
+                _user.Gsm = _firmaYoneticiBilgileri.Gsm;
+                _user.Email = _firmaYoneticiBilgileri.Email;
+                _user.FirmaID = _firmaYoneticiBilgileri.FirmaID;
                 _user.CreateDate = DateTime.Now;
 
                 db.Entry(_user).State = EntityState.Modified;
@@ -128,7 +129,7 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var _firmaYonetici = new FirmaYonetici();
+                    var _firmaYonetici = new Context.FirmaYonetici();
 
                     _firmaYonetici.UserName = _firmaYoneticiBilgileri.UserName;
                     _firmaYonetici.Password = _firmaYoneticiBilgileri.Password;
@@ -157,27 +158,30 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
 
             for (temp = 0; temp < count; temp++)
             {
-                var _firmaYoneticiList = new FirmaYönetici();
-
-                _firmaYoneticiList.FyID = db.FirmaYonetici.ToList()[temp].FyID;
-                _firmaYoneticiList.UserName = db.FirmaYonetici.ToList()[temp].UserName;
-                _firmaYoneticiList.Password = db.FirmaYonetici.ToList()[temp].Password;
-                _firmaYoneticiList.Ad = db.FirmaYonetici.ToList()[temp].Ad;
-                _firmaYoneticiList.Soyad = db.FirmaYonetici.ToList()[temp].Soyad;
-                _firmaYoneticiList.Gsm = db.FirmaYonetici.ToList()[temp].Gsm;
-                _firmaYoneticiList.Email = db.FirmaYonetici.ToList()[temp].Email;
-                _firmaYoneticiList.FirmaID = db.FirmaYonetici.ToList()[temp].FirmaID;
-
-                passLength = (db.FirmaYonetici.ToList()[temp].Password).Length;
-
-                for (int temp2 = 0; temp2 < passLength; temp2++)
+                if ( Connection.ID == db.FirmaYonetici.ToList()[temp].FirmaID)  
                 {
-                    _firmaYoneticiList.YoneteciPassword2 += "*";
+                    var _firmaYoneticiList = new FirmaYönetici();
+
+                    _firmaYoneticiList.FyID = db.FirmaYonetici.ToList()[temp].FyID;
+                    _firmaYoneticiList.UserName = db.FirmaYonetici.ToList()[temp].UserName;
+                    _firmaYoneticiList.Password = db.FirmaYonetici.ToList()[temp].Password;
+                    _firmaYoneticiList.Ad = db.FirmaYonetici.ToList()[temp].Ad;
+                    _firmaYoneticiList.Soyad = db.FirmaYonetici.ToList()[temp].Soyad;
+                    _firmaYoneticiList.Gsm = db.FirmaYonetici.ToList()[temp].Gsm;
+                    _firmaYoneticiList.Email = db.FirmaYonetici.ToList()[temp].Email;
+                    _firmaYoneticiList.FirmaID = db.FirmaYonetici.ToList()[temp].FirmaID;
+
+                    passLength = (db.FirmaYonetici.ToList()[temp].Password).Length;
+
+                    for (int temp2 = 0; temp2 < passLength; temp2++)
+                    {
+                        _firmaYoneticiList.YoneteciPassword2 += "*";
+                    }
+
+                    _firmaYoneticiList.CreateDate = db.FirmaYonetici.ToList()[temp].CreateDate.ToShortDateString();
+
+                    FirmaYönetici.firmaYoneticiList.Add(_firmaYoneticiList);
                 }
-
-                _firmaYoneticiList.CreateDate = db.FirmaYonetici.ToList()[temp].CreateDate.ToShortDateString();
-
-                FirmaYönetici.firmaYoneticiList.Add(_firmaYoneticiList);
             }
         }
 

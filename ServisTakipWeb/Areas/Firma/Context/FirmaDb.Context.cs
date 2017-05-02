@@ -13,10 +13,10 @@ namespace ServisTakipWeb.Areas.Firma.Context
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ServisTakipFirmaEntities : DbContext
+    public partial class ServisTakipFirmaDbEntities : DbContext
     {
-        public ServisTakipFirmaEntities()
-            : base("name=ServisTakipFirmaEntities")
+        public ServisTakipFirmaDbEntities()
+            : base("name=ServisTakipFirmaDbEntities")
         {
         }
     
@@ -26,12 +26,6 @@ namespace ServisTakipWeb.Areas.Firma.Context
         }
     
         public virtual DbSet<Firma> Firma { get; set; }
-        public virtual DbSet<FirmaCalisani> FirmaCalisani { get; set; }
         public virtual DbSet<FirmaYonetici> FirmaYonetici { get; set; }
-        public virtual DbSet<Musteri> Musteri { get; set; }
-        public virtual DbSet<MusteriCalisani> MusteriCalisani { get; set; }
-        public virtual DbSet<MusteriYonetici> MusteriYonetici { get; set; }
-        public virtual DbSet<Sozlesme> Sozlesme { get; set; }
-        public virtual DbSet<SozlesmeYapma> SozlesmeYapma { get; set; }
     }
 }

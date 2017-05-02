@@ -75,20 +75,21 @@
     </div>
     <div class="row" style="margin-top: 10px">
         <div class="col-md-2">
-            @Html.LabelFor(model => model.YoneticiUserName)
+            @Html.LabelFor(model => model.
+            UserName)
         </div>
         <div class="col-md-4">
-            <input class="form-control" placeholder="Yönetici Kullanıcı Adı" name="YoneticiUserName" type="text" value="@Model.YoneticiUserName">
+            <input class="form-control" placeholder="Kullanıcı Adı" name="UserName" type="text" value="@Model.UserName">
         </div>
         <div class="col-md-6">
         </div>
     </div>
     <div class="row" style="margin-top: 10px">
         <div class="col-md-2">
-            @Html.LabelFor(model => model.YoneticiPassword)
+            @Html.LabelFor(model => model.Password)
         </div>
         <div class="col-md-4">
-            <input class="form-control" placeholder="Yönetici Şifre" name="YoneticiPassword" type="text" value="@Model.YoneticiPassword">
+            <input class="form-control" placeholder="Şifre" name="Password" type="text" value="@Model.Password">
         </div>
         <div class="col-md-6">
         </div>

@@ -1,15 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="ServisTakipWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="ServisTakipAdminModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Admin">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
   </EntityType>
-  <EntityContainer Name="ServisTakipWebModelStoreContainer">
+  <EntityType Name="Firma">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirmaKodu" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="FirmaAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="YetkiliKisi" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Gsm" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="FirmaTel" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="webSitesi" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Adres" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="AdminID" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="date" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Firma__AdminID__145C0A3F">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="Firma" Type="Self.Firma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Firma">
+        <PropertyRef Name="AdminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ServisTakipAdminModelStoreContainer">
     <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Firma" EntityType="Self.Firma" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Firma__AdminID__145C0A3F" Association="Self.FK__Firma__AdminID__145C0A3F">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="Firma" EntitySet="Firma" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

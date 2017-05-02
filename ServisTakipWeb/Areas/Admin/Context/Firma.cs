@@ -21,8 +21,8 @@ namespace ServisTakipWeb.Areas.Admin.Context
         public string Gsm { get; set; }
         public string FirmaTel { get; set; }
         public string webSitesi { get; set; }
-        public string YoneticiUserName { get; set; }
-        public string YoneticiPassword { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
         public string Adres { get; set; }
         public string Email { get; set; }
         public int AdminID { get; set; }

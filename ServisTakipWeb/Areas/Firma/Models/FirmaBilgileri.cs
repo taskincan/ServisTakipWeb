@@ -58,20 +58,20 @@ namespace ServisTakipWeb.Areas.Firma.Models
         [Required]
         [MinLength(1)]
         [MaxLength(30)]
-        public string YoneticiUserName { get; set; }
+        public string UserName { get; set; }
 
         [Display(Name = "Şifre")]
         [Required]
         [DataType(DataType.Password)]
         [MinLength(1)]
         [MaxLength(50)]
-        public string YoneticiPassword { get; set; }
+        public string Password { get; set; }
 
         [Display(Name = "Şifre")]
         [DataType(DataType.Password)]
         [MinLength(1)]
         [MaxLength(50)]
-        public string YoneteciPassword2 { get; set; }
+        public string Password2 { get; set; }
 
         [Display(Name = "Adres")]
         [DataType(DataType.Text)]

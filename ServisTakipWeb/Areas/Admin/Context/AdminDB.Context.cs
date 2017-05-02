@@ -13,14 +13,12 @@ namespace ServisTakipWeb.Areas.Admin.Context
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ServisTakipAdminEntities : DbContext
+    public partial class ServisTakipAdminDbEntities : DbContext
     {
-        public ServisTakipAdminEntities()
-            : base("name=ServisTakipAdminEntities")
+        public ServisTakipAdminDbEntities()
+            : base("name=ServisTakipAdminDbEntities")
         {
         }
-
-
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
