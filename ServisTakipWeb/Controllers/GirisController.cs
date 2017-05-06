@@ -164,7 +164,7 @@ namespace ServisTakipWeb.Controllers
 
                             Connection.ID = dbFirma.Firma.ToList()[temp].ID;
                             Connection.userName = dbFirma.Firma.ToList()[temp].UserName;
-                            Connection.adi = dbFirma.Firma.ToList()[temp].FirmaAdi;
+                            Connection.adi = dbFirma.Firma.ToList()[temp].FirmaAdi; 
 
                             return RedirectToAction("Index", "AnaSayfa", new { area = "Firma" });
                         }
