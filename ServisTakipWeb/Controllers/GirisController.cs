@@ -5,47 +5,50 @@ using System.Web;
 using System.Web.Mvc;
 using ServisTakipWeb.Models;
 using ServisTakipWeb.Areas.Admin.Context;
-using ServisTakipWeb.Areas.Firma.Context;
+using ServisTakipWeb.Areas.Firma.Context; 
 
 namespace ServisTakipWeb.Controllers
 {
     public class GirisController : BaseController
     {
-        private ServisTakipFirmaDbEntities _dbFirma = null;
-        private ServisTakipAdminDbEntities _dbAdmin = null;
+        private ServisTakipFirmaDBEntities _dbFirma = null;
+        private ServisTakipAdminDBEntities _dbAdmin = null; 
 
-        public ServisTakipFirmaDbEntities dbFirma
+        public ServisTakipFirmaDBEntities dbFirma
         {
             get
             {
                 if (_dbFirma == null)
                 {
-                    _dbFirma = new ServisTakipFirmaDbEntities();
+                    _dbFirma = new ServisTakipFirmaDBEntities();
                     _dbFirma.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
                 }
                 return _dbFirma;
             }
         }
 
-        public ServisTakipAdminDbEntities dbAdmin
+        public ServisTakipAdminDBEntities dbAdmin
         {
             get
             {
                 if (_dbAdmin == null)
                 {
-                    _dbAdmin = new ServisTakipAdminDbEntities();
+                    _dbAdmin = new ServisTakipAdminDBEntities();
 
                     _dbAdmin.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
                 }
                 return _dbAdmin;
             }
         }
+         
 
         //
         // GET: /Giris/
 
         public ActionResult Index(Giris _girisModel)
         {
+            Connection.Clear();
+
             _girisModel.Password = "";
             _girisModel.UserName = ""; 
 
@@ -194,7 +197,7 @@ namespace ServisTakipWeb.Controllers
                         {
                             sifreAyniMi = true;
                             girisIzni = true;
-                            firmaMi = true;
+                            firmaYoneticisiMi = true;
 
                             Connection.ID = dbFirma.FirmaYonetici.ToList()[temp].FyID;
                             Connection.userName = dbFirma.FirmaYonetici.ToList()[temp].UserName;

@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ServisTakipFirmaYoneticiDBModelStoreContainer" CdmEntityContainer="ServisTakipFirmaYoneticiDBEntities">
+    <EntitySetMapping Name="Firma">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.Firma">
+        <MappingFragment StoreEntitySet="Firma">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FirmaKodu" ColumnName="FirmaKodu" />
+          <ScalarProperty Name="FirmaAdi" ColumnName="FirmaAdi" />
+          <ScalarProperty Name="YetkiliKisi" ColumnName="YetkiliKisi" />
+          <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+          <ScalarProperty Name="FirmaTel" ColumnName="FirmaTel" />
+          <ScalarProperty Name="webSitesi" ColumnName="webSitesi" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FirmaCalisani">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.FirmaCalisani">
+        <MappingFragment StoreEntitySet="FirmaCalisani">
+          <ScalarProperty Name="FcID" ColumnName="FcID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FirmaID" ColumnName="FirmaID" />
+          <ScalarProperty Name="CreateUserID" ColumnName="CreateUserID" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FirmaYonetici">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.FirmaYonetici">
+        <MappingFragment StoreEntitySet="FirmaYonetici">
+          <ScalarProperty Name="FyID" ColumnName="FyID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FirmaID" ColumnName="FirmaID" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Musteri">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.Musteri">
+        <MappingFragment StoreEntitySet="Musteri">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MusteriKodu" ColumnName="MusteriKodu" />
+          <ScalarProperty Name="MusteriAdi" ColumnName="MusteriAdi" />
+          <ScalarProperty Name="YetkiliKisi" ColumnName="YetkiliKisi" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="VergiDairesi" ColumnName="VergiDairesi" />
+          <ScalarProperty Name="VergiNumarasi" ColumnName="VergiNumarasi" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="MusteriTel" ColumnName="MusteriTel" />
+          <ScalarProperty Name="MusteriTel2" ColumnName="MusteriTel2" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MusteriCalisani">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.MusteriCalisani">
+        <MappingFragment StoreEntitySet="MusteriCalisani">
+          <ScalarProperty Name="McID" ColumnName="McID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MusteriYonetici">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.MusteriYonetici">
+        <MappingFragment StoreEntitySet="MusteriYonetici">
+          <ScalarProperty Name="MyID" ColumnName="MyID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sozlesme">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.Sozlesme">
+        <MappingFragment StoreEntitySet="Sozlesme">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SozlesmeAdi" ColumnName="SozlesmeAdi" />
+          <ScalarProperty Name="AnlasmaUcreti" ColumnName="AnlasmaUcreti" />
+          <ScalarProperty Name="SlaSuresi" ColumnName="SlaSuresi" />
+          <ScalarProperty Name="BaslangicTarih" ColumnName="BaslangicTarih" />
+          <ScalarProperty Name="BitisTarih" ColumnName="BitisTarih" />
+          <ScalarProperty Name="ParcaDahilMi" ColumnName="ParcaDahilMi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SozlesmeYapma">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.SozlesmeYapma">
+        <MappingFragment StoreEntitySet="SozlesmeYapma">
+          <ScalarProperty Name="SozlesmeID" ColumnName="SozlesmeID" />
+          <ScalarProperty Name="FyID" ColumnName="FyID" />
+          <ScalarProperty Name="MID" ColumnName="MID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

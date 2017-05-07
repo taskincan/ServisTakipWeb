@@ -12,15 +12,15 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
 {
     public class YoneticiBilgileriController : BaseController
     {
-        private ServisTakipFirmaDbEntities _db = null;
+        private ServisTakipFirmaDBEntities _db = null;
 
-        public ServisTakipFirmaDbEntities db
+        public ServisTakipFirmaDBEntities db
         {
             get
             {
                 if (_db == null)
                 {
-                    _db = new ServisTakipFirmaDbEntities();
+                    _db = new ServisTakipFirmaDBEntities();
                     _db.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
                 }
                 return _db;

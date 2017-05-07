@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ServisTakipModelStoreContainer" CdmEntityContainer="ServisTakipAdminDbEntities">
+  <EntityContainerMapping StorageEntityContainer="ServisTakipAdminDBModelStoreContainer" CdmEntityContainer="ServisTakipAdminDBEntities">
     <EntitySetMapping Name="Admin">
-      <EntityTypeMapping TypeName="ServisTakipModel.Admin">
+      <EntityTypeMapping TypeName="ServisTakipAdminDBModel.Admin">
         <MappingFragment StoreEntitySet="Admin">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -12,7 +12,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Firma">
-      <EntityTypeMapping TypeName="ServisTakipModel.Firma">
+      <EntityTypeMapping TypeName="ServisTakipAdminDBModel.Firma">
         <MappingFragment StoreEntitySet="Firma">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="FirmaKodu" ColumnName="FirmaKodu" />

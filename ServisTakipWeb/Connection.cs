@@ -12,7 +12,6 @@ namespace ServisTakipWeb
         public static string adi = "";
         public static string userName = "";
         public static string password = "";
-
         public static string whereAmI = "";
 
         //Cagrilar
@@ -35,6 +34,15 @@ namespace ServisTakipWeb
         public static string calisanBilgileri = "Çalışan Bilgileri";
         public static string calisanEkle = "Çalışan Ekle";
 
+        public static void Clear()
+        {
+            Connection.ID = -1;
+            Connection.parentID = -1;
+            Connection.adi = "";
+            Connection.userName = "";
+            Connection.password = "";
+            Connection.whereAmI = "";
+        }
 
     }
 }

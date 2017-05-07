@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7b222278aaeb4ae781078c2a9d43443f" Name="Diagram1">
-        <EntityTypeShape EntityType="ServisTakipModel1.Firma" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServisTakipModel1.FirmaYonetici" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <AssociationConnector Association="ServisTakipModel1.FK__FirmaYone__Firma__286302EC" ManuallyRouted="false" />
+      <Diagram DiagramId="87edfa8a724d4d8ba968d85dfe0f774b" Name="Diagram1">
+        <EntityTypeShape EntityType="ServisTakipFirmaDBModel.Firma" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaDBModel.FirmaYonetici" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="ServisTakipFirmaDBModel.FK__FirmaYone__Firma__286302EC" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

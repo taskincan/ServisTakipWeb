@@ -51,7 +51,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                                <a href="#FirmaYonetici/Profile"><i class="fa fa-fw fa-user"></i> Profile</a>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -71,11 +71,23 @@
                             <ul id="cagrilar" class="collapse">
                                 <li>
                                     <a href="/FirmaYonetici/GelenCagrilar"> 
-                                        <i class="fa fa-fw fa-file"> </i> @ServisTakipWeb.Connection.gelenCagrilar.ToString() 
+                                        <i class="fa fa-fw fa-file"> </i> @ServisTakipWeb.Connection.gelenCagrilar.ToString()
+                                    </a>
+                                </li> 
+                                <li>
+                                    <a href="/FirmaYonetici/AtanmisCagrilar">
+                                        <i class="fa fa-fw fa-file"></i> @ServisTakipWeb.Connection.atanmisCagrilar.ToString()
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/FirmaYonetici/YoneticiBilgileri/Create">  <i class="fa fa-fw fa-edit"></i> @ServisTakipWeb.Connection.yoneticiEkle.ToString() </a>
+                                    <a href="/FirmaYonetici/BekleyenCagrilar">
+                                        <i class="fa fa-fw fa-file"></i> @ServisTakipWeb.Connection.bekleyenCagrilar.ToString()
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/FirmaYonetici/BekleyenCagrilar">
+                                        <i class="fa fa-fw fa-file"></i> @ServisTakipWeb.Connection.bekleyenCagrilar.ToString()
+                                    </a>
                                 </li>
                             </ul>
                         </li>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ServisTakipModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ServisTakipFirmaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Firma">
           <Key>
             <PropertyRef Name="ID" />
@@ -49,7 +49,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ServisTakipModel1StoreContainer">
+        <EntityContainer Name="ServisTakipFirmaDBModelStoreContainer">
           <EntitySet Name="Firma" EntityType="Self.Firma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FirmaYonetici" EntityType="Self.FirmaYonetici" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__FirmaYone__Firma__286302EC" Association="Self.FK__FirmaYone__Firma__286302EC">
@@ -61,7 +61,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ServisTakipModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ServisTakipFirmaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Firma">
           <Key>
             <PropertyRef Name="ID" />
@@ -108,7 +108,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ServisTakipFirmaDbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ServisTakipFirmaDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Firma" EntityType="Self.Firma" />
           <EntitySet Name="FirmaYonetici" EntityType="Self.FirmaYonetici" />
           <AssociationSet Name="FK__FirmaYone__Firma__286302EC" Association="Self.FK__FirmaYone__Firma__286302EC">
@@ -121,9 +121,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ServisTakipModel1StoreContainer" CdmEntityContainer="ServisTakipFirmaDbEntities">
+        <EntityContainerMapping StorageEntityContainer="ServisTakipFirmaDBModelStoreContainer" CdmEntityContainer="ServisTakipFirmaDBEntities">
           <EntitySetMapping Name="Firma">
-            <EntityTypeMapping TypeName="ServisTakipModel1.Firma">
+            <EntityTypeMapping TypeName="ServisTakipFirmaDBModel.Firma">
               <MappingFragment StoreEntitySet="Firma">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirmaKodu" ColumnName="FirmaKodu" />
@@ -142,7 +142,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FirmaYonetici">
-            <EntityTypeMapping TypeName="ServisTakipModel1.FirmaYonetici">
+            <EntityTypeMapping TypeName="ServisTakipFirmaDBModel.FirmaYonetici">
               <MappingFragment StoreEntitySet="FirmaYonetici">
                 <ScalarProperty Name="FyID" ColumnName="FyID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ServisTakipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ServisTakipAdminDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="ID" />
@@ -44,7 +44,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ServisTakipModelStoreContainer">
+        <EntityContainer Name="ServisTakipAdminDBModelStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Firma" EntityType="Self.Firma" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Firma__AdminID__24927208" Association="Self.FK__Firma__AdminID__24927208">
@@ -56,7 +56,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ServisTakipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ServisTakipAdminDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="ID" />
@@ -98,7 +98,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ServisTakipAdminDbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ServisTakipAdminDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admin" EntityType="Self.Admin" />
           <EntitySet Name="Firma" EntityType="Self.Firma" />
           <AssociationSet Name="FK__Firma__AdminID__24927208" Association="Self.FK__Firma__AdminID__24927208">
@@ -111,9 +111,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ServisTakipModelStoreContainer" CdmEntityContainer="ServisTakipAdminDbEntities">
+        <EntityContainerMapping StorageEntityContainer="ServisTakipAdminDBModelStoreContainer" CdmEntityContainer="ServisTakipAdminDBEntities">
           <EntitySetMapping Name="Admin">
-            <EntityTypeMapping TypeName="ServisTakipModel.Admin">
+            <EntityTypeMapping TypeName="ServisTakipAdminDBModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -123,7 +123,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Firma">
-            <EntityTypeMapping TypeName="ServisTakipModel.Firma">
+            <EntityTypeMapping TypeName="ServisTakipAdminDBModel.Firma">
               <MappingFragment StoreEntitySet="Firma">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirmaKodu" ColumnName="FirmaKodu" />
