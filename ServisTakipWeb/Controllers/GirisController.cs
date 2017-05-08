@@ -5,14 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using ServisTakipWeb.Models;
 using ServisTakipWeb.Areas.Admin.Context;
-using ServisTakipWeb.Areas.Firma.Context; 
+using ServisTakipWeb.Areas.Firma.Context;
+using ServisTakipWeb.Areas.FirmaYonetici.Context; 
 
 namespace ServisTakipWeb.Controllers
 {
     public class GirisController : BaseController
     {
         private ServisTakipFirmaDBEntities _dbFirma = null;
-        private ServisTakipAdminDBEntities _dbAdmin = null; 
+        private ServisTakipAdminDBEntities _dbAdmin = null;
+        private ServisTakipFirmaYoneticiDBEntities _dbFirmaYonetici = null;
 
         public ServisTakipFirmaDBEntities dbFirma
         {
@@ -38,6 +40,19 @@ namespace ServisTakipWeb.Controllers
                     _dbAdmin.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
                 }
                 return _dbAdmin;
+            }
+        }
+
+        public ServisTakipFirmaYoneticiDBEntities dbFirmaYonetici
+        {
+            get
+            {
+                if(_dbFirmaYonetici==null)
+                {
+                    _dbFirmaYonetici = new ServisTakipFirmaYoneticiDBEntities();
+                    _dbFirmaYonetici.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
+                }
+                return _dbFirmaYonetici;
             }
         }
          
@@ -180,8 +195,8 @@ namespace ServisTakipWeb.Controllers
             { 
                 string firmaYoneticiUserName = "";
                 string firmaYoneticiPassword = _girisModel.Password.ToString().Trim();
-
-                count = dbFirma.FirmaYonetici.Count();
+                 
+                count = dbFirmaYonetici.FirmaYonetici.Count();
 
                 for (temp = 2; temp < _girisModel.UserName.Count(); temp++)
                 {
@@ -190,19 +205,19 @@ namespace ServisTakipWeb.Controllers
 
                 for (temp = 0; temp < count; temp++)
                 {
-                    if (firmaYoneticiUserName == dbFirma.FirmaYonetici.ToList()[temp].UserName.ToString()) //database de, girilen kullanici adi varmi sorgusu.
+                    if (firmaYoneticiUserName == dbFirmaYonetici.FirmaYonetici.ToList()[temp].UserName.ToString()) //database de, girilen kullanici adi varmi sorgusu.
                     {
                         userNameVarMi = true;
-                        if (_girisModel.Password == dbFirma.FirmaYonetici.ToList()[temp].Password.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mu sorgusu.
+                        if (_girisModel.Password == dbFirmaYonetici.FirmaYonetici.ToList()[temp].Password.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mu sorgusu.
                         {
                             sifreAyniMi = true;
                             girisIzni = true;
                             firmaYoneticisiMi = true;
 
-                            Connection.ID = dbFirma.FirmaYonetici.ToList()[temp].FyID;
-                            Connection.userName = dbFirma.FirmaYonetici.ToList()[temp].UserName;
-                            Connection.adi = dbFirma.FirmaYonetici.ToList()[temp].Ad;
-                            Connection.parentID = dbFirma.FirmaYonetici.ToList()[temp].FirmaID;
+                            Connection.ID = dbFirmaYonetici.FirmaYonetici.ToList()[temp].FyID;
+                            Connection.userName = dbFirmaYonetici.FirmaYonetici.ToList()[temp].UserName;
+                            Connection.adi = dbFirmaYonetici.FirmaYonetici.ToList()[temp].Ad;
+                            Connection.parentID = dbFirmaYonetici.FirmaYonetici.ToList()[temp].FirmaID;
 
                             return RedirectToAction("Index", "AnaSayfa", new { area = "FirmaYonetici" });
                         }

@@ -14,6 +14,8 @@ namespace ServisTakipWeb
         public static string password = "";
         public static string whereAmI = "";
 
+        public static string sayfaAdi = "";
+
         //Cagrilar
         public static string gelenCagrilar = "Gelen Çağrılar";
         public static string tamamlananCagrilar = "Tamamlanan Çağrılar";

@@ -155,8 +155,51 @@
     <Compile Include="Areas\Admin\Controllers\FirmaBilgileriController.cs" />
     <Compile Include="Areas\Admin\Models\AdminBilgileri.cs" />
     <Compile Include="Areas\Admin\Models\FirmaBilgileri.cs" />
+    <Compile Include="Areas\FirmaYonetici\Context\Firma.cs">
+      <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\FirmaYonetici\Context\FirmaCalisani.cs">
+      <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\FirmaYonetici\Context\FirmaYonetici.cs">
+      <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FirmaYoneticiDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\FirmaYonetici\Context\Musteri.cs">
+      <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\FirmaYonetici\Context\MusteriCalisani.cs">
+      <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\FirmaYonetici\Context\MusteriYonetici.cs">
+      <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\FirmaYonetici\Context\Sozlesme.cs">
+      <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\FirmaYonetici\Context\SozlesmeYapma.cs">
+      <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\FirmaYonetici\Controllers\AnaSayfaController.cs" />
+    <Compile Include="Areas\FirmaYonetici\Controllers\CalisanBilgileriController.cs" />
+    <Compile Include="Areas\FirmaYonetici\Controllers\ProfileController.cs" />
     <Compile Include="Areas\FirmaYonetici\FirmaYoneticiAreaRegistration.cs" />
+    <Compile Include="Areas\FirmaYonetici\Models\CalisanBilgileri.cs" />
+    <Compile Include="Areas\FirmaYonetici\Models\YoneticiBilgileri.cs" />
     <Compile Include="Areas\Firma\Context\Firma.cs">
       <DependentUpon>FirmaDB.tt</DependentUpon>
     </Compile>
@@ -264,8 +307,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\FirmaYonetici\Context\" />
-    <Folder Include="Areas\FirmaYonetici\Models\" />
     <Folder Include="Areas\Musteri\Controllers\" />
     <Folder Include="Areas\Musteri\Models\" />
     <Folder Include="Areas\Musteri\Views\Shared\" />
@@ -420,6 +461,30 @@
       <DependentUpon>FirmaDB.edmx</DependentUpon>
       <LastGenOutput>FirmaDB.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FirmaYoneticiDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
+      <LastGenOutput>FirmaYoneticiDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.edmx.diagram">
+      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
+      <LastGenOutput>FirmaYoneticiDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\Profile\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
