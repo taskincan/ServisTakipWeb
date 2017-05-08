@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ServisTakipWeb.Areas.FirmaYonetici.Models.CalisanBilgileri>
+
+@{
+    ViewBag.Title = "Firma Yönetici | Çalışan Bilgileri";
+    Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
+}
+
+<h2>Firma Yönetici Çalışan ekranı</h2>
+   
+<div class="row">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-table fa-fw"></i> Çalışan Bilgileri</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-block">
+                        @Html.ActionLink("Yeni Kayıt", "Create")
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="data" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.FcID)</th>
+                            <th class="col-md-4">@Html.DisplayNameFor(model => model.UserName)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.Password)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.Ad)</th>
+                            <th class="col-md-4">@Html.DisplayNameFor(model => model.Soyad)</th>
+                            <th class="col-md-4">@Html.DisplayNameFor(model => model.Gsm)</th>
+                            <th class="col-md-4">@Html.DisplayNameFor(model => model.Email)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.FirmaID)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.CreateUserID)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.CreateDate)</th>
+                            <th class="col-md-3"></th>
+                            <th class="col-md-3"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.FcID)</td>
+                                <td class="col-md-4">@Html.DisplayFor(modelItem => item.UserName)</td>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.Password)</td>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.Ad)</td>
+                                <td class="col-md-4">@Html.DisplayFor(modelItem => item.Soyad)</td>
+                                <td class="col-md-4">@Html.DisplayFor(modelItem => item.Gsm)</td>
+                                <td class="col-md-4">@Html.DisplayFor(modelItem => item.Email)</td>
+                                <td class="col-md-4">@Html.DisplayFor(modelItem => item.FirmaID)</td>
+                                <td class="col-md-4">@Html.DisplayFor(modelItem => item.CreateUserID )</td>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.CreateDate)</td>
+                                <td class="col-md-3">
+                                    <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-block">
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.FcID })
+                                    </button>
+                                </td>
+                                <td class="col-md-3">
+                                    <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-default">
+                                        @Html.ActionLink("Delete", "", new { id = item.FcID })
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="text-right">
+                <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>  

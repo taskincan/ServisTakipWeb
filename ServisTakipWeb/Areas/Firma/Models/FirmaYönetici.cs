@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServisTakipWeb.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace ServisTakipWeb.Areas.Firma.Models
 {
-    public class FirmaYönetici
+    public class FirmaYönetici : BaseModel
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -65,9 +66,6 @@ namespace ServisTakipWeb.Areas.Firma.Models
         [MinLength(1)]
         [MaxLength(20)]
         public string YoneteciPassword2 { get; set; } 
-
-        [Display(Name = "Kayıt Tarihi")]
-        public string CreateDate { get; set; }
 
         public static List<FirmaYönetici> firmaYoneticiList = new List<FirmaYönetici>();
     }

@@ -155,9 +155,6 @@
     <Compile Include="Areas\Admin\Controllers\FirmaBilgileriController.cs" />
     <Compile Include="Areas\Admin\Models\AdminBilgileri.cs" />
     <Compile Include="Areas\Admin\Models\FirmaBilgileri.cs" />
-    <Compile Include="Areas\FirmaYonetici\Context\Firma.cs">
-      <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Areas\FirmaYonetici\Context\FirmaCalisani.cs">
       <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
     </Compile>
@@ -442,6 +439,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\Profile\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="Areas\Firma\Context\FirmaDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FirmaDB.Designer.cs</LastGenOutput>
@@ -484,7 +484,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\FirmaYonetici\Views\CalisanBilgileri\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\CalisanBilgileri\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\CalisanBilgileri\Create.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -12,22 +12,6 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
 { 
     public class FirmaBilgileriController : BaseController
     {
-        private ServisTakipFirmaDBEntities _db = null;
-
-        public ServisTakipFirmaDBEntities db
-        {
-            get
-            {
-                if (_db == null)
-                {
-                    _db = new ServisTakipFirmaDBEntities();
-                    _db.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
-                }
-                return _db;
-            }
-        }
-
-
         //
         // GET: /Firma/FirmaBilgileri/
 
@@ -36,33 +20,29 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
             var _firmaList = new FirmaBilgileri();
             int passLength = 0;
 
-            foreach (var item in db.Firma.ToList())
+            var user = dbFirma.Firma.SingleOrDefault(x => x.ID == Connection.ID);
+
+            _firmaList.ID = user.ID;
+            _firmaList.FirmaKodu = user.FirmaKodu;
+            _firmaList.FirmaAdi = user.FirmaAdi;
+            _firmaList.YetkiliKisi = user.YetkiliKisi;
+            _firmaList.Gsm = user.Gsm;
+            _firmaList.FirmaTel = user.FirmaTel;
+            _firmaList.WebSite = user.webSitesi;
+            _firmaList.UserName = user.UserName;
+            _firmaList.Password = user.Password;
+
+            passLength = (user.Password).Length;
+
+            for (int temp2 = 0; temp2 < passLength; temp2++)
             {
-                if (item.ID == Connection.ID)
-                { 
-                    _firmaList.ID = item.ID;
-                    _firmaList.FirmaKodu = item.FirmaKodu;
-                    _firmaList.FirmaAdi = item.FirmaAdi;
-                    _firmaList.YetkiliKisi = item.YetkiliKisi;
-                    _firmaList.Gsm = item.Gsm;
-                    _firmaList.FirmaTel = item.FirmaTel;
-                    _firmaList.WebSite = item.webSitesi;
-                    _firmaList.UserName = item.UserName;
-                    _firmaList.Password = item.Password;
-
-                    passLength = (item.Password).Length;
-
-                    for (int temp2 = 0; temp2 < passLength; temp2++)
-                    {
-                        _firmaList.Password2 += "*";
-                    }
-                    _firmaList.Adres = item.Adres;
-                    _firmaList.Email = item.Email;
-                    _firmaList.AdminID = item.AdminID;
-                    _firmaList.CreateDate = Convert.ToDateTime(item.CreateDate.ToShortDateString());
-                }
+                _firmaList.Password2 += "*";
             }
-
+            _firmaList.Adres = user.Adres;
+            _firmaList.Email = user.Email;
+            _firmaList.AdminID = user.AdminID;
+            _firmaList.CreateDate = Convert.ToDateTime(user.CreateDate.ToShortDateString());
+                  
             if (_firmaList == null)
             {
                 return HttpNotFound();
@@ -101,6 +81,7 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
             return View(_firmaList);
         }
 
+        //TODO: Edit olmayacak Post Index olacak. Profile de ki gibi.
         [HttpPost]
         public ActionResult Edit(FirmaBilgileri _firmaBilgileri)
         {
@@ -108,9 +89,9 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
             bool firmaKoduVarMi = false;
             ViewBag.Message = "";
 
-            for (temp = 0; temp < db.Firma.Count(); temp++)
+            for (temp = 0; temp < dbFirma.Firma.Count(); temp++)
             {
-                if (_firmaBilgileri.FirmaKodu == db.Firma.ToList()[temp].FirmaKodu)
+                if (_firmaBilgileri.FirmaKodu == dbFirma.Firma.ToList()[temp].FirmaKodu)
                 {
                     firmaKoduVarMi = true; //database de ayni firma kodu var.
                 }
@@ -140,8 +121,8 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
                     _firma.AdminID = _firmaBilgileri.AdminID;
                     _firma.CreateDate = DateTime.Now;
 
-                    db.Entry(_firma).State = EntityState.Modified;
-                    db.SaveChanges();
+                    dbFirma.Entry(_firma).State = EntityState.Modified;
+                    dbFirma.SaveChanges();
                     ModelState.Clear();
 
                     return RedirectToAction("Index");
@@ -168,11 +149,11 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
             bool firmaKoduVarMi = false;
 
             ViewBag.Message = "";
-            count = db.Firma.Count();
+            count = dbFirma.Firma.Count();
 
             for (temp = 0; temp < count; temp++)
             {
-                if (_firmaBilgileri.FirmaKodu == db.Firma.ToList()[temp].FirmaKodu)
+                if (_firmaBilgileri.FirmaKodu == dbFirma.Firma.ToList()[temp].FirmaKodu)
                 {
                     firmaKoduVarMi = true; //database de ayni firma kodu var.
                 }
@@ -202,8 +183,8 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
                     _firma.AdminID = _firmaBilgileri.AdminID;
                     _firma.CreateDate = DateTime.Now;
 
-                    db.Firma.Add(_firma);
-                    db.SaveChanges();
+                    dbFirma.Firma.Add(_firma);
+                    dbFirma.SaveChanges();
 
                     return RedirectToAction("Index");
                 }
@@ -216,35 +197,39 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
             FirmaBilgileri.firmaList.Clear();
 
             int temp, passLength = 0, count = 0;
-            count = db.Firma.Count();
+
+
+            var user = dbFirma.Firma.SingleOrDefault(x => x.ID == _Id);
+
+            count = dbFirma.Firma.Count();
              
             for (temp = 0; temp < count; temp++)
             {
-                if (db.Firma.ToList()[temp].ID == _Id)
+                if (dbFirma.Firma.ToList()[temp].ID == _Id)
                 {
                     var _firmaList = new FirmaBilgileri();
 
-                    _firmaList.ID = db.Firma.ToList()[temp].ID;
-                    _firmaList.FirmaKodu = db.Firma.ToList()[temp].FirmaKodu;
-                    _firmaList.FirmaAdi = db.Firma.ToList()[temp].FirmaAdi;
-                    _firmaList.YetkiliKisi = db.Firma.ToList()[temp].YetkiliKisi;
-                    _firmaList.Gsm = db.Firma.ToList()[temp].Gsm;
-                    _firmaList.FirmaTel = db.Firma.ToList()[temp].FirmaTel;
-                    _firmaList.WebSite = db.Firma.ToList()[temp].webSitesi;
-                    _firmaList.UserName = db.Firma.ToList()[temp].UserName;
-                    _firmaList.Password = db.Firma.ToList()[temp].Password;
+                    _firmaList.ID = dbFirma.Firma.ToList()[temp].ID;
+                    _firmaList.FirmaKodu = dbFirma.Firma.ToList()[temp].FirmaKodu;
+                    _firmaList.FirmaAdi = dbFirma.Firma.ToList()[temp].FirmaAdi;
+                    _firmaList.YetkiliKisi = dbFirma.Firma.ToList()[temp].YetkiliKisi;
+                    _firmaList.Gsm = dbFirma.Firma.ToList()[temp].Gsm;
+                    _firmaList.FirmaTel = dbFirma.Firma.ToList()[temp].FirmaTel;
+                    _firmaList.WebSite = dbFirma.Firma.ToList()[temp].webSitesi;
+                    _firmaList.UserName = dbFirma.Firma.ToList()[temp].UserName;
+                    _firmaList.Password = dbFirma.Firma.ToList()[temp].Password;
 
-                    passLength = (db.Firma.ToList()[temp].Password).Length;
+                    passLength = (dbFirma.Firma.ToList()[temp].Password).Length;
 
                     for (int temp2 = 0; temp2 < passLength; temp2++)
                     {
                         _firmaList.Password2 += "*";
                     }
 
-                    _firmaList.Adres = db.Firma.ToList()[temp].Adres;
-                    _firmaList.Email = db.Firma.ToList()[temp].Email;
-                    _firmaList.AdminID = db.Firma.ToList()[temp].AdminID;
-                    _firmaList.CreateDate = Convert.ToDateTime(db.Firma.ToList()[temp].CreateDate.ToShortDateString());
+                    _firmaList.Adres = dbFirma.Firma.ToList()[temp].Adres;
+                    _firmaList.Email = dbFirma.Firma.ToList()[temp].Email;
+                    _firmaList.AdminID = dbFirma.Firma.ToList()[temp].AdminID;
+                    _firmaList.CreateDate = Convert.ToDateTime(dbFirma.Firma.ToList()[temp].CreateDate.ToShortDateString());
 
                     FirmaBilgileri.firmaList.Add(_firmaList);
                     break;

@@ -25,7 +25,6 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Firma> Firma { get; set; }
         public virtual DbSet<FirmaCalisani> FirmaCalisani { get; set; }
         public virtual DbSet<FirmaYonetici> FirmaYonetici { get; set; }
         public virtual DbSet<Musteri> Musteri { get; set; }

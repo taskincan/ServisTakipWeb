@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="87edfa8a724d4d8ba968d85dfe0f774b" Name="Diagram1">
+      <Diagram DiagramId="9445f5ad200e4fffb2c4d5719a7015ef" Name="Diagram1">
         <EntityTypeShape EntityType="ServisTakipFirmaDBModel.Firma" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ServisTakipFirmaDBModel.FirmaYonetici" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="ServisTakipFirmaDBModel.FK__FirmaYone__Firma__286302EC" ManuallyRouted="false" />

@@ -25,7 +25,6 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
         public int CreateUserID { get; set; }
         public System.DateTime CreateDate { get; set; }
     
-        public virtual Firma Firma { get; set; }
         public virtual FirmaYonetici FirmaYonetici { get; set; }
     }
 }

@@ -12,50 +12,6 @@ namespace ServisTakipWeb.Controllers
 {
     public class GirisController : BaseController
     {
-        private ServisTakipFirmaDBEntities _dbFirma = null;
-        private ServisTakipAdminDBEntities _dbAdmin = null;
-        private ServisTakipFirmaYoneticiDBEntities _dbFirmaYonetici = null;
-
-        public ServisTakipFirmaDBEntities dbFirma
-        {
-            get
-            {
-                if (_dbFirma == null)
-                {
-                    _dbFirma = new ServisTakipFirmaDBEntities();
-                    _dbFirma.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
-                }
-                return _dbFirma;
-            }
-        }
-
-        public ServisTakipAdminDBEntities dbAdmin
-        {
-            get
-            {
-                if (_dbAdmin == null)
-                {
-                    _dbAdmin = new ServisTakipAdminDBEntities();
-
-                    _dbAdmin.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
-                }
-                return _dbAdmin;
-            }
-        }
-
-        public ServisTakipFirmaYoneticiDBEntities dbFirmaYonetici
-        {
-            get
-            {
-                if(_dbFirmaYonetici==null)
-                {
-                    _dbFirmaYonetici = new ServisTakipFirmaYoneticiDBEntities();
-                    _dbFirmaYonetici.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
-                }
-                return _dbFirmaYonetici;
-            }
-        }
-         
 
         //
         // GET: /Giris/

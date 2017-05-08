@@ -1,13 +1,11 @@
-﻿@using ServisTakipWeb.Areas.Firma.Models
-@model FirmaYönetici
+﻿@using ServisTakipWeb.Areas.FirmaYonetici.Models
+@model CalisanBilgileri
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Areas/Firma/Views/Shared/FirmaLayout.cshtml";
-}
- 
-<h2>Create</h2>
+    Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
+} 
 
-@using (Html.BeginForm("Create", "YoneticiBilgileri", FormMethod.Post, new { id = "frmCreate", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "CalisanBilgileri", FormMethod.Post, new { id = "frmCreate", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -82,8 +80,18 @@
         <div class="col-md-6">
         </div>
     </div>
-    
-   
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.CreateUserID)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="FirmaID" name="CreateUserID" type="text" value="@Model.CreateUserID" readonly>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+
 
     <div class="row" style="margin-top:10px ">
         <div class="col-md-4"></div>
