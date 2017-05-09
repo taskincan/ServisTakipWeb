@@ -1,19 +1,18 @@
-﻿using System;
+﻿using ServisTakipWeb.Areas.Firma.Models;
+using ServisTakipWeb.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ServisTakipWeb.Areas.Firma.Context;
-using ServisTakipWeb.Areas.Firma.Models;
-using ServisTakipWeb.Controllers;
 
-namespace ServisTakipWeb.Areas.Firma.Controllers
+namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 {
     public class YoneticiBilgileriController : BaseController
-    {  
+    {
         //
-        // GET: /Firma/YoneticiBilgileri/
+        // GET: /FirmaYonetici/YoneticiBilgileri/
 
         public ActionResult Index()
         {
@@ -21,6 +20,7 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
             ListYarat();
 
             Connection.sayfaAdi = "Yönetici Bilgileri";
+
             return View(FirmaYönetici.firmaYoneticiList);
         }
 
@@ -69,15 +69,14 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
                 _user.FirmaID = _firmaYoneticiBilgileri.FirmaID;
                 _user.CreateDate = DateTime.Now;
 
-                dbFirma.Entry(_user).State = EntityState.Modified;
-                dbFirma.SaveChanges();
+                dbFirmaYonetici.Entry(_user).State = EntityState.Modified;
+                dbFirmaYonetici.SaveChanges();
                 ModelState.Clear();
 
                 return RedirectToAction("Index");
             }
             return View(_firmaYoneticiBilgileri);
         }
-
 
         public ActionResult Create()
         {
@@ -91,16 +90,16 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(FirmaYönetici _firmaYoneticiBilgileri)
-        {
+        { 
             bool yoneticiUserNameVarMi = false;
 
-            ViewBag.Message = "";
+            ViewBag.Message = ""; 
 
             var user = dbFirmaYonetici.FirmaYonetici.SingleOrDefault(c => c.UserName == _firmaYoneticiBilgileri.UserName);
 
             if (user == null) //database de ayni yonetici UserName yok. Kayıt yapılabilir.
             {
-                yoneticiUserNameVarMi = false;
+                yoneticiUserNameVarMi = false; 
 
                 if (ModelState.IsValid)
                 {
@@ -115,8 +114,8 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
                     _firmaYonetici.FirmaID = _firmaYoneticiBilgileri.FirmaID;
                     _firmaYonetici.CreateDate = DateTime.Now;
 
-                    dbFirma.FirmaYonetici.Add(_firmaYonetici);
-                    dbFirma.SaveChanges();
+                    dbFirmaYonetici.FirmaYonetici.Add(_firmaYonetici);
+                    dbFirmaYonetici.SaveChanges();
 
                     return RedirectToAction("Index");
                 }
@@ -136,11 +135,12 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
             FirmaYönetici.firmaYoneticiList.Clear();
 
             int temp, passLength = 0, count = 0;
+
             count = dbFirma.FirmaYonetici.Count();
 
             for (temp = 0; temp < count; temp++)
             {
-                if (Connection.ID == dbFirma.FirmaYonetici.ToList()[temp].FirmaID)  
+                if (Connection.parentID == dbFirma.FirmaYonetici.ToList()[temp].FirmaID)
                 {
                     var _firmaYoneticiList = new FirmaYönetici();
 
@@ -171,7 +171,6 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
         {
             FirmaYönetici.firmaYoneticiList.Clear();
         }
-
 
     }
 }

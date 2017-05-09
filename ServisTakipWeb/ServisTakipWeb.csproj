@@ -155,6 +155,8 @@
     <Compile Include="Areas\Admin\Controllers\FirmaBilgileriController.cs" />
     <Compile Include="Areas\Admin\Models\AdminBilgileri.cs" />
     <Compile Include="Areas\Admin\Models\FirmaBilgileri.cs" />
+    <Compile Include="Areas\FirmaCalisan\Controllers\AnaSayfaController.cs" />
+    <Compile Include="Areas\FirmaCalisan\FirmaCalisanAreaRegistration.cs" />
     <Compile Include="Areas\FirmaYonetici\Context\FirmaCalisani.cs">
       <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
     </Compile>
@@ -194,6 +196,7 @@
     <Compile Include="Areas\FirmaYonetici\Controllers\AnaSayfaController.cs" />
     <Compile Include="Areas\FirmaYonetici\Controllers\CalisanBilgileriController.cs" />
     <Compile Include="Areas\FirmaYonetici\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\FirmaYonetici\Controllers\YoneticiBilgileriController.cs" />
     <Compile Include="Areas\FirmaYonetici\FirmaYoneticiAreaRegistration.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CalisanBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\YoneticiBilgileri.cs" />
@@ -304,6 +307,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\FirmaCalisan\Models\" />
     <Folder Include="Areas\Musteri\Controllers\" />
     <Folder Include="Areas\Musteri\Models\" />
     <Folder Include="Areas\Musteri\Views\Shared\" />
@@ -491,6 +495,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\FirmaYonetici\Views\CalisanBilgileri\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaCalisan\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaCalisan\Views\Shared\FirmaCalisanLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaCalisan\Views\AnaSayfa\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\YoneticiBilgileri\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\YoneticiBilgileri\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\YoneticiBilgileri\Create.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

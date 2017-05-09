@@ -24,7 +24,7 @@ namespace ServisTakipWeb.Areas.Firma.Models
         [Display(Name = "Şifre")]
         [Required]
         [DataType(DataType.Password)]
-        [MinLength(1)]
+        [MinLength(6)]
         [MaxLength(20)]
         public string Password { get; set; }
 
