@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ServisTakipWeb.Areas.FirmaYonetici.Models.MusteriBilgileri>
+
+@{
+    ViewBag.Title = "Firma Yönetici | Müşteri Bilgileri";
+    Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
+} 
+ 
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-table fa-fw"></i> @ServisTakipWeb.Connection.musteriBilgileri.ToString()</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-block">
+                        @Html.ActionLink("Yeni Kayıt", "Create")
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="data" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.ID)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.MusteriAdi)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.YetkiliKisi)</th>
+                            <th class="col-md-4">@Html.DisplayNameFor(model => model.MusteriKodu)</th>
+                            <th class="col-md-4">@Html.DisplayNameFor(model => model.Password)</th>
+                            <th class="col-md-4">@Html.DisplayNameFor(model => model.Tel1)</th>
+                            <th class="col-md-4">@Html.DisplayNameFor(model => model.Email)</th> 
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.CreateDate)</th>
+                            <th class="col-md-3"></th>
+                            <th class="col-md-3"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.ID)</td>
+                                <td class="col-md-4">@Html.DisplayFor(modelItem => item.MusteriAdi)</td>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.YetkiliKisi)</td>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.MusteriKodu)</td>
+                                <td class="col-md-4">@Html.DisplayFor(modelItem => item.Password)</td>
+                                <td class="col-md-4">@Html.DisplayFor(modelItem => item.Tel1)</td>
+                                <td class="col-md-4">@Html.DisplayFor(modelItem => item.Email)</td> 
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.CreateDate)</td>
+                                <td class="col-md-3">
+                                    <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-block">
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                                    </button>
+                                </td>
+                                <td class="col-md-3">
+                                    <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-default">
+                                        @Html.ActionLink("Delete", "", new { id = item.ID })
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="text-right">
+                <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>  

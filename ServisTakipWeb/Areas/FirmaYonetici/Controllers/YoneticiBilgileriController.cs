@@ -140,27 +140,27 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 
             for (temp = 0; temp < count; temp++)
             {
-                if (Connection.parentID == dbFirma.FirmaYonetici.ToList()[temp].FirmaID)
+                if (Connection.parentID == dbFirmaYonetici.FirmaYonetici.ToList()[temp].FirmaID)
                 {
                     var _firmaYoneticiList = new FirmaYönetici();
 
-                    _firmaYoneticiList.FyID = dbFirma.FirmaYonetici.ToList()[temp].FyID;
-                    _firmaYoneticiList.UserName = dbFirma.FirmaYonetici.ToList()[temp].UserName;
-                    _firmaYoneticiList.Password = dbFirma.FirmaYonetici.ToList()[temp].Password;
-                    _firmaYoneticiList.Ad = dbFirma.FirmaYonetici.ToList()[temp].Ad;
-                    _firmaYoneticiList.Soyad = dbFirma.FirmaYonetici.ToList()[temp].Soyad;
-                    _firmaYoneticiList.Gsm = dbFirma.FirmaYonetici.ToList()[temp].Gsm;
-                    _firmaYoneticiList.Email = dbFirma.FirmaYonetici.ToList()[temp].Email;
-                    _firmaYoneticiList.FirmaID = dbFirma.FirmaYonetici.ToList()[temp].FirmaID;
+                    _firmaYoneticiList.FyID = dbFirmaYonetici.FirmaYonetici.ToList()[temp].FyID;
+                    _firmaYoneticiList.UserName = dbFirmaYonetici.FirmaYonetici.ToList()[temp].UserName;
+                    _firmaYoneticiList.Password = dbFirmaYonetici.FirmaYonetici.ToList()[temp].Password;
+                    _firmaYoneticiList.Ad = dbFirmaYonetici.FirmaYonetici.ToList()[temp].Ad;
+                    _firmaYoneticiList.Soyad = dbFirmaYonetici.FirmaYonetici.ToList()[temp].Soyad;
+                    _firmaYoneticiList.Gsm = dbFirmaYonetici.FirmaYonetici.ToList()[temp].Gsm;
+                    _firmaYoneticiList.Email = dbFirmaYonetici.FirmaYonetici.ToList()[temp].Email;
+                    _firmaYoneticiList.FirmaID = dbFirmaYonetici.FirmaYonetici.ToList()[temp].FirmaID;
 
-                    passLength = (dbFirma.FirmaYonetici.ToList()[temp].Password).Length;
+                    passLength = (dbFirmaYonetici.FirmaYonetici.ToList()[temp].Password).Length;
 
                     for (int temp2 = 0; temp2 < passLength; temp2++)
                     {
                         _firmaYoneticiList.YoneteciPassword2 += "*";
                     }
 
-                    _firmaYoneticiList.CreateDate = dbFirma.FirmaYonetici.ToList()[temp].CreateDate;
+                    _firmaYoneticiList.CreateDate = dbFirmaYonetici.FirmaYonetici.ToList()[temp].CreateDate;
 
                     FirmaYönetici.firmaYoneticiList.Add(_firmaYoneticiList);
                 }

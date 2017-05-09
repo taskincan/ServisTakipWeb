@@ -39,7 +39,6 @@
           <ScalarProperty Name="MusteriKodu" ColumnName="MusteriKodu" />
           <ScalarProperty Name="MusteriAdi" ColumnName="MusteriAdi" />
           <ScalarProperty Name="YetkiliKisi" ColumnName="YetkiliKisi" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="VergiDairesi" ColumnName="VergiDairesi" />
           <ScalarProperty Name="VergiNumarasi" ColumnName="VergiNumarasi" />
@@ -93,6 +92,7 @@
     <EntitySetMapping Name="SozlesmeYapma">
       <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.SozlesmeYapma">
         <MappingFragment StoreEntitySet="SozlesmeYapma">
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="SozlesmeID" ColumnName="SozlesmeID" />
           <ScalarProperty Name="FyID" ColumnName="FyID" />
           <ScalarProperty Name="MID" ColumnName="MID" />

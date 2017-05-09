@@ -26,7 +26,6 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
         public string MusteriKodu { get; set; }
         public string MusteriAdi { get; set; }
         public string YetkiliKisi { get; set; }
-        public string UserName { get; set; }
         public string Password { get; set; }
         public string VergiDairesi { get; set; }
         public string VergiNumarasi { get; set; }

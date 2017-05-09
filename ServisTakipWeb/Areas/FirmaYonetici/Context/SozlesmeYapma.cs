@@ -14,6 +14,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
     
     public partial class SozlesmeYapma
     {
+        public int ID { get; set; }
         public int SozlesmeID { get; set; }
         public int FyID { get; set; }
         public int MID { get; set; }

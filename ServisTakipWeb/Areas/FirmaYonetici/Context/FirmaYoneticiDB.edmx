@@ -42,7 +42,6 @@
           <Property Name="MusteriKodu" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="MusteriAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="YetkiliKisi" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="VergiDairesi" Type="nvarchar" MaxLength="50" />
           <Property Name="VergiNumarasi" Type="nvarchar" MaxLength="15" />
@@ -88,14 +87,11 @@
           <Property Name="BitisTarih" Type="datetime" Nullable="false" />
           <Property Name="ParcaDahilMi" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SozlesmeYapma">
           <Key>
-            <PropertyRef Name="SozlesmeID" />
-            <PropertyRef Name="FyID" />
-            <PropertyRef Name="MID" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SozlesmeID" Type="int" Nullable="false" />
           <Property Name="FyID" Type="int" Nullable="false" />
           <Property Name="MID" Type="int" Nullable="false" />
@@ -136,7 +132,7 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SozlesmeY__Sozle__403A8C7D">
+        <Association Name="FK__SozlesmeY__Sozle__70DDC3D8">
           <End Role="Sozlesme" Type="Self.Sozlesme" Multiplicity="1" />
           <End Role="SozlesmeYapma" Type="Self.SozlesmeYapma" Multiplicity="*" />
           <ReferentialConstraint>
@@ -148,7 +144,7 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SozlesmeYa__FyID__412EB0B6">
+        <Association Name="FK__SozlesmeYa__FyID__71D1E811">
           <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
           <End Role="SozlesmeYapma" Type="Self.SozlesmeYapma" Multiplicity="*" />
           <ReferentialConstraint>
@@ -160,7 +156,7 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SozlesmeYap__MID__4222D4EF">
+        <Association Name="FK__SozlesmeYap__MID__72C60C4A">
           <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
           <End Role="SozlesmeYapma" Type="Self.SozlesmeYapma" Multiplicity="*" />
           <ReferentialConstraint>
@@ -179,13 +175,7 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
           <EntitySet Name="MusteriCalisani" EntityType="Self.MusteriCalisani" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MusteriYonetici" EntityType="Self.MusteriYonetici" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sozlesme" EntityType="Self.Sozlesme" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SozlesmeYapma" EntityType="Self.SozlesmeYapma" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [SozlesmeYapma].[SozlesmeID] AS [SozlesmeID], 
-    [SozlesmeYapma].[FyID] AS [FyID], 
-    [SozlesmeYapma].[MID] AS [MID]
-    FROM [dbo].[SozlesmeYapma] AS [SozlesmeYapma]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="SozlesmeYapma" EntityType="Self.SozlesmeYapma" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__FirmaCali__Creat__2D27B809" Association="Self.FK__FirmaCali__Creat__2D27B809">
             <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
             <End Role="FirmaCalisani" EntitySet="FirmaCalisani" />
@@ -198,15 +188,15 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
             <End Role="Musteri" EntitySet="Musteri" />
             <End Role="MusteriYonetici" EntitySet="MusteriYonetici" />
           </AssociationSet>
-          <AssociationSet Name="FK__SozlesmeY__Sozle__403A8C7D" Association="Self.FK__SozlesmeY__Sozle__403A8C7D">
+          <AssociationSet Name="FK__SozlesmeY__Sozle__70DDC3D8" Association="Self.FK__SozlesmeY__Sozle__70DDC3D8">
             <End Role="Sozlesme" EntitySet="Sozlesme" />
             <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
           </AssociationSet>
-          <AssociationSet Name="FK__SozlesmeYa__FyID__412EB0B6" Association="Self.FK__SozlesmeYa__FyID__412EB0B6">
+          <AssociationSet Name="FK__SozlesmeYa__FyID__71D1E811" Association="Self.FK__SozlesmeYa__FyID__71D1E811">
             <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
             <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
           </AssociationSet>
-          <AssociationSet Name="FK__SozlesmeYap__MID__4222D4EF" Association="Self.FK__SozlesmeYap__MID__4222D4EF">
+          <AssociationSet Name="FK__SozlesmeYap__MID__72C60C4A" Association="Self.FK__SozlesmeYap__MID__72C60C4A">
             <End Role="Musteri" EntitySet="Musteri" />
             <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
           </AssociationSet>
@@ -246,7 +236,7 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
           <Property Name="FirmaID" Type="Int32" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="FirmaCalisani" Relationship="Self.FK__FirmaCali__Creat__2D27B809" FromRole="FirmaYonetici" ToRole="FirmaCalisani" />
-          <NavigationProperty Name="SozlesmeYapma" Relationship="Self.FK__SozlesmeYa__FyID__412EB0B6" FromRole="FirmaYonetici" ToRole="SozlesmeYapma" />
+          <NavigationProperty Name="SozlesmeYapma" Relationship="Self.FK__SozlesmeYa__FyID__71D1E811" FromRole="FirmaYonetici" ToRole="SozlesmeYapma" />
         </EntityType>
         <EntityType Name="Musteri">
           <Key>
@@ -256,7 +246,6 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
           <Property Name="MusteriKodu" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MusteriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="YetkiliKisi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="VergiDairesi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="VergiNumarasi" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
@@ -267,7 +256,7 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="MusteriCalisani" Relationship="Self.FK__MusteriCa__Muste__45F365D3" FromRole="Musteri" ToRole="MusteriCalisani" />
           <NavigationProperty Name="MusteriYonetici" Relationship="Self.FK__MusteriYo__Muste__3E52440B" FromRole="Musteri" ToRole="MusteriYonetici" />
-          <NavigationProperty Name="SozlesmeYapma" Relationship="Self.FK__SozlesmeYap__MID__4222D4EF" FromRole="Musteri" ToRole="SozlesmeYapma" />
+          <NavigationProperty Name="SozlesmeYapma" Relationship="Self.FK__SozlesmeYap__MID__72C60C4A" FromRole="Musteri" ToRole="SozlesmeYapma" />
         </EntityType>
         <EntityType Name="MusteriCalisani">
           <Key>
@@ -306,20 +295,19 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
           <Property Name="BaslangicTarih" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="BitisTarih" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ParcaDahilMi" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="SozlesmeYapma" Relationship="Self.FK__SozlesmeY__Sozle__403A8C7D" FromRole="Sozlesme" ToRole="SozlesmeYapma" />
+          <NavigationProperty Name="SozlesmeYapma" Relationship="Self.FK__SozlesmeY__Sozle__70DDC3D8" FromRole="Sozlesme" ToRole="SozlesmeYapma" />
         </EntityType>
         <EntityType Name="SozlesmeYapma">
           <Key>
-            <PropertyRef Name="SozlesmeID" />
-            <PropertyRef Name="FyID" />
-            <PropertyRef Name="MID" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SozlesmeID" Type="Int32" Nullable="false" />
           <Property Name="FyID" Type="Int32" Nullable="false" />
           <Property Name="MID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="FirmaYonetici" Relationship="Self.FK__SozlesmeYa__FyID__412EB0B6" FromRole="SozlesmeYapma" ToRole="FirmaYonetici" />
-          <NavigationProperty Name="Musteri" Relationship="Self.FK__SozlesmeYap__MID__4222D4EF" FromRole="SozlesmeYapma" ToRole="Musteri" />
-          <NavigationProperty Name="Sozlesme" Relationship="Self.FK__SozlesmeY__Sozle__403A8C7D" FromRole="SozlesmeYapma" ToRole="Sozlesme" />
+          <NavigationProperty Name="FirmaYonetici" Relationship="Self.FK__SozlesmeYa__FyID__71D1E811" FromRole="SozlesmeYapma" ToRole="FirmaYonetici" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK__SozlesmeYap__MID__72C60C4A" FromRole="SozlesmeYapma" ToRole="Musteri" />
+          <NavigationProperty Name="Sozlesme" Relationship="Self.FK__SozlesmeY__Sozle__70DDC3D8" FromRole="SozlesmeYapma" ToRole="Sozlesme" />
         </EntityType>
         <Association Name="FK__FirmaCali__Creat__2D27B809">
           <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
@@ -333,7 +321,7 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SozlesmeYa__FyID__412EB0B6">
+        <Association Name="FK__SozlesmeYa__FyID__71D1E811">
           <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
           <End Role="SozlesmeYapma" Type="Self.SozlesmeYapma" Multiplicity="*" />
           <ReferentialConstraint>
@@ -369,7 +357,7 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SozlesmeYap__MID__4222D4EF">
+        <Association Name="FK__SozlesmeYap__MID__72C60C4A">
           <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
           <End Role="SozlesmeYapma" Type="Self.SozlesmeYapma" Multiplicity="*" />
           <ReferentialConstraint>
@@ -381,7 +369,7 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SozlesmeY__Sozle__403A8C7D">
+        <Association Name="FK__SozlesmeY__Sozle__70DDC3D8">
           <End Role="Sozlesme" Type="Self.Sozlesme" Multiplicity="1" />
           <End Role="SozlesmeYapma" Type="Self.SozlesmeYapma" Multiplicity="*" />
           <ReferentialConstraint>
@@ -405,7 +393,7 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
             <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
             <End Role="FirmaCalisani" EntitySet="FirmaCalisani" />
           </AssociationSet>
-          <AssociationSet Name="FK__SozlesmeYa__FyID__412EB0B6" Association="Self.FK__SozlesmeYa__FyID__412EB0B6">
+          <AssociationSet Name="FK__SozlesmeYa__FyID__71D1E811" Association="Self.FK__SozlesmeYa__FyID__71D1E811">
             <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
             <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
           </AssociationSet>
@@ -417,11 +405,11 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
             <End Role="Musteri" EntitySet="Musteri" />
             <End Role="MusteriYonetici" EntitySet="MusteriYonetici" />
           </AssociationSet>
-          <AssociationSet Name="FK__SozlesmeYap__MID__4222D4EF" Association="Self.FK__SozlesmeYap__MID__4222D4EF">
+          <AssociationSet Name="FK__SozlesmeYap__MID__72C60C4A" Association="Self.FK__SozlesmeYap__MID__72C60C4A">
             <End Role="Musteri" EntitySet="Musteri" />
             <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
           </AssociationSet>
-          <AssociationSet Name="FK__SozlesmeY__Sozle__403A8C7D" Association="Self.FK__SozlesmeY__Sozle__403A8C7D">
+          <AssociationSet Name="FK__SozlesmeY__Sozle__70DDC3D8" Association="Self.FK__SozlesmeY__Sozle__70DDC3D8">
             <End Role="Sozlesme" EntitySet="Sozlesme" />
             <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
           </AssociationSet>
@@ -470,7 +458,6 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
                 <ScalarProperty Name="MusteriKodu" ColumnName="MusteriKodu" />
                 <ScalarProperty Name="MusteriAdi" ColumnName="MusteriAdi" />
                 <ScalarProperty Name="YetkiliKisi" ColumnName="YetkiliKisi" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="VergiDairesi" ColumnName="VergiDairesi" />
                 <ScalarProperty Name="VergiNumarasi" ColumnName="VergiNumarasi" />
@@ -524,6 +511,7 @@ warning 6002: The table/view 'ServisTakip.dbo.SozlesmeYapma' does not have a pri
           <EntitySetMapping Name="SozlesmeYapma">
             <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.SozlesmeYapma">
               <MappingFragment StoreEntitySet="SozlesmeYapma">
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="SozlesmeID" ColumnName="SozlesmeID" />
                 <ScalarProperty Name="FyID" ColumnName="FyID" />
                 <ScalarProperty Name="MID" ColumnName="MID" />
