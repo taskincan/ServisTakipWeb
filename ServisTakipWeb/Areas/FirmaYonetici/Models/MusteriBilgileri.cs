@@ -14,6 +14,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
+        public int CreateUserID { get; set; }
+
         [Display(Name = "Müşteri Kodu")]
         [DataType(DataType.Text)]
         [Required]
@@ -64,7 +66,6 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
 
         [Display(Name = "Telefon-2")]
         [DataType(DataType.Text)]
-        [Required]
         [MinLength(1)]
         [MaxLength(11)]
         public string Tel2 { get; set; }
@@ -84,7 +85,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [Display(Name = "Vergi Numarası")]
         [DataType(DataType.Text)]
         [MaxLength(15)]
-        public string VergiNumarası { get; set; }
+        public string VergiNumarasi { get; set; }
 
         public static List<MusteriBilgileri> musteriList = new List<MusteriBilgileri>();
     }

@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Sozlesme";
+    Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
+}
+   <div class="row" style="margin-top:10px ">
+    <div class="col-md-6">
+        <a href="@Url.Action("Musteri", "MusteriBilgileri", new { id = 3 })" class="btn btn-default btn-block">
+            Müşteri Bilgileri
+            <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="col-md-6">
+        <a href="@Url.Action("Sozlesme", "MusteriBilgileri", new { id = 3 })" class="btn btn-default btn-block">
+            Kaydet
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+        </a>
+    </div>
+</div>
+ 
