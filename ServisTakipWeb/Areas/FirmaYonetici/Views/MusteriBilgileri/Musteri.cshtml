@@ -13,43 +13,7 @@
 
     @Html.HiddenFor(model => model.ID)
 
-    <div class="row" style="margin-top:10px ">
-        <div class="col-md-6">
-            <a href="@Url.Action("Musteri", "MusteriBilgileri", new { id = 3 })" class="btn btn-default btn-block">
-               Geri
-                <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
-            </a>
-        </div>
-        <div class="col-md-6">
-            <a href="@Url.Action("Sozlesme", "MusteriBilgileri", new { id = 3 })" class="btn btn-default btn-block">
-                Sözleşme Bilgileri
-                <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
-            </a>
-        </div>
-    </div>
-  
-            @* BUTTONLAR
-                <a href="@Url.Action("Sozlesme", "MusteriBilgileri")" class="btn btn-lg btn-outline-success">
-                    İleri
-                    <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
-                </a>
-                <a href="@Url.Action("Sozlesme", "MusteriBilgileri")" class="btn btn-lg btn-primary">
-                    İleri
-                    <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
-                </a>
-                <a href="@Url.Action("Sozlesme", "MusteriBilgileri")" class="btn btn-lg btn-success">
-                    İleri
-                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                </a>
-                <a href="@Url.Action("Sozlesme", "MusteriBilgileri")" class="btn btn-lg btn-info">
-                    İleri
-                    <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
-                </a>
-                <a href="@Url.Action("Sozlesme", "MusteriBilgileri")" class="btn btn-lg btn-outline-success">
-                    İleri
-                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                </a>
-            *@
+
 
     <div class="row" style="margin-top: 10px">
         <div class="col-md-2">
@@ -169,7 +133,52 @@
         <div class="col-md-6">
         </div>
     </div>
-   
+
+    <div class="row" style="margin-top:10px ">
+        <div class="col-md-6">
+            <a href="@Url.Action("Index", "MusteriBilgileri")" class="btn btn-default btn-block">
+                <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+                Geri
+            </a>
+        </div>
+        @*<div class="col-md-6">
+                <a href="@Url.Action("Sozlesme", "MusteriBilgileri", new { id = 3 })" class="btn btn-default btn-block">
+                    Sözleşme Bilgileri
+                    <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+                </a>
+            </div>*@
+
+        <div class="col-md-6">
+            <button class="btn btn-default btn-block" type="submit" value="Sözleşme Bilgileri">
+                Sözleşme Bilgileri
+                <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> 
+            </button>
+        </div>
+    </div>
+
+
+    @* BUTTONLAR
+        <a href="@Url.Action("Sozlesme", "MusteriBilgileri")" class="btn btn-lg btn-outline-success">
+            İleri
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+        </a>
+        <a href="@Url.Action("Sozlesme", "MusteriBilgileri")" class="btn btn-lg btn-primary">
+            İleri
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+        </a>
+        <a href="@Url.Action("Sozlesme", "MusteriBilgileri")" class="btn btn-lg btn-success">
+            İleri
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        </a>
+        <a href="@Url.Action("Sozlesme", "MusteriBilgileri")" class="btn btn-lg btn-info">
+            İleri
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+        </a>
+        <a href="@Url.Action("Sozlesme", "MusteriBilgileri")" class="btn btn-lg btn-outline-success">
+            İleri
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+        </a>
+    *@
 }
 
 <script>

@@ -10,10 +10,10 @@ using ServisTakipWeb.Controllers;
 namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 {
     public class MusteriBilgileriController : BaseController
-    {
+    { 
         //
         // GET: /FirmaYonetici/MusteriBilgileri/
-
+        
         public ActionResult Index()
         {
             MusteriListTemizle();
@@ -73,6 +73,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 var updatedUser = dbFirmaYonetici.Musteri.SingleOrDefault(x => x.ID == _musteriBilgileri.ID);
 
                 updatedUser.ID = _musteriBilgileri.ID;
+                Connection._id = _musteriBilgileri.ID;
                 updatedUser.Adres = _musteriBilgileri.Adres;
                 updatedUser.Email = _musteriBilgileri.Email;
                 updatedUser.MusteriAdi = _musteriBilgileri.MusteriAdi;
@@ -89,47 +90,50 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 dbFirmaYonetici.SaveChanges();
                 ModelState.Clear();
 
-                return RedirectToAction("Sozlesme", _musteriBilgileri.ID);
+                return RedirectToAction("Sozlesme");
             }
             return View(_musteriBilgileri);
         }
 
 
         public ActionResult Sozlesme(int id = -1)
-        { 
-            
+        {
+            id = Connection._id;
+
             var musteri = dbFirmaYonetici.Musteri.SingleOrDefault(x => x.ID == id);
-            var sozlesme = dbFirmaYonetici.SozlesmeYapma.SingleOrDefault(x => x.MID == id);
+            var sozlesmeYapma = dbFirmaYonetici.SozlesmeYapma.SingleOrDefault(x => x.MID == id);
+            var sozlesme = dbFirmaYonetici.Sozlesme.SingleOrDefault(c => c.ID == sozlesmeYapma.ID);
+ 
+            var _sozlesme = new SozlesmeBilgileri();
 
-            /*if (musteri != null)
+            if (musteri != null)
             {
-                _musteri.Adres = musteri.Adres;
-                _musteri.CreateDate = musteri.CreateDate;
-                _musteri.Email = musteri.Email;
-                _musteri.ID = musteri.ID;
-                _musteri.MusteriAdi = musteri.MusteriAdi;
-                _musteri.MusteriKodu = musteri.MusteriKodu;
-                _musteri.Password = musteri.Password;
-                _musteri.Tel1 = musteri.MusteriTel;
-                _musteri.Tel2 = musteri.MusteriTel2;
-                _musteri.VergiDairesi = musteri.VergiDairesi;
-                _musteri.VergiNumarasi = musteri.VergiNumarasi;
-                _musteri.YetkiliKisi = musteri.YetkiliKisi;
-                _musteri.CreateUserID = _createUserID;
+                _sozlesme.SozlesmeID = sozlesme.ID;
+                _sozlesme.SozlesmeAdi = sozlesme.SozlesmeAdi;
+                _sozlesme.SlaSuresi = sozlesme.SlaSuresi;
+                _sozlesme.AnlasmaUcreti = sozlesme.AnlasmaUcreti.ToString(); ;
+                _sozlesme.BaslangicTarih = sozlesme.BaslangicTarih;
+                _sozlesme.BitisTarih = sozlesme.BitisTarih;
+                _sozlesme.ParcaDahilMi = sozlesme.ParcaDahilMi;
 
-                passLength = (musteri.Password).Length;
+                SozlesmeBilgileri.sozlesmeList.Add(_sozlesme);
+                //Burayı dusun.
+            }
 
-                for (temp = 0; temp < passLength; temp++)
-                {
-                    _musteri.YoneteciPassword2 += "*";
-                }
-            }*/
+            if (_sozlesme == null)
+                return RedirectToAction("Index");
 
-            //if (_musteri == null)
-                //return RedirectToAction("Index");
-
-            return View();
-        } 
+            return View(_sozlesme);
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Sozlesme(MusteriBilgileri _as)
+        {
+            //TODO: SozlesmeBilgileri modelini almıyor. MusteriBilgilerini alıyor null ama yinede alıyor. !!!
+            //TODO: Onemli
+            return RedirectToAction("Index");
+        }
 
         private void MusteriListYarat()
         {
@@ -169,7 +173,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                         _sozlesmeYapmaList.MID = dbFirmaYonetici.SozlesmeYapma.ToList()[temp].MID;
                         _sozlesmeYapmaList.FyID = dbFirmaYonetici.SozlesmeYapma.ToList()[temp].FyID;
 
-                        _sozlesmeList.AnlasmaUcreti = sozlesme.AnlasmaUcreti;
+                        _sozlesmeList.AnlasmaUcreti = sozlesme.AnlasmaUcreti.ToString();
                         _sozlesmeList.BaslangicTarih = sozlesme.BaslangicTarih;
                         _sozlesmeList.BitisTarih = sozlesme.BitisTarih;
                         _sozlesmeList.SlaSuresi = sozlesme.SlaSuresi;

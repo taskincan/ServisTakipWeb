@@ -9,6 +9,7 @@ namespace ServisTakipWeb
     {
         public static int ID;
         public static int parentID;
+        public static int _id;
         public static string adi = "";
         public static string userName = "";
         public static string password = "";

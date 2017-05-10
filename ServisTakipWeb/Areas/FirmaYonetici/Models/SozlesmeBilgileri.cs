@@ -8,7 +8,7 @@ using ServisTakipWeb.Models;
 
 namespace ServisTakipWeb.Areas.FirmaYonetici.Models
 {
-    public class Sozlesme : BaseModel
+    public class SozlesmeBilgileri : BaseModel
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -35,8 +35,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [MaxLength(7)]
         public int SlaSuresi { get; set; }
 
-        [Display(Name = "Parça Dahil Mi")] 
-        [Required] 
+        [Display(Name = "Parça Dahil Mi")]
+        [Required]
         public bool ParcaDahilMi { get; set; }
 
         [Display(Name = "Başlangıç Tarihi")]
@@ -46,6 +46,6 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         public DateTime BitisTarih { get; set; }
 
 
-        public static List<Sozlesme> sozlesmeList = new List<Sozlesme>();
+        public static List<SozlesmeBilgileri> sozlesmeList = new List<SozlesmeBilgileri>();
     }
 }

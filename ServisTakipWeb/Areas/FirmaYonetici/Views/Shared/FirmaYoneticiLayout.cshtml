@@ -22,6 +22,8 @@
     <!-- Custom Fonts -->
     <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -70,10 +72,10 @@
                             </a>
                             <ul id="cagrilar" class="collapse">
                                 <li>
-                                    <a href="/FirmaYonetici/GelenCagrilar"> 
+                                    <a href="/FirmaYonetici/GelenCagrilar">
                                         <i class="fa fa-fw fa-file"> </i> @ServisTakipWeb.Connection.gelenCagrilar.ToString()
                                     </a>
-                                </li> 
+                                </li>
                                 <li>
                                     <a href="/FirmaYonetici/AtanmisCagrilar">
                                         <i class="fa fa-fw fa-file"></i> @ServisTakipWeb.Connection.atanmisCagrilar.ToString()
@@ -92,29 +94,29 @@
                             </ul>
                         </li>
                         @*<li>
-        <a href="/FirmaYonetici/GelenCagrilar">
-            <i class="fa fa-fw fa-file"> </i>
-            @ServisTakipWeb.Connection.gelenCagrilar.ToString()
-        </a>
-    </li>
-    <li>
-        <a href="/FirmaYonetici/AtanmisCagrilar">
-            <i class="fa fa-fw fa-file"></i>
-            @ServisTakipWeb.Connection.atanmisCagrilar.ToString()
-        </a>
-    </li>
-    <li>
-        <a href="/FirmaYonetici/BekleyenCagrilar">
-            <i class="fa fa-fw fa-file"></i>
-            @ServisTakipWeb.Connection.bekleyenCagrilar.ToString()
-        </a>
-    </li>
-    <li>
-        <a href="/FirmaYonetici/BekleyenCagrilar">
-            <i class="fa fa-fw fa-file"></i>
-            @ServisTakipWeb.Connection.bekleyenCagrilar.ToString()
-        </a>
-    </li>*@
+                                <a href="/FirmaYonetici/GelenCagrilar">
+                                    <i class="fa fa-fw fa-file"> </i>
+                                    @ServisTakipWeb.Connection.gelenCagrilar.ToString()
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/FirmaYonetici/AtanmisCagrilar">
+                                    <i class="fa fa-fw fa-file"></i>
+                                    @ServisTakipWeb.Connection.atanmisCagrilar.ToString()
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/FirmaYonetici/BekleyenCagrilar">
+                                    <i class="fa fa-fw fa-file"></i>
+                                    @ServisTakipWeb.Connection.bekleyenCagrilar.ToString()
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/FirmaYonetici/BekleyenCagrilar">
+                                    <i class="fa fa-fw fa-file"></i>
+                                    @ServisTakipWeb.Connection.bekleyenCagrilar.ToString()
+                                </a>
+                            </li>*@
                         <li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#musteriler">
                                 <i class="fa fa-fw fa-desktop"></i> @ServisTakipWeb.Connection.musteriler.ToString() <i class="fa fa-fw fa-caret-down"></i>
@@ -162,9 +164,9 @@
             <div id="page-wrapper">
 
                 <div class="container-fluid">
-                    
+
                     @RenderBody()
-                     
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -179,18 +181,16 @@
 
     <!-- Bootstrap Core JavaScript -->
     @Scripts.Render("~/js/bootstrap.min.js")
-    @* @Scripts.Render("~/js/dataTable.js")*@
 
-    @*  <!-- Morris Charts JavaScript -->
-        @Scripts.Render("~/js/morris.min.js")
-        @Scripts.Render("~/js/plugins/morris/raphael.min.js")
-        @Scripts.Render("~/js/plugins/morris/morris-data.js")
-    *@
-        @*
-        @Scripts.Render("~/js/dataTables.bootstrap.min.js")
-        @Scripts.Render("~/js/dataTables.colReorder.min.js")
-        @Scripts.Render("~/js/jquery.dataTables.min.js")
-        *@
+    <script language="JavaScript" type="text/javascript" src="~/js/jquery.datetimepicker.full.js"></script>
+     
+    <script>
+        $(function () {
+            $("#datetimepicker").datetimepicker();
+        });
+    </script>
+
+
     @RenderSection("scripts", required: false)
 </body>
 

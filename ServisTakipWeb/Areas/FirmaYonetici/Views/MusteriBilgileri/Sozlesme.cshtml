@@ -1,19 +1,148 @@
-﻿@{
+﻿@using ServisTakipWeb.Areas.FirmaYonetici.Models
+@model SozlesmeBilgileri
+
+@{
     ViewBag.Title = "Sozlesme";
     Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
 }
-   <div class="row" style="margin-top:10px ">
-    <div class="col-md-6">
-        <a href="@Url.Action("Musteri", "MusteriBilgileri", new { id = 3 })" class="btn btn-default btn-block">
-            Müşteri Bilgileri
-            <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
-        </a>
+
+@using (Html.BeginForm("Sozlesme", "MusteriBilgileri", FormMethod.Post, new { id = "frmEdit", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <div class="row" style="margin-top: 10px">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.SozlesmeID)
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" placeholder="SozlesmeID" name="SozlesmeID" type="text" value="@Model.SozlesmeID" readonly>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.SozlesmeAdi)
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" placeholder="Sözleşme Adı" name="SozlesmeAdi" type="text" value="@Model.SozlesmeAdi" required>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.SlaSuresi)
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" placeholder="Sla Süresi" name="SlaSuresi" type="text" value="@Model.SlaSuresi" required>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.AnlasmaUcreti)
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" placeholder="Anlaşma Ücreti" name="AnlasmaUcreti" type="text" value="@Model.AnlasmaUcreti" required>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+
+
+     @*<div class='input-group date' data-='datetimepicker1'>
+            <input type='text' class="form-control" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>*@
+
+
+    <div class="row" style="margin-top: 10px">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.BaslangicTarih)
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </span>
+                        @Html.TextBoxFor(model => model.BaslangicTarih, new { @class = "form-control datepicker", id = "datetimepicker", placeholder = "BaslangicTarih" })
+
+                         @*<input type="text" id="datetimepicker" name="BaslangicTarih" class="form-control" value="@Model.BaslangicTarih" required>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+
+    <div class="row" style="margin-top: 10px">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.BitisTarih)
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </span>
+                        @*@Html.TextBoxFor(model => model.BitisTarih, new { @class = "form-control datepicker", id = "datetimepicker", placeholder = "BitisTarih" })*@
+
+
+                        <input type="text" id="datetimepicker" name="BitisTarih" class="form-control" value="@Model.BitisTarih" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+    @*<div class="row" style="margin-top: 10px">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.ParcaDahilMi)
+            </div>
+            <div class="col-md-4">
+                <input type="checkbox" name="ParcaDahilMi" value="@Model.ParcaDahilMi" required>
+            </div>
+
+        </div>*@
+
+    <div class="row" style="margin-top:10px ">
+        <div class="col-md-6">
+            <a href="@Url.Action("Index", "MusteriBilgileri")" class="btn btn-default btn-block">
+                <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+                İptal Et
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <button class="btn btn-default btn-block" type="submit" value="Kaydet">
+                Kaydet
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </button>
+        </div>
     </div>
-    <div class="col-md-6">
-        <a href="@Url.Action("Sozlesme", "MusteriBilgileri", new { id = 3 })" class="btn btn-default btn-block">
-            Kaydet
-            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
-        </a>
-    </div>
-</div>
- 
+}
+
+<script>
+    function SubmitForm() {
+        $("#frmEdit").submit();
+    }
+</script>
+
+
+
+
+
+
+
