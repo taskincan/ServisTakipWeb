@@ -20,6 +20,6 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         
         public int MID { get; set; }
 
-        public static List<SozlesmeYapma> sozlesmeList = new List<SozlesmeYapma>();
+        public static List<SozlesmeYapma> sozlesmeYapmaList = new List<SozlesmeYapma>();
     }
 }

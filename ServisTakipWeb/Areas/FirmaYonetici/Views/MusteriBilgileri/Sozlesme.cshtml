@@ -12,48 +12,48 @@
     @Html.ValidationSummary()
 
     <div class="row" style="margin-top: 10px">
-            <div class="col-md-2">
-                @Html.LabelFor(model => model.SozlesmeID)
-            </div>
-            <div class="col-md-4">
-                <input class="form-control" placeholder="SozlesmeID" name="SozlesmeID" type="text" value="@Model.SozlesmeID" readonly>
-            </div>
-            <div class="col-md-6">
-            </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.SozlesmeID)
         </div>
-        <div class="row" style="margin-top: 10px">
-            <div class="col-md-2">
-                @Html.LabelFor(model => model.SozlesmeAdi)
-            </div>
-            <div class="col-md-4">
-                <input class="form-control" placeholder="Sözleşme Adı" name="SozlesmeAdi" type="text" value="@Model.SozlesmeAdi" required>
-            </div>
-            <div class="col-md-6">
-            </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="SozlesmeID" name="SozlesmeID" type="text" value="@Model.SozlesmeID" readonly>
         </div>
-        <div class="row" style="margin-top: 10px">
-            <div class="col-md-2">
-                @Html.LabelFor(model => model.SlaSuresi)
-            </div>
-            <div class="col-md-4">
-                <input class="form-control" placeholder="Sla Süresi" name="SlaSuresi" type="text" value="@Model.SlaSuresi" required>
-            </div>
-            <div class="col-md-6">
-            </div>
+        <div class="col-md-6">
         </div>
-        <div class="row" style="margin-top: 10px">
-            <div class="col-md-2">
-                @Html.LabelFor(model => model.AnlasmaUcreti)
-            </div>
-            <div class="col-md-4">
-                <input class="form-control" placeholder="Anlaşma Ücreti" name="AnlasmaUcreti" type="text" value="@Model.AnlasmaUcreti" required>
-            </div>
-            <div class="col-md-6">
-            </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.SozlesmeAdi)
         </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Sözleşme Adı" name="SozlesmeAdi" type="text" value="@Model.SozlesmeAdi" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.SlaSuresi)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Sla Süresi" name="SlaSuresi" type="text" value="@Model.SlaSuresi" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.AnlasmaUcreti)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Anlaşma Ücreti" name="AnlasmaUcreti" type="text" value="@Model.AnlasmaUcreti" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
 
 
-     @*<div class='input-group date' data-='datetimepicker1'>
+    @*<div class='input-group date' data-='datetimepicker1'>
             <input type='text' class="form-control" />
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
@@ -68,45 +68,45 @@
 
 
     <div class="row" style="margin-top: 10px">
-            <div class="col-md-2">
-                @Html.LabelFor(model => model.BaslangicTarih)
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-calendar"></i>
-                        </span>
-                        @Html.TextBoxFor(model => model.BaslangicTarih, new { @class = "form-control datepicker", id = "datetimepicker", placeholder = "BaslangicTarih" })
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.BaslangicTarih)
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </span>
+                    @Html.TextBoxFor(model => model.BaslangicTarih, new { @class = "form-control datepicker", id = "datetimepicker", placeholder = "BaslangicTarih" })
 
-                         @*<input type="text" id="datetimepicker" name="BaslangicTarih" class="form-control" value="@Model.BaslangicTarih" required>*@
-                    </div>
+                    @*<input type="text" id="datetimepicker" name="BaslangicTarih" class="form-control" value="@Model.BaslangicTarih" required>*@
                 </div>
             </div>
-            <div class="col-md-6">
-            </div>
         </div>
+        <div class="col-md-6">
+        </div>
+    </div>
 
     <div class="row" style="margin-top: 10px">
-            <div class="col-md-2">
-                @Html.LabelFor(model => model.BitisTarih)
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-calendar"></i>
-                        </span>
-                        @*@Html.TextBoxFor(model => model.BitisTarih, new { @class = "form-control datepicker", id = "datetimepicker", placeholder = "BitisTarih" })*@
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.BitisTarih)
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </span>
+                    @*@Html.TextBoxFor(model => model.BitisTarih, new { @class = "form-control datepicker", id = "datetimepicker", placeholder = "BitisTarih" })*@
 
 
-                        <input type="text" id="datetimepicker" name="BitisTarih" class="form-control" value="@Model.BitisTarih" required>
-                    </div>
+                    <input type="text" id="datetimepicker" name="BitisTarih" class="form-control" value="@Model.BitisTarih" required>
                 </div>
             </div>
-            <div class="col-md-6">
-            </div>
         </div>
+        <div class="col-md-6">
+        </div>
+    </div>
     @*<div class="row" style="margin-top: 10px">
             <div class="col-md-2">
                 @Html.LabelFor(model => model.ParcaDahilMi)
@@ -139,10 +139,5 @@
         $("#frmEdit").submit();
     }
 </script>
-
-
-
-
-
 
 

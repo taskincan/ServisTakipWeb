@@ -28,11 +28,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [MaxLength(7)]
         public string AnlasmaUcreti { get; set; }
 
-        [Display(Name = "Sla Süresi")]
-        [DataType(DataType.PhoneNumber)]
-        [Required]
-        [MinLength(1)]
-        [MaxLength(7)]
+        [Display(Name = "Sla Süresi")] 
+        [Required] 
         public int SlaSuresi { get; set; }
 
         [Display(Name = "Parça Dahil Mi")]

@@ -201,7 +201,6 @@
     <Compile Include="Areas\FirmaYonetici\FirmaYoneticiAreaRegistration.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CalisanBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\MusteriBilgileri.cs" />
-    <Compile Include="Areas\FirmaYonetici\Models\Sozlesme.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\SozlesmeBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\SozlesmeYapma.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\YoneticiBilgileri.cs" />

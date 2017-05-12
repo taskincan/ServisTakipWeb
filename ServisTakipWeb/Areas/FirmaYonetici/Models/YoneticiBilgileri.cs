@@ -56,8 +56,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [MaxLength(40)]
         public string Email { get; set; }
 
-        [Display(Name = "Firma ID")]
-        [DataType(DataType.Text)]
+        [Display(Name = "Firma ID")] 
         [Required]
         public int FirmaID { get; set; }
 
