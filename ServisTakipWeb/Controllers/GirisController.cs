@@ -74,6 +74,8 @@ namespace ServisTakipWeb.Controllers
                 musteriMi=false; 
                 musteriYoneticisiMi = false; 
                 musteriCalisaniMi = false;
+
+                ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                 return View("Index", _girisModel);
             }  
 
@@ -237,6 +239,8 @@ namespace ServisTakipWeb.Controllers
             }
             else
             {
+
+                ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                 return View("Index", _girisModel);
             }
 
@@ -268,6 +272,7 @@ namespace ServisTakipWeb.Controllers
                 //else
                 //    ViewBag.Message = "Kullanıcı Adınızı kontrol ediniz.";
 
+                ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                 return View("Index", _girisModel);
             } 
         }

@@ -11,6 +11,8 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
+    @ViewBag.Message
+
     <div class="row" style="margin-top: 10px">
         <div class="col-md-2">
             @Html.LabelFor(model => model.SozlesmeID)
@@ -53,18 +55,24 @@
     </div>
 
 
-    @*<div class='input-group date' data-='datetimepicker1'>
-            <input type='text' class="form-control" />
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </span>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.ParcaDahilMi)
         </div>
+        <div class="col-md-4">
+            @*<input type="checkbox" name="ParcaDahilMi" value="@Model.ParcaDahilMi"> Dahil<br><br>*@ 
+            @*@Html.CheckBoxFor(model => model.ParcaDahilMi, new { id = "ParcaDahilMi" }) Dahil<br><br> 
+            
+            @Html.EditorFor(model => model.ParcaDahilMi)*@
+            @Html.CheckBoxFor(model => model.ParcaDahilMi)
 
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>*@
+            @*<input id="Remember" type="checkbox" value="true" name="ParcaDahilMi" />
+            <input type="hidden" value="false" name="ParcaDahilMi" />*@
+
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
 
 
     <div class="row" style="margin-top: 10px">
@@ -99,29 +107,25 @@
                     </span>
                     @*@Html.TextBoxFor(model => model.BitisTarih, new { @class = "form-control datepicker", id = "datetimepicker", placeholder = "BitisTarih" })*@
 
-
-                    <input type="text" id="datetimepicker" name="BitisTarih" class="form-control" value="@Model.BitisTarih" required>
+                    <input type="text" id="datetimepicker2" name="BitisTarih" class="form-control" value="@Model.BitisTarih" required>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
         </div>
     </div>
-    @*<div class="row" style="margin-top: 10px">
-            <div class="col-md-2">
-                @Html.LabelFor(model => model.ParcaDahilMi)
-            </div>
-            <div class="col-md-4">
-                <input type="checkbox" name="ParcaDahilMi" value="@Model.ParcaDahilMi" required>
-            </div>
-
-        </div>*@
 
     <div class="row" style="margin-top:10px ">
-        <div class="col-md-6">
+        <div class="col-md-2">
             <a href="@Url.Action("Index", "MusteriBilgileri")" class="btn btn-default btn-block">
-                <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-remove aria-hidden=" true"></span>
                 İptal Et
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="@Url.Action("Musteri", "MusteriBilgileri", new { id = @Model.MusteriID })" class="btn btn-default btn-block">
+                <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+                Müşteri Bilgileri
             </a>
         </div>
 

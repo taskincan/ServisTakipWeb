@@ -12,7 +12,9 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int SozlesmeID { get; set; }
+        public int SozlesmeID { get; set; } 
+
+        public int MusteriID { get; set; }
 
         [Display(Name = "Sözleşme Adı")]
         [DataType(DataType.Text)]
@@ -22,13 +24,10 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         public string SozlesmeAdi { get; set; }
 
         [Display(Name = "Anlaşma Ücreti")]
-        [Required]
-        [DataType(DataType.Text)]
-        [MinLength(1)]
-        [MaxLength(7)]
-        public string AnlasmaUcreti { get; set; }
+        [Required] 
+        public double AnlasmaUcreti { get; set; }
 
-        [Display(Name = "Sla Süresi")] 
+        [Display(Name = "Sla Süresi (Saat)")] 
         [Required] 
         public int SlaSuresi { get; set; }
 

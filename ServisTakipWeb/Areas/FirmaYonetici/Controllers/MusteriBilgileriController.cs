@@ -10,11 +10,11 @@ using ServisTakipWeb.Controllers;
 namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 {
     public class MusteriBilgileriController : BaseController
-    { 
+    {
 
         //
         // GET: /FirmaYonetici/MusteriBilgileri/
-        
+
         public ActionResult Index()
         {
             MusteriListTemizle();
@@ -27,14 +27,16 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 
         public ActionResult Musteri(int id = 0)
         {
-            int temp=0, passLength = 0, _createUserID = -1;
+            int temp = 0, passLength = 0, _createUserID = -1;
 
-            var _musteri = new MusteriBilgileri();  
-            
-            _createUserID =  CreateUserIDGetirByMusteriID(id);
+            var _musteri = new MusteriBilgileri();
 
-            var musteri = dbFirmaYonetici.Musteri.SingleOrDefault(x => x.ID == id);
-            
+            _createUserID = CreateUserIDGetirByMusteriID(id);
+
+            //var musteri = dbFirmaYonetici.Musteri.SingleOrDefault(x => x.ID == id);
+
+            MusteriBilgileri musteri = MusteriBilgileri.musteriList.SingleOrDefault(x => x.ID == id);
+
             if (musteri != null)
             {
                 _musteri.Adres = musteri.Adres;
@@ -44,8 +46,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 _musteri.MusteriAdi = musteri.MusteriAdi;
                 _musteri.MusteriKodu = musteri.MusteriKodu;
                 _musteri.Password = musteri.Password;
-                _musteri.Tel1 = musteri.MusteriTel;
-                _musteri.Tel2 = musteri.MusteriTel2;
+                _musteri.Tel1 = musteri.Tel1;
+                _musteri.Tel2 = musteri.Tel2;
                 _musteri.VergiDairesi = musteri.VergiDairesi;
                 _musteri.VergiNumarasi = musteri.VergiNumarasi;
                 _musteri.YetkiliKisi = musteri.YetkiliKisi;
@@ -58,12 +60,12 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     _musteri.YoneteciPassword2 += "*";
                 }
             }
-              
-             if (_musteri == null)
+
+            if (_musteri == null)
                 return RedirectToAction("Index");
-            
+
             return View(_musteri);
-        } 
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -99,7 +101,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
         }
 
 
-        public ActionResult Sozlesme(int id=-1)
+        public ActionResult Sozlesme(int id = -1)
         {
             MusteriBilgileri musteri = MusteriBilgileri.musteriList.SingleOrDefault(x => x.ID == id);
 
@@ -110,62 +112,78 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
             var sozlesme = dbFirmaYonetici.Sozlesme.SingleOrDefault(c => c.ID == sozlesmeYapma.SozlesmeID);
 
             var _sozlesme = SozlesmeBilgileri.sozlesmeList.SingleOrDefault(x => x.SozlesmeID == sozlesme.ID);
-             
+
             if (sozlesme != null)
-            { 
+            {
                 _sozlesme.SozlesmeID = sozlesme.ID;
                 _sozlesme.SozlesmeAdi = sozlesme.SozlesmeAdi;
-                
-                _sozlesme.AnlasmaUcreti = sozlesme.AnlasmaUcreti.ToString();
+
+                _sozlesme.AnlasmaUcreti = Convert.ToDouble(sozlesme.AnlasmaUcreti);
                 _sozlesme.SlaSuresi = sozlesme.SlaSuresi;
-               _sozlesme.BaslangicTarih = sozlesme.BaslangicTarih;
-                 
+                _sozlesme.BaslangicTarih = sozlesme.BaslangicTarih;
+
                 _sozlesme.BitisTarih = sozlesme.BitisTarih;
                 _sozlesme.ParcaDahilMi = sozlesme.ParcaDahilMi;
+                _sozlesme.MusteriID = musteri.ID;
 
                 //Burayı dusun.
             }
             else
                 return RedirectToAction("Index");
-             
+
             return View(_sozlesme);
         }
-        
-        
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Sozlesme(SozlesmeBilgileri _sozlesmeBilgileri)
         {
-             
-            if (ModelState.IsValid)
+            try
             {
-                var sozlesmeYapma = dbFirmaYonetici.SozlesmeYapma.SingleOrDefault(x => x.MID == _sozlesmeBilgileri.SozlesmeID);
-                var sozlesme = dbFirmaYonetici.Sozlesme.SingleOrDefault(c => c.ID == sozlesmeYapma.ID);
-
-                if (_sozlesmeBilgileri != null)
+                if (ModelState.IsValid)
                 {
-                    sozlesme.ID = _sozlesmeBilgileri.SozlesmeID;
-                    sozlesme.SozlesmeAdi = _sozlesmeBilgileri.SozlesmeAdi;
-                    sozlesme.SlaSuresi = _sozlesmeBilgileri.SlaSuresi;
-                    sozlesme.AnlasmaUcreti = Convert.ToDecimal(_sozlesmeBilgileri.AnlasmaUcreti);
-                    sozlesme.BaslangicTarih = _sozlesmeBilgileri.BaslangicTarih;
-                    sozlesme.BitisTarih = _sozlesmeBilgileri.BitisTarih;
-                    sozlesme.ParcaDahilMi = _sozlesmeBilgileri.ParcaDahilMi;
+                    if (_sozlesmeBilgileri.AnlasmaUcreti < 0 || _sozlesmeBilgileri.SlaSuresi <= 0)
+                    { 
+                        ModelState.AddModelError("", "Anlaşma Ücretini veya SLA Süresini kontrol ediniz.");
+                    }
+                    else
+                    {
+                        var sozlesmeYapma = dbFirmaYonetici.SozlesmeYapma.SingleOrDefault(x => x.SozlesmeID == _sozlesmeBilgileri.SozlesmeID);
+                        var sozlesme = dbFirmaYonetici.Sozlesme.SingleOrDefault(c => c.ID == sozlesmeYapma.ID);
+
+                        if (_sozlesmeBilgileri != null)
+                        {
+                            sozlesme.ID = _sozlesmeBilgileri.SozlesmeID;
+                            sozlesme.SozlesmeAdi = _sozlesmeBilgileri.SozlesmeAdi;
+                            sozlesme.SlaSuresi = _sozlesmeBilgileri.SlaSuresi;
+                            sozlesme.AnlasmaUcreti = Convert.ToDecimal(_sozlesmeBilgileri.AnlasmaUcreti);
+                            //TODO: 2500.250 girince hata veriyor. 
+
+                            sozlesme.BaslangicTarih = _sozlesmeBilgileri.BaslangicTarih;
+                            sozlesme.BitisTarih = _sozlesmeBilgileri.BitisTarih;
+                            sozlesme.ParcaDahilMi = _sozlesmeBilgileri.ParcaDahilMi;
+                        }
+
+                        dbFirmaYonetici.Entry(sozlesme).State = EntityState.Modified;
+                        dbFirmaYonetici.SaveChanges();
+                        ModelState.Clear();
+
+                        return RedirectToAction("Index");
+                    }
                 }
+                return View(_sozlesmeBilgileri);
 
-                dbFirmaYonetici.Entry(sozlesme).State = EntityState.Modified;
-                dbFirmaYonetici.SaveChanges();
-                ModelState.Clear();
 
-                return RedirectToAction("Index");
             }
-            return View(_sozlesmeBilgileri);
+            catch (Exception ex /* dex */)
+            {
+
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                return View(_sozlesmeBilgileri);
+            }
 
 
-
-            //TODO: SozlesmeBilgileri modelini almıyor. MusteriBilgilerini alıyor null ama yinede alıyor. !!!
-            //TODO: Onemli
-            return RedirectToAction("Index");
         }
 
         private void MusteriListYarat()
@@ -176,7 +194,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
             int firmaID = 0;
             int _FyId = -1, _MId = -1, _SozlesmeId = -1;
 
-            countSozlesme = dbFirmaYonetici.SozlesmeYapma.Count(); 
+            countSozlesme = dbFirmaYonetici.SozlesmeYapma.Count();
 
             for (temp = 0; temp < countSozlesme; temp++)
             {
@@ -206,12 +224,12 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                         _sozlesmeYapmaList.MID = dbFirmaYonetici.SozlesmeYapma.ToList()[temp].MID;
                         _sozlesmeYapmaList.FyID = dbFirmaYonetici.SozlesmeYapma.ToList()[temp].FyID;
 
-                        _sozlesmeList.AnlasmaUcreti = sozlesme.AnlasmaUcreti.ToString();
+                        _sozlesmeList.AnlasmaUcreti = Convert.ToDouble(sozlesme.AnlasmaUcreti);
                         _sozlesmeList.BaslangicTarih = sozlesme.BaslangicTarih;
                         _sozlesmeList.BitisTarih = sozlesme.BitisTarih;
                         _sozlesmeList.SlaSuresi = sozlesme.SlaSuresi;
                         _sozlesmeList.SozlesmeAdi = sozlesme.SozlesmeAdi;
-                        _sozlesmeList.SozlesmeID = sozlesme.ID; 
+                        _sozlesmeList.SozlesmeID = sozlesme.ID;
 
                         _musteriList.Adres = musteri.Adres;
                         _musteriList.CreateDate = musteri.CreateDate;
@@ -241,7 +259,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     }
                 }
             }
-        } 
+        }
 
         private void MusteriListTemizle()
         {
@@ -258,6 +276,6 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 return sozlesme.FyID;
             else
                 return -1;
-        } 
+        }
     }
 }

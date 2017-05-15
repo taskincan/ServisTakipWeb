@@ -184,11 +184,34 @@
 
     <script language="JavaScript" type="text/javascript" src="~/js/jquery.datetimepicker.full.js"></script>
      
+    
+        
+ 
     <script>
         $(function () {
-            $("#datetimepicker").datetimepicker();
+            $("#datetimepicker").datetimepicker({ format: 'd.m.Y', });
+
+        }); 
+
+        $(function () {
+            $("#datetimepicker2").datetimepicker({ format: 'd.m.Y', });
         });
+
+        $(function () {
+            $("#datetimepickerSaatli").datetimepicker({ format: 'd.m.Y H:i', });
+
+        });
+
     </script>
+
+
+
+
+
+
+
+
+
 
 
     @RenderSection("scripts", required: false)
