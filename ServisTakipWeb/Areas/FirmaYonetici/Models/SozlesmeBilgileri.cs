@@ -15,6 +15,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         public int SozlesmeID { get; set; } 
 
         public int MusteriID { get; set; }
+ 
+        public string MusteriKodu { get; set; }
 
         [Display(Name = "Sözleşme Adı")]
         [DataType(DataType.Text)]
@@ -23,7 +25,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [MaxLength(30)]
         public string SozlesmeAdi { get; set; }
 
-        [Display(Name = "Anlaşma Ücreti")]
+        [Display(Name = "Anlaşma Ücreti (TL)")]
         [Required] 
         public double AnlasmaUcreti { get; set; }
 

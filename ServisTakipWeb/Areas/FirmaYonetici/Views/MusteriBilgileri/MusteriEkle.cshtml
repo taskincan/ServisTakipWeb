@@ -1,0 +1,132 @@
+﻿@using ServisTakipWeb.Areas.FirmaYonetici.Models
+@model MusteriBilgileri
+
+@{
+    ViewBag.Title = "MusteriEkle";
+    Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
+} 
+
+@using (Html.BeginForm("MusteriEkle", "MusteriBilgileri", FormMethod.Post, new { id = "frmEdit", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary() 
+ 
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.MusteriKodu)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Müşteri Kodu" name="MusteriKodu" type="text" value="@Model.MusteriKodu" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div> 
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.MusteriAdi)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Müşteri Adı" name="MusteriAdi" type="text" value="@Model.MusteriAdi" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.YetkiliKisi)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Yetkili Kişi" name="YetkiliKisi" type="text" value="@Model.YetkiliKisi" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Şifre" name="Password" type="text" value="@Model.Password" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.VergiNumarasi)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Vergi Numarası" name="VergiNumarasi" type="text" value="@Model.VergiNumarasi">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.VergiDairesi)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Vergi Dairesi" name="VergiDairesi" type="text" value="@Model.VergiDairesi">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="E-mail" name="Email" type="text" value="@Model.Email" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Adres)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Adres" name="Adres" type="text" value="@Model.Adres" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Tel1)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Telefon" name="Tel1" type="text" value="@Model.Tel1" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Tel2)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Telefon-2" name="Tel2" type="text" value="@Model.Tel2">
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px ">
+        <div class="col-md-6">
+            <a href="@Url.Action("Index", "MusteriBilgileri")" class="btn btn-default btn-block">
+                <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+                Geri
+            </a>
+        </div> 
+
+        <div class="col-md-6">
+            <button class="btn btn-default btn-block" type="submit" value="Sözleşme Bilgileri">
+                Sözleşme Bilgileri
+                <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div> 
+}
+
+<script>
+    function SubmitForm() {
+        $("#frmEdit").submit();
+    }
+</script>

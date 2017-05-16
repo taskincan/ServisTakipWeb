@@ -48,7 +48,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [DataType(DataType.Password)]
         [MinLength(1)]
         [MaxLength(20)]
-        public string YoneteciPassword2 { get; set; }
+        public string Password2 { get; set; }
 
         [Display(Name = "Yetkili Kişi")]
         [DataType(DataType.Text)]
@@ -60,13 +60,13 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [Display(Name = "Telefon")]
         [DataType(DataType.Text)]
         [Required]
-        [MinLength(1)]
+        [MinLength(11)]
         [MaxLength(11)]
         public string Tel1 { get; set; }
 
         [Display(Name = "Telefon-2")]
         [DataType(DataType.Text)]
-        [MinLength(1)]
+        [MinLength(10)]
         [MaxLength(11)]
         public string Tel2 { get; set; }
 

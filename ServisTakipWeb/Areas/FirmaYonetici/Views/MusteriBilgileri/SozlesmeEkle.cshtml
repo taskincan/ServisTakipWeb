@@ -2,29 +2,19 @@
 @model SozlesmeBilgileri
 
 @{
-    ViewBag.Title = "Sozlesme";
+    ViewBag.Title = "SozlesmeEkle";
     Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
-}
+} 
 
-@using (Html.BeginForm("Sozlesme", "MusteriBilgileri", FormMethod.Post, new { id = "frmEdit", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("SozlesmeEkle", "MusteriBilgileri", FormMethod.Post, new { id = "frmEdit", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
     @ViewBag.Message
 
-    @Html.HiddenFor(model => model.MusteriID)
-
-    <div class="row" style="margin-top: 10px">
-        <div class="col-md-2">
-            @Html.LabelFor(model => model.SozlesmeID)
-        </div>
-        <div class="col-md-4">
-            <input class="form-control" placeholder="SozlesmeID" name="SozlesmeID" type="text" value="@Model.SozlesmeID" readonly>
-        </div>
-        <div class="col-md-6">
-        </div>
-    </div>
+    @Html.HiddenFor(model => model.MusteriKodu)
+    
     <div class="row" style="margin-top: 10px">
         <div class="col-md-2">
             @Html.LabelFor(model => model.SozlesmeAdi)
@@ -55,28 +45,18 @@
         <div class="col-md-6">
         </div>
     </div>
-
-
+     
     <div class="row" style="margin-top: 10px">
         <div class="col-md-2">
             @Html.LabelFor(model => model.ParcaDahilMi)
         </div>
-        <div class="col-md-4">
-            @*<input type="checkbox" name="ParcaDahilMi" value="@Model.ParcaDahilMi"> Dahil<br><br>*@ 
-            @*@Html.CheckBoxFor(model => model.ParcaDahilMi, new { id = "ParcaDahilMi" }) Dahil<br><br> 
-            
-            @Html.EditorFor(model => model.ParcaDahilMi)*@
+        <div class="col-md-4"> 
             @Html.CheckBoxFor(model => model.ParcaDahilMi)
-
-            @*<input id="Remember" type="checkbox" value="true" name="ParcaDahilMi" />
-            <input type="hidden" value="false" name="ParcaDahilMi" />*@
-
         </div>
         <div class="col-md-6">
         </div>
     </div>
-
-
+     
     <div class="row" style="margin-top: 10px">
         <div class="col-md-2">
             @Html.LabelFor(model => model.BaslangicTarih)
@@ -106,9 +86,7 @@
                 <div class="input-group">
                     <span class="input-group-addon">
                         <i class="glyphicon glyphicon-calendar"></i>
-                    </span>
-                    @*@Html.TextBoxFor(model => model.BitisTarih, new { @class = "form-control datepicker", id = "datetimepicker", placeholder = "BitisTarih" })*@
-
+                    </span> 
                     <input type="text" id="datetimepicker2" name="BitisTarih" class="form-control" value="@Model.BitisTarih" required>
                 </div>
             </div>
@@ -125,7 +103,7 @@
             </a>
         </div>
         <div class="col-md-4">
-            <a href="@Url.Action("Musteri", "MusteriBilgileri", new { id = @Model.MusteriID })" class="btn btn-default btn-block">
+            <a href="@Url.Action("MusteriEkle", "MusteriBilgileri", new { id = @Model.MusteriID })" class="btn btn-default btn-block">
                 <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
                 Müşteri Bilgileri
             </a>
