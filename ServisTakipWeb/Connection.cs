@@ -27,12 +27,15 @@ namespace ServisTakipWeb
         public static string yoneticiler = "Yöneticiler";
         public static string calisanlar = "Çalışanlar";
         public static string cagrilar = "Çağrılar";
+        public static string profile = "Profil";
 
         public static string yoneticiBilgileri = "Yönetici Bilgileri";
         public static string yoneticiEkle = "Yönetici Ekle";
+        public static string yonetici = "Yönetici";
 
         public static string musteriBilgileri = "Müşteri Bilgileri";
         public static string musteriEkle = "Müşteri Ekle";
+        public static string musteri = "Müşteri";
 
         public static string calisanBilgileri = "Çalışan Bilgileri";
         public static string calisanEkle = "Çalışan Ekle";

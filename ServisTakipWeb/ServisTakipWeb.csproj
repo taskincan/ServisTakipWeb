@@ -231,6 +231,7 @@
     <Compile Include="Areas\Firma\FirmaAreaRegistration.cs" />
     <Compile Include="Areas\Firma\Models\FirmaBilgileri.cs" />
     <Compile Include="Areas\Firma\Models\FirmaYönetici.cs" />
+    <Compile Include="Areas\Musteri\Controllers\AnaSayfaController.cs" />
     <Compile Include="Areas\Musteri\MusteriAreaRegistration.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -315,9 +316,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\FirmaCalisan\Models\" />
-    <Folder Include="Areas\Musteri\Controllers\" />
     <Folder Include="Areas\Musteri\Models\" />
-    <Folder Include="Areas\Musteri\Views\Shared\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
@@ -538,6 +537,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\FirmaYonetici\Views\MusteriBilgileri\SozlesmeEkle.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Musteri\Views\Shared\MusteriLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Musteri\Views\AnaSayfa\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

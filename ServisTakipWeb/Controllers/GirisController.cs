@@ -6,12 +6,12 @@ using System.Web.Mvc;
 using ServisTakipWeb.Models;
 using ServisTakipWeb.Areas.Admin.Context;
 using ServisTakipWeb.Areas.Firma.Context;
-using ServisTakipWeb.Areas.FirmaYonetici.Context; 
+using ServisTakipWeb.Areas.FirmaYonetici.Context;
 
 namespace ServisTakipWeb.Controllers
 {
     public class GirisController : BaseController
-    { 
+    {
         //
         // GET: /Giris/
 
@@ -20,10 +20,10 @@ namespace ServisTakipWeb.Controllers
             Connection.Clear();
 
             _girisModel.Password = "";
-            _girisModel.UserName = ""; 
+            _girisModel.UserName = "";
 
             return View(_girisModel);
-        } 
+        }
 
         [HttpPost]
         public ActionResult Giris(Giris _girisModel)
@@ -34,6 +34,7 @@ namespace ServisTakipWeb.Controllers
 
             int temp = 0;
             int count = 0;
+            int userNameCount = 0;
 
             bool adminMi = false;
             bool firmaMi = false, firmaYoneticisiMi = false, firmaCalisaniMi = false;
@@ -43,25 +44,37 @@ namespace ServisTakipWeb.Controllers
             bool sifreAyniMi = false;
             bool girisIzni = false;
 
+            userNameCount = _girisModel.UserName.Count();
+
             if (_girisModel.UserName[0] == 'A' && _girisModel.UserName[1] == 'D' && _girisModel.UserName[2] == 'M' && _girisModel.UserName[3] == '_') //Admin Girisi
             {
                 adminMi = true;
             }
             else if (_girisModel.UserName[0] == 'F')  
-            {
-                if (_girisModel.UserName[1] == 'Y')//Firma Yonetici Girisi
-                    firmaYoneticisiMi = true;
-                else if (_girisModel.UserName[1] == 'C')//Firma Calisani Girisi
-                    firmaCalisaniMi = true;
+            { 
+                if (userNameCount > 1)
+                {
+                    if (_girisModel.UserName[1] == 'Y')//Firma Yonetici Girisi
+                        firmaYoneticisiMi = true;
+                    else if (_girisModel.UserName[1] == 'C')//Firma Calisani Girisi
+                        firmaCalisaniMi = true;
+                    else //Firma Girisi
+                        firmaMi = true;
+                }
                 else //Firma Girisi
                     firmaMi = true;
             }
             else if (_girisModel.UserName[0] == 'M') //Musteri Girisi
-            {
-                if (_girisModel.UserName[1] == 'Y')//Musteri Yonetici Girisi   
-                    musteriYoneticisiMi = true;
-                else if (_girisModel.UserName[1] == 'C') // Musteri Calisani Girisi
-                    musteriCalisaniMi = true;
+            { 
+                if (userNameCount>1)
+                {
+                    if (_girisModel.UserName[1] == 'Y')//Musteri Yonetici Girisi   
+                        musteriYoneticisiMi = true;
+                    else if (_girisModel.UserName[1] == 'C') // Musteri Calisani Girisi
+                        musteriCalisaniMi = true;
+                    else //Musteri Girisi
+                        musteriMi = true;
+                }
                 else //Musteri Girisi
                     musteriMi = true; 
             }
@@ -81,9 +94,9 @@ namespace ServisTakipWeb.Controllers
 
             if ( adminMi ) //Admin Girisi
             { 
-
                 string adminUserName = "";
                 string adminPassword = _girisModel.Password.ToString().Trim();
+                
                 count = dbAdmin.Admin.Count();
 
                 for (temp = 4; temp < _girisModel.UserName.Count(); temp++)
@@ -124,28 +137,38 @@ namespace ServisTakipWeb.Controllers
                 {
                     firmaUserName += _girisModel.UserName[temp].ToString();
                 }
+                
+                var user = dbFirma.Firma.SingleOrDefault(x=>x.UserName == _girisModel.UserName.ToString());
 
-                for (temp = 0; temp < count; temp++)
+                if(user==null)
                 {
-                    if (firmaUserName == dbFirma.Firma.ToList()[temp].UserName.ToString()) //database de, girilen kullanici adi varmi sorgusu.
+                    userNameVarMi=false;
+
+                    ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                    return RedirectToAction("Index",_girisModel);
+                }
+                else
+                {
+                    if (firmaUserName == user.UserName.ToString()) //database de, girilen kullanici adi varmi sorgusu.
                     {
                         userNameVarMi = true;
-                        if (_girisModel.Password == dbFirma.Firma.ToList()[temp].Password.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mus sorgusu.
+
+                        if (_girisModel.Password == user.Password.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mus sorgusu.
                         {
                             sifreAyniMi = true;
                             girisIzni = true;
                             firmaMi = true;
 
-                            Connection.ID = dbFirma.Firma.ToList()[temp].ID;
-                            Connection.userName = dbFirma.Firma.ToList()[temp].UserName;
-                            Connection.adi = dbFirma.Firma.ToList()[temp].FirmaAdi; 
+                            Connection.ID = user.ID;
+                            Connection.userName = user.UserName;
+                            Connection.adi = user.FirmaAdi;
 
                             return RedirectToAction("Index", "AnaSayfa", new { area = "Firma" });
                         }
                         else
                             sifreAyniMi = false;
                     }
-                } 
+                }  
             }
             else if (firmaYoneticisiMi) // Firma Yonetici Girisi
             { 
@@ -158,31 +181,42 @@ namespace ServisTakipWeb.Controllers
                 {
                     firmaYoneticiUserName += _girisModel.UserName[temp].ToString();
                 }
-                //TODO: var User = dbFirmaYonetici.FirmaCalisani.SingleOrDefault(x => x.UserName == firmaCalisanUserName); olarak yap hepsini.
-                for (temp = 0; temp < count; temp++)
-                {
-                    if (firmaYoneticiUserName == dbFirmaYonetici.FirmaYonetici.ToList()[temp].UserName.ToString()) //database de, girilen kullanici adi varmi sorgusu.
+                //TODO: var User = dbFirmaYonetici.FirmaCalisani.SingleOrDefault(x => x.UserName == firmaCalisanUserName); olarak yap hepsini. 
+
+                var user = dbFirmaYonetici.FirmaYonetici.SingleOrDefault(x => x.UserName == _girisModel.UserName.ToString());
+
+                    if(user==null)
+                    {
+                        userNameVarMi=false;
+
+                        ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                        return RedirectToAction("Index",_girisModel);
+                    }
+                    else
+                    {
+                        if (firmaYoneticiUserName == user.UserName) //database de, girilen kullanici adi varmi sorgusu.
                     {
                         userNameVarMi = true;
-                        if (_girisModel.Password == dbFirmaYonetici.FirmaYonetici.ToList()[temp].Password.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mu sorgusu.
+
+                        if (_girisModel.Password == user.Password) //Database de ki kullanici adinin şifresi ile eşleşiyor mu sorgusu.
                         {
                             sifreAyniMi = true;
                             girisIzni = true;
                             firmaYoneticisiMi = true;
 
-                            Connection.ID = dbFirmaYonetici.FirmaYonetici.ToList()[temp].FyID;
-                            Connection.userName = dbFirmaYonetici.FirmaYonetici.ToList()[temp].UserName;
-                            Connection.adi = dbFirmaYonetici.FirmaYonetici.ToList()[temp].Ad;
-                            Connection.parentID = dbFirmaYonetici.FirmaYonetici.ToList()[temp].FirmaID;
+                            Connection.ID = user.FyID;
+                            Connection.userName = user.UserName;
+                            Connection.adi = user.Ad;
+                            Connection.parentID = user.FirmaID;
 
                             return RedirectToAction("Index", "AnaSayfa", new { area = "FirmaYonetici" });
                         }
                         else
                             sifreAyniMi = false;
-                    }
+                    } 
                 }
             }
-            else if (firmaCalisaniMi)
+            else if (firmaCalisaniMi)// Firma Calisani Girisi
             {
                 string firmaCalisanUserName = "";
                 string firmaCalisanPassword = _girisModel.Password.ToString().Trim();
@@ -228,18 +262,57 @@ namespace ServisTakipWeb.Controllers
                         return RedirectToAction("Index", _girisModel);
                     }
                 }
-                 
-                
-                     
-                 
             }
-            else if (_girisModel.UserName[0] == 'M')
+            else if (musteriMi) //
             {
-                return View("Index", _girisModel);
+                string musteriUserName = "";
+                string musteriPassword = _girisModel.Password.ToString().Trim();
+
+                count = dbFirmaYonetici.Musteri.Count();
+
+                for (temp = 1; temp < _girisModel.UserName.Count(); temp++)
+                {
+                    musteriUserName += _girisModel.UserName[temp].ToString();
+                }
+
+                var User = dbFirmaYonetici.Musteri.SingleOrDefault(x => x.MusteriKodu == musteriUserName);
+
+                if (User == null)
+                {
+                    userNameVarMi = false;
+
+                    ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                    return RedirectToAction("Index", _girisModel);
+                }
+                else //Database de aynı kullanıcı adıyla kayıt var.
+                {
+                    userNameVarMi = true;
+
+                    if (_girisModel.Password == User.Password.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mu sorgusu.
+                    {
+                        sifreAyniMi = true;
+                        girisIzni = true;
+                        firmaYoneticisiMi = true;
+
+                        Connection.ID = User.ID;
+                        Connection.userName = User.MusteriKodu;
+                        Connection.adi = User.MusteriAdi;
+                        //Connection.parentID = User.FirmaID;
+                         
+                        return RedirectToAction("Index", "AnaSayfa", new { area = "Musteri" });
+                    }
+                    else
+                    {
+                        sifreAyniMi = false;
+
+                        ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                        return RedirectToAction("Index", _girisModel);
+                    }
+                }
+                
             }
             else
-            {
-
+            { 
                 ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                 return View("Index", _girisModel);
             }
