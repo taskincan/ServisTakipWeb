@@ -250,8 +250,12 @@
       <DependentUpon>MusteriDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\Musteri\Controllers\AnaSayfaController.cs" />
+    <Compile Include="Areas\Musteri\Controllers\CalisanBilgileriController.cs" />
     <Compile Include="Areas\Musteri\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Musteri\Controllers\YoneticiBilgileriController.cs" />
     <Compile Include="Areas\Musteri\Models\MusteriBilgileri.cs" />
+    <Compile Include="Areas\Musteri\Models\MusteriCalisanBilgileri.cs" />
+    <Compile Include="Areas\Musteri\Models\MusteriYoneticiBilgileri.cs" />
     <Compile Include="Areas\Musteri\MusteriAreaRegistration.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -586,6 +590,21 @@
       <DependentUpon>MusteriDB.edmx</DependentUpon>
       <LastGenOutput>MusteriDB.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Musteri\Views\YoneticiBilgileri\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Musteri\Views\YoneticiBilgileri\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Musteri\Views\YoneticiBilgileri\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Musteri\Views\CalisanBilgileri\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Musteri\Views\CalisanBilgileri\Edit.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

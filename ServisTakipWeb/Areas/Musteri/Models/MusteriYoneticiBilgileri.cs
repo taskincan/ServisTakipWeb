@@ -1,23 +1,23 @@
-﻿using ServisTakipWeb.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using ServisTakipWeb.Models;
 
-namespace ServisTakipWeb.Areas.Firma.Models
+namespace ServisTakipWeb.Areas.Musteri.Models
 {
-    public class FirmaYönetici : BaseModel
+    public class MusteriYoneticiBilgileri : BaseModel
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int FyID { get; set; }
+        public int MyID { get; set; }
 
         [Display(Name = "Kullanıcı Adı")]
         [DataType(DataType.Text)]
         [Required]
-        [MinLength(1)]
+        [MinLength(6)]
         [MaxLength(30)]
         public string UserName { get; set; }
 
@@ -54,19 +54,18 @@ namespace ServisTakipWeb.Areas.Firma.Models
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(40)]
-        public string Email { get; set; } 
+        public string Email { get; set; }
 
-        [Display(Name = "Firma ID")]
-        [DataType(DataType.Text)]
-        [Required] 
-        public int FirmaID { get; set; }
+        [Display(Name = "Müşteri ID")]
+        [Required]
+        public int MusteriID { get; set; }
 
         [Display(Name = "Şifre")]
         [DataType(DataType.Password)]
         [MinLength(1)]
         [MaxLength(20)]
-        public string Password2 { get; set; } 
+        public string Password2 { get; set; }
 
-        public static List<FirmaYönetici> firmaYoneticiList = new List<FirmaYönetici>();
+        public static List<MusteriYoneticiBilgileri> musteriYoneticiList = new List<MusteriYoneticiBilgileri>();
     }
 }

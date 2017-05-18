@@ -1,0 +1,66 @@
+﻿@using ServisTakipWeb.Areas.Musteri.Models
+@model MusteriCalisanBilgileri
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Musteri/Views/Shared/MusteriLayout.cshtml";
+}
+  
+@using (Html.BeginForm("Edit", "CalisanBilgileri", FormMethod.Post, new { id = "frmEdit", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    @Html.HiddenFor(model => model.McID)
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="UserName" name="UserName" type="text" value="@Model.UserName" required>
+            @ViewBag.Message
+        </div>
+
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Password" name="Password" type="text" value="@Model.Password" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+   
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.MusteriID)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="MusteriID" name="MusteriID" type="text" value="@Model.MusteriID" readonly>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:10px ">
+        <div class="col-md-4"></div>
+
+        <div class="col-md-2">
+            <button class=" btn btn-outline-primary btn-block" type="submit" value="Kaydet">
+                Kaydet
+            </button>
+        </div>
+    </div>
+
+}
+
+<script>
+    function SubmitForm() {
+        $("#frmEdit").submit();
+    }
+</script>

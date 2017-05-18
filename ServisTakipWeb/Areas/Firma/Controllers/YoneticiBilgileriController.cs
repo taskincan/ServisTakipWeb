@@ -26,23 +26,8 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            var _firmaYonetici = new FirmaYönetici();
-
-            foreach (var item in FirmaYönetici.firmaYoneticiList)
-            {
-                if (item.FyID == id)
-                {
-                    _firmaYonetici.FyID = item.FyID;
-                    _firmaYonetici.UserName = item.UserName;
-                    _firmaYonetici.Password = item.Password;
-                    _firmaYonetici.Ad = item.Ad;
-                    _firmaYonetici.Soyad = item.Soyad;
-                    _firmaYonetici.Gsm = item.Gsm;
-                    _firmaYonetici.Email = item.Email;
-                    _firmaYonetici.FirmaID = item.FirmaID;
-                }
-            }
-
+            var _firmaYonetici = FirmaYönetici.firmaYoneticiList.SingleOrDefault(x => x.FyID == id);
+  
             if (_firmaYonetici == null)
             {
                 return RedirectToAction("Index");
@@ -57,7 +42,7 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
         {
             if (ModelState.IsValid)
             {
-                var _user = new Context.FirmaYonetici();
+                var _user = dbFirma.FirmaYonetici.SingleOrDefault(x => x.FyID == _firmaYoneticiBilgileri.FyID);
 
                 _user.FyID = _firmaYoneticiBilgileri.FyID;
                 _user.UserName = _firmaYoneticiBilgileri.UserName;
@@ -157,7 +142,7 @@ namespace ServisTakipWeb.Areas.Firma.Controllers
 
                     for (int temp2 = 0; temp2 < passLength; temp2++)
                     {
-                        _firmaYoneticiList.YoneteciPassword2 += "*";
+                        _firmaYoneticiList.Password2 += "*";
                     }
 
                     _firmaYoneticiList.CreateDate = dbFirma.FirmaYonetici.ToList()[temp].CreateDate;

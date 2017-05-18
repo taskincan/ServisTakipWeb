@@ -157,7 +157,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 
                     for (int temp2 = 0; temp2 < passLength; temp2++)
                     {
-                        _firmaYoneticiList.YoneteciPassword2 += "*";
+                        _firmaYoneticiList.Password2 += "*";
                     }
 
                     _firmaYoneticiList.CreateDate = dbFirmaYonetici.FirmaYonetici.ToList()[temp].CreateDate;

@@ -34,6 +34,8 @@ namespace ServisTakipWeb
         public static string yonetici = "Yönetici";
 
         public static string musteriBilgileri = "Müşteri Bilgileri";
+        public static string musteriYoneticiBilgileri = "Müşteri Yönetici Bilgileri";
+        public static string musteriCalisanBilgileri = "Müşteri Çalışan Bilgileri";
         public static string musteriEkle = "Müşteri Ekle";
         public static string musteri = "Müşteri";
 
