@@ -181,12 +181,6 @@
     <Compile Include="Areas\FirmaYonetici\Context\Musteri.cs">
       <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\FirmaYonetici\Context\MusteriCalisani.cs">
-      <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\FirmaYonetici\Context\MusteriYonetici.cs">
-      <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Areas\FirmaYonetici\Context\Sozlesme.cs">
       <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
     </Compile>
@@ -231,7 +225,33 @@
     <Compile Include="Areas\Firma\FirmaAreaRegistration.cs" />
     <Compile Include="Areas\Firma\Models\FirmaBilgileri.cs" />
     <Compile Include="Areas\Firma\Models\FirmaYönetici.cs" />
+    <Compile Include="Areas\Musteri\Context\Musteri.cs">
+      <DependentUpon>MusteriDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Musteri\Context\MusteriCalisani.cs">
+      <DependentUpon>MusteriDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Musteri\Context\MusteriDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MusteriDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Musteri\Context\MusteriDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MusteriDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Musteri\Context\MusteriDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MusteriDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Musteri\Context\MusteriYonetici.cs">
+      <DependentUpon>MusteriDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Musteri\Controllers\AnaSayfaController.cs" />
+    <Compile Include="Areas\Musteri\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Musteri\Models\MusteriBilgileri.cs" />
     <Compile Include="Areas\Musteri\MusteriAreaRegistration.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -316,7 +336,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\FirmaCalisan\Models\" />
-    <Folder Include="Areas\Musteri\Models\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
@@ -503,6 +522,30 @@
     <Content Include="Areas\FirmaYonetici\Views\MusteriBilgileri\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\MusteriBilgileri\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\MusteriBilgileri\Musteri.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\MusteriBilgileri\Sozlesme.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\MusteriBilgileri\MusteriEkle.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\MusteriBilgileri\SozlesmeEkle.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Musteri\Views\Shared\MusteriLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Musteri\Views\AnaSayfa\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Musteri\Views\Profile\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FirmaYoneticiDB.Designer.cs</LastGenOutput>
@@ -524,25 +567,25 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Views\MusteriBilgileri\Edit.cshtml" />
+    <EntityDeploy Include="Areas\Musteri\Context\MusteriDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MusteriDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Views\MusteriBilgileri\Musteri.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Views\MusteriBilgileri\Sozlesme.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Views\MusteriBilgileri\MusteriEkle.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Views\MusteriBilgileri\SozlesmeEkle.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Musteri\Views\Shared\MusteriLayout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Musteri\Views\AnaSayfa\Index.cshtml" />
+    <Content Include="Areas\Musteri\Context\MusteriDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MusteriDB.edmx</DependentUpon>
+      <LastGenOutput>MusteriDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Musteri\Context\MusteriDB.edmx.diagram">
+      <DependentUpon>MusteriDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Musteri\Context\MusteriDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MusteriDB.edmx</DependentUpon>
+      <LastGenOutput>MusteriDB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -6,14 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ServisTakipWeb.Areas.Musteri.Context; 
 
 namespace ServisTakipWeb.Controllers
 {
     public class BaseController : Controller
     {
         private ServisTakipFirmaDBEntities _dbFirma = null;
-        private ServisTakipAdminDBEntities _dbAdmin = null; 
+        private ServisTakipAdminDBEntities _dbAdmin = null;
         private ServisTakipFirmaYoneticiDBEntities _dbFirmaYonetici = null;
+        private ServisTakipMusteriDBEntities _dbMusteri = null;
 
         public ServisTakipFirmaYoneticiDBEntities dbFirmaYonetici
         {
@@ -52,6 +54,20 @@ namespace ServisTakipWeb.Controllers
                     _dbAdmin.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
                 }
                 return _dbAdmin;
+            }
+        }
+
+        public ServisTakipMusteriDBEntities dbMusteri
+        {
+            get
+            {
+                if (_dbMusteri == null)
+                {
+                    _dbMusteri = new ServisTakipMusteriDBEntities();
+
+                    _dbMusteri.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
+                }
+                return _dbMusteri;
             }
         }
 

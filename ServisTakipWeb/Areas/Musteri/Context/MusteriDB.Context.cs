@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServisTakipWeb.Areas.FirmaYonetici.Context
+namespace ServisTakipWeb.Areas.Musteri.Context
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ServisTakipFirmaYoneticiDBEntities : DbContext
+    public partial class ServisTakipMusteriDBEntities : DbContext
     {
-        public ServisTakipFirmaYoneticiDBEntities()
-            : base("name=ServisTakipFirmaYoneticiDBEntities")
+        public ServisTakipMusteriDBEntities()
+            : base("name=ServisTakipMusteriDBEntities")
         {
         }
     
@@ -25,10 +25,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<FirmaCalisani> FirmaCalisani { get; set; }
-        public virtual DbSet<FirmaYonetici> FirmaYonetici { get; set; }
         public virtual DbSet<Musteri> Musteri { get; set; }
-        public virtual DbSet<Sozlesme> Sozlesme { get; set; }
-        public virtual DbSet<SozlesmeYapma> SozlesmeYapma { get; set; }
+        public virtual DbSet<MusteriCalisani> MusteriCalisani { get; set; }
+        public virtual DbSet<MusteriYonetici> MusteriYonetici { get; set; }
     }
 }

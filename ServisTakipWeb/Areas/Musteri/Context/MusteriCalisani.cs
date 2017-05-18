@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServisTakipWeb.Areas.FirmaYonetici.Context
+namespace ServisTakipWeb.Areas.Musteri.Context
 {
     using System;
     using System.Collections.Generic;

@@ -12,21 +12,27 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 {
     public class ProfileController : BaseController
     {
-        
         //
         // GET: /FirmaYonetici/Profile/
 
-        public ActionResult Index(int id = 0)
-        {
-            id = Connection.ID;
-
+        public ActionResult Index()
+        { 
             Connection.sayfaAdi = "Firma Yönetici Profil";
 
             var _firmaYonetici = new YoneticiBilgileri();
+              
+            var firmaYonetici = dbFirmaYonetici.FirmaYonetici.SingleOrDefault(x => x.FyID == Connection.ID);
 
-            ListTemizle();
-            ListYarat(_firmaYonetici,id);
-
+            _firmaYonetici.FyID = firmaYonetici.FyID;
+            _firmaYonetici.UserName = firmaYonetici.UserName;
+            _firmaYonetici.Password = firmaYonetici.Password;
+            _firmaYonetici.Ad = firmaYonetici.Ad;
+            _firmaYonetici.Soyad = firmaYonetici.Soyad;
+            _firmaYonetici.Gsm = firmaYonetici.Gsm;
+            _firmaYonetici.Email = firmaYonetici.Email;
+            _firmaYonetici.FirmaID = firmaYonetici.FirmaID;
+            _firmaYonetici.Password = firmaYonetici.Password;
+            _firmaYonetici.CreateDate = firmaYonetici.CreateDate;
 
             if (_firmaYonetici == null)
             {
@@ -61,49 +67,6 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 return RedirectToAction("Index");
             }
             return View(_firmaYoneticiBilgileri);
-        }
-
-
-        private void ListYarat(YoneticiBilgileri _firmaYoneticiList, int _id)
-        {
-            YoneticiBilgileri.firmaYoneticiList.Clear();
-
-            int temp, passLength = 0, count = 0;
-
-            count = dbFirmaYonetici.FirmaYonetici.Count();
-
-            for (temp = 0; temp < count; temp++)
-            {
-                if (_id == dbFirmaYonetici.FirmaYonetici.ToList()[temp].FyID)
-                { 
-                    _firmaYoneticiList.FyID = dbFirmaYonetici.FirmaYonetici.ToList()[temp].FyID;
-                    _firmaYoneticiList.UserName = dbFirmaYonetici.FirmaYonetici.ToList()[temp].UserName;
-                    _firmaYoneticiList.Password = dbFirmaYonetici.FirmaYonetici.ToList()[temp].Password;
-                    _firmaYoneticiList.Ad = dbFirmaYonetici.FirmaYonetici.ToList()[temp].Ad;
-                    _firmaYoneticiList.Soyad = dbFirmaYonetici.FirmaYonetici.ToList()[temp].Soyad;
-                    _firmaYoneticiList.Gsm = dbFirmaYonetici.FirmaYonetici.ToList()[temp].Gsm;
-                    _firmaYoneticiList.Email = dbFirmaYonetici.FirmaYonetici.ToList()[temp].Email;
-                    _firmaYoneticiList.FirmaID = dbFirmaYonetici.FirmaYonetici.ToList()[temp].FirmaID;
-
-                    passLength = (dbFirmaYonetici.FirmaYonetici.ToList()[temp].Password).Length;
-
-                    for (int temp2 = 0; temp2 < passLength; temp2++)
-                    {
-                        _firmaYoneticiList.YoneteciPassword2 += "*";
-                    }
-
-                    _firmaYoneticiList.CreateDate = dbFirmaYonetici.FirmaYonetici.ToList()[temp].CreateDate;
-
-                    YoneticiBilgileri.firmaYoneticiList.Add(_firmaYoneticiList);
-                    break;
-                }
-            }
-        }
-
-        private void ListTemizle()
-        {
-            YoneticiBilgileri.firmaYoneticiList.Clear();
-        }
-
+        } 
     }
 }

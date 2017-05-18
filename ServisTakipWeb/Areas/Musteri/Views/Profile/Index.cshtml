@@ -1,0 +1,154 @@
+﻿@using ServisTakipWeb.Areas.Musteri.Models
+@model MusteriBilgileri
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Musteri/Views/Shared/MusteriLayout.cshtml";
+} 
+
+<h2>MÜŞTERİ PROFİLE</h2>
+ 
+@using (Html.BeginForm("Index", "Profile", FormMethod.Post, new { id = "frmProfile", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    @Html.HiddenFor(model => model.ID)
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.MusteriKodu)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="MusteriKodu" name="MusteriKodu" type="text" value="@Model.MusteriKodu" readonly>
+            @ViewBag.Message
+        </div>
+
+        <div class="col-md-6">
+        </div>
+    </div>
+    
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.MusteriAdi)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="MusteriAdi" name="MusteriAdi" type="text" value="@Model.MusteriAdi" readonly>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.YetkiliKisi)
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.YetkiliKisi, new { @class = "form-control", placeholder = "Yetkili Kişi" })
+
+
+            @*<input class="form-control" placeholder="YetkiliKisi" name="YetkiliKisi" type="text" value="@Model.YetkiliKisi" required>*@
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Password" name="Password" type="text" value="@Model.Password" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    
+
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Adres)
+        </div>
+        <div class="col-md-4">            
+            @Html.TextBoxFor(model => model.Adres, new { @class = "form-control", placeholder = "Adres" })
+            @*TODO textarea yı yap adres için*@
+            @*<textarea class="form-control" placeholder="YetkiliKisi" name="YetkiliKisi" type="text" value="@Model.YetkiliKisi" style="resize:vertical;" rows="10 " cols="80"></textarea>*@
+            @*<input class="form-control" placeholder="Adres" name="Adres" type="text" value="@Model.Adres" required>*@
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Email" name="Email" type="text" value="@Model.Email" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.VergiDairesi)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Vergi Dairesi" name="VergiDairesi" type="text" value="@Model.VergiDairesi">
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.VergiNumarasi)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="VergiNumarasi" name="VergiNumarasi" type="text" value="@Model.VergiNumarasi">
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Tel1)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Tel1" name="Tel1" type="text" value="@Model.Tel1" required>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Tel2)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Tel2" name="Tel2" type="text" value="@Model.Tel2">
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+
+    <div class="row" style="margin-top:10px ">
+        <div class="col-md-4"></div>
+
+        <div class="col-md-2">
+            <button class=" btn btn-outline-primary btn-block" type="submit" value="Kaydet">
+                Kaydet
+            </button>
+        </div>
+    </div>
+
+}
+
+<script>
+    function SubmitForm() {
+        $("#frmProfile").submit();
+    }
+</script>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServisTakipWeb.Areas.FirmaYonetici.Context
+namespace ServisTakipWeb.Areas.Musteri.Context
 {
     using System;
     using System.Collections.Generic;
@@ -17,7 +17,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Musteri()
         {
-            this.SozlesmeYapma = new HashSet<SozlesmeYapma>();
+            this.MusteriCalisani = new HashSet<MusteriCalisani>();
+            this.MusteriYonetici = new HashSet<MusteriYonetici>();
         }
     
         public int ID { get; set; }
@@ -34,6 +35,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
         public System.DateTime CreateDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SozlesmeYapma> SozlesmeYapma { get; set; }
+        public virtual ICollection<MusteriCalisani> MusteriCalisani { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MusteriYonetici> MusteriYonetici { get; set; }
     }
 }

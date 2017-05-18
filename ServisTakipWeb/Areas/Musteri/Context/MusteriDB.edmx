@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ServisTakipMusteriDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MusteriKodu" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="MusteriAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="YetkiliKisi" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VergiDairesi" Type="nvarchar" MaxLength="50" />
+          <Property Name="VergiNumarasi" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MusteriTel" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="MusteriTel2" Type="varchar" MaxLength="11" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MusteriCalisani">
+          <Key>
+            <PropertyRef Name="McID" />
+          </Key>
+          <Property Name="McID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="MusteriID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MusteriYonetici">
+          <Key>
+            <PropertyRef Name="MyID" />
+          </Key>
+          <Property Name="MyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Gsm" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="MusteriID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__MusteriCa__Muste__45F365D3">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="MusteriCalisani" Type="Self.MusteriCalisani" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MusteriCalisani">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MusteriYo__Muste__3E52440B">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="MusteriYonetici" Type="Self.MusteriYonetici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MusteriYonetici">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ServisTakipMusteriDBModelStoreContainer">
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MusteriCalisani" EntityType="Self.MusteriCalisani" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MusteriYonetici" EntityType="Self.MusteriYonetici" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__MusteriCa__Muste__45F365D3" Association="Self.FK__MusteriCa__Muste__45F365D3">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="MusteriCalisani" EntitySet="MusteriCalisani" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MusteriYo__Muste__3E52440B" Association="Self.FK__MusteriYo__Muste__3E52440B">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="MusteriYonetici" EntitySet="MusteriYonetici" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ServisTakipMusteriDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MusteriKodu" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MusteriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="YetkiliKisi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VergiDairesi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VergiNumarasi" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MusteriTel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MusteriTel2" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MusteriCalisani" Relationship="Self.FK__MusteriCa__Muste__45F365D3" FromRole="Musteri" ToRole="MusteriCalisani" />
+          <NavigationProperty Name="MusteriYonetici" Relationship="Self.FK__MusteriYo__Muste__3E52440B" FromRole="Musteri" ToRole="MusteriYonetici" />
+        </EntityType>
+        <EntityType Name="MusteriCalisani">
+          <Key>
+            <PropertyRef Name="McID" />
+          </Key>
+          <Property Name="McID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MusteriID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK__MusteriCa__Muste__45F365D3" FromRole="MusteriCalisani" ToRole="Musteri" />
+        </EntityType>
+        <EntityType Name="MusteriYonetici">
+          <Key>
+            <PropertyRef Name="MyID" />
+          </Key>
+          <Property Name="MyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gsm" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MusteriID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK__MusteriYo__Muste__3E52440B" FromRole="MusteriYonetici" ToRole="Musteri" />
+        </EntityType>
+        <Association Name="FK__MusteriCa__Muste__45F365D3">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="MusteriCalisani" Type="Self.MusteriCalisani" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MusteriCalisani">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MusteriYo__Muste__3E52440B">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="MusteriYonetici" Type="Self.MusteriYonetici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MusteriYonetici">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ServisTakipMusteriDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+          <EntitySet Name="MusteriCalisani" EntityType="Self.MusteriCalisani" />
+          <EntitySet Name="MusteriYonetici" EntityType="Self.MusteriYonetici" />
+          <AssociationSet Name="FK__MusteriCa__Muste__45F365D3" Association="Self.FK__MusteriCa__Muste__45F365D3">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="MusteriCalisani" EntitySet="MusteriCalisani" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MusteriYo__Muste__3E52440B" Association="Self.FK__MusteriYo__Muste__3E52440B">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="MusteriYonetici" EntitySet="MusteriYonetici" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ServisTakipMusteriDBModelStoreContainer" CdmEntityContainer="ServisTakipMusteriDBEntities">
+          <EntitySetMapping Name="Musteri">
+            <EntityTypeMapping TypeName="ServisTakipMusteriDBModel.Musteri">
+              <MappingFragment StoreEntitySet="Musteri">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MusteriKodu" ColumnName="MusteriKodu" />
+                <ScalarProperty Name="MusteriAdi" ColumnName="MusteriAdi" />
+                <ScalarProperty Name="YetkiliKisi" ColumnName="YetkiliKisi" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="VergiDairesi" ColumnName="VergiDairesi" />
+                <ScalarProperty Name="VergiNumarasi" ColumnName="VergiNumarasi" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="MusteriTel" ColumnName="MusteriTel" />
+                <ScalarProperty Name="MusteriTel2" ColumnName="MusteriTel2" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusteriCalisani">
+            <EntityTypeMapping TypeName="ServisTakipMusteriDBModel.MusteriCalisani">
+              <MappingFragment StoreEntitySet="MusteriCalisani">
+                <ScalarProperty Name="McID" ColumnName="McID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusteriYonetici">
+            <EntityTypeMapping TypeName="ServisTakipMusteriDBModel.MusteriYonetici">
+              <MappingFragment StoreEntitySet="MusteriYonetici">
+                <ScalarProperty Name="MyID" ColumnName="MyID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

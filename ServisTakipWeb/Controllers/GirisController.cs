@@ -27,7 +27,7 @@ namespace ServisTakipWeb.Controllers
 
         [HttpPost]
         public ActionResult Giris(Giris _girisModel)
-        { 
+        {
             //string girisIzniAdi = "";
             //TODO:
             //girisIzniAdi = GirisIzni(_girisModel);
@@ -38,7 +38,7 @@ namespace ServisTakipWeb.Controllers
 
             bool adminMi = false;
             bool firmaMi = false, firmaYoneticisiMi = false, firmaCalisaniMi = false;
-            bool musteriMi=false, musteriYoneticisiMi = false, musteriCalisaniMi = false;
+            bool musteriMi = false, musteriYoneticisiMi = false, musteriCalisaniMi = false;
 
             bool userNameVarMi = false;
             bool sifreAyniMi = false;
@@ -50,8 +50,8 @@ namespace ServisTakipWeb.Controllers
             {
                 adminMi = true;
             }
-            else if (_girisModel.UserName[0] == 'F')  
-            { 
+            else if (_girisModel.UserName[0] == 'F')
+            {
                 if (userNameCount > 1)
                 {
                     if (_girisModel.UserName[1] == 'Y')//Firma Yonetici Girisi
@@ -65,8 +65,8 @@ namespace ServisTakipWeb.Controllers
                     firmaMi = true;
             }
             else if (_girisModel.UserName[0] == 'M') //Musteri Girisi
-            { 
-                if (userNameCount>1)
+            {
+                if (userNameCount > 1)
                 {
                     if (_girisModel.UserName[1] == 'Y')//Musteri Yonetici Girisi   
                         musteriYoneticisiMi = true;
@@ -76,27 +76,27 @@ namespace ServisTakipWeb.Controllers
                         musteriMi = true;
                 }
                 else //Musteri Girisi
-                    musteriMi = true; 
+                    musteriMi = true;
             }
             else
             {
                 adminMi = false;
-                firmaMi = false; 
-                firmaYoneticisiMi = false; 
+                firmaMi = false;
+                firmaYoneticisiMi = false;
                 firmaCalisaniMi = false;
-                musteriMi=false; 
-                musteriYoneticisiMi = false; 
+                musteriMi = false;
+                musteriYoneticisiMi = false;
                 musteriCalisaniMi = false;
 
                 ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                 return View("Index", _girisModel);
-            }  
+            }
 
-            if ( adminMi ) //Admin Girisi
-            { 
+            if (adminMi) //Admin Girisi
+            {
                 string adminUserName = "";
                 string adminPassword = _girisModel.Password.ToString().Trim();
-                
+
                 count = dbAdmin.Admin.Count();
 
                 for (temp = 4; temp < _girisModel.UserName.Count(); temp++)
@@ -104,30 +104,36 @@ namespace ServisTakipWeb.Controllers
                     adminUserName += _girisModel.UserName[temp].ToString();
                 }
 
-                for (temp = 0; temp < count; temp++)
+                var user = dbAdmin.Admin.SingleOrDefault(x => x.UserName == adminUserName);
+
+                if (user == null)
                 {
-                    if (adminUserName == dbAdmin.Admin.ToList()[temp].UserName.ToString()) //database de, girilen kullanici adi varmi sorgusu.
+                    userNameVarMi = false;
+
+                    ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                    return RedirectToAction("Index", _girisModel);
+                }
+                else
+                {
+                    userNameVarMi = true;
+                    if (_girisModel.Password == user.Password.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mu sorgusu.
                     {
-                        userNameVarMi = true;
-                        if (_girisModel.Password == dbAdmin.Admin.ToList()[temp].Password.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mu sorgusu.
-                        {
-                            sifreAyniMi = true;
-                            girisIzni = true;
-                            adminMi = true;
+                        sifreAyniMi = true;
+                        girisIzni = true;
+                        adminMi = true;
 
-                            Connection.ID = dbAdmin.Admin.ToList()[temp].ID;
-                            Connection.userName = dbAdmin.Admin.ToList()[temp].UserName;
-                            Connection.adi = "Admin";
+                        Connection.ID = user.ID;
+                        Connection.userName = user.UserName;
+                        Connection.adi = "Admin";
 
-                            return RedirectToAction("Index", "AnaSayfa", new { area = "Admin" });
-                        }
-                        else
-                            sifreAyniMi = false;
-                    } 
-                }                 
+                        return RedirectToAction("Index", "AnaSayfa", new { area = "Admin" });
+                    }
+                    else
+                        sifreAyniMi = false;
+                }
             }
             else if (firmaMi) //Firma Girisi
-            { 
+            {
                 string firmaUserName = "";
                 string firmaPassword = _girisModel.Password.ToString().Trim();
 
@@ -137,15 +143,15 @@ namespace ServisTakipWeb.Controllers
                 {
                     firmaUserName += _girisModel.UserName[temp].ToString();
                 }
-                
-                var user = dbFirma.Firma.SingleOrDefault(x=>x.UserName == _girisModel.UserName.ToString());
 
-                if(user==null)
+                var user = dbFirma.Firma.SingleOrDefault(x => x.UserName == firmaUserName);
+
+                if (user == null)
                 {
-                    userNameVarMi=false;
+                    userNameVarMi = false;
 
                     ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
-                    return RedirectToAction("Index",_girisModel);
+                    return RedirectToAction("Index", _girisModel);
                 }
                 else
                 {
@@ -168,13 +174,13 @@ namespace ServisTakipWeb.Controllers
                         else
                             sifreAyniMi = false;
                     }
-                }  
+                }
             }
             else if (firmaYoneticisiMi) // Firma Yonetici Girisi
-            { 
+            {
                 string firmaYoneticiUserName = "";
                 string firmaYoneticiPassword = _girisModel.Password.ToString().Trim();
-                 
+
                 count = dbFirmaYonetici.FirmaYonetici.Count();
 
                 for (temp = 2; temp < _girisModel.UserName.Count(); temp++)
@@ -183,18 +189,18 @@ namespace ServisTakipWeb.Controllers
                 }
                 //TODO: var User = dbFirmaYonetici.FirmaCalisani.SingleOrDefault(x => x.UserName == firmaCalisanUserName); olarak yap hepsini. 
 
-                var user = dbFirmaYonetici.FirmaYonetici.SingleOrDefault(x => x.UserName == _girisModel.UserName.ToString());
+                var user = dbFirmaYonetici.FirmaYonetici.SingleOrDefault(x => x.UserName == firmaYoneticiUserName);
 
-                    if(user==null)
-                    {
-                        userNameVarMi=false;
+                if (user == null)
+                {
+                    userNameVarMi = false;
 
-                        ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
-                        return RedirectToAction("Index",_girisModel);
-                    }
-                    else
-                    {
-                        if (firmaYoneticiUserName == user.UserName) //database de, girilen kullanici adi varmi sorgusu.
+                    ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                    return RedirectToAction("Index", _girisModel);
+                }
+                else
+                {
+                    if (firmaYoneticiUserName == user.UserName) //database de, girilen kullanici adi varmi sorgusu.
                     {
                         userNameVarMi = true;
 
@@ -213,7 +219,7 @@ namespace ServisTakipWeb.Controllers
                         }
                         else
                             sifreAyniMi = false;
-                    } 
+                    }
                 }
             }
             else if (firmaCalisaniMi)// Firma Calisani Girisi
@@ -230,12 +236,12 @@ namespace ServisTakipWeb.Controllers
 
                 var User = dbFirmaYonetici.FirmaCalisani.SingleOrDefault(x => x.UserName == firmaCalisanUserName);
 
-                if(User==null)
+                if (User == null)
                 {
-                    userNameVarMi=false;
+                    userNameVarMi = false;
 
                     ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
-                    return RedirectToAction("Index",_girisModel);
+                    return RedirectToAction("Index", _girisModel);
                 }
                 else //Database de aynı kullanıcı adıyla kayıt var.
                 {
@@ -298,7 +304,7 @@ namespace ServisTakipWeb.Controllers
                         Connection.userName = User.MusteriKodu;
                         Connection.adi = User.MusteriAdi;
                         //Connection.parentID = User.FirmaID;
-                         
+
                         return RedirectToAction("Index", "AnaSayfa", new { area = "Musteri" });
                     }
                     else
@@ -309,17 +315,17 @@ namespace ServisTakipWeb.Controllers
                         return RedirectToAction("Index", _girisModel);
                     }
                 }
-                
+
             }
             else
-            { 
+            {
                 ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                 return View("Index", _girisModel);
             }
 
             if (girisIzni)
             {
-                if(adminMi)
+                if (adminMi)
                     return RedirectToAction("Index", "AnaSayfa", new { area = "Admin" });
                 else if (firmaMi)
                     return RedirectToAction("Index", "AnaSayfa", new { area = "Firma" });
@@ -347,7 +353,7 @@ namespace ServisTakipWeb.Controllers
 
                 ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                 return View("Index", _girisModel);
-            } 
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ServisTakipFirmaYoneticiDBModelStoreContainer" CdmEntityContainer="ServisTakipFirmaYoneticiDBEntities">
+  <EntityContainerMapping StorageEntityContainer="ServisTakipFirmaYoneticiModelStoreContainer" CdmEntityContainer="ServisTakipFirmaYoneticiDBEntities">
     <EntitySetMapping Name="FirmaCalisani">
-      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.FirmaCalisani">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiModel.FirmaCalisani">
         <MappingFragment StoreEntitySet="FirmaCalisani">
           <ScalarProperty Name="FcID" ColumnName="FcID" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -18,7 +18,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FirmaYonetici">
-      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.FirmaYonetici">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiModel.FirmaYonetici">
         <MappingFragment StoreEntitySet="FirmaYonetici">
           <ScalarProperty Name="FyID" ColumnName="FyID" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -33,7 +33,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Musteri">
-      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.Musteri">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiModel.Musteri">
         <MappingFragment StoreEntitySet="Musteri">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="MusteriKodu" ColumnName="MusteriKodu" />
@@ -50,34 +50,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MusteriCalisani">
-      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.MusteriCalisani">
-        <MappingFragment StoreEntitySet="MusteriCalisani">
-          <ScalarProperty Name="McID" ColumnName="McID" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MusteriYonetici">
-      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.MusteriYonetici">
-        <MappingFragment StoreEntitySet="MusteriYonetici">
-          <ScalarProperty Name="MyID" ColumnName="MyID" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Ad" ColumnName="Ad" />
-          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Gsm" ColumnName="Gsm" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-          <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Sozlesme">
-      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.Sozlesme">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiModel.Sozlesme">
         <MappingFragment StoreEntitySet="Sozlesme">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="SozlesmeAdi" ColumnName="SozlesmeAdi" />
@@ -90,7 +64,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SozlesmeYapma">
-      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.SozlesmeYapma">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiModel.SozlesmeYapma">
         <MappingFragment StoreEntitySet="SozlesmeYapma">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="SozlesmeID" ColumnName="SozlesmeID" />

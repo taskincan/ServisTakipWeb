@@ -4,20 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ad659d921b28427ab5518178faee91f1" Name="Diagram1">
-        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.FirmaCalisani" Width="1.5" PointX="6" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.FirmaYonetici" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.Musteri" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.MusteriCalisani" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.MusteriYonetici" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.Sozlesme" Width="1.5" PointX="3.75" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.SozlesmeYapma" Width="1.5" PointX="6" PointY="6.75" IsExpanded="true" />
-        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__FirmaCali__Creat__2D27B809" ManuallyRouted="false" />
-        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__SozlesmeYa__FyID__71D1E811" ManuallyRouted="false" />
-        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__MusteriCa__Muste__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__MusteriYo__Muste__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__SozlesmeYap__MID__72C60C4A" ManuallyRouted="false" />
-        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__SozlesmeY__Sozle__70DDC3D8" ManuallyRouted="false" />
+      <Diagram DiagramId="59f0d786e5d047208fcca80253f27fbd" Name="Diagram1">
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiModel.FirmaCalisani" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiModel.FirmaYonetici" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiModel.Musteri" Width="1.5" PointX="3.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiModel.Sozlesme" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiModel.SozlesmeYapma" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiModel.FK__FirmaCali__Creat__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiModel.FK__SozlesmeYa__FyID__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiModel.FK__SozlesmeYap__MID__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiModel.FK__SozlesmeY__Sozle__70DDC3D8" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

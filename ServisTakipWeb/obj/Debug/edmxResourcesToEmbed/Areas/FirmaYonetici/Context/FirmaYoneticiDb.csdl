@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="ServisTakipFirmaYoneticiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="ServisTakipFirmaYoneticiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="FirmaCalisani">
     <Key>
       <PropertyRef Name="FcID" />
@@ -48,35 +48,7 @@
     <Property Name="MusteriTel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="MusteriTel2" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
     <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="MusteriCalisani" Relationship="Self.FK__MusteriCa__Muste__45F365D3" FromRole="Musteri" ToRole="MusteriCalisani" />
-    <NavigationProperty Name="MusteriYonetici" Relationship="Self.FK__MusteriYo__Muste__3E52440B" FromRole="Musteri" ToRole="MusteriYonetici" />
     <NavigationProperty Name="SozlesmeYapma" Relationship="Self.FK__SozlesmeYap__MID__72C60C4A" FromRole="Musteri" ToRole="SozlesmeYapma" />
-  </EntityType>
-  <EntityType Name="MusteriCalisani">
-    <Key>
-      <PropertyRef Name="McID" />
-    </Key>
-    <Property Name="McID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="MusteriID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Musteri" Relationship="Self.FK__MusteriCa__Muste__45F365D3" FromRole="MusteriCalisani" ToRole="Musteri" />
-  </EntityType>
-  <EntityType Name="MusteriYonetici">
-    <Key>
-      <PropertyRef Name="MyID" />
-    </Key>
-    <Property Name="MyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Gsm" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="MusteriID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Musteri" Relationship="Self.FK__MusteriYo__Muste__3E52440B" FromRole="MusteriYonetici" ToRole="Musteri" />
   </EntityType>
   <EntityType Name="Sozlesme">
     <Key>
@@ -127,30 +99,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__MusteriCa__Muste__45F365D3">
-    <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
-    <End Role="MusteriCalisani" Type="Self.MusteriCalisani" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Musteri">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="MusteriCalisani">
-        <PropertyRef Name="MusteriID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__MusteriYo__Muste__3E52440B">
-    <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
-    <End Role="MusteriYonetici" Type="Self.MusteriYonetici" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Musteri">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="MusteriYonetici">
-        <PropertyRef Name="MusteriID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__SozlesmeYap__MID__72C60C4A">
     <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
     <End Role="SozlesmeYapma" Type="Self.SozlesmeYapma" Multiplicity="*" />
@@ -179,8 +127,6 @@
     <EntitySet Name="FirmaCalisani" EntityType="Self.FirmaCalisani" />
     <EntitySet Name="FirmaYonetici" EntityType="Self.FirmaYonetici" />
     <EntitySet Name="Musteri" EntityType="Self.Musteri" />
-    <EntitySet Name="MusteriCalisani" EntityType="Self.MusteriCalisani" />
-    <EntitySet Name="MusteriYonetici" EntityType="Self.MusteriYonetici" />
     <EntitySet Name="Sozlesme" EntityType="Self.Sozlesme" />
     <EntitySet Name="SozlesmeYapma" EntityType="Self.SozlesmeYapma" />
     <AssociationSet Name="FK__FirmaCali__Creat__2D27B809" Association="Self.FK__FirmaCali__Creat__2D27B809">
@@ -190,14 +136,6 @@
     <AssociationSet Name="FK__SozlesmeYa__FyID__71D1E811" Association="Self.FK__SozlesmeYa__FyID__71D1E811">
       <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
       <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
-    </AssociationSet>
-    <AssociationSet Name="FK__MusteriCa__Muste__45F365D3" Association="Self.FK__MusteriCa__Muste__45F365D3">
-      <End Role="Musteri" EntitySet="Musteri" />
-      <End Role="MusteriCalisani" EntitySet="MusteriCalisani" />
-    </AssociationSet>
-    <AssociationSet Name="FK__MusteriYo__Muste__3E52440B" Association="Self.FK__MusteriYo__Muste__3E52440B">
-      <End Role="Musteri" EntitySet="Musteri" />
-      <End Role="MusteriYonetici" EntitySet="MusteriYonetici" />
     </AssociationSet>
     <AssociationSet Name="FK__SozlesmeYap__MID__72C60C4A" Association="Self.FK__SozlesmeYap__MID__72C60C4A">
       <End Role="Musteri" EntitySet="Musteri" />
