@@ -189,10 +189,12 @@
     </Compile>
     <Compile Include="Areas\FirmaYonetici\Controllers\AnaSayfaController.cs" />
     <Compile Include="Areas\FirmaYonetici\Controllers\CalisanBilgileriController.cs" />
+    <Compile Include="Areas\FirmaYonetici\Controllers\GelenCagrilarController.cs" />
     <Compile Include="Areas\FirmaYonetici\Controllers\MusteriBilgileriController.cs" />
     <Compile Include="Areas\FirmaYonetici\Controllers\ProfileController.cs" />
     <Compile Include="Areas\FirmaYonetici\Controllers\YoneticiBilgileriController.cs" />
     <Compile Include="Areas\FirmaYonetici\FirmaYoneticiAreaRegistration.cs" />
+    <Compile Include="Areas\FirmaYonetici\Models\CagriBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CalisanBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\MusteriBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\SozlesmeBilgileri.cs" />
@@ -225,6 +227,24 @@
     <Compile Include="Areas\Firma\FirmaAreaRegistration.cs" />
     <Compile Include="Areas\Firma\Models\FirmaBilgileri.cs" />
     <Compile Include="Areas\Firma\Models\FirmaYönetici.cs" />
+    <Compile Include="Areas\MusteriCalisan\Context\AcilanCagri.cs">
+      <DependentUpon>MusteriCalisanDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MusteriCalisan\Context\MusteriCalisanDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MusteriCalisanDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MusteriCalisan\Context\MusteriCalisanDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MusteriCalisanDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MusteriCalisan\Context\MusteriCalisanDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MusteriCalisanDB.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Areas\MusteriCalisan\Controllers\AnaSayfaController.cs" />
     <Compile Include="Areas\MusteriCalisan\Controllers\CagriOlusturController.cs" />
     <Compile Include="Areas\MusteriCalisan\Models\CagriBilgileri.cs" />
@@ -554,27 +574,6 @@
     <Content Include="Areas\Musteri\Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FirmaYoneticiDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
-      <LastGenOutput>FirmaYoneticiDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.edmx.diagram">
-      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
-      <LastGenOutput>FirmaYoneticiDB.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <EntityDeploy Include="Areas\Musteri\Context\MusteriDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MusteriDB.Designer.cs</LastGenOutput>
@@ -624,6 +623,51 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\MusteriCalisan\Views\CagriOlustur\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Areas\MusteriCalisan\Context\MusteriCalisanDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MusteriCalisanDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriCalisan\Context\MusteriCalisanDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MusteriCalisanDB.edmx</DependentUpon>
+      <LastGenOutput>MusteriCalisanDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\MusteriCalisan\Context\MusteriCalisanDB.edmx.diagram">
+      <DependentUpon>MusteriCalisanDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\MusteriCalisan\Context\MusteriCalisanDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MusteriCalisanDB.edmx</DependentUpon>
+      <LastGenOutput>MusteriCalisanDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\GelenCagrilar\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FirmaYoneticiDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
+      <LastGenOutput>FirmaYoneticiDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.edmx.diagram">
+      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
+      <LastGenOutput>FirmaYoneticiDB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

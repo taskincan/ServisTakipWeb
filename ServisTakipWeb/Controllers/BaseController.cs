@@ -6,7 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ServisTakipWeb.Areas.Musteri.Context; 
+using ServisTakipWeb.Areas.Musteri.Context;
+using ServisTakipWeb.Areas.MusteriCalisan.Context; 
 
 namespace ServisTakipWeb.Controllers
 {
@@ -16,6 +17,7 @@ namespace ServisTakipWeb.Controllers
         private ServisTakipAdminDBEntities _dbAdmin = null;
         private ServisTakipFirmaYoneticiDBEntities _dbFirmaYonetici = null;
         private ServisTakipMusteriDBEntities _dbMusteri = null;
+        private ServisTakipMusteriCalisanDBEntities _dbMusteriCalisan = null;
 
         public ServisTakipFirmaYoneticiDBEntities dbFirmaYonetici
         {
@@ -68,6 +70,20 @@ namespace ServisTakipWeb.Controllers
                     _dbMusteri.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
                 }
                 return _dbMusteri;
+            }
+        }
+
+        public ServisTakipMusteriCalisanDBEntities dbMusteriCalisan
+        {
+            get
+            {
+                if (_dbMusteriCalisan == null)
+                {
+                    _dbMusteriCalisan = new ServisTakipMusteriCalisanDBEntities();
+
+                    _dbMusteriCalisan.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
+                }
+                return _dbMusteriCalisan;
             }
         }
 

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ServisTakipMusteriCalisanDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcilanCagri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CagriNo" Type="int" Nullable="false" />
+          <Property Name="YetkiliKisi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gsm" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" />
+          <Property Name="CihazTipi" Type="nvarchar" MaxLength="30" />
+          <Property Name="Marka" Type="nvarchar" MaxLength="30" />
+          <Property Name="Model" Type="nvarchar" MaxLength="30" />
+          <Property Name="SeriNo" Type="nvarchar" MaxLength="30" />
+          <Property Name="BarkodNo" Type="nvarchar" MaxLength="30" />
+          <Property Name="AcilisTarihi" Type="datetime" Nullable="false" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CagriDetayi" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="IslemGorduMu" Type="bit" Nullable="false" />
+          <Property Name="SarfMalzemeTalebi" Type="nvarchar" MaxLength="100" />
+          <Property Name="McID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ServisTakipMusteriCalisanDBModelStoreContainer">
+          <EntitySet Name="AcilanCagri" EntityType="Self.AcilanCagri" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ServisTakipMusteriCalisanDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AcilanCagri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CagriNo" Type="Int32" Nullable="false" />
+          <Property Name="YetkiliKisi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gsm" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="CihazTipi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Marka" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SeriNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="BarkodNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="AcilisTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Aciklama" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CagriDetayi" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IslemGorduMu" Type="Boolean" Nullable="false" />
+          <Property Name="SarfMalzemeTalebi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="McID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ServisTakipMusteriCalisanDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AcilanCagri" EntityType="Self.AcilanCagri" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ServisTakipMusteriCalisanDBModelStoreContainer" CdmEntityContainer="ServisTakipMusteriCalisanDBEntities">
+          <EntitySetMapping Name="AcilanCagri">
+            <EntityTypeMapping TypeName="ServisTakipMusteriCalisanDBModel.AcilanCagri">
+              <MappingFragment StoreEntitySet="AcilanCagri">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CagriNo" ColumnName="CagriNo" />
+                <ScalarProperty Name="YetkiliKisi" ColumnName="YetkiliKisi" />
+                <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CihazTipi" ColumnName="CihazTipi" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="SeriNo" ColumnName="SeriNo" />
+                <ScalarProperty Name="BarkodNo" ColumnName="BarkodNo" />
+                <ScalarProperty Name="AcilisTarihi" ColumnName="AcilisTarihi" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="CagriDetayi" ColumnName="CagriDetayi" />
+                <ScalarProperty Name="IslemGorduMu" ColumnName="IslemGorduMu" />
+                <ScalarProperty Name="SarfMalzemeTalebi" ColumnName="SarfMalzemeTalebi" />
+                <ScalarProperty Name="McID" ColumnName="McID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

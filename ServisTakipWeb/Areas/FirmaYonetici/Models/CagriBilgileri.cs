@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using ServisTakipWeb.Models;
 
-namespace ServisTakipWeb.Areas.MusteriCalisan.Models
+namespace ServisTakipWeb.Areas.FirmaYonetici.Models
 {
     public class CagriBilgileri : BaseModel
     {
@@ -16,8 +16,8 @@ namespace ServisTakipWeb.Areas.MusteriCalisan.Models
 
         public int CreateUserID { get; set; }
 
-        [Display(Name = "Çağrı Kodu")] 
-        [Required] 
+        [Display(Name = "Çağrı Kodu")]
+        [Required]
         public int CagriNo { get; set; }
 
         [Display(Name = "Müşteri Adı")]
@@ -26,6 +26,11 @@ namespace ServisTakipWeb.Areas.MusteriCalisan.Models
         [MinLength(1)]
         [MaxLength(40)]
         public string MusteriAdi { get; set; }
+
+        [Display(Name = "Müşteri Kodu")]
+        [DataType(DataType.Text)]
+        [Required] 
+        public string MusteriKodu { get; set; }
 
         [Display(Name = "Sözleşme")]
         [DataType(DataType.Text)]
@@ -60,36 +65,36 @@ namespace ServisTakipWeb.Areas.MusteriCalisan.Models
         [MaxLength(11)]
         public string Telefon { get; set; }
 
-        [Display(Name = "E-mail")] 
-        [DataType(DataType.Text)] 
+        [Display(Name = "E-mail")]
+        [DataType(DataType.Text)]
         [MaxLength(40)]
         public string Email { get; set; }
 
-        [Display(Name = "Cihaz Tipi")] 
+        [Display(Name = "Cihaz Tipi")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
         public string CihazTipi { get; set; }
 
-        [Display(Name = "Marka")] 
+        [Display(Name = "Marka")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
         public string Marka { get; set; }
 
-        [Display(Name = "Model")] 
+        [Display(Name = "Model")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
         public string Model { get; set; }
 
-        [Display(Name = "Seri No")] 
+        [Display(Name = "Seri No")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
         public string SeriNo { get; set; }
 
-        [Display(Name = "Barkod No")] 
+        [Display(Name = "Barkod No")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
@@ -109,13 +114,19 @@ namespace ServisTakipWeb.Areas.MusteriCalisan.Models
         [MaxLength(300)]
         public string CagriDetayi { get; set; }
 
-        [Display(Name = "İşlem Gördü Mü")] 
+        [Display(Name = "İşlem Gördü Mü")]
         [Required]
         public bool IslemGorduMu { get; set; }
 
-        [Display(Name = "Sarf Malzeme Talebi")] 
-        [DataType(DataType.Text)] 
+        [Display(Name = "Sarf Malzeme Talebi")]
+        [DataType(DataType.Text)]
         [MaxLength(100)]
-        public string SarfMalzemeTalebi { get; set; } 
+        public string SarfMalzemeTalebi { get; set; }
+
+        [Display(Name = "Durum")]
+        [DataType(DataType.Text)] 
+        public string Durum { get; set; }
+
+        public static List<CagriBilgileri> cagriList = new List<CagriBilgileri>();
     }
 }

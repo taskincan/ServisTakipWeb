@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ServisTakipMusteriCalisanDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AcilanCagri">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CagriNo" Type="int" Nullable="false" />
+    <Property Name="YetkiliKisi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Gsm" Type="nvarchar" MaxLength="11" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="40" />
+    <Property Name="CihazTipi" Type="nvarchar" MaxLength="30" />
+    <Property Name="Marka" Type="nvarchar" MaxLength="30" />
+    <Property Name="Model" Type="nvarchar" MaxLength="30" />
+    <Property Name="SeriNo" Type="nvarchar" MaxLength="30" />
+    <Property Name="BarkodNo" Type="nvarchar" MaxLength="30" />
+    <Property Name="AcilisTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CagriDetayi" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="IslemGorduMu" Type="bit" Nullable="false" />
+    <Property Name="SarfMalzemeTalebi" Type="nvarchar" MaxLength="100" />
+    <Property Name="McID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ServisTakipMusteriCalisanDBModelStoreContainer">
+    <EntitySet Name="AcilanCagri" EntityType="Self.AcilanCagri" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

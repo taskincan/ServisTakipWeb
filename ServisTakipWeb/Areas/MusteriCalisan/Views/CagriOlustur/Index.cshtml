@@ -4,12 +4,9 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/MusteriCalisan/Views/Shared/MusteriCalisanLayout.cshtml";
-}
+} 
 
-
-
-
-@using (Html.BeginForm("Create", "CalisanBilgileri", FormMethod.Post, new { id = "frmCreate", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Index", "CagriOlustur", FormMethod.Post, new { id = "frmIndex", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -196,6 +193,6 @@
 
 <script>
     function SubmitForm() {
-        $("#frmCreate").submit();
+        $("#frmIndex").submit();
     }
 </script>

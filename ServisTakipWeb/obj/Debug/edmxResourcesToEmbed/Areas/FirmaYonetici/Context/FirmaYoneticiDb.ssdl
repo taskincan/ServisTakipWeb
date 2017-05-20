@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="ServisTakipFirmaYoneticiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="ServisTakipFirmaYoneticiDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="FirmaCalisani">
     <Key>
       <PropertyRef Name="FcID" />
@@ -115,7 +115,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ServisTakipFirmaYoneticiModelStoreContainer">
+  <EntityContainer Name="ServisTakipFirmaYoneticiDBModelStoreContainer">
     <EntitySet Name="FirmaCalisani" EntityType="Self.FirmaCalisani" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FirmaYonetici" EntityType="Self.FirmaYonetici" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />

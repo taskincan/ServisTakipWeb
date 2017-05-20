@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ServisTakipFirmaYoneticiModelStoreContainer" CdmEntityContainer="ServisTakipFirmaYoneticiDBEntities">
+  <EntityContainerMapping StorageEntityContainer="ServisTakipFirmaYoneticiDBModelStoreContainer" CdmEntityContainer="ServisTakipFirmaYoneticiDBEntities">
     <EntitySetMapping Name="FirmaCalisani">
-      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiModel.FirmaCalisani">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.FirmaCalisani">
         <MappingFragment StoreEntitySet="FirmaCalisani">
           <ScalarProperty Name="FcID" ColumnName="FcID" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -18,7 +18,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FirmaYonetici">
-      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiModel.FirmaYonetici">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.FirmaYonetici">
         <MappingFragment StoreEntitySet="FirmaYonetici">
           <ScalarProperty Name="FyID" ColumnName="FyID" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -33,7 +33,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Musteri">
-      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiModel.Musteri">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.Musteri">
         <MappingFragment StoreEntitySet="Musteri">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="MusteriKodu" ColumnName="MusteriKodu" />
@@ -51,7 +51,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Sozlesme">
-      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiModel.Sozlesme">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.Sozlesme">
         <MappingFragment StoreEntitySet="Sozlesme">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="SozlesmeAdi" ColumnName="SozlesmeAdi" />
@@ -64,7 +64,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SozlesmeYapma">
-      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiModel.SozlesmeYapma">
+      <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.SozlesmeYapma">
         <MappingFragment StoreEntitySet="SozlesmeYapma">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="SozlesmeID" ColumnName="SozlesmeID" />
