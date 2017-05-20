@@ -59,7 +59,41 @@ namespace ServisTakipWeb.Areas.Musteri.Controllers
             return View(_musteriCalisan);
         }
 
+        public ActionResult Create()
+        {
+            int count = 0;
 
+            count = MusteriCalisanBilgileri.musteriCalisanList.Count();
+
+            if(count == 0) // Yeni Kayıt Yapılabilir.
+            {
+                var musteri = new MusteriCalisanBilgileri();
+
+                return View(musteri);
+            }
+            else // Yeni kayıt yapılamaz. Çünkü 1 adet çalışan var.
+            {
+                return RedirectToAction("Index");
+            }
+             
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(MusteriCalisanBilgileri _musteriCalisan)
+        {
+            var musteriCalisan = new Context.MusteriCalisani();
+              
+            musteriCalisan.UserName = _musteriCalisan.UserName.Trim();
+            musteriCalisan.Password = _musteriCalisan.Password.Trim();
+            musteriCalisan.MusteriID = Connection.ID;
+            musteriCalisan.CreateDate = DateTime.Now; 
+
+            dbMusteri.MusteriCalisani.Add(musteriCalisan);
+            dbMusteri.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
 
         private void ListYarat()
         {

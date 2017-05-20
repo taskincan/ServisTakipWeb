@@ -13,14 +13,22 @@ namespace ServisTakipWeb.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        [Display(Name = "Kullanici Adi")]
+        [Display(Name = "Kullanıcı Adı")]
         [DataType(DataType.Text)]
         [Required]
         [MinLength(1)]
         [MaxLength(30)]
         public string UserName { get; set; }
 
-        [Display(Name = "Sifre")]
+        [Display(Name = "Firma Kodu")]
+        [DataType(DataType.Text)]
+        [Required]
+        [MinLength(1)]
+        [MaxLength(30)]
+        public string FirmaKodu { get; set; }
+
+
+        [Display(Name = "Şifre")]
         [Required]
         [DataType(DataType.Password)]
         [MinLength(1)]

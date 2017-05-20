@@ -11,6 +11,7 @@ namespace ServisTakipWeb
         public static int parentID;
         public static int _id;
         public static string adi = "";
+        public static string firmaKodu = "";
         public static string userName = "";
         public static string password = "";
         public static string whereAmI = "";
@@ -22,6 +23,7 @@ namespace ServisTakipWeb
         public static string tamamlananCagrilar = "Tamamlanan Çağrılar";
         public static string atanmisCagrilar = "Atanmış Çağrılar";
         public static string bekleyenCagrilar = "Bekleyen Çağrılar";
+        public static string cagriOlustur = "Çağrı Oluştur";
 
         public static string musteriler = "Müşteriler";
         public static string yoneticiler = "Yöneticiler";
@@ -38,6 +40,7 @@ namespace ServisTakipWeb
         public static string musteriCalisanBilgileri = "Müşteri Çalışan Bilgileri";
         public static string musteriEkle = "Müşteri Ekle";
         public static string musteri = "Müşteri";
+        public static string musteriCalisan = "Müşteri Çalışanı";
 
         public static string calisanBilgileri = "Çalışan Bilgileri";
         public static string calisanEkle = "Çalışan Ekle";
@@ -47,6 +50,7 @@ namespace ServisTakipWeb
             Connection.ID = -1;
             Connection.parentID = -1;
             Connection.adi = "";
+            Connection.firmaKodu = ""; 
             Connection.userName = "";
             Connection.password = "";
             Connection.whereAmI = "";

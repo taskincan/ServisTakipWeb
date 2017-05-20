@@ -34,12 +34,20 @@
                                 <div class="col-md-10">  
                                    @* @Html.ValidationSummary()
                                         TODO: bak buraya.*@
+                                    @*<div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-home"></i>
+                                            </span>
+                                            <input class="form-control" placeholder="Firma Kodu" name="FirmaKodu" type="text" value="@Model.FirmaKodu" autofocus required>
+                                        </div>
+                                    </div>*@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="glyphicon glyphicon-user"></i>
                                             </span>
-                                            <input class="form-control" placeholder="Username" name="UserName" type="text" value="@Model.UserName" autofocus required>
+                                            <input class="form-control" placeholder="Kullanıcı Adı" name="UserName" type="text" value="@Model.UserName" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -47,7 +55,7 @@
                                             <span class="input-group-addon">
                                                 <i class="glyphicon glyphicon-lock"></i>
                                             </span>
-                                            <input class="form-control" placeholder="Password" name="Password" type="password" value="@Model.Password" required>
+                                            <input class="form-control" placeholder="Şifre" name="Password" type="password" value="@Model.Password" required>
                                         </div>
                                     </div>
                                     <div class="form-group">

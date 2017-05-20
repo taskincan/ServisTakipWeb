@@ -225,6 +225,10 @@
     <Compile Include="Areas\Firma\FirmaAreaRegistration.cs" />
     <Compile Include="Areas\Firma\Models\FirmaBilgileri.cs" />
     <Compile Include="Areas\Firma\Models\FirmaYönetici.cs" />
+    <Compile Include="Areas\MusteriCalisan\Controllers\AnaSayfaController.cs" />
+    <Compile Include="Areas\MusteriCalisan\Controllers\CagriOlusturController.cs" />
+    <Compile Include="Areas\MusteriCalisan\Models\CagriBilgileri.cs" />
+    <Compile Include="Areas\MusteriCalisan\MusteriCalisanAreaRegistration.cs" />
     <Compile Include="Areas\Musteri\Context\Musteri.cs">
       <DependentUpon>MusteriDB.tt</DependentUpon>
     </Compile>
@@ -605,6 +609,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Musteri\Views\CalisanBilgileri\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Musteri\Views\CalisanBilgileri\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriCalisan\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriCalisan\Views\Shared\MusteriCalisanLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriCalisan\Views\AnaSayfa\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriCalisan\Views\CagriOlustur\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

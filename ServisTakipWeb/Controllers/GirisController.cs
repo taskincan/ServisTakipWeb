@@ -21,6 +21,7 @@ namespace ServisTakipWeb.Controllers
 
             _girisModel.Password = "";
             _girisModel.UserName = "";
+            _girisModel.FirmaKodu = "";
 
             return View(_girisModel);
         }
@@ -316,6 +317,51 @@ namespace ServisTakipWeb.Controllers
                     }
                 }
 
+            }
+            else if(musteriCalisaniMi)
+            {
+                string musteriCalisanUserName = "";
+                string musteriCalisanPassword = _girisModel.Password.ToString().Trim();
+
+                count = dbMusteri.MusteriCalisani.Count();
+
+                for (temp = 2; temp < _girisModel.UserName.Count(); temp++)
+                {
+                    musteriCalisanUserName += _girisModel.UserName[temp].ToString();
+                }
+
+                var User = dbMusteri.MusteriCalisani.SingleOrDefault(x => x.UserName == musteriCalisanUserName);
+
+                if (User == null) // Girilen bilgiler ile musteri calisani yok.
+                {
+                    userNameVarMi = false;
+
+                    ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                    return RedirectToAction("Index", _girisModel);
+                }
+                else //Database de aynı kullanıcı adıyla kayıt var.
+                { 
+                    if (_girisModel.Password == User.Password.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mu sorgusu.
+                    {
+                        sifreAyniMi = true;
+                        girisIzni = true;
+                        musteriCalisaniMi = true;
+                        
+                        var musteri = dbMusteri.Musteri.SingleOrDefault(x => x.ID == User.MusteriID);
+
+                        Connection.ID = User.McID;
+                        Connection.userName = User.UserName;
+                        Connection.adi = musteri.MusteriAdi;
+                        Connection.parentID = User.MusteriID;
+
+                        return RedirectToAction("Index", "AnaSayfa", new { area = "MusteriCalisan" });
+                    }
+                    else
+                    { 
+                        ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                        return RedirectToAction("Index", _girisModel);
+                    }
+                }
             }
             else
             {
