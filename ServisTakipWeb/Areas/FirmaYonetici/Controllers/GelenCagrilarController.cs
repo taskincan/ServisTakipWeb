@@ -21,6 +21,16 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
             return View(CagriBilgileri.cagriList);
         }
 
+        public ActionResult Goruntule(int _cagriNo = -1)
+        {
+            var cagri = CagriBilgileri.cagriList.SingleOrDefault(x=>x.CagriNo == _cagriNo);
+            
+            if (cagri == null)
+                return View("Index");
+            else
+                return View(cagri);
+        }
+
         private void CagriListYarat()
         {
             CagriBilgileri.cagriList.Clear();
@@ -53,7 +63,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                         var cagri = new CagriBilgileri();
                          
                         cagri.CagriNo = _cagri.CagriNo;
-
+                        cagri.ID = _cagri.ID;
                         cagri.Adres = _musteri.Adres;
                         cagri.MusteriAdi = _musteri.MusteriAdi;
                         cagri.MusteriKodu = _musteri.MusteriKodu;

@@ -10,14 +10,7 @@
         <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-table fa-fw"></i> @ServisTakipWeb.Connection.gelenCagrilar.ToString()</h3>
         </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-2">
-                    <button type="submit" style="margin-bottom:20px" class="btn btn-outline-primary btn-block">
-                        @Html.ActionLink("Yeni Kayıt", "MusteriEkle")
-                    </button>
-                </div>
-            </div>
+        <div class="panel-body"> 
             <div class="table-responsive">
                 <table id="data" class="table table-bordered table-hover table-striped">
                     <thead>
@@ -42,7 +35,7 @@
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.Aciklama)</td>
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.CagriAcilisTarihi)</td> 
                                 <td class="col-md-2"> 
-                                    <a href="@Url.Action("Goruntule", "GelenCagrilar", new { id = item.CagriNo })" class="btn btn-success">
+                                    <a href="@Url.Action("Goruntule", "GelenCagrilar", new { _cagriNo = item.CagriNo })" class="btn btn-success">
                                         Görüntüle
                                         <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                                     </a>
