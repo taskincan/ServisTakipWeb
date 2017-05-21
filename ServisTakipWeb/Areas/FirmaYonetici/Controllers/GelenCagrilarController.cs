@@ -15,7 +15,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 
         public ActionResult Index()
         {
-            CagriListYarat();
+            GelenCagriListYarat();
 
             Connection.sayfaAdi = "Gelen Çağrılar";
             return View(CagriBilgileri.cagriList);
@@ -31,7 +31,84 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 return View(cagri);
         }
 
-        private void CagriListYarat()
+        public ActionResult Tamamla(int _cagriNo = -1)
+        {
+            var cagri = CagriBilgileri.cagriList.SingleOrDefault(x => x.CagriNo == _cagriNo);
+            var musteri = dbFirmaYonetici.Musteri.SingleOrDefault(x => x.MusteriKodu == cagri.MusteriKodu);
+            var sozlesmeYapma = dbFirmaYonetici.SozlesmeYapma.SingleOrDefault(x => x.MID == musteri.ID);
+            var sozlesme = dbFirmaYonetici.Sozlesme.SingleOrDefault(x => x.ID == sozlesmeYapma.SozlesmeID);
+
+            var cagriTamamla = new CagriTamamlamaBilgileri();
+
+            cagriTamamla.MusteriSozlesmeParcaDahilMi = sozlesme.ParcaDahilMi;
+
+            cagriTamamla.TamamlayanYoneticiID = Connection.ID; //Firma Yonetici Panelindeyiz.
+            cagriTamamla.TamamlayanCalisanID = -1; //Firma Yonetici Panelindeyiz.
+            cagriTamamla.MusteriID = musteri.ID;
+            cagriTamamla.Sonuc = "";
+            cagriTamamla.Durum = "tamamlanıyor.";
+            cagriTamamla.Email = musteri.Email;
+            cagriTamamla.FormNo = 0;
+            cagriTamamla.MusteriAdi = cagri.MusteriAdi;
+            cagriTamamla.YetkiliKisi = cagri.IlgiliKisi;
+            cagriTamamla.Telefon = cagri.Telefon;
+            cagriTamamla.Adres = cagri.Adres;
+            cagriTamamla.VergiDairesi = musteri.VergiDairesi;
+            cagriTamamla.VergiNumarasi = musteri.VergiNumarasi;
+            cagriTamamla.MusteriKodu = cagri.MusteriKodu;
+            cagriTamamla.BildirilenAriza = cagri.CagriDetayi;
+            cagriTamamla.HizmetTipi = "";
+            cagriTamamla.CihazinHizmetDurumu = "";
+            cagriTamamla.Marka1 = "";
+            cagriTamamla.Marka2 = "";
+            cagriTamamla.Marka3 = "";
+            cagriTamamla.Marka4 = "";
+            cagriTamamla.Model1 = "";
+            cagriTamamla.Model2 = "";
+            cagriTamamla.Model3 = "";
+            cagriTamamla.Model4 = "";
+            cagriTamamla.SeriNo1 = "";
+            cagriTamamla.SeriNo2 = "";
+            cagriTamamla.SeriNo3 = "";
+            cagriTamamla.SeriNo4 = "";
+
+            cagriTamamla.CagriBildirildigiTarih = cagri.CagriAcilisTarihi;
+            cagriTamamla.HizmetBaslangicTarihi = DateTime.Now;
+            cagriTamamla.HizmetBitisTarihi = DateTime.Now;
+            cagriTamamla.CagriKayitNo = cagri.CagriNo;
+            cagriTamamla.MesaiSaatiIcindeMi = true;
+
+            cagriTamamla.YapilanIsinAciklamasi = "";
+            cagriTamamla.ParcaNo1 = "";
+            cagriTamamla.ParcaNo2 = "";
+            cagriTamamla.ParcaNo3 = "";
+            cagriTamamla.ParcaAdi1 = "";
+            cagriTamamla.ParcaAdi2 = "";
+            cagriTamamla.ParcaAdi3 = "";
+            cagriTamamla.Miktar1 = 0;
+            cagriTamamla.Miktar2 = 0;
+            cagriTamamla.Miktar3 = 0;
+            cagriTamamla.BirimFiyati1 = 0;
+            cagriTamamla.BirimFiyati2 = 0;
+            cagriTamamla.BirimFiyati3 = 0;
+
+            cagriTamamla.AciklamaIscilik1 = "";
+            cagriTamamla.AciklamaIscilik2 = "";
+            cagriTamamla.AciklamaIscilik3 = "";
+            cagriTamamla.Sure1 = 0;
+            cagriTamamla.Sure2 = 0;
+            cagriTamamla.Sure3 = 0;
+            cagriTamamla.BirimFiyatiIscilik1 = 0;
+            cagriTamamla.BirimFiyatiIscilik2 = 0;
+            cagriTamamla.BirimFiyatiIscilik3 = 0;
+
+            if (cagriTamamla == null)
+                return View("Index");
+            else
+                return View(cagriTamamla);
+        }
+
+        private void GelenCagriListYarat()
         {
             CagriBilgileri.cagriList.Clear();
 

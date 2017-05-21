@@ -195,6 +195,7 @@
     <Compile Include="Areas\FirmaYonetici\Controllers\YoneticiBilgileriController.cs" />
     <Compile Include="Areas\FirmaYonetici\FirmaYoneticiAreaRegistration.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CagriBilgileri.cs" />
+    <Compile Include="Areas\FirmaYonetici\Models\CagriTamamlamaBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CalisanBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\MusteriBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\SozlesmeBilgileri.cs" />
@@ -671,6 +672,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\FirmaYonetici\Views\GelenCagrilar\Goruntule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\GelenCagrilar\Tamamla.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

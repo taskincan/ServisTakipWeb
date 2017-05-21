@@ -202,6 +202,16 @@
 
         });
 
+        $("input[type='radio']").change(function () {
+
+            if ($(this).val() == "other") {
+                $("#otherAnswer").show();
+            }
+            else {
+                $("#otherAnswer").hide();
+            }
+
+        });
     </script>
 
 

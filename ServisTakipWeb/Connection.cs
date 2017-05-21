@@ -45,6 +45,14 @@ namespace ServisTakipWeb
         public static string calisanBilgileri = "Çalışan Bilgileri";
         public static string calisanEkle = "Çalışan Ekle";
 
+        //Tamamlanan Cagri Ekrani Icin
+        public static string bildirilenAriza = "Bildirilen Arıza";
+        public static string hizmetTipi = "Hizmet Tipi";
+        public static string ariza = "Arıza";
+        public static string kurulus = "Kuruluş";
+        public static string geriAlim = "Geri Alım";
+        public static string diger = "Diğer";
+
         public static void Clear()
         {
             Connection.ID = -1;
