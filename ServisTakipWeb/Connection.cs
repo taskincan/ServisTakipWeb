@@ -52,6 +52,9 @@ namespace ServisTakipWeb
         public static string kurulus = "Kuruluş";
         public static string geriAlim = "Geri Alım";
         public static string diger = "Diğer";
+        public static string cihazinHizmetDurumu = "Cihazın Hizmet Durumu";
+        public static string cihazBilgileri = "Cihaz Bilgileri";
+        public static string cagriBilgileri = "Çağrı Bilgileri";
 
         public static void Clear()
         {

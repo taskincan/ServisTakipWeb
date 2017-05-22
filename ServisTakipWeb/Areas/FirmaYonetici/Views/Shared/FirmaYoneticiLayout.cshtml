@@ -202,20 +202,51 @@
 
         });
 
-        $("input[type='radio']").change(function () {
-
-            if ($(this).val() == "other") {
-                $("#otherAnswer").show();
-            }
-            else {
-                $("#otherAnswer").hide();
-            }
+        $(function () {
+            $("#datetimepickerSaatli2").datetimepicker({ format: 'd.m.Y H:i', });
 
         });
-    </script>
 
+        $(function () {
+            $("#datetimepickerSaatli3").datetimepicker({ format: 'd.m.Y H:i', });
 
+        });
+         
+          
+        $("input[type='radio']").change(function () {
 
+            if ($(this).val() == "Other")
+            {
+                $("#otherAnswer").show();
+            }
+            else if ($(this).val() == "Ariza")
+            {
+                $("#otherAnswer").hide();
+            }
+            else if ($(this).val() == "Kurulus")
+            {
+                $("#otherAnswer").hide();
+            }
+            else if ($(this).val() == "GeriAlim")
+            {
+                $("#otherAnswer").hide();
+            }
+            else if ($(this).val() == "Bakim") {
+                $("#otherAnswer2").hide();
+            }
+            else if ($(this).val() == "Garantili") {
+                $("#otherAnswer2").hide();
+            }
+            else if ($(this).val() == "Ucretli") {
+                $("#otherAnswer2").hide();
+            } 
+            else if ($(this).val() == "Other2") {
+                $("#otherAnswer2").show();
+            }
+        });
+    </script> 
+
+  
 
 
 

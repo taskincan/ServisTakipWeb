@@ -19,6 +19,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         public bool MusteriSozlesmeParcaDahilMi { get; set; }
 
         [Display(Name = "Form No")]
+        [DataType(DataType.PhoneNumber)]
         [Required]
         public int FormNo { get; set; }
 

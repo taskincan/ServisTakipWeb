@@ -108,6 +108,16 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 return View(cagriTamamla);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Tamamla(CagriTamamlamaBilgileri cagriTamamlama)
+        {
+            //TODO: cagri tamamlama ekrani geri donen degerlere tek tek bak. Kontrol et
+            return View();
+        }
+
+
+
         private void GelenCagriListYarat()
         {
             CagriBilgileri.cagriList.Clear();
