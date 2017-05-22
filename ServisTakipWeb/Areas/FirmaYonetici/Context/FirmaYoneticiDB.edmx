@@ -5,6 +5,39 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="ServisTakipFirmaYoneticiDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AtananCagrilar">
+          <Key>
+            <PropertyRef Name="AtananID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AtananID" Type="int" Nullable="false" />
+          <Property Name="AtayanID" Type="int" Nullable="false" />
+          <Property Name="VarisTarih" Type="datetime" Nullable="false" />
+          <Property Name="Aciliyet" Type="bit" />
+          <Property Name="YoneticiNotu" Type="nvarchar" MaxLength="200" />
+          <Property Name="CagriNo" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BekleyenCagrilar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BeklemeNedeni" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="AtananID" Type="int" Nullable="false" />
+          <Property Name="AtayanID" Type="int" Nullable="false" />
+          <Property Name="CagriNo" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CihazBilgileri">
+          <Key>
+            <PropertyRef Name="CihazID" />
+          </Key>
+          <Property Name="CihazID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marka" Type="nvarchar" MaxLength="30" />
+          <Property Name="Model" Type="nvarchar" MaxLength="30" />
+          <Property Name="SeriNo" Type="nvarchar" MaxLength="30" />
+        </EntityType>
         <EntityType Name="FirmaCalisani">
           <Key>
             <PropertyRef Name="FcID" />
@@ -72,6 +105,108 @@
           <Property Name="FyID" Type="int" Nullable="false" />
           <Property Name="MID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="TamamlananCagrilar">
+          <Key>
+            <PropertyRef Name="TamamlananID" />
+          </Key>
+          <Property Name="TamamlananID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TamamlayanYoneticiID" Type="int" />
+          <Property Name="TamamlayanCalisanID" Type="int" />
+          <Property Name="FormNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MID" Type="int" Nullable="false" />
+          <Property Name="YetkiliKisi" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Gsm" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="BildirilenAriza" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="HizmetTipi" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CihazinHizmetDurumu" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CagrininBildirigiTarih" Type="datetime" Nullable="false" />
+          <Property Name="HizmetBaslangicTarihi" Type="datetime" Nullable="false" />
+          <Property Name="HizmetBitisTarihi" Type="datetime" Nullable="false" />
+          <Property Name="CagriKayitNo" Type="int" Nullable="false" />
+          <Property Name="MesaiSaatiIcindeMi" Type="bit" Nullable="false" />
+          <Property Name="YapılanIsinAciklamasi" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="Sonuc" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="AnketYapildiMi" Type="bit" Nullable="false" />
+          <Property Name="Cihaz1" Type="int" />
+          <Property Name="Cihaz2" Type="int" />
+          <Property Name="Cihaz3" Type="int" />
+          <Property Name="Cihaz4" Type="int" />
+          <Property Name="UcretliParca1" Type="int" />
+          <Property Name="UcretliParca2" Type="int" />
+          <Property Name="UcretliParca3" Type="int" />
+          <Property Name="UcretliIscilik1" Type="int" />
+          <Property Name="UcretliIscilik2" Type="int" />
+          <Property Name="UcretliIscilik3" Type="int" />
+        </EntityType>
+        <EntityType Name="UcretliIscilik">
+          <Key>
+            <PropertyRef Name="IscilikID" />
+          </Key>
+          <Property Name="IscilikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sure" Type="int" />
+          <Property Name="BirimFiyati" Type="money" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="UcretliParca">
+          <Key>
+            <PropertyRef Name="ParcaID" />
+          </Key>
+          <Property Name="ParcaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParcaAdi" Type="nvarchar" MaxLength="30" />
+          <Property Name="ParcaNo" Type="nvarchar" MaxLength="30" />
+          <Property Name="Miktar" Type="int" />
+          <Property Name="BirimFiyati" Type="money" />
+        </EntityType>
+        <Association Name="FK__AtananCag__Atana__31B762FC">
+          <End Role="FirmaCalisani" Type="Self.FirmaCalisani" Multiplicity="1" />
+          <End Role="AtananCagrilar" Type="Self.AtananCagrilar" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaCalisani">
+              <PropertyRef Name="FcID" />
+            </Principal>
+            <Dependent Role="AtananCagrilar">
+              <PropertyRef Name="AtananID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AtananCag__Ataya__30C33EC3">
+          <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
+          <End Role="AtananCagrilar" Type="Self.AtananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaYonetici">
+              <PropertyRef Name="FyID" />
+            </Principal>
+            <Dependent Role="AtananCagrilar">
+              <PropertyRef Name="AtayanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BekleyenC__Atana__37703C52">
+          <End Role="FirmaCalisani" Type="Self.FirmaCalisani" Multiplicity="1" />
+          <End Role="BekleyenCagrilar" Type="Self.BekleyenCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaCalisani">
+              <PropertyRef Name="FcID" />
+            </Principal>
+            <Dependent Role="BekleyenCagrilar">
+              <PropertyRef Name="AtananID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BekleyenC__Ataya__367C1819">
+          <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
+          <End Role="BekleyenCagrilar" Type="Self.BekleyenCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaYonetici">
+              <PropertyRef Name="FyID" />
+            </Principal>
+            <Dependent Role="BekleyenCagrilar">
+              <PropertyRef Name="AtayanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__FirmaCali__Creat__2D27B809">
           <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
           <End Role="FirmaCalisani" Type="Self.FirmaCalisani" Multiplicity="*" />
@@ -120,12 +255,154 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Tamamlana__Cihaz__00DF2177">
+          <End Role="CihazBilgileri" Type="Self.CihazBilgileri" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CihazBilgileri">
+              <PropertyRef Name="CihazID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="Cihaz1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Cihaz__01D345B0">
+          <End Role="CihazBilgileri" Type="Self.CihazBilgileri" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CihazBilgileri">
+              <PropertyRef Name="CihazID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="Cihaz2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Cihaz__02C769E9">
+          <End Role="CihazBilgileri" Type="Self.CihazBilgileri" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CihazBilgileri">
+              <PropertyRef Name="CihazID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="Cihaz3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Cihaz__03BB8E22">
+          <End Role="CihazBilgileri" Type="Self.CihazBilgileri" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CihazBilgileri">
+              <PropertyRef Name="CihazID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="Cihaz4" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Ucret__04AFB25B">
+          <End Role="UcretliParca" Type="Self.UcretliParca" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UcretliParca">
+              <PropertyRef Name="ParcaID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="UcretliParca1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Ucret__05A3D694">
+          <End Role="UcretliParca" Type="Self.UcretliParca" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UcretliParca">
+              <PropertyRef Name="ParcaID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="UcretliParca2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Ucret__0697FACD">
+          <End Role="UcretliParca" Type="Self.UcretliParca" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UcretliParca">
+              <PropertyRef Name="ParcaID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="UcretliParca3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Ucret__078C1F06">
+          <End Role="UcretliIscilik" Type="Self.UcretliIscilik" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UcretliIscilik">
+              <PropertyRef Name="IscilikID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="UcretliIscilik1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Ucret__0880433F">
+          <End Role="UcretliIscilik" Type="Self.UcretliIscilik" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UcretliIscilik">
+              <PropertyRef Name="IscilikID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="UcretliIscilik2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Ucret__09746778">
+          <End Role="UcretliIscilik" Type="Self.UcretliIscilik" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UcretliIscilik">
+              <PropertyRef Name="IscilikID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="UcretliIscilik3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ServisTakipFirmaYoneticiDBModelStoreContainer">
+          <EntitySet Name="AtananCagrilar" EntityType="Self.AtananCagrilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BekleyenCagrilar" EntityType="Self.BekleyenCagrilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CihazBilgileri" EntityType="Self.CihazBilgileri" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FirmaCalisani" EntityType="Self.FirmaCalisani" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FirmaYonetici" EntityType="Self.FirmaYonetici" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sozlesme" EntityType="Self.Sozlesme" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SozlesmeYapma" EntityType="Self.SozlesmeYapma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TamamlananCagrilar" EntityType="Self.TamamlananCagrilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UcretliIscilik" EntityType="Self.UcretliIscilik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UcretliParca" EntityType="Self.UcretliParca" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AtananCag__Atana__31B762FC" Association="Self.FK__AtananCag__Atana__31B762FC">
+            <End Role="FirmaCalisani" EntitySet="FirmaCalisani" />
+            <End Role="AtananCagrilar" EntitySet="AtananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AtananCag__Ataya__30C33EC3" Association="Self.FK__AtananCag__Ataya__30C33EC3">
+            <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
+            <End Role="AtananCagrilar" EntitySet="AtananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BekleyenC__Atana__37703C52" Association="Self.FK__BekleyenC__Atana__37703C52">
+            <End Role="FirmaCalisani" EntitySet="FirmaCalisani" />
+            <End Role="BekleyenCagrilar" EntitySet="BekleyenCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BekleyenC__Ataya__367C1819" Association="Self.FK__BekleyenC__Ataya__367C1819">
+            <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
+            <End Role="BekleyenCagrilar" EntitySet="BekleyenCagrilar" />
+          </AssociationSet>
           <AssociationSet Name="FK__FirmaCali__Creat__2D27B809" Association="Self.FK__FirmaCali__Creat__2D27B809">
             <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
             <End Role="FirmaCalisani" EntitySet="FirmaCalisani" />
@@ -142,12 +419,93 @@
             <End Role="Musteri" EntitySet="Musteri" />
             <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
           </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Cihaz__00DF2177" Association="Self.FK__Tamamlana__Cihaz__00DF2177">
+            <End Role="CihazBilgileri" EntitySet="CihazBilgileri" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Cihaz__01D345B0" Association="Self.FK__Tamamlana__Cihaz__01D345B0">
+            <End Role="CihazBilgileri" EntitySet="CihazBilgileri" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Cihaz__02C769E9" Association="Self.FK__Tamamlana__Cihaz__02C769E9">
+            <End Role="CihazBilgileri" EntitySet="CihazBilgileri" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Cihaz__03BB8E22" Association="Self.FK__Tamamlana__Cihaz__03BB8E22">
+            <End Role="CihazBilgileri" EntitySet="CihazBilgileri" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Ucret__04AFB25B" Association="Self.FK__Tamamlana__Ucret__04AFB25B">
+            <End Role="UcretliParca" EntitySet="UcretliParca" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Ucret__05A3D694" Association="Self.FK__Tamamlana__Ucret__05A3D694">
+            <End Role="UcretliParca" EntitySet="UcretliParca" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Ucret__0697FACD" Association="Self.FK__Tamamlana__Ucret__0697FACD">
+            <End Role="UcretliParca" EntitySet="UcretliParca" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Ucret__078C1F06" Association="Self.FK__Tamamlana__Ucret__078C1F06">
+            <End Role="UcretliIscilik" EntitySet="UcretliIscilik" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Ucret__0880433F" Association="Self.FK__Tamamlana__Ucret__0880433F">
+            <End Role="UcretliIscilik" EntitySet="UcretliIscilik" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Ucret__09746778" Association="Self.FK__Tamamlana__Ucret__09746778">
+            <End Role="UcretliIscilik" EntitySet="UcretliIscilik" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ServisTakipFirmaYoneticiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AtananCagrilar">
+          <Key>
+            <PropertyRef Name="AtananID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AtananID" Type="Int32" Nullable="false" />
+          <Property Name="AtayanID" Type="Int32" Nullable="false" />
+          <Property Name="VarisTarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Aciliyet" Type="Boolean" />
+          <Property Name="YoneticiNotu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CagriNo" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="FirmaCalisani" Relationship="Self.FK__AtananCag__Atana__31B762FC" FromRole="AtananCagrilar" ToRole="FirmaCalisani" />
+          <NavigationProperty Name="FirmaYonetici" Relationship="Self.FK__AtananCag__Ataya__30C33EC3" FromRole="AtananCagrilar" ToRole="FirmaYonetici" />
+        </EntityType>
+        <EntityType Name="BekleyenCagrilar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BeklemeNedeni" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AtananID" Type="Int32" Nullable="false" />
+          <Property Name="AtayanID" Type="Int32" Nullable="false" />
+          <Property Name="CagriNo" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="FirmaCalisani" Relationship="Self.FK__BekleyenC__Atana__37703C52" FromRole="BekleyenCagrilar" ToRole="FirmaCalisani" />
+          <NavigationProperty Name="FirmaYonetici" Relationship="Self.FK__BekleyenC__Ataya__367C1819" FromRole="BekleyenCagrilar" ToRole="FirmaYonetici" />
+        </EntityType>
+        <EntityType Name="CihazBilgileri">
+          <Key>
+            <PropertyRef Name="CihazID" />
+          </Key>
+          <Property Name="CihazID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marka" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SeriNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TamamlananCagrilar" Relationship="Self.FK__Tamamlana__Cihaz__00DF2177" FromRole="CihazBilgileri" ToRole="TamamlananCagrilar" />
+          <NavigationProperty Name="TamamlananCagrilar1" Relationship="Self.FK__Tamamlana__Cihaz__01D345B0" FromRole="CihazBilgileri" ToRole="TamamlananCagrilar" />
+          <NavigationProperty Name="TamamlananCagrilar2" Relationship="Self.FK__Tamamlana__Cihaz__02C769E9" FromRole="CihazBilgileri" ToRole="TamamlananCagrilar" />
+          <NavigationProperty Name="TamamlananCagrilar3" Relationship="Self.FK__Tamamlana__Cihaz__03BB8E22" FromRole="CihazBilgileri" ToRole="TamamlananCagrilar" />
+        </EntityType>
         <EntityType Name="FirmaCalisani">
           <Key>
             <PropertyRef Name="FcID" />
@@ -162,6 +520,8 @@
           <Property Name="FirmaID" Type="Int32" Nullable="false" />
           <Property Name="CreateUserID" Type="Int32" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AtananCagrilar" Relationship="Self.FK__AtananCag__Atana__31B762FC" FromRole="FirmaCalisani" ToRole="AtananCagrilar" />
+          <NavigationProperty Name="BekleyenCagrilar" Relationship="Self.FK__BekleyenC__Atana__37703C52" FromRole="FirmaCalisani" ToRole="BekleyenCagrilar" />
           <NavigationProperty Name="FirmaYonetici" Relationship="Self.FK__FirmaCali__Creat__2D27B809" FromRole="FirmaCalisani" ToRole="FirmaYonetici" />
         </EntityType>
         <EntityType Name="FirmaYonetici">
@@ -177,6 +537,8 @@
           <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FirmaID" Type="Int32" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AtananCagrilar" Relationship="Self.FK__AtananCag__Ataya__30C33EC3" FromRole="FirmaYonetici" ToRole="AtananCagrilar" />
+          <NavigationProperty Name="BekleyenCagrilar" Relationship="Self.FK__BekleyenC__Ataya__367C1819" FromRole="FirmaYonetici" ToRole="BekleyenCagrilar" />
           <NavigationProperty Name="FirmaCalisani" Relationship="Self.FK__FirmaCali__Creat__2D27B809" FromRole="FirmaYonetici" ToRole="FirmaCalisani" />
           <NavigationProperty Name="SozlesmeYapma" Relationship="Self.FK__SozlesmeYa__FyID__71D1E811" FromRole="FirmaYonetici" ToRole="SozlesmeYapma" />
         </EntityType>
@@ -223,6 +585,172 @@
           <NavigationProperty Name="Musteri" Relationship="Self.FK__SozlesmeYap__MID__72C60C4A" FromRole="SozlesmeYapma" ToRole="Musteri" />
           <NavigationProperty Name="Sozlesme" Relationship="Self.FK__SozlesmeY__Sozle__70DDC3D8" FromRole="SozlesmeYapma" ToRole="Sozlesme" />
         </EntityType>
+        <EntityType Name="TamamlananCagrilar">
+          <Key>
+            <PropertyRef Name="TamamlananID" />
+          </Key>
+          <Property Name="TamamlananID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TamamlayanYoneticiID" Type="Int32" />
+          <Property Name="TamamlayanCalisanID" Type="Int32" />
+          <Property Name="FormNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MID" Type="Int32" Nullable="false" />
+          <Property Name="YetkiliKisi" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gsm" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BildirilenAriza" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HizmetTipi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CihazinHizmetDurumu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CagrininBildirigiTarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HizmetBaslangicTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HizmetBitisTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CagriKayitNo" Type="Int32" Nullable="false" />
+          <Property Name="MesaiSaatiIcindeMi" Type="Boolean" Nullable="false" />
+          <Property Name="YapılanIsinAciklamasi" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sonuc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AnketYapildiMi" Type="Boolean" Nullable="false" />
+          <Property Name="Cihaz1" Type="Int32" />
+          <Property Name="Cihaz2" Type="Int32" />
+          <Property Name="Cihaz3" Type="Int32" />
+          <Property Name="Cihaz4" Type="Int32" />
+          <Property Name="UcretliParca1" Type="Int32" />
+          <Property Name="UcretliParca2" Type="Int32" />
+          <Property Name="UcretliParca3" Type="Int32" />
+          <Property Name="UcretliIscilik1" Type="Int32" />
+          <Property Name="UcretliIscilik2" Type="Int32" />
+          <Property Name="UcretliIscilik3" Type="Int32" />
+          <NavigationProperty Name="CihazBilgileri" Relationship="Self.FK__Tamamlana__Cihaz__00DF2177" FromRole="TamamlananCagrilar" ToRole="CihazBilgileri" />
+          <NavigationProperty Name="CihazBilgileri1" Relationship="Self.FK__Tamamlana__Cihaz__01D345B0" FromRole="TamamlananCagrilar" ToRole="CihazBilgileri" />
+          <NavigationProperty Name="CihazBilgileri2" Relationship="Self.FK__Tamamlana__Cihaz__02C769E9" FromRole="TamamlananCagrilar" ToRole="CihazBilgileri" />
+          <NavigationProperty Name="CihazBilgileri3" Relationship="Self.FK__Tamamlana__Cihaz__03BB8E22" FromRole="TamamlananCagrilar" ToRole="CihazBilgileri" />
+          <NavigationProperty Name="UcretliParca" Relationship="Self.FK__Tamamlana__Ucret__04AFB25B" FromRole="TamamlananCagrilar" ToRole="UcretliParca" />
+          <NavigationProperty Name="UcretliParca4" Relationship="Self.FK__Tamamlana__Ucret__05A3D694" FromRole="TamamlananCagrilar" ToRole="UcretliParca" />
+          <NavigationProperty Name="UcretliParca5" Relationship="Self.FK__Tamamlana__Ucret__0697FACD" FromRole="TamamlananCagrilar" ToRole="UcretliParca" />
+          <NavigationProperty Name="UcretliIscilik" Relationship="Self.FK__Tamamlana__Ucret__078C1F06" FromRole="TamamlananCagrilar" ToRole="UcretliIscilik" />
+          <NavigationProperty Name="UcretliIscilik4" Relationship="Self.FK__Tamamlana__Ucret__0880433F" FromRole="TamamlananCagrilar" ToRole="UcretliIscilik" />
+          <NavigationProperty Name="UcretliIscilik5" Relationship="Self.FK__Tamamlana__Ucret__09746778" FromRole="TamamlananCagrilar" ToRole="UcretliIscilik" />
+        </EntityType>
+        <EntityType Name="UcretliIscilik">
+          <Key>
+            <PropertyRef Name="IscilikID" />
+          </Key>
+          <Property Name="IscilikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sure" Type="Int32" />
+          <Property Name="BirimFiyati" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Aciklama" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TamamlananCagrilar" Relationship="Self.FK__Tamamlana__Ucret__078C1F06" FromRole="UcretliIscilik" ToRole="TamamlananCagrilar" />
+          <NavigationProperty Name="TamamlananCagrilar1" Relationship="Self.FK__Tamamlana__Ucret__0880433F" FromRole="UcretliIscilik" ToRole="TamamlananCagrilar" />
+          <NavigationProperty Name="TamamlananCagrilar2" Relationship="Self.FK__Tamamlana__Ucret__09746778" FromRole="UcretliIscilik" ToRole="TamamlananCagrilar" />
+        </EntityType>
+        <EntityType Name="UcretliParca">
+          <Key>
+            <PropertyRef Name="ParcaID" />
+          </Key>
+          <Property Name="ParcaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParcaAdi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ParcaNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Miktar" Type="Int32" />
+          <Property Name="BirimFiyati" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="TamamlananCagrilar" Relationship="Self.FK__Tamamlana__Ucret__04AFB25B" FromRole="UcretliParca" ToRole="TamamlananCagrilar" />
+          <NavigationProperty Name="TamamlananCagrilar1" Relationship="Self.FK__Tamamlana__Ucret__05A3D694" FromRole="UcretliParca" ToRole="TamamlananCagrilar" />
+          <NavigationProperty Name="TamamlananCagrilar2" Relationship="Self.FK__Tamamlana__Ucret__0697FACD" FromRole="UcretliParca" ToRole="TamamlananCagrilar" />
+        </EntityType>
+        <Association Name="FK__AtananCag__Atana__31B762FC">
+          <End Role="FirmaCalisani" Type="Self.FirmaCalisani" Multiplicity="1" />
+          <End Role="AtananCagrilar" Type="Self.AtananCagrilar" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaCalisani">
+              <PropertyRef Name="FcID" />
+            </Principal>
+            <Dependent Role="AtananCagrilar">
+              <PropertyRef Name="AtananID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AtananCag__Ataya__30C33EC3">
+          <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
+          <End Role="AtananCagrilar" Type="Self.AtananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaYonetici">
+              <PropertyRef Name="FyID" />
+            </Principal>
+            <Dependent Role="AtananCagrilar">
+              <PropertyRef Name="AtayanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BekleyenC__Atana__37703C52">
+          <End Role="FirmaCalisani" Type="Self.FirmaCalisani" Multiplicity="1" />
+          <End Role="BekleyenCagrilar" Type="Self.BekleyenCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaCalisani">
+              <PropertyRef Name="FcID" />
+            </Principal>
+            <Dependent Role="BekleyenCagrilar">
+              <PropertyRef Name="AtananID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BekleyenC__Ataya__367C1819">
+          <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
+          <End Role="BekleyenCagrilar" Type="Self.BekleyenCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaYonetici">
+              <PropertyRef Name="FyID" />
+            </Principal>
+            <Dependent Role="BekleyenCagrilar">
+              <PropertyRef Name="AtayanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Cihaz__00DF2177">
+          <End Role="CihazBilgileri" Type="Self.CihazBilgileri" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CihazBilgileri">
+              <PropertyRef Name="CihazID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="Cihaz1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Cihaz__01D345B0">
+          <End Role="CihazBilgileri" Type="Self.CihazBilgileri" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CihazBilgileri">
+              <PropertyRef Name="CihazID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="Cihaz2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Cihaz__02C769E9">
+          <End Role="CihazBilgileri" Type="Self.CihazBilgileri" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CihazBilgileri">
+              <PropertyRef Name="CihazID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="Cihaz3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Cihaz__03BB8E22">
+          <End Role="CihazBilgileri" Type="Self.CihazBilgileri" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CihazBilgileri">
+              <PropertyRef Name="CihazID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="Cihaz4" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__FirmaCali__Creat__2D27B809">
           <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
           <End Role="FirmaCalisani" Type="Self.FirmaCalisani" Multiplicity="*" />
@@ -271,12 +799,122 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Tamamlana__Ucret__04AFB25B">
+          <End Role="UcretliParca" Type="Self.UcretliParca" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UcretliParca">
+              <PropertyRef Name="ParcaID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="UcretliParca1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Ucret__05A3D694">
+          <End Role="UcretliParca" Type="Self.UcretliParca" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UcretliParca">
+              <PropertyRef Name="ParcaID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="UcretliParca2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Ucret__0697FACD">
+          <End Role="UcretliParca" Type="Self.UcretliParca" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UcretliParca">
+              <PropertyRef Name="ParcaID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="UcretliParca3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Ucret__078C1F06">
+          <End Role="UcretliIscilik" Type="Self.UcretliIscilik" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UcretliIscilik">
+              <PropertyRef Name="IscilikID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="UcretliIscilik1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Ucret__0880433F">
+          <End Role="UcretliIscilik" Type="Self.UcretliIscilik" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UcretliIscilik">
+              <PropertyRef Name="IscilikID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="UcretliIscilik2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tamamlana__Ucret__09746778">
+          <End Role="UcretliIscilik" Type="Self.UcretliIscilik" Multiplicity="0..1" />
+          <End Role="TamamlananCagrilar" Type="Self.TamamlananCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UcretliIscilik">
+              <PropertyRef Name="IscilikID" />
+            </Principal>
+            <Dependent Role="TamamlananCagrilar">
+              <PropertyRef Name="UcretliIscilik3" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ServisTakipFirmaYoneticiDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AtananCagrilar" EntityType="Self.AtananCagrilar" />
+          <EntitySet Name="BekleyenCagrilar" EntityType="Self.BekleyenCagrilar" />
+          <EntitySet Name="CihazBilgileri" EntityType="Self.CihazBilgileri" />
           <EntitySet Name="FirmaCalisani" EntityType="Self.FirmaCalisani" />
           <EntitySet Name="FirmaYonetici" EntityType="Self.FirmaYonetici" />
           <EntitySet Name="Musteri" EntityType="Self.Musteri" />
           <EntitySet Name="Sozlesme" EntityType="Self.Sozlesme" />
           <EntitySet Name="SozlesmeYapma" EntityType="Self.SozlesmeYapma" />
+          <EntitySet Name="TamamlananCagrilar" EntityType="Self.TamamlananCagrilar" />
+          <EntitySet Name="UcretliIscilik" EntityType="Self.UcretliIscilik" />
+          <EntitySet Name="UcretliParca" EntityType="Self.UcretliParca" />
+          <AssociationSet Name="FK__AtananCag__Atana__31B762FC" Association="Self.FK__AtananCag__Atana__31B762FC">
+            <End Role="FirmaCalisani" EntitySet="FirmaCalisani" />
+            <End Role="AtananCagrilar" EntitySet="AtananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AtananCag__Ataya__30C33EC3" Association="Self.FK__AtananCag__Ataya__30C33EC3">
+            <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
+            <End Role="AtananCagrilar" EntitySet="AtananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BekleyenC__Atana__37703C52" Association="Self.FK__BekleyenC__Atana__37703C52">
+            <End Role="FirmaCalisani" EntitySet="FirmaCalisani" />
+            <End Role="BekleyenCagrilar" EntitySet="BekleyenCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BekleyenC__Ataya__367C1819" Association="Self.FK__BekleyenC__Ataya__367C1819">
+            <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
+            <End Role="BekleyenCagrilar" EntitySet="BekleyenCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Cihaz__00DF2177" Association="Self.FK__Tamamlana__Cihaz__00DF2177">
+            <End Role="CihazBilgileri" EntitySet="CihazBilgileri" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Cihaz__01D345B0" Association="Self.FK__Tamamlana__Cihaz__01D345B0">
+            <End Role="CihazBilgileri" EntitySet="CihazBilgileri" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Cihaz__02C769E9" Association="Self.FK__Tamamlana__Cihaz__02C769E9">
+            <End Role="CihazBilgileri" EntitySet="CihazBilgileri" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Cihaz__03BB8E22" Association="Self.FK__Tamamlana__Cihaz__03BB8E22">
+            <End Role="CihazBilgileri" EntitySet="CihazBilgileri" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
           <AssociationSet Name="FK__FirmaCali__Creat__2D27B809" Association="Self.FK__FirmaCali__Creat__2D27B809">
             <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
             <End Role="FirmaCalisani" EntitySet="FirmaCalisani" />
@@ -293,6 +931,30 @@
             <End Role="Sozlesme" EntitySet="Sozlesme" />
             <End Role="SozlesmeYapma" EntitySet="SozlesmeYapma" />
           </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Ucret__04AFB25B" Association="Self.FK__Tamamlana__Ucret__04AFB25B">
+            <End Role="UcretliParca" EntitySet="UcretliParca" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Ucret__05A3D694" Association="Self.FK__Tamamlana__Ucret__05A3D694">
+            <End Role="UcretliParca" EntitySet="UcretliParca" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Ucret__0697FACD" Association="Self.FK__Tamamlana__Ucret__0697FACD">
+            <End Role="UcretliParca" EntitySet="UcretliParca" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Ucret__078C1F06" Association="Self.FK__Tamamlana__Ucret__078C1F06">
+            <End Role="UcretliIscilik" EntitySet="UcretliIscilik" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Ucret__0880433F" Association="Self.FK__Tamamlana__Ucret__0880433F">
+            <End Role="UcretliIscilik" EntitySet="UcretliIscilik" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tamamlana__Ucret__09746778" Association="Self.FK__Tamamlana__Ucret__09746778">
+            <End Role="UcretliIscilik" EntitySet="UcretliIscilik" />
+            <End Role="TamamlananCagrilar" EntitySet="TamamlananCagrilar" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -300,6 +962,42 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ServisTakipFirmaYoneticiDBModelStoreContainer" CdmEntityContainer="ServisTakipFirmaYoneticiDBEntities">
+          <EntitySetMapping Name="AtananCagrilar">
+            <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.AtananCagrilar">
+              <MappingFragment StoreEntitySet="AtananCagrilar">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AtananID" ColumnName="AtananID" />
+                <ScalarProperty Name="AtayanID" ColumnName="AtayanID" />
+                <ScalarProperty Name="VarisTarih" ColumnName="VarisTarih" />
+                <ScalarProperty Name="Aciliyet" ColumnName="Aciliyet" />
+                <ScalarProperty Name="YoneticiNotu" ColumnName="YoneticiNotu" />
+                <ScalarProperty Name="CagriNo" ColumnName="CagriNo" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BekleyenCagrilar">
+            <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.BekleyenCagrilar">
+              <MappingFragment StoreEntitySet="BekleyenCagrilar">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BeklemeNedeni" ColumnName="BeklemeNedeni" />
+                <ScalarProperty Name="AtananID" ColumnName="AtananID" />
+                <ScalarProperty Name="AtayanID" ColumnName="AtayanID" />
+                <ScalarProperty Name="CagriNo" ColumnName="CagriNo" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CihazBilgileri">
+            <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.CihazBilgileri">
+              <MappingFragment StoreEntitySet="CihazBilgileri">
+                <ScalarProperty Name="CihazID" ColumnName="CihazID" />
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="SeriNo" ColumnName="SeriNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="FirmaCalisani">
             <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.FirmaCalisani">
               <MappingFragment StoreEntitySet="FirmaCalisani">
@@ -369,6 +1067,63 @@
                 <ScalarProperty Name="SozlesmeID" ColumnName="SozlesmeID" />
                 <ScalarProperty Name="FyID" ColumnName="FyID" />
                 <ScalarProperty Name="MID" ColumnName="MID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TamamlananCagrilar">
+            <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.TamamlananCagrilar">
+              <MappingFragment StoreEntitySet="TamamlananCagrilar">
+                <ScalarProperty Name="TamamlananID" ColumnName="TamamlananID" />
+                <ScalarProperty Name="TamamlayanYoneticiID" ColumnName="TamamlayanYoneticiID" />
+                <ScalarProperty Name="TamamlayanCalisanID" ColumnName="TamamlayanCalisanID" />
+                <ScalarProperty Name="FormNo" ColumnName="FormNo" />
+                <ScalarProperty Name="MID" ColumnName="MID" />
+                <ScalarProperty Name="YetkiliKisi" ColumnName="YetkiliKisi" />
+                <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BildirilenAriza" ColumnName="BildirilenAriza" />
+                <ScalarProperty Name="HizmetTipi" ColumnName="HizmetTipi" />
+                <ScalarProperty Name="CihazinHizmetDurumu" ColumnName="CihazinHizmetDurumu" />
+                <ScalarProperty Name="CagrininBildirigiTarih" ColumnName="CagrininBildirigiTarih" />
+                <ScalarProperty Name="HizmetBaslangicTarihi" ColumnName="HizmetBaslangicTarihi" />
+                <ScalarProperty Name="HizmetBitisTarihi" ColumnName="HizmetBitisTarihi" />
+                <ScalarProperty Name="CagriKayitNo" ColumnName="CagriKayitNo" />
+                <ScalarProperty Name="MesaiSaatiIcindeMi" ColumnName="MesaiSaatiIcindeMi" />
+                <ScalarProperty Name="YapılanIsinAciklamasi" ColumnName="YapılanIsinAciklamasi" />
+                <ScalarProperty Name="Sonuc" ColumnName="Sonuc" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="AnketYapildiMi" ColumnName="AnketYapildiMi" />
+                <ScalarProperty Name="Cihaz1" ColumnName="Cihaz1" />
+                <ScalarProperty Name="Cihaz2" ColumnName="Cihaz2" />
+                <ScalarProperty Name="Cihaz3" ColumnName="Cihaz3" />
+                <ScalarProperty Name="Cihaz4" ColumnName="Cihaz4" />
+                <ScalarProperty Name="UcretliParca1" ColumnName="UcretliParca1" />
+                <ScalarProperty Name="UcretliParca2" ColumnName="UcretliParca2" />
+                <ScalarProperty Name="UcretliParca3" ColumnName="UcretliParca3" />
+                <ScalarProperty Name="UcretliIscilik1" ColumnName="UcretliIscilik1" />
+                <ScalarProperty Name="UcretliIscilik2" ColumnName="UcretliIscilik2" />
+                <ScalarProperty Name="UcretliIscilik3" ColumnName="UcretliIscilik3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UcretliIscilik">
+            <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.UcretliIscilik">
+              <MappingFragment StoreEntitySet="UcretliIscilik">
+                <ScalarProperty Name="IscilikID" ColumnName="IscilikID" />
+                <ScalarProperty Name="Sure" ColumnName="Sure" />
+                <ScalarProperty Name="BirimFiyati" ColumnName="BirimFiyati" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UcretliParca">
+            <EntityTypeMapping TypeName="ServisTakipFirmaYoneticiDBModel.UcretliParca">
+              <MappingFragment StoreEntitySet="UcretliParca">
+                <ScalarProperty Name="ParcaID" ColumnName="ParcaID" />
+                <ScalarProperty Name="ParcaAdi" ColumnName="ParcaAdi" />
+                <ScalarProperty Name="ParcaNo" ColumnName="ParcaNo" />
+                <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+                <ScalarProperty Name="BirimFiyati" ColumnName="BirimFiyati" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

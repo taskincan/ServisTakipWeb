@@ -13,6 +13,8 @@
 
     @Html.HiddenFor(model => model.MusteriID)
 
+    @Html.HiddenFor(model => model.Durum)
+    
     <div class="row">
         <div class="col-md-1">
             @Html.LabelFor(model => model.FormNo)
@@ -151,7 +153,7 @@
                         @Html.Label("Arıza:")
                     </div>
                     <div class="col-md-6">
-                        <input type="radio" name="answer" checked="checked" value="Ariza" />
+                        <input type="radio" name="HizmetTipi" checked="checked" value="Ariza" />
                         @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Ariza")*@
 
                     </div>
@@ -161,7 +163,7 @@
                         @Html.Label("Kuruluş:")
                     </div>
                     <div class="col-md-6">
-                        <input type="radio" name="answer" value="Kurulus" />
+                        <input type="radio" name="HizmetTipi" value="Kurulus" />
                         @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Kurulus")*@
 
                     </div>
@@ -172,7 +174,7 @@
                         @Html.Label("Geri Alım:")
                     </div>
                     <div class="col-md-6">
-                        <input type="radio" name="answer" value="GeriAlim" />
+                        <input type="radio" name="HizmetTipi" value="GeriAlim" />
                         @*@Html.RadioButtonFor(model => model.BildirilenAriza, "GeriAlim")*@
 
                     </div>
@@ -184,7 +186,7 @@
                     <div class="col-md-4">
                         @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Diger", new { type = "radio", value = "other" })*@
 
-                        <input type="radio" name="answer" value="Other" />
+                        <input type="radio" name="HizmetTipi" value="Other" />
                     </div>
                     <div class="col-md-4">
                         @Html.TextBoxFor(model => model.HizmetTipi, new { @class = "form-control", style = "display:none;", type = "text", name = "otherAnswer", id = "otherAnswer" })
@@ -206,7 +208,7 @@
                         @Html.Label("Bakım Sözleşmeli:")
                     </div>
                     <div class="col-md-4">
-                        <input type="radio" name="answer2" checked="checked" value="Bakim" />
+                        <input type="radio" name="CihazinHizmetDurumu" checked="checked" value="Bakim" />
                         @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Ariza")*@
 
                     </div>
@@ -216,7 +218,7 @@
                         @Html.Label("Garantili:")
                     </div>
                     <div class="col-md-7">
-                        <input type="radio" name="answer2" value="Garantili" />
+                        <input type="radio" name="CihazinHizmetDurumu" value="Garantili" />
                         @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Kurulus")*@
 
                     </div>
@@ -227,7 +229,7 @@
                         @Html.Label("Ücretli:")
                     </div>
                     <div class="col-md-6">
-                        <input type="radio" name="answer2" value="Ucretli" />
+                        <input type="radio" name="CihazinHizmetDurumu" value="Ucretli" />
                         @*@Html.RadioButtonFor(model => model.BildirilenAriza, "GeriAlim")*@
 
                     </div>
@@ -239,7 +241,7 @@
                     <div class="col-md-8">
                         @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Diger", new { type = "radio", value = "other" })*@
 
-                        <input type="radio" name="answer2" value="Other2" />
+                        <input type="radio" name="CihazinHizmetDurumu" value="Other2" />
 
                         @Html.TextBoxFor(model => model.HizmetTipi, new { @class = "form-control", style = "display:none;", type = "text", name = "otherAnswer2", id = "otherAnswer2" })
                         @*TODO: sayfa submit edilirken otheranswer ne diye geri dönecek iyi bakk.*@
@@ -394,7 +396,7 @@
                                     <span class="input-group-addon">
                                         <i class="glyphicon glyphicon-calendar"></i>
                                     </span>
-                                    @Html.TextBoxFor(model => model.CagriBildirildigiTarih, new { @class = "form-control datepicker", id = "datetimepickerSaatli", placeholder = "Çağrı Bildirildiği Tarih" })
+                                    @Html.TextBoxFor(model => model.CagriBildirildigiTarih, new { @class = "form-control datepicker", @readonly = "readonly", placeholder = "Çağrı Bildirildiği Tarih" })
 
                                     @*<input type="text" id="datetimepicker" name="BaslangicTarih" class="form-control" value="@Model.BaslangicTarih" required>*@
                                 </div>
@@ -483,7 +485,7 @@
     <div class="row" style="margin-top:10px ">
         <div class="col-md-4" style="margin-top:10px"> 
             <button class=" btn btn-success btn-block" type="submit" value="Kaydet">
-                Kaydet
+                Tamamla
             </button>
         </div>
 

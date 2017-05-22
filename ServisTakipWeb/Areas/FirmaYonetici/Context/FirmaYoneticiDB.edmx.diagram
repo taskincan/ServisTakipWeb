@@ -4,16 +4,36 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="84c05d6438f042f6b8972c2364548559" Name="Diagram1">
-        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.FirmaCalisani" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.FirmaYonetici" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.Musteri" Width="1.5" PointX="3.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.Sozlesme" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.SozlesmeYapma" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+      <Diagram DiagramId="d3c5dc96915c445d848b8d5b63766199" Name="Diagram1">
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.AtananCagrilar" Width="1.5" PointX="10.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.BekleyenCagrilar" Width="1.5" PointX="13.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.CihazBilgileri" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.FirmaCalisani" Width="1.5" PointX="8" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.FirmaYonetici" Width="1.5" PointX="5.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.Musteri" Width="1.5" PointX="5.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.Sozlesme" Width="1.5" PointX="5.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.SozlesmeYapma" Width="1.5" PointX="8" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.TamamlananCagrilar" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.UcretliIscilik" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServisTakipFirmaYoneticiDBModel.UcretliParca" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__AtananCag__Atana__31B762FC" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__AtananCag__Ataya__30C33EC3" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__BekleyenC__Atana__37703C52" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__BekleyenC__Ataya__367C1819" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__Tamamlana__Cihaz__00DF2177" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__Tamamlana__Cihaz__01D345B0" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__Tamamlana__Cihaz__02C769E9" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__Tamamlana__Cihaz__03BB8E22" ManuallyRouted="false" />
         <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__FirmaCali__Creat__2D27B809" ManuallyRouted="false" />
         <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__SozlesmeYa__FyID__71D1E811" ManuallyRouted="false" />
         <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__SozlesmeYap__MID__72C60C4A" ManuallyRouted="false" />
         <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__SozlesmeY__Sozle__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__Tamamlana__Ucret__04AFB25B" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__Tamamlana__Ucret__05A3D694" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__Tamamlana__Ucret__0697FACD" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__Tamamlana__Ucret__078C1F06" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__Tamamlana__Ucret__0880433F" ManuallyRouted="false" />
+        <AssociationConnector Association="ServisTakipFirmaYoneticiDBModel.FK__Tamamlana__Ucret__09746778" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

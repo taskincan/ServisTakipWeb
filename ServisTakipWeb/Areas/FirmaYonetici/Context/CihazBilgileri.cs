@@ -12,34 +12,29 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
     using System;
     using System.Collections.Generic;
     
-    public partial class FirmaYonetici
+    public partial class CihazBilgileri
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FirmaYonetici()
+        public CihazBilgileri()
         {
-            this.AtananCagrilar = new HashSet<AtananCagrilar>();
-            this.BekleyenCagrilar = new HashSet<BekleyenCagrilar>();
-            this.FirmaCalisani = new HashSet<FirmaCalisani>();
-            this.SozlesmeYapma = new HashSet<SozlesmeYapma>();
+            this.TamamlananCagrilar = new HashSet<TamamlananCagrilar>();
+            this.TamamlananCagrilar1 = new HashSet<TamamlananCagrilar>();
+            this.TamamlananCagrilar2 = new HashSet<TamamlananCagrilar>();
+            this.TamamlananCagrilar3 = new HashSet<TamamlananCagrilar>();
         }
     
-        public int FyID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Ad { get; set; }
-        public string Soyad { get; set; }
-        public string Gsm { get; set; }
-        public string Email { get; set; }
-        public int FirmaID { get; set; }
-        public System.DateTime CreateDate { get; set; }
+        public int CihazID { get; set; }
+        public string Marka { get; set; }
+        public string Model { get; set; }
+        public string SeriNo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AtananCagrilar> AtananCagrilar { get; set; }
+        public virtual ICollection<TamamlananCagrilar> TamamlananCagrilar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BekleyenCagrilar> BekleyenCagrilar { get; set; }
+        public virtual ICollection<TamamlananCagrilar> TamamlananCagrilar1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FirmaCalisani> FirmaCalisani { get; set; }
+        public virtual ICollection<TamamlananCagrilar> TamamlananCagrilar2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SozlesmeYapma> SozlesmeYapma { get; set; }
+        public virtual ICollection<TamamlananCagrilar> TamamlananCagrilar3 { get; set; }
     }
 }

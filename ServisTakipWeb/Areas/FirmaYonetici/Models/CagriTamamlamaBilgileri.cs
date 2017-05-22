@@ -21,10 +21,13 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [Display(Name = "Form No")]
         [DataType(DataType.PhoneNumber)]
         [Required]
-        public int FormNo { get; set; }
+        public string FormNo { get; set; }
 
-        [Display(Name = "Müşteri Adı")] 
+        [Display(Name = "Müşteri Adı")]
         public string MusteriAdi { get; set; }
+
+        [Display(Name = "Tamamlayan Kişi")]
+        public string TamamlayanKisi { get; set; }
 
         [Display(Name = "Yetkili Kişi")]
         public string YetkiliKisi { get; set; }
@@ -97,81 +100,81 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         public string YapilanIsinAciklamasi { get; set; }
                   
         [Display(Name = "Sonuç")]
-        [DataType(DataType.Text)]
-        [Required]
+        [DataType(DataType.Text)] 
         [MinLength(1)]
         [MaxLength(20)]
         public string Sonuc { get; set; }
 
-        [Display(Name = "Marka")]
+        [Display(Name = "Marka-1")]
         [DataType(DataType.Text)]
+        [Required]
         [MinLength(1)]
         [MaxLength(30)]
         public string Marka1 { get; set; }
 
-        [Display(Name = "Model")]
+        [Display(Name = "Model-1")]
         [DataType(DataType.Text)]
         [Required]
         [MinLength(1)] 
         [MaxLength(30)]
         public string Model1 { get; set; }
 
-        [Display(Name = "Seri No")]
+        [Display(Name = "Seri No-1")]
         [DataType(DataType.Text)]
         [Required]
         [MinLength(1)]
         [MaxLength(30)]
         public string SeriNo1 { get; set; }
- 
-        [Display(Name = "Marka")]
+
+        [Display(Name = "Marka-2")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
         public string Marka2 { get; set; }
 
-        [Display(Name = "Model")]
+        [Display(Name = "Model-2")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
         public string Model2 { get; set; }
 
-        [Display(Name = "Seri No")]
+        [Display(Name = "Seri No-2")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
         public string SeriNo2 { get; set; }
-         
-        [Display(Name = "Marka")]
+
+        [Display(Name = "Marka-3")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
         public string Marka3 { get; set; }
 
-        [Display(Name = "Model")]
+        [Display(Name = "Model-3")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
         public string Model3 { get; set; }
 
-        [Display(Name = "Seri No")]
+        [Display(Name = "Seri No-3")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
         public string SeriNo3 { get; set; }
 
-        [Display(Name = "Marka")]
+        [Display(Name = "Marka-4")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
         public string Marka4 { get; set; }
 
-        [Display(Name = "Model")]
+        [Display(Name = "Model-4")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
         public string Model4 { get; set; }
 
-        [Display(Name = "Seri No")]
+        [Display(Name = "Seri No-4")]
         [DataType(DataType.Text)]
         [MinLength(1)]
         [MaxLength(30)]
@@ -259,10 +262,12 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [DataType(DataType.Text)]
         [MaxLength(200)]
         public string AciklamaIscilik3 { get; set; }
-
-        [Display(Name = "Anket Yapıldı Mı")]
+         
         [Required]
-        public bool AnketYapildiMi { get; set; } 
+        public bool AnketYapildiMi { get; set; }
+
+        [Display(Name = "Anket")] 
+        public string AnketYapildiMiTablo { get; set; } 
 
         [Display(Name = "İşlem Gördü Mü")]
         [Required]

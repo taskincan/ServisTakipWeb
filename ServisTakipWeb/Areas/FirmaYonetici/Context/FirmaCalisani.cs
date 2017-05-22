@@ -14,6 +14,12 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
     
     public partial class FirmaCalisani
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public FirmaCalisani()
+        {
+            this.BekleyenCagrilar = new HashSet<BekleyenCagrilar>();
+        }
+    
         public int FcID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
@@ -25,6 +31,9 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
         public int CreateUserID { get; set; }
         public System.DateTime CreateDate { get; set; }
     
+        public virtual AtananCagrilar AtananCagrilar { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BekleyenCagrilar> BekleyenCagrilar { get; set; }
         public virtual FirmaYonetici FirmaYonetici { get; set; }
     }
 }

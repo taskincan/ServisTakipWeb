@@ -80,38 +80,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
             try
             {
                 if (ModelState.IsValid)
-                {
-                    /*if (_musteriBilgileri.MusteriKodu == "0") 
-                    {
-                        if (ModelState.IsValid)
-                        {
-                            MusteriBilgileri musteri = new MusteriBilgileri();
-
-                            musteri.Adres = _musteriBilgileri.Adres;
-                            musteri.Email = _musteriBilgileri.Email;
-                            musteri.MusteriAdi = _musteriBilgileri.MusteriAdi;
-                            musteri.MusteriKodu = _musteriBilgileri.MusteriKodu;
-                            musteri.Password = _musteriBilgileri.Password;
-                            musteri.Tel1 = _musteriBilgileri.Tel1;
-                            musteri.Tel2 = _musteriBilgileri.Tel2;
-                            musteri.VergiDairesi = _musteriBilgileri.VergiDairesi;
-                            musteri.VergiNumarasi = _musteriBilgileri.VergiNumarasi;
-                            musteri.YetkiliKisi = _musteriBilgileri.YetkiliKisi;
-                            musteri.CreateUserID = Connection.ID;
-                            musteri.CreateDate = DateTime.Now;
-
-                            MusteriBilgileri.musteriList.Add(musteri);
-
-                            return RedirectToAction("Sozlesme", "MusteriBilgileri", new { id = -2, kod = _musteriBilgileri.MusteriKodu });
-                        }
-                        return View(_musteriBilgileri);
-
-                    }
-                    else
-                    {*/
+                { 
                     MusteriBilgileri musteri = MusteriBilgileri.musteriList.SingleOrDefault(x => x.ID == _musteriBilgileri.ID);
-
-                    //var updatedMusteri = dbFirmaYonetici.Musteri.SingleOrDefault(x => x.ID == _musteriBilgileri.ID);
 
                     musteri.ID = _musteriBilgileri.ID;
                     musteri.Adres = _musteriBilgileri.Adres;
@@ -125,15 +95,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     musteri.VergiNumarasi = _musteriBilgileri.VergiNumarasi;
                     musteri.YetkiliKisi = _musteriBilgileri.YetkiliKisi;
                     musteri.CreateDate = DateTime.Now;
-
-                    /*dbFirmaYonetici.Entry(updatedMusteri).State = EntityState.Modified;
-                    dbFirmaYonetici.SaveChanges();
-                    ModelState.Clear();*/
-
-                    //return RedirectToAction("Sozlesme", "MusteriBilgileri", _musteriBilgileri);
-                    return RedirectToAction("Sozlesme", "MusteriBilgileri", new { id = _musteriBilgileri.ID, id2 = "" });
-                    //}
-
+                     
+                    return RedirectToAction("Sozlesme", "MusteriBilgileri", new { id = _musteriBilgileri.ID, id2 = "" }); 
                 }
                 return View(_musteriBilgileri);
             }

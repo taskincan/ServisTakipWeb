@@ -25,10 +25,16 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AtananCagrilar> AtananCagrilar { get; set; }
+        public virtual DbSet<BekleyenCagrilar> BekleyenCagrilar { get; set; }
+        public virtual DbSet<CihazBilgileri> CihazBilgileri { get; set; }
         public virtual DbSet<FirmaCalisani> FirmaCalisani { get; set; }
         public virtual DbSet<FirmaYonetici> FirmaYonetici { get; set; }
         public virtual DbSet<Musteri> Musteri { get; set; }
         public virtual DbSet<Sozlesme> Sozlesme { get; set; }
         public virtual DbSet<SozlesmeYapma> SozlesmeYapma { get; set; }
+        public virtual DbSet<TamamlananCagrilar> TamamlananCagrilar { get; set; }
+        public virtual DbSet<UcretliIscilik> UcretliIscilik { get; set; }
+        public virtual DbSet<UcretliParca> UcretliParca { get; set; }
     }
 }

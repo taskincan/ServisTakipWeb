@@ -87,7 +87,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/FirmaYonetici/BekleyenCagrilar">
+                                    <a href="/FirmaYonetici/TamamlananCagrilar">
                                         <i class="fa fa-fw fa-beer"></i> @ServisTakipWeb.Connection.tamamlananCagrilar.ToString()
                                     </a>
                                 </li>
@@ -213,7 +213,8 @@
         });
          
           
-        $("input[type='radio']").change(function () {
+        $("input[type='radio']").change(function ()
+        {
 
             if ($(this).val() == "Other")
             {
@@ -231,16 +232,20 @@
             {
                 $("#otherAnswer").hide();
             }
-            else if ($(this).val() == "Bakim") {
+            else if ($(this).val() == "Bakim")
+            {
                 $("#otherAnswer2").hide();
             }
-            else if ($(this).val() == "Garantili") {
+            else if ($(this).val() == "Garantili")
+            {
                 $("#otherAnswer2").hide();
             }
-            else if ($(this).val() == "Ucretli") {
+            else if ($(this).val() == "Ucretli")
+            {
                 $("#otherAnswer2").hide();
             } 
-            else if ($(this).val() == "Other2") {
+            else if ($(this).val() == "Other2")
+            {
                 $("#otherAnswer2").show();
             }
         });
