@@ -178,6 +178,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     CalisanBilgileri.firmaCalisanList.Add(_firmaCalisanList);
                 }
             }
+            CalisanBilgileri.firmaCalisanList = CalisanBilgileri.firmaCalisanList.OrderByDescending(x=>x.CreateDate).ToList();
         }
 
         private void ListTemizle()

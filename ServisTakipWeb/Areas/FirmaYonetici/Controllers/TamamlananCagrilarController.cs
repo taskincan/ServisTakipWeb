@@ -22,6 +22,17 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
             return View(CagriTamamlamaBilgileri.cagriTamamlamaList);
         }
 
+        public ActionResult Goruntule(int _cagriNo = -1)
+        {
+            var tamamlananCagri = CagriTamamlamaBilgileri.cagriTamamlamaList.SingleOrDefault(x => x.CagriKayitNo == _cagriNo);
+
+            if (tamamlananCagri == null)
+                return View("Index");
+            else
+                return View(tamamlananCagri);
+        }
+
+
         private void GelenCagriListYarat()
         {
             CagriTamamlamaBilgileri.cagriTamamlamaList.Clear();
@@ -140,6 +151,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     }
                 }
             }
+            CagriTamamlamaBilgileri.cagriTamamlamaList = CagriTamamlamaBilgileri.cagriTamamlamaList.OrderByDescending(x => x.HizmetBitisTarihi).ToList();
         }
 
     }

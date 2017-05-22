@@ -14,13 +14,13 @@
             <div class="table-responsive">
                 <table id="data" class="table table-bordered table-hover table-striped">
                     <thead>
-                        <tr>
-                            <th class="col-md-2">@Html.DisplayNameFor(model => model.TamamlananID)</th>
+                        <tr> 
                             <th class="col-md-2">@Html.DisplayNameFor(model => model.CagriKayitNo)</th>
                             <th class="col-md-2">@Html.DisplayNameFor(model => model.MusteriKodu)</th>
                             <th class="col-md-2">@Html.DisplayNameFor(model => model.MusteriAdi)</th>
                             <th class="col-md-2">@Html.DisplayNameFor(model => model.TamamlayanKisi)</th>
                             <th class="col-md-2">@Html.DisplayNameFor(model => model.HizmetBitisTarihi)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.Sonuc)</th>
                             <th class="col-md-2">@Html.DisplayNameFor(model => model.AnketYapildiMiTablo)</th>
                             <th class="col-md-2"></th>
                             
@@ -58,13 +58,13 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.TamamlananID)</td>
+                            <tr> 
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.CagriKayitNo)</td>
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.MusteriKodu)</td>
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.MusteriAdi)</td>
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.TamamlayanKisi)</td>
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.HizmetBitisTarihi)</td>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.Sonuc)</td>
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.AnketYapildiMiTablo)</td>
                                 <td class="col-md-2">
                                     <a href="@Url.Action("Goruntule", "TamamlananCagrilar", new { _cagriNo = item.CagriKayitNo })" class="btn btn-success">

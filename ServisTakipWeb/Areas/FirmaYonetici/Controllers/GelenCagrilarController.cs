@@ -16,7 +16,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
         public ActionResult Index()
         {
             GelenCagriListYarat();
-
+             
+  
             Connection.sayfaAdi = "Gelen Çağrılar";
             return View(CagriBilgileri.cagriList);
         }
@@ -24,7 +25,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
         public ActionResult Goruntule(int _cagriNo = -1)
         {
             var cagri = CagriBilgileri.cagriList.SingleOrDefault(x => x.CagriNo == _cagriNo);
-
+             
             if (cagri == null)
                 return View("Index");
             else
@@ -119,7 +120,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     _cagriTamamlama.Sonuc = "Tamamlandı";
 
                     var cagriTamamla = new Context.TamamlananCagrilar();
-                       
+
                     cagriTamamla.TamamlayanYoneticiID = Connection.ID; //Firma Yonetici Panelindeyiz.
                     cagriTamamla.TamamlayanCalisanID = -1; //Firma Yonetici Panelindeyiz.
                     cagriTamamla.FormNo = _cagriTamamlama.FormNo;
@@ -139,7 +140,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     cagriTamamla.Sonuc = _cagriTamamlama.Sonuc;
                     cagriTamamla.CreateDate = DateTime.Now;
                     cagriTamamla.AnketYapildiMi = _cagriTamamlama.AnketYapildiMi;
-                    
+
                     /*cagriTamamla.Marka1 = "";
                     cagriTamamla.Marka2 = "";
                     cagriTamamla.Marka3 = "";
@@ -176,22 +177,22 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     cagriTamamla.BirimFiyatiIscilik2 = 0;
                     cagriTamamla.BirimFiyatiIscilik3 = 0;*/
 
-                    bool kayitBasarili = false; 
+                    bool kayitBasarili = false;
 
                     dbFirmaYonetici.TamamlananCagrilar.Add(cagriTamamla);
                     dbFirmaYonetici.SaveChanges();
 
                     kayitBasarili = true;
 
-                    if(kayitBasarili==true)
+                    if (kayitBasarili == true)
                     {
                         var acilanCagri = dbMusteriCalisan.AcilanCagri.SingleOrDefault(x => x.CagriNo == cagriTamamla.CagriKayitNo);
 
                         dbMusteriCalisan.AcilanCagri.Remove(acilanCagri);
-                        dbMusteriCalisan.SaveChanges();  
+                        dbMusteriCalisan.SaveChanges();
                     }
 
-                    return RedirectToAction("Index"); 
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
@@ -199,11 +200,102 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
 
                 return View(_cagriTamamlama);
-            } 
+            }
             //TODO: cagri tamamlama ekrani geri donen degerlere tek tek bak. Kontrol et
             return View();
         }
 
+        public ActionResult CagriIptal(int _cagriNo = -1)
+        {
+            var _cagri = CagriBilgileri.cagriList.SingleOrDefault(x => x.CagriNo == _cagriNo);
+
+            var cagriIptal = new CagriIptalBilgileri();
+
+            cagriIptal.CagriNo = _cagri.CagriNo;
+            cagriIptal.MusteriAdi = _cagri.MusteriAdi;
+            cagriIptal.Adres = _cagri.Adres;
+            cagriIptal.MusteriKodu = _cagri.MusteriKodu;
+            cagriIptal.IlgiliKisi = _cagri.IlgiliKisi;
+            cagriIptal.Telefon = _cagri.Telefon;
+            cagriIptal.Email = _cagri.Email;
+            cagriIptal.CagriAcilisTarihi = _cagri.CagriAcilisTarihi;
+            cagriIptal.CihazTipi = _cagri.CihazTipi;
+            cagriIptal.Marka = _cagri.Marka;
+            cagriIptal.Model = _cagri.Model;
+            cagriIptal.SeriNo = _cagri.SeriNo;
+            cagriIptal.BarkodNo = _cagri.BarkodNo;
+            cagriIptal.Aciklama = _cagri.Aciklama;
+            cagriIptal.CagriDetayi = _cagri.CagriDetayi;
+            cagriIptal.SarfMalzemeTalebi = _cagri.SarfMalzemeTalebi;
+            cagriIptal.TamamlayanYoneticiID = Connection.ID;
+
+            return View(cagriIptal);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CagriIptal(CagriIptalBilgileri _cagriIptal)
+        {
+            try
+            {
+                var _cagri = CagriBilgileri.cagriList.SingleOrDefault(x => x.CagriNo == _cagriIptal.CagriNo);
+
+                if (ModelState.IsValid)
+                {
+                    var cagriIptal = new Context.TamamlananCagrilar();
+
+                    cagriIptal.FormNo = _cagriIptal.FormNo;
+                    cagriIptal.YapılanIsinAciklamasi = _cagriIptal.CagriIptalEtmeNedeni;
+
+                    cagriIptal.CagriKayitNo = _cagri.CagriNo;
+                    cagriIptal.MID = _cagri.CreateUserID;
+                    cagriIptal.YetkiliKisi = _cagri.IlgiliKisi;
+                    cagriIptal.Gsm = _cagri.Telefon;
+                    cagriIptal.Email = _cagri.Email;
+                    cagriIptal.BildirilenAriza = _cagri.CagriDetayi + " - " + _cagri.Aciklama;
+
+                    _cagri.Durum = "İptal";
+
+                    cagriIptal.TamamlayanYoneticiID = Connection.ID; //Firma Yonetici Panelindeyiz.
+                    cagriIptal.TamamlayanCalisanID = -1; //Firma Yonetici Panelindeyiz.
+                    cagriIptal.HizmetTipi = "-";
+                    cagriIptal.CihazinHizmetDurumu = "-";
+                    cagriIptal.CagrininBildirigiTarih = _cagri.CagriAcilisTarihi;
+                    cagriIptal.HizmetBaslangicTarihi = DateTime.Now;
+                    cagriIptal.HizmetBitisTarihi = DateTime.Now; 
+                    cagriIptal.MesaiSaatiIcindeMi = true;
+                    cagriIptal.Sonuc = _cagri.Durum;
+                    cagriIptal.CreateDate = DateTime.Now;
+                    cagriIptal.AnketYapildiMi = false;
+
+                    bool kayitBasarili = false;
+
+                    dbFirmaYonetici.TamamlananCagrilar.Add(cagriIptal);
+                    dbFirmaYonetici.SaveChanges();
+
+                    kayitBasarili = true;
+
+                    if (kayitBasarili == true)
+                    {
+                        var acilanCagri = dbMusteriCalisan.AcilanCagri.SingleOrDefault(x => x.CagriNo == cagriIptal.CagriKayitNo);
+
+                        dbMusteriCalisan.AcilanCagri.Remove(acilanCagri);
+                        dbMusteriCalisan.SaveChanges();
+                    }
+
+                    return RedirectToAction("Index");
+
+                }
+                else
+                    return View(_cagriIptal);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+
+                return View();
+            } 
+        }
 
 
         private void GelenCagriListYarat()
@@ -256,7 +348,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                         cagri.Aciklama = _cagri.Aciklama;
                         cagri.CagriDetayi = _cagri.CagriDetayi;
                         cagri.SarfMalzemeTalebi = _cagri.SarfMalzemeTalebi;
-                        cagri.CreateUserID = _McID;
+                        cagri.CreateUserID = _musteri.ID;
                         cagri.IslemGorduMu = false;
                         cagri.Durum = "Gelen Çağrı";
 
@@ -265,6 +357,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     }
                 }
             }
+
+            CagriBilgileri.cagriList = CagriBilgileri.cagriList.OrderBy(x => x.CagriAcilisTarihi).ToList();
         }
 
     }

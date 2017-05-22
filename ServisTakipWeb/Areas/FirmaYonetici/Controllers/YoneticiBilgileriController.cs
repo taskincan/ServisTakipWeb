@@ -165,6 +165,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     FirmaYönetici.firmaYoneticiList.Add(_firmaYoneticiList);
                 }
             }
+            FirmaYönetici.firmaYoneticiList = FirmaYönetici.firmaYoneticiList.OrderBy(x=>x.CreateDate).ToList();
         }
 
         private void ListTemizle()

@@ -449,12 +449,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 
                 return View(_sozlesme);
             }
-        }
-
-
-
-
-
+        } 
 
         private void MusteriListYarat()
         {
@@ -531,6 +526,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     }
                 }
             }
+             
+            MusteriBilgileri.musteriList = MusteriBilgileri.musteriList.OrderBy(x => x.CreateDate).ToList();
         }
 
         private void MusteriListTemizle()

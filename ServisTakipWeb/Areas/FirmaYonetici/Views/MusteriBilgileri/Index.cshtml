@@ -23,7 +23,7 @@
                 <table id="data" class="table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
-                            <th class="col-md-2">@Html.DisplayNameFor(model => model.ID)</th>
+                            @*<th class="col-md-2">@Html.DisplayNameFor(model => model.ID)</th>*@
                             <th class="col-md-4">@Html.DisplayNameFor(model => model.MusteriKodu)</th>
                             <th class="col-md-2">@Html.DisplayNameFor(model => model.MusteriAdi)</th>
                             <th class="col-md-2">@Html.DisplayNameFor(model => model.YetkiliKisi)</th>
@@ -39,7 +39,7 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.ID)</td>
+                                @*<td class="col-md-2">@Html.DisplayFor(modelItem => item.ID)</td>*@
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.MusteriKodu)</td>
                                 <td class="col-md-4">@Html.DisplayFor(modelItem => item.MusteriAdi)</td>
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.YetkiliKisi)</td>
