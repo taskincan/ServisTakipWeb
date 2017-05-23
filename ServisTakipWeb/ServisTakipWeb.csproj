@@ -156,7 +156,9 @@
     <Compile Include="Areas\Admin\Models\AdminBilgileri.cs" />
     <Compile Include="Areas\Admin\Models\FirmaBilgileri.cs" />
     <Compile Include="Areas\FirmaCalisan\Controllers\AnaSayfaController.cs" />
+    <Compile Include="Areas\FirmaCalisan\Controllers\AtanmisCagrilarController.cs" />
     <Compile Include="Areas\FirmaCalisan\FirmaCalisanAreaRegistration.cs" />
+    <Compile Include="Areas\FirmaCalisan\Models\AtanmisCagrilar.cs" />
     <Compile Include="Areas\FirmaYonetici\Context\AtananCagrilar.cs">
       <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
     </Compile>
@@ -387,7 +389,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\FirmaCalisan\Models\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
@@ -679,6 +680,27 @@
     <Content Include="Areas\FirmaYonetici\Views\GelenCagrilar\Tamamla.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\TamamlananCagrilar\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\BekleyenCagrilar\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\AtanmisCagrilar\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\TamamlananCagrilar\Goruntule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\GelenCagrilar\CagriIptal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\GelenCagrilar\Atama.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaCalisan\Views\AtanmisCagrilar\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FirmaYoneticiDB.Designer.cs</LastGenOutput>
@@ -700,22 +722,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Views\TamamlananCagrilar\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Views\BekleyenCagrilar\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Views\AtanmisCagrilar\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Views\TamamlananCagrilar\Goruntule.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Views\GelenCagrilar\CagriIptal.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Views\GelenCagrilar\Atama.cshtml" />
+    <Content Include="Areas\FirmaCalisan\Views\AtanmisCagrilar\Goruntule.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

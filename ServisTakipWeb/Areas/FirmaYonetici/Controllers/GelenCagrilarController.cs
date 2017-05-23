@@ -284,6 +284,10 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 
                     return RedirectToAction("Index");
                 }
+                else
+                {
+                    return View(_cagriAtama);
+                }
             }
             catch (Exception ex)
             {

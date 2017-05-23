@@ -6,15 +6,21 @@ using System.Linq;
 using System.Web;
 using ServisTakipWeb.Models;
 
-namespace ServisTakipWeb.Areas.FirmaYonetici.Models
+namespace ServisTakipWeb.Areas.FirmaCalisan.Models
 {
-    public class CagriAtamaBilgileri : BaseModel
+    public class AtanmisCagrilar : BaseModel
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int ID { get; set; } 
+
+        [Display(Name = "Durum")]
+        public string Durum { get; set; }
 
         public int AtayanID { get; set; }
+
+        [Display(Name = "Atayan Kişi")]
+        public string AtayanAdiSoyadi { get; set; }
 
         [Display(Name = "Atanacak Çalışan")]
         public int AtananID { get; set; }
@@ -68,19 +74,14 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         public string SarfMalzemeTalebi { get; set; }
 
         [Display(Name = "Varış Tarihi")]
-        [DataType(DataType.Date)]
-        [Required] 
         public DateTime VarisTarih { get; set; }
 
         [Display(Name = "Not")]
-        [DataType(DataType.Text)] 
-        [MaxLength(400)]
         public string Not { get; set; }
 
-        [Display(Name = "Acil")]  
+        [Display(Name = "Acil")]
         public bool AcilMi { get; set; }
-         
-        public static List<CagriAtamaBilgileri> cagriAtamaList = new List<CagriAtamaBilgileri>();
-        public static List<CalisanBilgileri> calisanList = new List<CalisanBilgileri>();
+
+        public static List<AtanmisCagrilar> cagriAtanmisList = new List<AtanmisCagrilar>();  
     }
 }

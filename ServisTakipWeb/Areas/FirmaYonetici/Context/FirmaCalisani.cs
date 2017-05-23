@@ -17,6 +17,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FirmaCalisani()
         {
+            this.AtananCagrilar = new HashSet<AtananCagrilar>();
             this.BekleyenCagrilar = new HashSet<BekleyenCagrilar>();
         }
     
@@ -31,7 +32,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
         public int CreateUserID { get; set; }
         public System.DateTime CreateDate { get; set; }
     
-        public virtual AtananCagrilar AtananCagrilar { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AtananCagrilar> AtananCagrilar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BekleyenCagrilar> BekleyenCagrilar { get; set; }
         public virtual FirmaYonetici FirmaYonetici { get; set; }

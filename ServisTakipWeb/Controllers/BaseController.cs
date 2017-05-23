@@ -17,7 +17,7 @@ namespace ServisTakipWeb.Controllers
         private ServisTakipAdminDBEntities _dbAdmin = null;
         private ServisTakipFirmaYoneticiDBEntities _dbFirmaYonetici = null;
         private ServisTakipMusteriDBEntities _dbMusteri = null;
-        private ServisTakipMusteriCalisanDBEntities _dbMusteriCalisan = null;
+        private ServisTakipMusteriCalisanDBEntities _dbMusteriCalisan = null; 
 
         public ServisTakipFirmaYoneticiDBEntities dbFirmaYonetici
         {

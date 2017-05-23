@@ -2,7 +2,7 @@
 <Schema Namespace="ServisTakipFirmaYoneticiDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="AtananCagrilar">
     <Key>
-      <PropertyRef Name="AtananID" />
+      <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="AtananID" Type="int" Nullable="false" />
@@ -154,9 +154,9 @@
     <Property Name="Miktar" Type="int" />
     <Property Name="BirimFiyati" Type="money" />
   </EntityType>
-  <Association Name="FK__AtananCag__Atana__31B762FC">
+  <Association Name="FK__AtananCag__Atana__1E6F845E">
     <End Role="FirmaCalisani" Type="Self.FirmaCalisani" Multiplicity="1" />
-    <End Role="AtananCagrilar" Type="Self.AtananCagrilar" Multiplicity="0..1" />
+    <End Role="AtananCagrilar" Type="Self.AtananCagrilar" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="FirmaCalisani">
         <PropertyRef Name="FcID" />
@@ -166,7 +166,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__AtananCag__Ataya__30C33EC3">
+  <Association Name="FK__AtananCag__Ataya__1D7B6025">
     <End Role="FirmaYonetici" Type="Self.FirmaYonetici" Multiplicity="1" />
     <End Role="AtananCagrilar" Type="Self.AtananCagrilar" Multiplicity="*" />
     <ReferentialConstraint>
@@ -382,11 +382,11 @@
     <EntitySet Name="TamamlananCagrilar" EntityType="Self.TamamlananCagrilar" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UcretliIscilik" EntityType="Self.UcretliIscilik" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UcretliParca" EntityType="Self.UcretliParca" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__AtananCag__Atana__31B762FC" Association="Self.FK__AtananCag__Atana__31B762FC">
+    <AssociationSet Name="FK__AtananCag__Atana__1E6F845E" Association="Self.FK__AtananCag__Atana__1E6F845E">
       <End Role="FirmaCalisani" EntitySet="FirmaCalisani" />
       <End Role="AtananCagrilar" EntitySet="AtananCagrilar" />
     </AssociationSet>
-    <AssociationSet Name="FK__AtananCag__Ataya__30C33EC3" Association="Self.FK__AtananCag__Ataya__30C33EC3">
+    <AssociationSet Name="FK__AtananCag__Ataya__1D7B6025" Association="Self.FK__AtananCag__Ataya__1D7B6025">
       <End Role="FirmaYonetici" EntitySet="FirmaYonetici" />
       <End Role="AtananCagrilar" EntitySet="AtananCagrilar" />
     </AssociationSet>
