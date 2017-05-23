@@ -3,9 +3,7 @@
 @{
     ViewBag.Title = "Firma Yönetici | Çalışan Bilgileri";
     Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
-}
-
-<h2>Firma Yönetici Çalışan ekranı</h2>
+} 
    
 <div class="row">
 
@@ -27,7 +25,7 @@
                         <tr>
                             @*<th class="col-md-2">@Html.DisplayNameFor(model => model.FcID)</th>*@
                             <th class="col-md-4">@Html.DisplayNameFor(model => model.UserName)</th>
-                            <th class="col-md-2">@Html.DisplayNameFor(model => model.Password)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.Password2)</th>
                             <th class="col-md-2">@Html.DisplayNameFor(model => model.Ad)</th>
                             <th class="col-md-4">@Html.DisplayNameFor(model => model.Soyad)</th>
                             <th class="col-md-4">@Html.DisplayNameFor(model => model.Gsm)</th>
@@ -45,7 +43,7 @@
                             <tr>
                                 @*<td class="col-md-2">@Html.DisplayFor(modelItem => item.FcID)</td>*@
                                 <td class="col-md-4">@Html.DisplayFor(modelItem => item.UserName)</td>
-                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.Password)</td>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.Password2)</td>
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.Ad)</td>
                                 <td class="col-md-4">@Html.DisplayFor(modelItem => item.Soyad)</td>
                                 <td class="col-md-4">@Html.DisplayFor(modelItem => item.Gsm)</td>

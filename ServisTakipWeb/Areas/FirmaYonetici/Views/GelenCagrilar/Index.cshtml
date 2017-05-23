@@ -27,20 +27,23 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.CagriNo)</td>
-                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.MusteriKodu)</td>
-                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.MusteriAdi)</td>
-                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.IlgiliKisi)</td>
-                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.Aciklama)</td>
-                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.CagriAcilisTarihi)</td> 
-                                <td class="col-md-2"> 
-                                    <a href="@Url.Action("Goruntule", "GelenCagrilar", new { _cagriNo = item.CagriNo })" class="btn btn-success">
-                                        Görüntüle
-                                        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                                    </a>
-                                </td>
-                            </tr>
+                             if (item.IslemGorduMu != 1)
+                             { 
+                                <tr>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.CagriNo)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.MusteriKodu)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.MusteriAdi)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.IlgiliKisi)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.Aciklama)</td> 
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.CagriAcilisTarihi)</td>
+                                    <td class="col-md-2">
+                                        <a href="@Url.Action("Goruntule", "GelenCagrilar", new { _cagriNo = item.CagriNo })" class="btn btn-success">
+                                            Görüntüle
+                                            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                             } 
                         }
                     </tbody>
 

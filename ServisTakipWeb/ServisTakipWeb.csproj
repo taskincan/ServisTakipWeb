@@ -215,6 +215,7 @@
     <Compile Include="Areas\FirmaYonetici\Controllers\TamamlananCagrilarController.cs" />
     <Compile Include="Areas\FirmaYonetici\Controllers\YoneticiBilgileriController.cs" />
     <Compile Include="Areas\FirmaYonetici\FirmaYoneticiAreaRegistration.cs" />
+    <Compile Include="Areas\FirmaYonetici\Models\CagriAtamaBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CagriBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CagriIptalBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CagriTamamlamaBilgileri.cs" />
@@ -712,6 +713,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\FirmaYonetici\Views\GelenCagrilar\CagriIptal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\GelenCagrilar\Atama.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -204,7 +205,95 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
             //TODO: cagri tamamlama ekrani geri donen degerlere tek tek bak. Kontrol et
             return View();
         }
+         
+        public ActionResult Atama(int _cagriNo = -1)
+        {  
+            var _cagri = CagriBilgileri.cagriList.SingleOrDefault(x => x.CagriNo == _cagriNo);
+            var cagriAtama = new CagriAtamaBilgileri();
+            
+            CalisanListYarat();
 
+            CagriAtamaBilgileri.calisanList = CalisanBilgileri.firmaCalisanList.ToList();
+            
+            cagriAtama.AtananID = 1;
+
+            cagriAtama.CagriNo = _cagri.CagriNo;
+            cagriAtama.MusteriAdi = _cagri.MusteriAdi;
+            cagriAtama.Adres = _cagri.Adres;
+            cagriAtama.MusteriKodu = _cagri.MusteriKodu;
+            cagriAtama.IlgiliKisi = _cagri.IlgiliKisi;
+            cagriAtama.Telefon = _cagri.Telefon;
+            cagriAtama.Email = _cagri.Email;
+            cagriAtama.CagriAcilisTarihi = _cagri.CagriAcilisTarihi;
+            cagriAtama.CihazTipi = _cagri.CihazTipi;
+            cagriAtama.Marka = _cagri.Marka;
+            cagriAtama.Model = _cagri.Model;
+            cagriAtama.SeriNo = _cagri.SeriNo;
+            cagriAtama.BarkodNo = _cagri.BarkodNo;
+            cagriAtama.Aciklama = _cagri.Aciklama;
+            cagriAtama.CagriDetayi = _cagri.CagriDetayi;
+            cagriAtama.SarfMalzemeTalebi = _cagri.SarfMalzemeTalebi;
+            cagriAtama.AtayanID = Connection.ID;
+            cagriAtama.AtananID = 0;
+            cagriAtama.Not = "";
+            cagriAtama.VarisTarih = DateTime.Now;
+            cagriAtama.AcilMi = false;
+
+            ViewBag.CalisanList = CagriAtamaBilgileri.calisanList;
+
+            if (cagriAtama == null)
+                return View("Index");
+            else
+                return View(cagriAtama);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Atama(CagriAtamaBilgileri _cagriAtama)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {   
+                    var cagriAtama = new Context.AtananCagrilar();
+                     
+                    cagriAtama.Aciliyet = _cagriAtama.AcilMi;
+                    cagriAtama.AtananID = _cagriAtama.AtananID;
+                    cagriAtama.AtayanID = Connection.ID;
+                    cagriAtama.CagriNo = _cagriAtama.CagriNo;
+                    cagriAtama.CreateDate = DateTime.Now;
+                    cagriAtama.VarisTarih = _cagriAtama.VarisTarih;
+                    cagriAtama.YoneticiNotu = _cagriAtama.Not; 
+
+                    bool kayitBasarili = false;
+
+                    dbFirmaYonetici.AtananCagrilar.Add(cagriAtama);
+                    dbFirmaYonetici.SaveChanges();
+
+                    kayitBasarili = true;
+
+                    if (kayitBasarili == true)
+                    {
+                        var acilanCagri = dbMusteriCalisan.AcilanCagri.SingleOrDefault(x => x.CagriNo == _cagriAtama.CagriNo);
+
+                        acilanCagri.IslemGorduMu = true; 
+                        
+                        dbMusteriCalisan.Entry(acilanCagri).State = EntityState.Modified;
+                        dbMusteriCalisan.SaveChanges(); 
+                    }
+
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+
+                return View();
+            }
+            return View(_cagriAtama);
+        }
+         
         public ActionResult CagriIptal(int _cagriNo = -1)
         {
             var _cagri = CagriBilgileri.cagriList.SingleOrDefault(x => x.CagriNo == _cagriNo);
@@ -295,8 +384,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 
                 return View();
             } 
-        }
-
+        } 
 
         private void GelenCagriListYarat()
         {
@@ -326,7 +414,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     if (Connection.parentID == firmaID) //firmaya ait cagrilar.
                     {
                         //TODO : temizlik gerekli sozlesmeler için.
-
+                         
                         var cagri = new CagriBilgileri();
 
                         cagri.CagriNo = _cagri.CagriNo;
@@ -349,7 +437,12 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                         cagri.CagriDetayi = _cagri.CagriDetayi;
                         cagri.SarfMalzemeTalebi = _cagri.SarfMalzemeTalebi;
                         cagri.CreateUserID = _musteri.ID;
-                        cagri.IslemGorduMu = false;
+
+                        if(_cagri.IslemGorduMu==false)
+                            cagri.IslemGorduMu = 0;
+                        else
+                            cagri.IslemGorduMu = 1;
+                        
                         cagri.Durum = "Gelen Çağrı";
 
                         CagriBilgileri.cagriList.Add(cagri);
@@ -361,5 +454,29 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
             CagriBilgileri.cagriList = CagriBilgileri.cagriList.OrderBy(x => x.CagriAcilisTarihi).ToList();
         }
 
+        private void CalisanListYarat()
+        {
+            CalisanBilgileri.firmaCalisanList.Clear();
+
+            int temp, count = 0;
+
+            count = dbFirmaYonetici.FirmaCalisani.Count();
+
+            for (temp = 0; temp < count; temp++)
+            {
+                if (Connection.parentID == dbFirmaYonetici.FirmaCalisani.ToList()[temp].FirmaID)
+                {
+                    int id = dbFirmaYonetici.FirmaCalisani.ToList()[temp].FcID;
+
+                    var _firmaCalisanList = new CalisanBilgileri(); 
+                    var _firmaCalisan = dbFirmaYonetici.FirmaCalisani.SingleOrDefault(x=>x.FcID == id);
+
+                    _firmaCalisanList.FcID = _firmaCalisan.FcID;
+                    _firmaCalisanList.CalisanAdSoyad = _firmaCalisan.Ad +" "+_firmaCalisan.Soyad;
+                    CalisanBilgileri.firmaCalisanList.Add(_firmaCalisanList);
+                }
+            }
+            CalisanBilgileri.firmaCalisanList = CalisanBilgileri.firmaCalisanList.OrderByDescending(x => x.Ad).ToList();
+        }  
     }
 }

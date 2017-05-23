@@ -70,7 +70,11 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [DataType(DataType.Password)]
         [MinLength(1)]
         [MaxLength(20)]
-        public string YoneteciPassword2 { get; set; }
+        public string Password2 { get; set; }
+
+
+        [Display(Name = "Atanacak Çalışan")]
+        public string CalisanAdSoyad { get; set; }
 
         public static List<CalisanBilgileri> firmaCalisanList = new List<CalisanBilgileri>();
     }

@@ -116,7 +116,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
 
         [Display(Name = "İşlem Gördü Mü")]
         [Required]
-        public bool IslemGorduMu { get; set; }
+        public int IslemGorduMu { get; set; }
 
         [Display(Name = "Sarf Malzeme Talebi")]
         [DataType(DataType.Text)]

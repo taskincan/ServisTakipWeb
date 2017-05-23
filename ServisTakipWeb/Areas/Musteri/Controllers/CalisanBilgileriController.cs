@@ -19,7 +19,7 @@ namespace ServisTakipWeb.Areas.Musteri.Controllers
             ListTemizle();
             ListYarat();
 
-            Connection.sayfaAdi = "Yönetici Bilgileri";
+            Connection.sayfaAdi = "Çalışan Bilgileri";
 
             return View(MusteriCalisanBilgileri.musteriCalisanList); 
         }

@@ -85,7 +85,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
         public ActionResult Create()
         {
             var _firmaCalisanList = new CalisanBilgileri();
-
+             
             _firmaCalisanList.CreateUserID = Connection.ID;
             _firmaCalisanList.FirmaID = Connection.parentID;
 
@@ -170,7 +170,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 
                     for (int temp2 = 0; temp2 < passLength; temp2++)
                     {
-                        _firmaCalisanList.YoneteciPassword2 += "*";
+                        _firmaCalisanList.Password2 += "*";
                     }
 
                     _firmaCalisanList.CreateDate = dbFirmaYonetici.FirmaCalisani.ToList()[temp].CreateDate;

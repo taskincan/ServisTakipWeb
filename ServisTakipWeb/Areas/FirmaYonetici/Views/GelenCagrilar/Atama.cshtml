@@ -1,18 +1,17 @@
 ﻿@using ServisTakipWeb.Areas.FirmaYonetici.Models
-@model CagriIptalBilgileri
+@model CagriAtamaBilgileri
 
 @{
-    ViewBag.Title = "CagriIptal";
+    ViewBag.Title = "Atama";
     Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
 }
 
-@using (Html.BeginForm("CagriIptal", "GelenCagrilar", FormMethod.Post, new { id = "frmCancel", enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Atama", "GelenCagrilar", FormMethod.Post, new { id = "frmAtama", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
     @Html.HiddenFor(model => model.ID)
-    @Html.HiddenFor(model => model.CagriAcilisTarihi)
 
     <div class="row">
         <div class="col-md-6">
@@ -185,45 +184,85 @@
             </div>
         </div>
     </div>
-    
-    <div class="row" style="margin-top:10px">
-        <div class="col-md-2">
-            @Html.LabelFor(model => model.FormNo)
-        </div>
-        <div class="col-md-4">
-            @Html.TextBoxFor(model => model.FormNo, new { @class = "form-control", placeholder = "Form No" })
-        </div>
-    </div>
-    
-    <div class="row" style="margin-top:10px">
-        <div class="col-md-3">
-            @Html.LabelFor(model => model.CagriIptalEtmeNedeni)
-        </div>
-        <div class="col-md-8">
-            @Html.TextBoxFor(model => model.CagriIptalEtmeNedeni, new { @class = "form-control", placeholder = "Çağrı İptal Etme Nedeni" })
-        </div>
-    </div>
 
+    <div class="row" style="margin-top:10px">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row" style="margin-top:10px">
+                    <div class="col-md-6">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.AtananID)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.AtananID, new SelectList(ViewBag.CalisanList, "FcID", "CalisanAdSoyad"), new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.VarisTarih)
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                    @Html.TextBoxFor(model => model.VarisTarih, new { @class = "form-control datepicker", id = "datetimepickerSaatli", placeholder = "Varış Tarihi" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <div class="col-md-6">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.Not)
+                        </div>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.Not, new { @class = "form-control", placeholder = "Not" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-1">
+                            @Html.LabelFor(model => model.AcilMi)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.CheckBoxFor(model => model.AcilMi)
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row" style="margin-top:10px ">
-        <div class="col-md-2" style="margin-top:10px">
+        <div class="col-md-4"> </div>
+        <div class="col-md-2">
             <a href="@Url.Action("Goruntule", "GelenCagrilar", new { _cagriNo = @Model.CagriNo })" class="btn btn-default">
                 <span class="glyphicon glyphicon-chevron-left"></span>
                 Kapat
             </a>
         </div>
         <div class="col-md-2">
-            <button class=" btn btn-outline-primary btn-danger" type="submit" value="Kaydet">
-                Çağrıyı İptal Et
-            </button>
+            <button class="btn btn-lg btn-primary" type="submit" value="Kaydet">
+                Atama Yap <span class="glyphicon glyphicon-hand-right"></span>
+            </button> 
         </div>
-
+        <div class="col-md-4"> </div>
     </div>
-
-
+    <br />
+    <br />
 }
 
 <script>
     function SubmitForm() {
-        $("#frmCancel").submit();
+        $("#frmAtama").submit();
     }
 </script>
