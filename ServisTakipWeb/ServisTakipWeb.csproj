@@ -157,8 +157,10 @@
     <Compile Include="Areas\Admin\Models\FirmaBilgileri.cs" />
     <Compile Include="Areas\FirmaCalisan\Controllers\AnaSayfaController.cs" />
     <Compile Include="Areas\FirmaCalisan\Controllers\AtanmisCagrilarController.cs" />
+    <Compile Include="Areas\FirmaCalisan\Controllers\TamamlananCagrilarController.cs" />
     <Compile Include="Areas\FirmaCalisan\FirmaCalisanAreaRegistration.cs" />
     <Compile Include="Areas\FirmaCalisan\Models\AtanmisCagrilar.cs" />
+    <Compile Include="Areas\FirmaCalisan\Models\CagriTamamlamaBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Context\AtananCagrilar.cs">
       <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
     </Compile>
@@ -723,6 +725,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\FirmaCalisan\Views\AtanmisCagrilar\Goruntule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaCalisan\Views\AtanmisCagrilar\Tamamla.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaCalisan\Views\TamamlananCagrilar\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaCalisan\Views\AtanmisCagrilar\Beklet.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

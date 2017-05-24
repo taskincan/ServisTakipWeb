@@ -21,6 +21,7 @@
 
     <!-- Custom Fonts -->
     <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
 
 </head>
 
@@ -63,19 +64,25 @@
 
                 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav side-nav"> 
+                    <ul class="nav navbar-nav side-nav">
                         <li>
                             <a href="/FirmaCalisan/AtanmisCagrilar">
                                 <i class="fa fa-fw fa-briefcase"> </i>
                                 @ServisTakipWeb.Connection.atanmisCagrilar.ToString()
                             </a>
-                        </li> 
+                        </li>
                         <li>
                             <a href="/FirmaCalisan/BekleyenCagrilar">
                                 <i class="fa fa-fw fa-paperclip"></i>
                                 @ServisTakipWeb.Connection.bekleyenCagrilar.ToString()
                             </a>
-                        </li> 
+                        </li>
+                        <li>
+                            <a href="/FirmaCalisan/TamamlananCagrilar">
+                                <i class="fa fa-fw fa-paperclip"></i>
+                                @ServisTakipWeb.Connection.tamamlananCagrilar.ToString()
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -83,37 +90,83 @@
 
             <div id="page-wrapper">
 
-                <div class="container-fluid"> 
-                    
-                    @RenderBody() 
+                <div class="container-fluid">
+
+                    @RenderBody()
 
                 </div>
-                <!-- /.container-fluid --> 
+                <!-- /.container-fluid -->
             </div>
-            <!-- /#page-wrapper --> 
+            <!-- /#page-wrapper -->
         </div>
     </section>
 
     <!-- /#wrapper -->
-    <!-- jQuery -->
     @Scripts.Render("~/js/jquery.js")
 
     <!-- Bootstrap Core JavaScript -->
     @Scripts.Render("~/js/bootstrap.min.js")
-    @* @Scripts.Render("~/js/dataTable.js")*@
 
-    @*  <!-- Morris Charts JavaScript -->
-        @Scripts.Render("~/js/morris.min.js")
-        @Scripts.Render("~/js/plugins/morris/raphael.min.js")
-        @Scripts.Render("~/js/plugins/morris/morris-data.js")
-    *@
-    @*
-        @Scripts.Render("~/js/dataTables.bootstrap.min.js")
-        @Scripts.Render("~/js/dataTables.colReorder.min.js")
-        @Scripts.Render("~/js/jquery.dataTables.min.js")
-    *@
+    <script language="JavaScript" type="text/javascript" src="~/js/jquery.datetimepicker.full.js"></script>
+     
+    <script>
+        $(function () {
+            $("#_datetimepicker").datetimepicker({ format: 'd.m.Y', });
+
+        });
+
+        $(function () {
+            $("#_datetimepicker2").datetimepicker({ format: 'd.m.Y', });
+        });
+
+        $(function () {
+            $("#_datetimepickerSaatli").datetimepicker({ format: 'd.m.Y H:i', });
+
+        });
+
+        $(function () {
+            $("#_datetimepickerSaatli2").datetimepicker({ format: 'd.m.Y H:i', });
+
+        });
+
+        $(function () {
+            $("#_datetimepickerSaatli3").datetimepicker({ format: 'd.m.Y H:i', });
+
+        });
+
+
+        $("input[type='radio']").change(function () {
+
+            if ($(this).val() == "Other") {
+                $("#otherAnswer").show();
+            }
+            else if ($(this).val() == "Ariza") {
+                $("#otherAnswer").hide();
+            }
+            else if ($(this).val() == "Kurulus") {
+                $("#otherAnswer").hide();
+            }
+            else if ($(this).val() == "GeriAlim") {
+                $("#otherAnswer").hide();
+            }
+            else if ($(this).val() == "Bakim") {
+                $("#otherAnswer2").hide();
+            }
+            else if ($(this).val() == "Garantili") {
+                $("#otherAnswer2").hide();
+            }
+            else if ($(this).val() == "Ucretli") {
+                $("#otherAnswer2").hide();
+            }
+            else if ($(this).val() == "Other2") {
+                $("#otherAnswer2").show();
+            }
+        });
+    </script>
+
     @RenderSection("scripts", required: false)
 </body>
 
 </html>
+
 

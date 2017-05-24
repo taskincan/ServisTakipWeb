@@ -15,7 +15,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 
         public ActionResult Index()
         {
-            GelenCagriListYarat();
+            TamamlananCagriListYarat();
 
             Connection.sayfaAdi = "Tamamlanan Çağrılar";
 
@@ -33,7 +33,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
         }
 
 
-        private void GelenCagriListYarat()
+        private void TamamlananCagriListYarat()
         {
             CagriTamamlamaBilgileri.cagriTamamlamaList.Clear();
 
