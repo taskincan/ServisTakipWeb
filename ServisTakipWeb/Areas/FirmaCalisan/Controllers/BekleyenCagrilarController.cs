@@ -4,107 +4,35 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ServisTakipWeb.Areas.FirmaCalisan.Models;
-using ServisTakipWeb.Areas.FirmaYonetici.Models;
 using ServisTakipWeb.Controllers;
 
 namespace ServisTakipWeb.Areas.FirmaCalisan.Controllers
 {
-    public class AtanmisCagrilarController : BaseController
+    public class BekleyenCagrilarController : BaseController
     {
         //
-        // GET: /FirmaCalisan/AtanmisCagrilar/
+        // GET: /FirmaCalisan/BekleyenCagrilar/
 
         public ActionResult Index()
         {
-            AtanmisCagrilarListYarat(); 
-             
+            AtanmisCagrilarListYarat();
+
             return View(AtanmisCagrilar.cagriAtanmisList);
         }
 
         public ActionResult Goruntule(int _atanmisCagriNo = -1)
         {
-            var atanmisCagri = AtanmisCagrilar.cagriAtanmisList.SingleOrDefault(x=>x.CagriNo == _atanmisCagriNo);
-            
-            if(atanmisCagri !=null)
-                return View(atanmisCagri);  
-            else 
-                return View("Index");
-        }
-
-
-        public ActionResult Beklet(int _atanmisCagriNo = -1)
-        { 
-            var cagriBeklet = new CagriBekletBilgileri();
-
-            var atanmisCagri = AtanmisCagrilar.cagriAtanmisList.SingleOrDefault(x=>x.CagriNo == _atanmisCagriNo);
+            var atanmisCagri = AtanmisCagrilar.cagriAtanmisList.SingleOrDefault(x => x.CagriNo == _atanmisCagriNo);
 
             if (atanmisCagri != null)
-            {
-                cagriBeklet.CagriNo = atanmisCagri.CagriNo;
-
-                cagriBeklet.AtayanID = atanmisCagri.AtayanID; 
-                cagriBeklet.Not = atanmisCagri.Not;
-                cagriBeklet.Adres = atanmisCagri.Adres;
-                cagriBeklet.MusteriAdi = atanmisCagri.MusteriAdi;
-                cagriBeklet.MusteriKodu = atanmisCagri.MusteriKodu;
-                cagriBeklet.CagriAcilisTarihi = atanmisCagri.CagriAcilisTarihi;
-                cagriBeklet.IlgiliKisi = atanmisCagri.IlgiliKisi;
-                cagriBeklet.Telefon = atanmisCagri.Telefon;
-                cagriBeklet.Email = atanmisCagri.Email;
-                cagriBeklet.CihazTipi = atanmisCagri.CihazTipi;
-                cagriBeklet.Marka = atanmisCagri.Marka;
-                cagriBeklet.Model = atanmisCagri.Model;
-                cagriBeklet.SeriNo = atanmisCagri.SeriNo;
-                cagriBeklet.BarkodNo = atanmisCagri.BarkodNo;
-                cagriBeklet.Aciklama = atanmisCagri.Aciklama;
-                cagriBeklet.CagriDetayi = atanmisCagri.CagriDetayi;
-                cagriBeklet.SarfMalzemeTalebi = atanmisCagri.SarfMalzemeTalebi;
-                cagriBeklet.AcilMi = atanmisCagri.AcilMi;
-
-                return View(cagriBeklet);
-            }
+                return View(atanmisCagri);
             else
                 return View("Index");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Beklet(CagriBekletBilgileri _cagriBeklet)
+        public ActionResult Tamamla(int _bekleyenCagriNo = -1)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var cagriBeklet = new FirmaYonetici.Context.BekleyenCagrilar();
-
-                    cagriBeklet.AtananID = Connection.ID;
-                    cagriBeklet.AtayanID = _cagriBeklet.AtayanID;
-                    cagriBeklet.BeklemeNedeni = _cagriBeklet.CagriBekletmeNedeni;
-                    cagriBeklet.CagriNo = _cagriBeklet.CagriNo;
-                    cagriBeklet.CreateDate = DateTime.Now;
-
-                    dbFirmaYonetici.BekleyenCagrilar.Add(cagriBeklet);
-                    dbFirmaYonetici.SaveChanges();
-
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return View(_cagriBeklet);
-                }
-                     
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-
-                return View();
-            } 
-        }
-
-        public ActionResult Tamamla(int _atanmisCagriNo = -1)
-        {
-            var cagri = AtanmisCagrilar.cagriAtanmisList.SingleOrDefault(x => x.CagriNo == _atanmisCagriNo);
+            var cagri = AtanmisCagrilar.cagriAtanmisList.SingleOrDefault(x => x.CagriNo == _bekleyenCagriNo);
             var musteri = dbFirmaYonetici.Musteri.SingleOrDefault(x => x.MusteriKodu == cagri.MusteriKodu);
             var sozlesmeYapma = dbFirmaYonetici.SozlesmeYapma.SingleOrDefault(x => x.MID == musteri.ID);
             var sozlesme = dbFirmaYonetici.Sozlesme.SingleOrDefault(x => x.ID == sozlesmeYapma.SozlesmeID);
@@ -129,7 +57,7 @@ namespace ServisTakipWeb.Areas.FirmaCalisan.Controllers
             cagriTamamla.MusteriKodu = cagri.MusteriKodu;
             cagriTamamla.BildirilenAriza = cagri.Aciklama + " - " + cagri.CagriDetayi;
             cagriTamamla.HizmetTipi = "";
-            cagriTamamla.CihazinHizmetDurumu = ""; 
+            cagriTamamla.CihazinHizmetDurumu = "";
             cagriTamamla.Marka1 = "";
             cagriTamamla.Marka2 = "";
             cagriTamamla.Marka3 = "";
@@ -258,8 +186,12 @@ namespace ServisTakipWeb.Areas.FirmaCalisan.Controllers
                     {
                         var acilanCagri = dbMusteriCalisan.AcilanCagri.SingleOrDefault(x => x.CagriNo == cagriTamamla.CagriKayitNo);
                         var atananCagri = dbFirmaYonetici.AtananCagrilar.SingleOrDefault(x => x.CagriNo == cagriTamamla.CagriKayitNo);
+                        var bekleyenCagri = dbFirmaYonetici.BekleyenCagrilar.SingleOrDefault(x=>x.CagriNo == cagriTamamla.CagriKayitNo); 
 
                         dbFirmaYonetici.AtananCagrilar.Remove(atananCagri);
+                        dbFirmaYonetici.SaveChanges();
+
+                        dbFirmaYonetici.BekleyenCagrilar.Remove(bekleyenCagri);
                         dbFirmaYonetici.SaveChanges();
 
                         dbMusteriCalisan.AcilanCagri.Remove(acilanCagri);
@@ -280,13 +212,12 @@ namespace ServisTakipWeb.Areas.FirmaCalisan.Controllers
         }
          
 
-
         private void AtanmisCagrilarListYarat()
         {
             AtanmisCagrilar.cagriAtanmisList.Clear();
 
             var atananCagri = dbFirmaYonetici.AtananCagrilar.Where(x => x.AtananID == Connection.ID).ToList();
-             
+
             int count = 0, temp = 0, cagriNo = 0, atayanID = 0;
 
             count = atananCagri.Count();
@@ -297,20 +228,21 @@ namespace ServisTakipWeb.Areas.FirmaCalisan.Controllers
 
                 cagriNo = atananCagri.ToList()[temp].CagriNo;
                 atayanID = atananCagri.ToList()[temp].AtayanID;
-                
+
                 var cagriBilgileri = dbMusteriCalisan.AcilanCagri.SingleOrDefault(x => x.CagriNo == cagriNo);
                 var musteriCalisan = dbMusteri.MusteriCalisani.Single(x => x.McID == cagriBilgileri.McID);
                 var musteri = dbMusteri.Musteri.SingleOrDefault(x => x.ID == musteriCalisan.MusteriID);
                 var yonetici = dbFirmaYonetici.FirmaYonetici.SingleOrDefault(x => x.FyID == atayanID);
-                var bekleyenCagri = dbFirmaYonetici.BekleyenCagrilar.SingleOrDefault(x=>x.CagriNo == cagriNo);
+                var bekleyenCagri = dbFirmaYonetici.BekleyenCagrilar.SingleOrDefault(x => x.CagriNo == cagriNo);
 
-                if(bekleyenCagri == null)
+                if (bekleyenCagri == null)
                 {
                     atanmisCagrilar.Durum = "Atanan Çağrı";
                 }
                 else
                 {
                     atanmisCagrilar.Durum = "Bekleyen Çağrı";
+                    atanmisCagrilar.BeklemeyeAlmaNedeni = bekleyenCagri.BeklemeNedeni;
                 }
                 atanmisCagrilar.AtananID = atananCagri.ToList()[temp].AtananID;
                 atanmisCagrilar.AtayanID = atananCagri.ToList()[temp].AtayanID;
@@ -344,6 +276,5 @@ namespace ServisTakipWeb.Areas.FirmaCalisan.Controllers
 
             AtanmisCagrilar.cagriAtanmisList = AtanmisCagrilar.cagriAtanmisList.OrderBy(x => x.CreateDate).ToList();
         }
-         
     }
 }

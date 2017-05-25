@@ -1,0 +1,503 @@
+﻿@using ServisTakipWeb.Areas.FirmaCalisan.Models
+@model CagriTamamlamaBilgileri
+    
+@{
+    ViewBag.Title = "Tamamla";
+    Layout = "~/Areas/FirmaCalisan/Views/Shared/FirmaCalisanLayout.cshtml";
+}
+ 
+@using (Html.BeginForm("Tamamla", "BekleyenCagrilar", FormMethod.Post, new { id = "frmTamamla", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    @Html.HiddenFor(model => model.MusteriID)
+
+    @Html.HiddenFor(model => model.Durum)
+
+    <div class="row">
+        <div class="col-md-1">
+            @Html.LabelFor(model => model.FormNo)
+        </div>
+        <div class="col-md-2">
+            @Html.TextBoxFor(model => model.FormNo, new { @class = "form-control", placeholder = "Form No", required = "required" })
+        </div>
+        <div class="col-md-9">
+        </div>
+    </div>
+
+    @*Musteri Bilgileri*@
+    <div class="row" style="margin-top:10px">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-table fa-fw"></i> @ServisTakipWeb.Connection.musteriBilgileri.ToString()</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MusteriAdi)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.MusteriAdi, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.YetkiliKisi)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.YetkiliKisi, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Telefon)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.Telefon, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:10px">
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Email)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Adres)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Adres, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.VergiDairesi)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.VergiDairesi, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.VergiNumarasi)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.VergiNumarasi, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:10px">
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.MusteriKodu)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.MusteriKodu, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-6">
+
+                </div>
+                <div class="col-md-3">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @*Bildirilen Ariza*@
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.BildirilenAriza)
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.BildirilenAriza, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+    </div>
+
+    @*Hizmet Tipi*@
+    <div class="row" style="margin-top:10px">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-table fa-fw"></i> @ServisTakipWeb.Connection.hizmetTipi.ToString()</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-3">
+                    <div class="col-md-4">
+                        @Html.Label("Arıza:")
+                    </div>
+                    <div class="col-md-6">
+                        <input type="radio" name="HizmetTipi" checked="checked" value="Ariza" />
+                        @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Ariza")*@
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="col-md-4">
+                        @Html.Label("Kuruluş:")
+                    </div>
+                    <div class="col-md-6">
+                        <input type="radio" name="HizmetTipi" value="Kurulus" />
+                        @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Kurulus")*@
+
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="col-md-6">
+                        @Html.Label("Geri Alım:")
+                    </div>
+                    <div class="col-md-6">
+                        <input type="radio" name="HizmetTipi" value="GeriAlim" />
+                        @*@Html.RadioButtonFor(model => model.BildirilenAriza, "GeriAlim")*@
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-md-4">
+                        @Html.Label("Diğer:")
+                    </div>
+                    <div class="col-md-4">
+                        @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Diger", new { type = "radio", value = "other" })*@
+
+                        <input type="radio" name="HizmetTipi" value="Other" />
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.HizmetTipi, new { @class = "form-control", style = "display:none;", type = "text", name = "otherAnswer", id = "otherAnswer" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*Cihazin Hizmet Durumu*@
+    <div class="row" style="margin-top:10px">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-table fa-fw"></i> @ServisTakipWeb.Connection.cihazinHizmetDurumu.ToString()</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-3">
+                    <div class="col-md-8">
+                        @Html.Label("Bakım Sözleşmeli:")
+                    </div>
+                    <div class="col-md-4">
+                        <input type="radio" name="CihazinHizmetDurumu" checked="checked" value="Bakim" />
+                        @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Ariza")*@
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="col-md-5">
+                        @Html.Label("Garantili:")
+                    </div>
+                    <div class="col-md-7">
+                        <input type="radio" name="CihazinHizmetDurumu" value="Garantili" />
+                        @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Kurulus")*@
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="col-md-6">
+                        @Html.Label("Ücretli:")
+                    </div>
+                    <div class="col-md-6">
+                        <input type="radio" name="CihazinHizmetDurumu" value="Ucretli" />
+                        @*@Html.RadioButtonFor(model => model.BildirilenAriza, "GeriAlim")*@
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="col-md-4">
+                        @Html.Label("Diğer:")
+                    </div>
+                    <div class="col-md-8">
+                        @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Diger", new { type = "radio", value = "other" })*@
+
+                        <input type="radio" name="CihazinHizmetDurumu" value="Other2" />
+
+                        @Html.TextBoxFor(model => model.HizmetTipi, new { @class = "form-control", style = "display:none;", type = "text", name = "otherAnswer2", id = "otherAnswer2" })
+                        @*TODO: sayfa submit edilirken otheranswer ne diye geri dönecek iyi bakk.*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*Cihaz Bilgileri*@
+    <div class="row" style="margin-top:10px">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-table fa-fw"></i> @ServisTakipWeb.Connection.cihazBilgileri.ToString()</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-5">
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Marka1)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Marka1, new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Model1)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Model1, new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SeriNo1)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.SeriNo1, new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Marka2)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Marka2, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Model2)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Model2, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SeriNo2)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.SeriNo2, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-1"></div>
+
+                <div class="col-md-5">
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Marka3)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Marka3, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Model3)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Model3, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SeriNo3)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.SeriNo3, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Marka4)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Marka4, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Model4)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Model4, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.SeriNo4)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.SeriNo4, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-6">
+
+                </div>
+                <div class="col-md-3">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    @*Cagri Bilgileri*@
+    <div class="row" style="margin-top:10px">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-table fa-fw"></i> @ServisTakipWeb.Connection.cagriBilgileri.ToString()</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-5">
+                            @Html.LabelFor(model => model.CagriBildirildigiTarih)
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                    @Html.TextBoxFor(model => model.CagriBildirildigiTarih, new { @class = "form-control datepicker", @readonly = "readonly", placeholder = "Çağrı Bildirildiği Tarih" })
+
+                                    @*<input type="text" id="datetimepicker" name="BaslangicTarih" class="form-control" value="@Model.BaslangicTarih" required>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            @Html.LabelFor(model => model.HizmetBaslangicTarihi)
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                    @Html.TextBoxFor(model => model.HizmetBaslangicTarihi, new { @class = "form-control datepicker", id = "_datetimepickerSaatli2", placeholder = "Hizmet Baslangıç Tarihi", required = "required" })
+
+                                    @*<input type="text" id="datetimepicker" name="BaslangicTarih" class="form-control" value="@Model.BaslangicTarih" required>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            @Html.LabelFor(model => model.HizmetBitisTarihi)
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </span>
+                                    @Html.TextBoxFor(model => model.HizmetBitisTarihi, new { @class = "form-control datepicker", id = "_datetimepickerSaatli3", placeholder = "Hizmet Bitiş Tarihi", required = "required" })
+
+                                    @*<input type="text" id="datetimepicker" name="BaslangicTarih" class="form-control" value="@Model.BaslangicTarih" required>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-1"></div>
+
+                <div class="col-md-4">
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.CagriKayitNo)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(model => model.CagriKayitNo, new { @class = "form-control", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row" style="margin-top:10px">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.MesaiSaatiIcindeMi)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.CheckBoxFor(model => model.MesaiSaatiIcindeMi)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </div>
+
+    @*Yapilan Isin Aciklamasi*@
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.YapilanIsinAciklamasi)
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.YapilanIsinAciklamasi, new { @class = "form-control", required = "required" })
+            </div>
+        </div>
+    </div>
+     
+    @*TODO: Ucretli Iscilikler Yazilacak*@
+     
+    <div class="row" style="margin-top:10px ">
+        <div class="col-md-2" style="margin-top:10px">
+            <a href="@Url.Action("Index", "BekleyenCagrilar", new { _atanmisCagriNo = @Model.CagriKayitNo })" class="btn btn-default">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                Kapat
+            </a>
+        </div>
+
+        <div class="col-md-4" style="margin-top:10px">
+            <button class=" btn btn-success btn-block" type="submit" value="Kaydet">
+                Tamamla
+            </button>
+        </div> 
+    </div>
+}
+
+<script>
+    function SubmitForm() {
+        $("#frmTamamla").submit();
+    }
+</script>
+

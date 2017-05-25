@@ -1,6 +1,63 @@
-﻿@{
+﻿@model IEnumerable<ServisTakipWeb.Areas.FirmaYonetici.Models.AtanmisCagriBilgileri>
+
+@{
     ViewBag.Title = "Index";
     Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
 }
 
-<h2>Atanmış Çağrılar</h2>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-table fa-fw"></i> @ServisTakipWeb.Connection.atanmisCagrilar.ToString()</h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table id="data" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.CagriNo)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.MusteriKodu)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.MusteriAdi)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.IlgiliKisi)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.AtayanAdiSoyadi)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.AtananAdiSoyadi)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.Aciklama)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.CagriAcilisTarihi)</th>
+                            <th class="col-md-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Durum == "Atanan Çağrı")
+                            {
+                                <tr>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.CagriNo)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.MusteriKodu)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.MusteriAdi)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.IlgiliKisi)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.AtayanAdiSoyadi)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.AtananAdiSoyadi)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.Aciklama)</td>
+                                    <td class="col-md-2">@Html.DisplayFor(modelItem => item.CagriAcilisTarihi)</td>
+                                    <td class="col-md-2">
+
+                                        <a href="@Url.Action("Goruntule", "AtanmisCagrilar", new { _atanmisCagriNo = item.CagriNo })" class="btn btn-success">
+                                            Görüntüle
+                                            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="text-right">
+                <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>  

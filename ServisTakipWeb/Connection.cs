@@ -24,6 +24,7 @@ namespace ServisTakipWeb
         public static string atanmisCagrilar = "Atanmış Çağrılar";
         public static string bekleyenCagrilar = "Bekleyen Çağrılar";
         public static string cagriOlustur = "Çağrı Oluştur";
+        public static string acilanCagrilar = "Açılan Çağrılar";
 
         public static string musteriler = "Müşteriler";
         public static string yoneticiler = "Yöneticiler";
@@ -42,6 +43,7 @@ namespace ServisTakipWeb
         public static string musteriEkle = "Müşteri Ekle";
         public static string musteri = "Müşteri";
         public static string musteriCalisan = "Müşteri Çalışanı";
+        public static string musteriYonetici = "Müşteri Yönetici"; 
 
         public static string calisanBilgileri = "Çalışan Bilgileri";
         public static string calisanEkle = "Çalışan Ekle";

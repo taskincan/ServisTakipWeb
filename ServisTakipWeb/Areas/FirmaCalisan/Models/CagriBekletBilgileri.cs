@@ -8,25 +8,15 @@ using ServisTakipWeb.Models;
 
 namespace ServisTakipWeb.Areas.FirmaCalisan.Models
 {
-    public class AtanmisCagrilar : BaseModel
+    public class CagriBekletBilgileri : BaseModel
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; } 
+        public int ID { get; set; }
 
-        [Display(Name = "Durum")]
-        public string Durum { get; set; }
-
-        [Display(Name = "Beklemeye Alma Nedeni")]
-        public string BeklemeyeAlmaNedeni { get; set; }
+        public int BekletmeyeAlanCalisanID { get; set; }
 
         public int AtayanID { get; set; }
-
-        [Display(Name = "Atayan Kişi")]
-        public string AtayanAdiSoyadi { get; set; }
-
-        [Display(Name = "Atanacak Çalışan")]
-        public int AtananID { get; set; }
 
         [Display(Name = "Çağrı Kodu")]
         public int CagriNo { get; set; }
@@ -76,15 +66,16 @@ namespace ServisTakipWeb.Areas.FirmaCalisan.Models
         [Display(Name = "Sarf Malzeme Talebi")]
         public string SarfMalzemeTalebi { get; set; }
 
-        [Display(Name = "Varış Tarihi")]
-        public DateTime VarisTarih { get; set; }
-
-        [Display(Name = "Not")]
-        public string Not { get; set; }
-
         [Display(Name = "Acil")]
         public bool AcilMi { get; set; }
 
-        public static List<AtanmisCagrilar> cagriAtanmisList = new List<AtanmisCagrilar>();  
+        [Display(Name = "Yönetici Notu")]
+        public string Not { get; set; }
+
+        [Display(Name = "Çağrı İptal Etme Nedeni")]
+        [DataType(DataType.Text)]
+        [Required]
+        [MaxLength(200)]
+        public string CagriBekletmeNedeni { get; set; } 
     }
 }

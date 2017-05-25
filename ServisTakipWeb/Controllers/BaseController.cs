@@ -17,7 +17,8 @@ namespace ServisTakipWeb.Controllers
         private ServisTakipAdminDBEntities _dbAdmin = null;
         private ServisTakipFirmaYoneticiDBEntities _dbFirmaYonetici = null;
         private ServisTakipMusteriDBEntities _dbMusteri = null;
-        private ServisTakipMusteriCalisanDBEntities _dbMusteriCalisan = null; 
+        private ServisTakipMusteriCalisanDBEntities _dbMusteriCalisan = null;
+        //private ServisTakipMusteriYoneticiDBEntities _dbMusteriYonetici = null; 
 
         public ServisTakipFirmaYoneticiDBEntities dbFirmaYonetici
         {
@@ -86,6 +87,20 @@ namespace ServisTakipWeb.Controllers
                 return _dbMusteriCalisan;
             }
         }
+
+        //public ServisTakipMusteriYoneticiDBEntities dbMusteriYonetici
+        //{
+        //    get
+        //    {
+        //        if (_dbMusteriYonetici == null)
+        //        {
+        //            _dbMusteriYonetici = new ServisTakipMusteriYoneticiDBEntities();
+
+        //            _dbMusteriYonetici.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
+        //        }
+        //        return _dbMusteriYonetici;
+        //    }
+        //}
 
         public BaseController()
         {

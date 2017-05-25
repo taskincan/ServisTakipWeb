@@ -6,13 +6,13 @@ using System.Linq;
 using System.Web;
 using ServisTakipWeb.Models;
 
-namespace ServisTakipWeb.Areas.FirmaCalisan.Models
+namespace ServisTakipWeb.Areas.FirmaYonetici.Models
 {
-    public class AtanmisCagrilar : BaseModel
+    public class AtanmisCagriBilgileri : BaseModel
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; } 
+        public int ID { get; set; }
 
         [Display(Name = "Durum")]
         public string Durum { get; set; }
@@ -24,6 +24,9 @@ namespace ServisTakipWeb.Areas.FirmaCalisan.Models
 
         [Display(Name = "Atayan Kişi")]
         public string AtayanAdiSoyadi { get; set; }
+
+        [Display(Name = "Atanan Kişi")]
+        public string AtananAdiSoyadi { get; set; }
 
         [Display(Name = "Atanacak Çalışan")]
         public int AtananID { get; set; }
@@ -85,6 +88,6 @@ namespace ServisTakipWeb.Areas.FirmaCalisan.Models
         [Display(Name = "Acil")]
         public bool AcilMi { get; set; }
 
-        public static List<AtanmisCagrilar> cagriAtanmisList = new List<AtanmisCagrilar>();  
+        public static List<AtanmisCagriBilgileri> cagriAtanmisList = new List<AtanmisCagriBilgileri>();  
     }
 }

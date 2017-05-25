@@ -4,11 +4,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/FirmaCalisan/Views/Shared/FirmaCalisanLayout.cshtml";
 }
-
+ 
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-table fa-fw"></i> @ServisTakipWeb.Connection.atanmisCagrilar.ToString()</h3>
+            <h3 class="panel-title"><i class="fa fa-table fa-fw"></i> @ServisTakipWeb.Connection.bekleyenCagrilar.ToString()</h3>
         </div>
         <div class="panel-body">
             <div class="table-responsive">
@@ -28,7 +28,7 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            if (item.Durum == "Atanan Çağrı")
+                            if (item.Durum == "Bekleyen Çağrı")
                             {
                                 <tr>
                                     <td class="col-md-2">@Html.DisplayFor(modelItem => item.CagriNo)</td>
@@ -40,13 +40,13 @@
                                     <td class="col-md-2">@Html.DisplayFor(modelItem => item.CagriAcilisTarihi)</td>
                                     <td class="col-md-2">
 
-                                        <a href="@Url.Action("Goruntule", "AtanmisCagrilar", new { _atanmisCagriNo = item.CagriNo })" class="btn btn-success">
+                                        <a href="@Url.Action("Goruntule", "BekleyenCagrilar", new { _atanmisCagriNo = item.CagriNo })" class="btn btn-success">
                                             Görüntüle
                                             <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                                         </a>
                                     </td>
                                 </tr>
-                            }  
+                            }
                         }
                     </tbody>
 
@@ -57,4 +57,5 @@
             </div>
         </div>
     </div>
-</div>  
+</div>
+  

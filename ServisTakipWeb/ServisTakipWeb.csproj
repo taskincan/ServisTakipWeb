@@ -157,9 +157,11 @@
     <Compile Include="Areas\Admin\Models\FirmaBilgileri.cs" />
     <Compile Include="Areas\FirmaCalisan\Controllers\AnaSayfaController.cs" />
     <Compile Include="Areas\FirmaCalisan\Controllers\AtanmisCagrilarController.cs" />
+    <Compile Include="Areas\FirmaCalisan\Controllers\BekleyenCagrilarController.cs" />
     <Compile Include="Areas\FirmaCalisan\Controllers\TamamlananCagrilarController.cs" />
     <Compile Include="Areas\FirmaCalisan\FirmaCalisanAreaRegistration.cs" />
     <Compile Include="Areas\FirmaCalisan\Models\AtanmisCagrilar.cs" />
+    <Compile Include="Areas\FirmaCalisan\Models\CagriBekletBilgileri.cs" />
     <Compile Include="Areas\FirmaCalisan\Models\CagriTamamlamaBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Context\AtananCagrilar.cs">
       <DependentUpon>FirmaYoneticiDB.tt</DependentUpon>
@@ -219,6 +221,7 @@
     <Compile Include="Areas\FirmaYonetici\Controllers\TamamlananCagrilarController.cs" />
     <Compile Include="Areas\FirmaYonetici\Controllers\YoneticiBilgileriController.cs" />
     <Compile Include="Areas\FirmaYonetici\FirmaYoneticiAreaRegistration.cs" />
+    <Compile Include="Areas\FirmaYonetici\Models\AtanmisCagriBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CagriAtamaBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CagriBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CagriIptalBilgileri.cs" />
@@ -277,6 +280,9 @@
     <Compile Include="Areas\MusteriCalisan\Controllers\CagriOlusturController.cs" />
     <Compile Include="Areas\MusteriCalisan\Models\CagriBilgileri.cs" />
     <Compile Include="Areas\MusteriCalisan\MusteriCalisanAreaRegistration.cs" />
+    <Compile Include="Areas\MusteriYonetici\Controllers\AnaSayfaController.cs" />
+    <Compile Include="Areas\MusteriYonetici\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\MusteriYonetici\MusteriYoneticiAreaRegistration.cs" />
     <Compile Include="Areas\Musteri\Context\Musteri.cs">
       <DependentUpon>MusteriDB.tt</DependentUpon>
     </Compile>
@@ -391,6 +397,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\MusteriYonetici\Context\" />
+    <Folder Include="Areas\MusteriYonetici\Models\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
@@ -734,6 +742,33 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\FirmaCalisan\Views\AtanmisCagrilar\Beklet.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaCalisan\Views\BekleyenCagrilar\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaCalisan\Views\BekleyenCagrilar\Goruntule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaCalisan\Views\BekleyenCagrilar\Tamamla.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\AtanmisCagrilar\Goruntule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\BekleyenCagrilar\Goruntule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriYonetici\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriYonetici\Views\Shared\MusteriYoneticiLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriYonetici\Views\AnaSayfa\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriYonetici\Views\Profile\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
