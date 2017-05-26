@@ -221,6 +221,7 @@
     <Compile Include="Areas\FirmaYonetici\Controllers\TamamlananCagrilarController.cs" />
     <Compile Include="Areas\FirmaYonetici\Controllers\YoneticiBilgileriController.cs" />
     <Compile Include="Areas\FirmaYonetici\FirmaYoneticiAreaRegistration.cs" />
+    <Compile Include="Areas\FirmaYonetici\Models\AnketSorulari.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\AtanmisCagriBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CagriAtamaBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CagriBilgileri.cs" />
@@ -282,6 +283,7 @@
     <Compile Include="Areas\MusteriCalisan\MusteriCalisanAreaRegistration.cs" />
     <Compile Include="Areas\MusteriYonetici\Controllers\AnaSayfaController.cs" />
     <Compile Include="Areas\MusteriYonetici\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\MusteriYonetici\Controllers\TamamlananCagrilarController.cs" />
     <Compile Include="Areas\MusteriYonetici\MusteriYoneticiAreaRegistration.cs" />
     <Compile Include="Areas\Musteri\Context\Musteri.cs">
       <DependentUpon>MusteriDB.tt</DependentUpon>
@@ -769,6 +771,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\MusteriYonetici\Views\Profile\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriYonetici\Views\TamamlananCagrilar\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriYonetici\Views\TamamlananCagrilar\Goruntule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriYonetici\Views\TamamlananCagrilar\Anket.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -279,5 +279,6 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
 
 
         public static List<CagriTamamlamaBilgileri> cagriTamamlamaList = new List<CagriTamamlamaBilgileri>();
+        public static List<CagriTamamlamaBilgileri> cagriTamamlamaMusteriList = new List<CagriTamamlamaBilgileri>();
     }
 }

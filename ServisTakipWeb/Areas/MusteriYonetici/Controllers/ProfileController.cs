@@ -41,33 +41,32 @@ namespace ServisTakipWeb.Areas.MusteriYonetici.Controllers
             return View(_musteriYonetici);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Index(MusteriYoneticiBilgileri _musteriYoneticiBilgileri)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var _user = new Context.MusteriYonetici();
-                
-        //        _user = dbMusteriYonetici.MusteriYonetici.SingleOrDefault(x=>x.MyID == _musteriYoneticiBilgileri.MyID);
-                 
-        //        _user.UserName = _musteriYoneticiBilgileri.UserName;
-        //        _user.Password = _musteriYoneticiBilgileri.Password;
-        //        _user.Ad = _musteriYoneticiBilgileri.Ad;
-        //        _user.Soyad = _musteriYoneticiBilgileri.Soyad;
-        //        _user.Gsm = _musteriYoneticiBilgileri.Gsm;
-        //        _user.Email = _musteriYoneticiBilgileri.Email;
-        //        _user.MusteriID = _musteriYoneticiBilgileri.MusteriID;
-        //        _user.CreateDate = DateTime.Now;
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(MusteriYoneticiBilgileri _musteriYonetici)
+        {
+            if (ModelState.IsValid)
+            {
+                var _user = dbMusteri.MusteriYonetici.SingleOrDefault(x => x.MyID == _musteriYonetici.MyID);
 
-        //        dbMusteriYonetici.Entry(_user).State = EntityState.Modified;
-        //        dbMusteriYonetici.SaveChanges();
-        //        ModelState.Clear();
+                _user.MyID = _musteriYonetici.MyID;
+                _user.UserName = _musteriYonetici.UserName;
+                _user.Password = _musteriYonetici.Password;
+                _user.Ad = _musteriYonetici.Ad;
+                _user.Soyad = _musteriYonetici.Soyad;
+                _user.Gsm = _musteriYonetici.Gsm;
+                _user.Email = _musteriYonetici.Email;
+                _user.MusteriID = _musteriYonetici.MusteriID;
+                _user.CreateDate = DateTime.Now;
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(_musteriYoneticiBilgileri);
-        //} 
+                dbMusteri.Entry(_user).State = EntityState.Modified;
+                dbMusteri.SaveChanges();
+                ModelState.Clear();
+
+                return RedirectToAction("Index");
+            }
+            return View(_musteriYonetici);
+        } 
 
     }
 }
