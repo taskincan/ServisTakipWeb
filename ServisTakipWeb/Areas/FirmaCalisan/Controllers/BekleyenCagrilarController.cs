@@ -175,28 +175,30 @@ namespace ServisTakipWeb.Areas.FirmaCalisan.Controllers
                     cagriTamamla.BirimFiyatiIscilik2 = 0;
                     cagriTamamla.BirimFiyatiIscilik3 = 0;*/
 
-                    bool kayitBasarili = false;
+                    //bool kayitBasarili = false;
 
                     dbFirmaYonetici.TamamlananCagrilar.Add(cagriTamamla);
                     dbFirmaYonetici.SaveChanges();
 
-                    kayitBasarili = true;
+                    //Trigger ile yapildi.
 
-                    if (kayitBasarili == true)
-                    {
-                        var acilanCagri = dbMusteriCalisan.AcilanCagri.SingleOrDefault(x => x.CagriNo == cagriTamamla.CagriKayitNo);
-                        var atananCagri = dbFirmaYonetici.AtananCagrilar.SingleOrDefault(x => x.CagriNo == cagriTamamla.CagriKayitNo);
-                        var bekleyenCagri = dbFirmaYonetici.BekleyenCagrilar.SingleOrDefault(x=>x.CagriNo == cagriTamamla.CagriKayitNo); 
+                    //kayitBasarili = true;
 
-                        dbFirmaYonetici.AtananCagrilar.Remove(atananCagri);
-                        dbFirmaYonetici.SaveChanges();
+                    //if (kayitBasarili == true)
+                    //{
+                    //    var acilanCagri = dbMusteriCalisan.AcilanCagri.SingleOrDefault(x => x.CagriNo == cagriTamamla.CagriKayitNo);
+                    //    var atananCagri = dbFirmaYonetici.AtananCagrilar.SingleOrDefault(x => x.CagriNo == cagriTamamla.CagriKayitNo);
+                    //    var bekleyenCagri = dbFirmaYonetici.BekleyenCagrilar.SingleOrDefault(x=>x.CagriNo == cagriTamamla.CagriKayitNo); 
 
-                        dbFirmaYonetici.BekleyenCagrilar.Remove(bekleyenCagri);
-                        dbFirmaYonetici.SaveChanges();
+                    //    dbFirmaYonetici.AtananCagrilar.Remove(atananCagri);
+                    //    dbFirmaYonetici.SaveChanges();
 
-                        dbMusteriCalisan.AcilanCagri.Remove(acilanCagri);
-                        dbMusteriCalisan.SaveChanges();
-                    }
+                    //    dbFirmaYonetici.BekleyenCagrilar.Remove(bekleyenCagri);
+                    //    dbFirmaYonetici.SaveChanges();
+
+                    //    dbMusteriCalisan.AcilanCagri.Remove(acilanCagri);
+                    //    dbMusteriCalisan.SaveChanges();
+                    //}
 
                     return RedirectToAction("Index");
                 }

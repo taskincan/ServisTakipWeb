@@ -247,24 +247,26 @@ namespace ServisTakipWeb.Areas.FirmaCalisan.Controllers
                     cagriTamamla.BirimFiyatiIscilik2 = 0;
                     cagriTamamla.BirimFiyatiIscilik3 = 0;*/
 
-                    bool kayitBasarili = false;
+                    //bool kayitBasarili = false;
 
                     dbFirmaYonetici.TamamlananCagrilar.Add(cagriTamamla);
                     dbFirmaYonetici.SaveChanges();
 
-                    kayitBasarili = true;
+                    //Trigger ile yapıldı
+                    //kayitBasarili = true;
 
-                    if (kayitBasarili == true)
-                    {
-                        var acilanCagri = dbMusteriCalisan.AcilanCagri.SingleOrDefault(x => x.CagriNo == cagriTamamla.CagriKayitNo);
-                        var atananCagri = dbFirmaYonetici.AtananCagrilar.SingleOrDefault(x => x.CagriNo == cagriTamamla.CagriKayitNo);
+                    //if (kayitBasarili == true)
+                    //{
+                    //    var acilanCagri = dbMusteriCalisan.AcilanCagri.SingleOrDefault(x => x.CagriNo == cagriTamamla.CagriKayitNo);
+                    //    var atananCagri = dbFirmaYonetici.AtananCagrilar.SingleOrDefault(x => x.CagriNo == cagriTamamla.CagriKayitNo);
 
-                        dbFirmaYonetici.AtananCagrilar.Remove(atananCagri);
-                        dbFirmaYonetici.SaveChanges();
+                    //    dbFirmaYonetici.AtananCagrilar.Remove(atananCagri);
+                    //    dbFirmaYonetici.SaveChanges();
 
-                        dbMusteriCalisan.AcilanCagri.Remove(acilanCagri);
-                        dbMusteriCalisan.SaveChanges();
-                    }
+                    //    dbMusteriCalisan.AcilanCagri.Remove(acilanCagri);
+                    //    dbMusteriCalisan.SaveChanges();
+                    //}
+
 
                     return RedirectToAction("Index");
                 }
