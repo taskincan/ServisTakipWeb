@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ServisTakipWeb.Areas.FirmaYonetici.Models;
+using ServisTakipWeb.Areas.MusteriYonetici.Models;
 using ServisTakipWeb.Controllers;
 
 namespace ServisTakipWeb.Areas.MusteriYonetici.Controllers
@@ -45,7 +47,68 @@ namespace ServisTakipWeb.Areas.MusteriYonetici.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Anket(AnketSorulari _anket)
         {
-            _anket.AnketOrtalamaPuani = Convert.ToDouble(_anket.Soru1Cevap + _anket.Soru2Cevap + _anket.Soru3Cevap + _anket.Soru4Cevap + _anket.Soru5Cevap) / 5;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var anket = new Context.Anket();
+                    var anketYapma = new Context.AnketYapma();
+                    var cagri = dbFirmaYonetici.TamamlananCagrilar.SingleOrDefault(x=>x.CagriKayitNo==_anket.CagriNo);
+
+                    bool kayit = false;
+
+                    anket.Soru1 = _anket.Soru1.ToString();
+                    anket.Soru2 = _anket.Soru2.ToString();
+                    anket.Soru3 = _anket.Soru3.ToString();
+                    anket.Soru4 = _anket.Soru4.ToString();
+                    anket.Soru5 = _anket.Soru5.ToString();
+                    anket.TamamlananCagriID = cagri.TamamlananID;
+                    anket.MusteriGorus = _anket.MusteriGorusu;
+
+                    dbMusteriYonetici.Anket.Add(anket);
+                    dbMusteriYonetici.SaveChanges();
+                    kayit = true;
+                    
+                    if(kayit==true)
+                    {
+                        var kayitliAnket = dbMusteriYonetici.Anket.SingleOrDefault(x=>x.TamamlananCagriID == cagri.TamamlananID);
+
+                        anketYapma.AnketID = kayitliAnket.ID;
+                        anketYapma.TamamlananCagriID = kayitliAnket.TamamlananCagriID;
+                        anketYapma.MyID = Connection.ID;
+                        anketYapma.CreateDate = DateTime.Now;
+
+                        kayit = false;
+                        dbMusteriYonetici.AnketYapma.Add(anketYapma);
+                        dbMusteriYonetici.SaveChanges();
+                        kayit = true;
+
+                        if(kayit==true)
+                        { 
+                            cagri.AnketYapildiMi = true;
+
+                            dbFirmaYonetici.Entry(cagri).State = EntityState.Modified;
+                            dbFirmaYonetici.SaveChanges();
+                            ModelState.Clear();
+                        }
+
+                    }
+
+                    return RedirectToAction("Index");
+                }
+                else
+                    return View(_anket);
+            }
+            catch(Exception ex)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+
+                return View(_anket);
+            }
+
+            _anket.AnketOrtalamaPuani = Convert.ToDouble(_anket.Soru1 + _anket.Soru2 + _anket.Soru3 + _anket.Soru4 + _anket.Soru5) / 5;
+
+             
             return View();
         }
 
@@ -54,7 +117,7 @@ namespace ServisTakipWeb.Areas.MusteriYonetici.Controllers
         {
             CagriTamamlamaBilgileri.cagriTamamlamaMusteriList.Clear();
 
-            int temp = 0, countCagri = 0; 
+            int temp = 0, countCagri = 0, soru1 = 0, soru2 = 0, soru3 = 0, soru4 = 0, soru5 = 0; 
 
             var tamamlanancagriList = dbFirmaYonetici.TamamlananCagrilar.Where(x => x.MID == Connection.parentID);
 
@@ -62,12 +125,21 @@ namespace ServisTakipWeb.Areas.MusteriYonetici.Controllers
              
             for (temp = 0; temp < countCagri; temp++)
             {
-                //_MID = dbFirmaYonetici.TamamlananCagrilar.ToList()[temp].MID;
-
                 var _cagri = tamamlanancagriList.ToList()[temp];
                 var _musteri = dbMusteri.Musteri.SingleOrDefault(x => x.ID == _cagri.MID);
-                //var _sozlesmeYapma = dbFirmaYonetici.SozlesmeYapma.SingleOrDefault(x => x.MID == _musteri.ID);
-                //var _sozlesme = dbFirmaYonetici.Sozlesme.SingleOrDefault(c => c.ID == _sozlesmeYapma.ID);
+                
+                if(_cagri.AnketYapildiMi==true)
+                { 
+                    var _anketYapma = dbMusteriYonetici.AnketYapma.SingleOrDefault(x=>x.TamamlananCagriID==_cagri.TamamlananID); 
+                    var _anket = dbMusteriYonetici.Anket.SingleOrDefault(x => x.ID == _anketYapma.AnketID);
+                    
+                    soru1= Convert.ToInt32(_anket.Soru1);
+                    soru2 = Convert.ToInt32(_anket.Soru2);
+                    soru3 = Convert.ToInt32(_anket.Soru3);
+                    soru4 = Convert.ToInt32(_anket.Soru4);
+                    soru5 = Convert.ToInt32(_anket.Soru5);
+                }
+               
 
                 //TODO : temizlik gerekli sozlesmeler için.
 
@@ -116,7 +188,13 @@ namespace ServisTakipWeb.Areas.MusteriYonetici.Controllers
                 tamamlananCagri.CreateDate = _cagri.CreateDate;
 
                 if (_cagri.AnketYapildiMi == true)
-                    tamamlananCagri.AnketYapildiMiTablo = "Yapılmış";
+                {
+                    double anketOrt = 0;
+
+                    anketOrt = Convert.ToDouble(soru1 + soru2 + soru3 + soru4 + soru5) / 5; 
+                    
+                    tamamlananCagri.AnketYapildiMiTablo = anketOrt.ToString();  
+                }
                 else
                     tamamlananCagri.AnketYapildiMiTablo = "Yapılmamış";
 

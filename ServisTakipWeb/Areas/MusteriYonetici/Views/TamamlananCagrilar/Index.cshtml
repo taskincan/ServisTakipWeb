@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<ServisTakipWeb.Areas.FirmaYonetici.Models.CagriTamamlamaBilgileri>
-    
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/MusteriYonetici/Views/Shared/MusteriYoneticiLayout.cshtml";
 }
 
- 
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -67,12 +66,18 @@
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.HizmetBitisTarihi)</td>
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.Sonuc)</td>
                                 <td class="col-md-2">@Html.DisplayFor(modelItem => item.AnketYapildiMiTablo)</td>
-                                <td class="col-md-2">
-                                    <a href="@Url.Action("Goruntule", "TamamlananCagrilar", new { _cagriNo = item.CagriKayitNo })" class="btn btn-success">
-                                        Görüntüle
-                                        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                                    </a>
-                                </td>
+                                 
+                                    <td class="col-md-2">
+                                       @if (item.Sonuc != "İptal")
+                                       { 
+                                           <a href="@Url.Action("Goruntule", "TamamlananCagrilar", new { _cagriNo = item.CagriKayitNo })" class="btn btn-success">
+                                            Görüntüle
+                                            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                        </a> 
+                                       }
+                                    </td>
+                               
+
                             </tr>
                         }
                     </tbody>

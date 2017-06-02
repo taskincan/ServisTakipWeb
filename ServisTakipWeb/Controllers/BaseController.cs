@@ -7,7 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ServisTakipWeb.Areas.Musteri.Context;
-using ServisTakipWeb.Areas.MusteriCalisan.Context; 
+using ServisTakipWeb.Areas.MusteriCalisan.Context;
+using ServisTakipWeb.Areas.MusteriYonetici.Context; 
 
 namespace ServisTakipWeb.Controllers
 {
@@ -18,7 +19,7 @@ namespace ServisTakipWeb.Controllers
         private ServisTakipFirmaYoneticiDBEntities _dbFirmaYonetici = null;
         private ServisTakipMusteriDBEntities _dbMusteri = null;
         private ServisTakipMusteriCalisanDBEntities _dbMusteriCalisan = null;
-        //private ServisTakipMusteriYoneticiDBEntities _dbMusteriYonetici = null; 
+        private ServisTakipMusteriYoneticiDBEntities _dbMusteriYonetici = null; 
 
         public ServisTakipFirmaYoneticiDBEntities dbFirmaYonetici
         {
@@ -88,19 +89,19 @@ namespace ServisTakipWeb.Controllers
             }
         }
 
-        //public ServisTakipMusteriYoneticiDBEntities dbMusteriYonetici
-        //{
-        //    get
-        //    {
-        //        if (_dbMusteriYonetici == null)
-        //        {
-        //            _dbMusteriYonetici = new ServisTakipMusteriYoneticiDBEntities();
+        public ServisTakipMusteriYoneticiDBEntities dbMusteriYonetici
+        {
+            get
+            {
+                if (_dbMusteriYonetici == null)
+                {
+                    _dbMusteriYonetici = new ServisTakipMusteriYoneticiDBEntities();
 
-        //            _dbMusteriYonetici.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
-        //        }
-        //        return _dbMusteriYonetici;
-        //    }
-        //}
+                    _dbMusteriYonetici.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
+                }
+                return _dbMusteriYonetici;
+            }
+        }
 
         public BaseController()
         {

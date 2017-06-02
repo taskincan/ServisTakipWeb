@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using ServisTakipWeb.Models;
 
-namespace ServisTakipWeb.Areas.FirmaYonetici.Models
+namespace ServisTakipWeb.Areas.MusteriYonetici.Models
 {
     public class AnketSorulari : BaseModel
     {
@@ -19,16 +19,16 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         public int MyID { get; set; }
 
         public int CagriNo { get; set; }
-        
+
         [Display(Name = "Anketi Yapan")]
         public string MyAdiSoyadi { get; set; }
 
         [Display(Name = "1 (Çok Kötü)  |  2 (Kötü)  |  3 (Orta)  |  4 (İyi)  |  5 (Çok İyi)")]
-        public string Aciklama { get; set; } 
+        public string Aciklama { get; set; }
 
-        [Display(Name = "Anlaşmalı olduğunuz firmadan ne kadar memnunsunuz ?")] 
-        [Required] 
-        public string Soru1 { get; set; } 
+        [Display(Name = "Anlaşmalı olduğunuz firmadan ne kadar memnunsunuz ?")]
+        [Required]
+        public string Soru1 { get; set; }
 
         [Display(Name = "Servisi tamamlayan firma çalışanından ne kadar memnun kaldınız ?")]
         [Required]
@@ -46,18 +46,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [Required]
         public string Soru5 { get; set; }
 
-        [Display(Name = "Belirtmek istediğiniz görüşleriniz.")] 
-        public string MusteriGorusu { get; set; }
-
-        public int Soru1Cevap { get; set; }
-
-        public int Soru2Cevap { get; set; }
-
-        public int Soru3Cevap { get; set; }
-
-        public int Soru4Cevap { get; set; }
-
-        public int Soru5Cevap { get; set; }
+        [Display(Name = "Belirtmek istediğiniz görüşleriniz.")]
+        public string MusteriGorusu { get; set; } 
 
         public double AnketOrtalamaPuani { get; set; }
 

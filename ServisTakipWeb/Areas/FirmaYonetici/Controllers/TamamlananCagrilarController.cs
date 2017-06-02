@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ServisTakipWeb.Areas.FirmaYonetici.Models;
+using ServisTakipWeb.Areas.MusteriYonetici.Models;
 using ServisTakipWeb.Controllers;
 
 namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
@@ -32,12 +33,39 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 return View(tamamlananCagri);
         }
 
+        public ActionResult AnketSonuclari(int _cagriNo = -1)
+        {
+            var anket = new AnketSorulari();
+            var cagri = CagriTamamlamaBilgileri.cagriTamamlamaList.SingleOrDefault(x => x.CagriKayitNo == _cagriNo);
+            var anketSonuclari = dbMusteriYonetici.Anket.SingleOrDefault(x => x.TamamlananCagriID == cagri.TamamlananID);
+            var anketYapma = anketSonuclari.AnketYapma.SingleOrDefault(x => x.TamamlananCagriID == cagri.TamamlananID);
+            var musteriYonetici = dbMusteri.MusteriYonetici.SingleOrDefault(x => x.MyID == anketYapma.MyID);
+            
+            if (anketSonuclari != null)
+            {
+                anket.Soru1 = anketSonuclari.Soru1;
+                anket.Soru2 = anketSonuclari.Soru2;
+                anket.Soru3 = anketSonuclari.Soru3;
+                anket.Soru4 = anketSonuclari.Soru4;
+                anket.Soru5 = anketSonuclari.Soru5;
+                anket.MusteriGorusu = anketSonuclari.MusteriGorus;
+                anket.MyAdiSoyadi = musteriYonetici.Ad + " " + musteriYonetici.Soyad;
+                anket.CagriNo = cagri.CagriKayitNo;
+
+                return View(anket);
+            }
+            else
+                return View("Index");
+
+
+        }
+
 
         private void TamamlananCagriListYarat()
         {
             CagriTamamlamaBilgileri.cagriTamamlamaList.Clear();
 
-            int temp = 0, countCagri = 0;
+            int temp = 0, countCagri = 0, soru1 = 0, soru2 = 0, soru3 = 0, soru4 = 0, soru5 = 0; 
             int firmaID = 0;
             int _MID = -1;
 
@@ -64,6 +92,19 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                         var tamamlananCagri = new CagriTamamlamaBilgileri();
 
                         tamamlananCagri.TamamlananID = _cagri.TamamlananID;
+
+                        if (_cagri.AnketYapildiMi == true)
+                        {
+                            var _anketYapma = dbMusteriYonetici.AnketYapma.SingleOrDefault(x => x.TamamlananCagriID == _cagri.TamamlananID);
+                            var _anket = dbMusteriYonetici.Anket.SingleOrDefault(x => x.ID == _anketYapma.AnketID);
+
+                            soru1 = Convert.ToInt32(_anket.Soru1);
+                            soru2 = Convert.ToInt32(_anket.Soru2);
+                            soru3 = Convert.ToInt32(_anket.Soru3);
+                            soru4 = Convert.ToInt32(_anket.Soru4);
+                            soru5 = Convert.ToInt32(_anket.Soru5);
+                        }
+
 
                         if (_cagri.TamamlayanYoneticiID == -1)
                         {
@@ -106,11 +147,20 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                         tamamlananCagri.YapilanIsinAciklamasi = _cagri.YapılanIsinAciklamasi;
                         tamamlananCagri.CreateDate = _cagri.CreateDate;
 
-                        if(_cagri.AnketYapildiMi==true)
-                            tamamlananCagri.AnketYapildiMiTablo = "Yapılmış";
-                        else
-                            tamamlananCagri.AnketYapildiMiTablo = "Yapılmamış";
+                        if (_cagri.AnketYapildiMi == true)
+                        {
+                            double anketOrt = 0;
 
+                            anketOrt = Convert.ToDouble(soru1 + soru2 + soru3 + soru4 + soru5) / 5;
+
+                            tamamlananCagri.AnketYapildiMiTablo = anketOrt.ToString();
+                            tamamlananCagri.AnketYapildiMi = true;
+                        }
+                        else
+                        {
+                            tamamlananCagri.AnketYapildiMiTablo = "Yapılmamış";
+                            tamamlananCagri.AnketYapildiMi = false;
+                        }
                         /*cagriTamamla.Marka1 = "";
                         tamamlananCagri.Marka2 = "";
                         tamamlananCagri.Marka3 = "";

@@ -221,7 +221,6 @@
     <Compile Include="Areas\FirmaYonetici\Controllers\TamamlananCagrilarController.cs" />
     <Compile Include="Areas\FirmaYonetici\Controllers\YoneticiBilgileriController.cs" />
     <Compile Include="Areas\FirmaYonetici\FirmaYoneticiAreaRegistration.cs" />
-    <Compile Include="Areas\FirmaYonetici\Models\AnketSorulari.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\AtanmisCagriBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CagriAtamaBilgileri.cs" />
     <Compile Include="Areas\FirmaYonetici\Models\CagriBilgileri.cs" />
@@ -281,9 +280,31 @@
     <Compile Include="Areas\MusteriCalisan\Controllers\CagriOlusturController.cs" />
     <Compile Include="Areas\MusteriCalisan\Models\CagriBilgileri.cs" />
     <Compile Include="Areas\MusteriCalisan\MusteriCalisanAreaRegistration.cs" />
+    <Compile Include="Areas\MusteriYonetici\Context\Anket.cs">
+      <DependentUpon>MusteriYoneticiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MusteriYonetici\Context\AnketYapma.cs">
+      <DependentUpon>MusteriYoneticiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MusteriYonetici\Context\MusteriYoneticiDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MusteriYoneticiDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MusteriYonetici\Context\MusteriYoneticiDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MusteriYoneticiDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\MusteriYonetici\Context\MusteriYoneticiDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MusteriYoneticiDB.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Areas\MusteriYonetici\Controllers\AnaSayfaController.cs" />
     <Compile Include="Areas\MusteriYonetici\Controllers\ProfileController.cs" />
     <Compile Include="Areas\MusteriYonetici\Controllers\TamamlananCagrilarController.cs" />
+    <Compile Include="Areas\MusteriYonetici\Models\AnketSorulari.cs" />
     <Compile Include="Areas\MusteriYonetici\MusteriYoneticiAreaRegistration.cs" />
     <Compile Include="Areas\Musteri\Context\Musteri.cs">
       <DependentUpon>MusteriDB.tt</DependentUpon>
@@ -399,8 +420,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\MusteriYonetici\Context\" />
-    <Folder Include="Areas\MusteriYonetici\Models\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
@@ -780,6 +799,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\MusteriYonetici\Views\TamamlananCagrilar\Anket.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Areas\MusteriYonetici\Context\MusteriYoneticiDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MusteriYoneticiDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriYonetici\Context\MusteriYoneticiDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MusteriYoneticiDB.edmx</DependentUpon>
+      <LastGenOutput>MusteriYoneticiDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\MusteriYonetici\Context\MusteriYoneticiDB.edmx.diagram">
+      <DependentUpon>MusteriYoneticiDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\MusteriYonetici\Context\MusteriYoneticiDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MusteriYoneticiDB.edmx</DependentUpon>
+      <LastGenOutput>MusteriYoneticiDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\TamamlananCagrilar\AnketSonuclari.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
