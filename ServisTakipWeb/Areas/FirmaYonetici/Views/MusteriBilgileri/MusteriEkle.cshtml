@@ -9,9 +9,9 @@
 @using (Html.BeginForm("MusteriEkle", "MusteriBilgileri", FormMethod.Post, new { id = "frmEdit", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary() 
- 
-    <div class="row" style="margin-top: 10px">
+    @Html.ValidationSummary()
+
+    <div class="row form-group">
         <div class="col-md-2">
             @Html.LabelFor(model => model.MusteriKodu)
         </div>
@@ -20,8 +20,8 @@
         </div>
         <div class="col-md-6">
         </div>
-    </div> 
-    <div class="row" style="margin-top: 10px">
+    </div>
+    <div class="row form-group">
         <div class="col-md-2">
             @Html.LabelFor(model => model.MusteriAdi)
         </div>
@@ -31,7 +31,7 @@
         <div class="col-md-6">
         </div>
     </div>
-    <div class="row" style="margin-top: 10px">
+    <div class="row form-group">
         <div class="col-md-2">
             @Html.LabelFor(model => model.YetkiliKisi)
         </div>
@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <div class="row" style="margin-top: 10px">
+    <div class="row form-group">
         <div class="col-md-2">
             @Html.LabelFor(model => model.Password)
         </div>
@@ -52,7 +52,7 @@
         <div class="col-md-6">
         </div>
     </div>
-    <div class="row" style="margin-top: 10px">
+    <div class="row form-group">
         <div class="col-md-2">
             @Html.LabelFor(model => model.VergiNumarasi)
         </div>
@@ -60,7 +60,7 @@
             <input class="form-control" placeholder="Vergi Numarası" name="VergiNumarasi" type="text" value="@Model.VergiNumarasi">
         </div>
     </div>
-    <div class="row" style="margin-top: 10px">
+    <div class="row form-group">
         <div class="col-md-2">
             @Html.LabelFor(model => model.VergiDairesi)
         </div>
@@ -68,7 +68,7 @@
             <input class="form-control" placeholder="Vergi Dairesi" name="VergiDairesi" type="text" value="@Model.VergiDairesi">
         </div>
     </div>
-    <div class="row" style="margin-top: 10px">
+    <div class="row form-group">
         <div class="col-md-2">
             @Html.LabelFor(model => model.Email)
         </div>
@@ -78,7 +78,7 @@
         <div class="col-md-6">
         </div>
     </div>
-    <div class="row" style="margin-top: 10px">
+    <div class="row form-group">
         <div class="col-md-2">
             @Html.LabelFor(model => model.Adres)
         </div>
@@ -88,17 +88,17 @@
         <div class="col-md-6">
         </div>
     </div>
-    <div class="row" style="margin-top: 10px">
-        <div class="col-md-2">
-            @Html.LabelFor(model => model.Tel1)
-        </div>
+    <div class="row form-group">
+        <div class=" col-md-2">
+        @Html.LabelFor(model => model.Tel1)
+    </div>
         <div class="col-md-4">
             <input class="form-control" placeholder="Telefon" name="Tel1" type="text" value="@Model.Tel1" required>
         </div>
         <div class="col-md-6">
         </div>
     </div>
-    <div class="row" style="margin-top: 10px">
+    <div class="row form-group">
         <div class="col-md-2">
             @Html.LabelFor(model => model.Tel2)
         </div>
@@ -108,15 +108,15 @@
         <div class="col-md-6">
         </div>
     </div>
-    <div class="row" style="margin-top:10px ">
-        <div class="col-md-6">
+    <div class="row">
+        <div class="col-md-6  form-group">
             <a href="@Url.Action("Index", "MusteriBilgileri")" class="btn btn-default btn-block">
                 <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
                 Geri
             </a>
         </div> 
 
-        <div class="col-md-6">
+        <div class="col-md-6  form-group">
             <button class="btn btn-default btn-block" type="submit" value="Sözleşme Bilgileri">
                 Sözleşme Bilgileri
                 <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>

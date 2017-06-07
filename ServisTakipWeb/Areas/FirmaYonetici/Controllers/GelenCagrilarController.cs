@@ -321,6 +321,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
             cagriIptal.CagriDetayi = _cagri.CagriDetayi;
             cagriIptal.SarfMalzemeTalebi = _cagri.SarfMalzemeTalebi;
             cagriIptal.TamamlayanYoneticiID = Connection.ID;
+            cagriIptal.CagriIptalEtmeNedeni = "";
 
             return View(cagriIptal);
         }
@@ -337,47 +338,45 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 {
                     var cagriIptal = new Context.TamamlananCagrilar();
 
-                    cagriIptal.FormNo = _cagriIptal.FormNo;
-                    cagriIptal.YapılanIsinAciklamasi = _cagriIptal.CagriIptalEtmeNedeni;
-
-                    cagriIptal.CagriKayitNo = _cagri.CagriNo;
-                    cagriIptal.MID = _cagri.CreateUserID;
-                    cagriIptal.YetkiliKisi = _cagri.IlgiliKisi;
-                    cagriIptal.Gsm = _cagri.Telefon;
-                    cagriIptal.Email = _cagri.Email;
-                    cagriIptal.BildirilenAriza = _cagri.CagriDetayi + " - " + _cagri.Aciklama;
-
-                    _cagri.Durum = "İptal";
-
-                    cagriIptal.TamamlayanYoneticiID = Connection.ID; //Firma Yonetici Panelindeyiz.
-                    cagriIptal.TamamlayanCalisanID = -1; //Firma Yonetici Panelindeyiz.
-                    cagriIptal.HizmetTipi = "-";
-                    cagriIptal.CihazinHizmetDurumu = "-";
-                    cagriIptal.CagrininBildirigiTarih = _cagri.CagriAcilisTarihi;
-                    cagriIptal.HizmetBaslangicTarihi = DateTime.Now;
-                    cagriIptal.HizmetBitisTarihi = DateTime.Now; 
-                    cagriIptal.MesaiSaatiIcindeMi = true;
-                    cagriIptal.Sonuc = _cagri.Durum;
-                    cagriIptal.CreateDate = DateTime.Now;
-                    cagriIptal.AnketYapildiMi = false;
-
-                    bool kayitBasarili = false;
-
-                    dbFirmaYonetici.TamamlananCagrilar.Add(cagriIptal);
-                    dbFirmaYonetici.SaveChanges();
-
-                    kayitBasarili = true;
-
-                    if (kayitBasarili == true)
+                    var formNo = dbFirmaYonetici.TamamlananCagrilar.SingleOrDefault(x=>x.FormNo == _cagriIptal.FormNo);
+                    
+                    if (formNo!=null) // farkli bir formNo girilmeli 
                     {
-                        var acilanCagri = dbMusteriCalisan.AcilanCagri.SingleOrDefault(x => x.CagriNo == cagriIptal.CagriKayitNo);
+                        ModelState.AddModelError("", "Form Numarasını kontrol ediniz."); //TODO: form no yu kontrol et. hepsi farkli olmali.
 
-                        dbMusteriCalisan.AcilanCagri.Remove(acilanCagri);
-                        dbMusteriCalisan.SaveChanges();
+                        return View(_cagriIptal);
                     }
+                    else // kayit yapilabilir
+                    {
+                        cagriIptal.FormNo = _cagriIptal.FormNo;
+                        cagriIptal.YapılanIsinAciklamasi = _cagriIptal.CagriIptalEtmeNedeni;
 
-                    return RedirectToAction("Index");
+                        cagriIptal.CagriKayitNo = _cagri.CagriNo;
+                        cagriIptal.MID = _cagri.CreateUserID;
+                        cagriIptal.YetkiliKisi = _cagri.IlgiliKisi;
+                        cagriIptal.Gsm = _cagri.Telefon;
+                        cagriIptal.Email = _cagri.Email;
+                        cagriIptal.BildirilenAriza = _cagri.CagriDetayi + " - " + _cagri.Aciklama;
 
+                        _cagri.Durum = "İptal";
+
+                        cagriIptal.TamamlayanYoneticiID = Connection.ID; //Firma Yonetici Panelindeyiz.
+                        cagriIptal.TamamlayanCalisanID = -1; //Firma Yonetici Panelindeyiz.
+                        cagriIptal.HizmetTipi = "-";
+                        cagriIptal.CihazinHizmetDurumu = "-";
+                        cagriIptal.CagrininBildirigiTarih = _cagri.CagriAcilisTarihi;
+                        cagriIptal.HizmetBaslangicTarihi = DateTime.Now;
+                        cagriIptal.HizmetBitisTarihi = DateTime.Now;
+                        cagriIptal.MesaiSaatiIcindeMi = true;
+                        cagriIptal.Sonuc = _cagri.Durum;
+                        cagriIptal.CreateDate = DateTime.Now;
+                        cagriIptal.AnketYapildiMi = false;
+                         
+                        dbFirmaYonetici.TamamlananCagrilar.Add(cagriIptal);
+                        dbFirmaYonetici.SaveChanges(); 
+
+                        return RedirectToAction("Index");
+                    }  
                 }
                 else
                     return View(_cagriIptal);

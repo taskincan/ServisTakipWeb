@@ -12,38 +12,10 @@
     @Html.ValidationSummary()
 
     @Html.HiddenFor(model => model.ID)
-
-    <div class="row" style="margin-top: 10px">
-        <div class="col-md-2">
-            @Html.LabelFor(model => model.ID)
-        </div>
-        <div class="col-md-4">
-            <input class="form-control" placeholder="ID" name="ID" type="text" value="@Model.ID" readonly>
-            @ViewBag.Message
-        </div>
-        <div class="col-md-6">
-        </div>
-    </div>
-    <div class="row" style="margin-top: 10px">
-        <div class="col-md-2">
-            @Html.LabelFor(model => model.MusteriKodu)
-        </div>
-        <div class="col-md-4">
-            <input class="form-control" placeholder="Müşteri Kodu" name="MusteriKodu" type="text" value="@Model.MusteriKodu" readonly>
-        </div>
-        <div class="col-md-6">
-        </div>
-    </div>
-    <div class="row" style="margin-top: 10px">
-        <div class="col-md-2">
-            @Html.LabelFor(model => model.CreateUserID)
-        </div>
-        <div class="col-md-4">
-            <input class="form-control" placeholder="CreateUserID" name="CreateUserID" type="text" value="@Model.CreateUserID" readonly>
-        </div>
-        <div class="col-md-6">
-        </div>
-    </div>
+    @Html.HiddenFor(model => model.MusteriKodu)
+    @Html.HiddenFor(model => model.CreateUserID)
+    @Html.HiddenFor(model => model.ID)
+     
     <div class="row" style="margin-top: 10px">
         <div class="col-md-2">
             @Html.LabelFor(model => model.MusteriAdi)
@@ -133,7 +105,7 @@
     </div>
 
     <div class="row" style="margin-top:10px ">
-        <div class="col-md-6">
+        <div class="col-md-6 form-group">
             <a href="@Url.Action("Index", "MusteriBilgileri")" class="btn btn-default btn-block">
                 <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
                 Geri
@@ -146,10 +118,10 @@
                 </a>
             </div>*@
 
-        <div class="col-md-6">
+        <div class="col-md-6 form-group">
             <button class="btn btn-default btn-block" type="submit" value="Sözleşme Bilgileri">
                 Sözleşme Bilgileri
-                <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> 
+                <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
             </button>
         </div>
     </div>

@@ -68,62 +68,38 @@
                     <ul class="nav navbar-nav side-nav">
                         <li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#cagrilar">
-                                <i class="fa fa-fw fa-desktop"></i> @ServisTakipWeb.Connection.cagrilar.ToString() <i class="fa fa-fw fa-caret-down"></i>
+                                <i class="fa fa-fw fa-briefcase"></i> @ServisTakipWeb.Connection.cagrilar.ToString() <i class="fa fa-fw fa-caret-down"></i>
                             </a>
                             <ul id="cagrilar" class="collapse">
                                 <li>
                                     <a href="/FirmaYonetici/GelenCagrilar">
-                                        <i class="fa fa-fw fa-file"> </i> @ServisTakipWeb.Connection.gelenCagrilar.ToString()
+                                        <i class="fa fa-fw fa-envelope-o"> </i> @ServisTakipWeb.Connection.gelenCagrilar.ToString()
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/FirmaYonetici/AtanmisCagrilar">
-                                        <i class="fa fa-fw fa-file"></i> @ServisTakipWeb.Connection.atanmisCagrilar.ToString()
+                                        <i class="fa fa-fw fa-share-square-o"></i> @ServisTakipWeb.Connection.atanmisCagrilar.ToString()
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/FirmaYonetici/BekleyenCagrilar">
-                                        <i class="fa fa-fw fa-file"></i> @ServisTakipWeb.Connection.bekleyenCagrilar.ToString()
+                                        <i class="fa fa-fw fa-pencil-square-o"></i> @ServisTakipWeb.Connection.bekleyenCagrilar.ToString()
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/FirmaYonetici/TamamlananCagrilar">
-                                        <i class="fa fa-fw fa-beer"></i> @ServisTakipWeb.Connection.tamamlananCagrilar.ToString()
+                                        <i class="fa fa-fw fa-check-square-o"></i> @ServisTakipWeb.Connection.tamamlananCagrilar.ToString()
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        @*<li>
-                                <a href="/FirmaYonetici/GelenCagrilar">
-                                    <i class="fa fa-fw fa-file"> </i>
-                                    @ServisTakipWeb.Connection.gelenCagrilar.ToString()
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/FirmaYonetici/AtanmisCagrilar">
-                                    <i class="fa fa-fw fa-file"></i>
-                                    @ServisTakipWeb.Connection.atanmisCagrilar.ToString()
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/FirmaYonetici/BekleyenCagrilar">
-                                    <i class="fa fa-fw fa-file"></i>
-                                    @ServisTakipWeb.Connection.bekleyenCagrilar.ToString()
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/FirmaYonetici/BekleyenCagrilar">
-                                    <i class="fa fa-fw fa-file"></i>
-                                    @ServisTakipWeb.Connection.bekleyenCagrilar.ToString()
-                                </a>
-                            </li>*@
+                        </li> 
                         <li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#musteriler">
                                 <i class="fa fa-fw fa-desktop"></i> @ServisTakipWeb.Connection.musteriler.ToString() <i class="fa fa-fw fa-caret-down"></i>
                             </a>
                             <ul id="musteriler" class="collapse">
                                 <li>
-                                    <a href="/FirmaYonetici/MusteriBilgileri">  <i class="fa fa-fw fa-table"></i> @ServisTakipWeb.Connection.musteriler.ToString() </a>
+                                    <a href="/FirmaYonetici/MusteriBilgileri">  <i class="fa fa-fw fa-table"></i> @ServisTakipWeb.Connection.musteriBilgileri.ToString() </a>
                                 </li>
                                 <li>
                                     <a href="/FirmaYonetici/MusteriBilgileri/MusteriEkle">  <i class="fa fa-fw fa-edit"></i> @ServisTakipWeb.Connection.musteriEkle.ToString() </a>
@@ -132,7 +108,7 @@
                         </li>
                         <li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#yoneticiler">
-                                <i class="fa fa-fw fa-desktop"></i> @ServisTakipWeb.Connection.yoneticiler.ToString() <i class="fa fa-fw fa-caret-down"></i>
+                                <i class="fa fa-fw fa-user"></i> @ServisTakipWeb.Connection.yoneticiler.ToString() <i class="fa fa-fw fa-caret-down"></i>
                             </a>
                             <ul id="yoneticiler" class="collapse">
                                 <li>
@@ -145,11 +121,11 @@
                         </li>
                         <li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#calisanlar">
-                                <i class="fa fa-fw fa-desktop"></i> @ServisTakipWeb.Connection.calisanlar.ToString() <i class="fa fa-fw fa-caret-down"></i>
+                                <i class="fa fa-fw fa-users"></i> @ServisTakipWeb.Connection.calisanlar.ToString() <i class="fa fa-fw fa-caret-down"></i>
                             </a>
                             <ul id="calisanlar" class="collapse">
                                 <li>
-                                    <a href="/FirmaYonetici/CalisanBilgileri">  <i class="fa fa-fw fa-table"></i> @ServisTakipWeb.Connection.calisanlar.ToString() </a>
+                                    <a href="/FirmaYonetici/CalisanBilgileri">  <i class="fa fa-fw fa-table"></i> @ServisTakipWeb.Connection.calisanBilgileri.ToString() </a>
                                 </li>
                                 <li>
                                     <a href="/FirmaYonetici/CalisanBilgileri/Create">  <i class="fa fa-fw fa-edit"></i> @ServisTakipWeb.Connection.calisanEkle.ToString() </a>

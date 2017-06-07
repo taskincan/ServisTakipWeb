@@ -202,6 +202,12 @@
             Kapat
         </a>
     </div>
+    <div class="col-md-2" style="margin-top:10px">
+        <a href="@Url.Action("Atama", "BekleyenCagrilar", new { _cagriNo = @Model.CagriNo })" class="btn btn-success">
+            Yeni Atama Yap
+            <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+        </a>
+    </div>
 
     @*<div class="col-md-4" style="margin-top:10px">
         <a href="@Url.Action("Tamamla", "BekleyenCagrilar", new { _bekleyenCagriNo = @Model.CagriNo })" class="btn btn-primary">

@@ -14,17 +14,8 @@
     @ViewBag.Message
 
     @Html.HiddenFor(model => model.MusteriID)
-
-    <div class="row" style="margin-top: 10px">
-        <div class="col-md-2">
-            @Html.LabelFor(model => model.SozlesmeID)
-        </div>
-        <div class="col-md-4">
-            <input class="form-control" placeholder="SozlesmeID" name="SozlesmeID" type="text" value="@Model.SozlesmeID" readonly>
-        </div>
-        <div class="col-md-6">
-        </div>
-    </div>
+    @Html.HiddenFor(model => model.SozlesmeID)
+     
     <div class="row" style="margin-top: 10px">
         <div class="col-md-2">
             @Html.LabelFor(model => model.SozlesmeAdi)
@@ -118,20 +109,20 @@
     </div>
 
     <div class="row" style="margin-top:10px ">
-        <div class="col-md-2">
+        <div class="col-md-2 form-group">
             <a href="@Url.Action("Index", "MusteriBilgileri")" class="btn btn-default btn-block">
                 <span class="glyphicon glyphicon-remove aria-hidden=" true"></span>
                 İptal Et
             </a>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 form-group">
             <a href="@Url.Action("Musteri", "MusteriBilgileri", new { id = @Model.MusteriID })" class="btn btn-default btn-block">
                 <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
                 Müşteri Bilgileri
             </a>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 form-group">
             <button class="btn btn-default btn-block" type="submit" value="Kaydet">
                 Kaydet
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>

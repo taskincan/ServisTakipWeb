@@ -158,6 +158,7 @@
     <Compile Include="Areas\FirmaCalisan\Controllers\AnaSayfaController.cs" />
     <Compile Include="Areas\FirmaCalisan\Controllers\AtanmisCagrilarController.cs" />
     <Compile Include="Areas\FirmaCalisan\Controllers\BekleyenCagrilarController.cs" />
+    <Compile Include="Areas\FirmaCalisan\Controllers\ProfileController.cs" />
     <Compile Include="Areas\FirmaCalisan\Controllers\TamamlananCagrilarController.cs" />
     <Compile Include="Areas\FirmaCalisan\FirmaCalisanAreaRegistration.cs" />
     <Compile Include="Areas\FirmaCalisan\Models\AtanmisCagrilar.cs" />
@@ -823,6 +824,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\FirmaYonetici\Views\TamamlananCagrilar\AnketSonuclari.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Views\BekleyenCagrilar\Atama.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaCalisan\Views\TamamlananCagrilar\Goruntule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaCalisan\Views\Profile\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -126,6 +126,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [Display(Name = "Durum")]
         [DataType(DataType.Text)] 
         public string Durum { get; set; }
+         
+        public string CagriIptalEtmeNedeni { get; set; } 
 
         public static List<CagriBilgileri> cagriList = new List<CagriBilgileri>();
     }

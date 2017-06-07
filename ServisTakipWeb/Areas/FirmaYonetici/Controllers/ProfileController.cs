@@ -64,7 +64,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 dbFirmaYonetici.SaveChanges();
                 ModelState.Clear();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","AnaSayfa");
             }
             return View(_firmaYoneticiBilgileri);
         } 

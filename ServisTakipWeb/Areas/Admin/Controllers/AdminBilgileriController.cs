@@ -13,21 +13,7 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
 {
     public class AdminBilgileriController : BaseController
     {
-        private ServisTakipAdminDBEntities _db = null;
-
-        public ServisTakipAdminDBEntities db
-        {
-            get
-            {
-                if (_db == null)
-                {
-                    _db = new ServisTakipAdminDBEntities();
-                    _db.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
-                }
-                return _db;
-            }
-        }
-
+          
        // private Context.ServisTakipAdminEntities db = new Context.ServisTakipAdminEntities();
 
         //
@@ -76,9 +62,9 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
                 _user.UserName = _adminBilgileri.UserName;
                 _user.Password = _adminBilgileri.Password;
                 _user.CreateDate = DateTime.Now;
-                 
-                db.Entry(_user).State = EntityState.Modified;
-                db.SaveChanges();
+
+                dbAdmin.Entry(_user).State = EntityState.Modified;
+                dbAdmin.SaveChanges();
                 ModelState.Clear();
 
                 return RedirectToAction("Index");
@@ -90,16 +76,16 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
         {
             int temp, count=0;
 
-            count = db.Admin.Count();
-
+            count = dbAdmin.Admin.Count();
+            //TODO: temizle buralari
             for (temp = 0; temp < count; temp++)
             {
                 var _adminlist  = new Models.AdminBilgileri();
-                  
-                _adminlist.ID = db.Admin.ToList()[temp].ID;
-                _adminlist.UserName = db.Admin.ToList()[temp].UserName;
-                _adminlist.Password = db.Admin.ToList()[temp].Password;
-                _adminlist.CreateDate = Convert.ToDateTime(db.Admin.ToList()[temp].CreateDate);
+
+                _adminlist.ID = dbAdmin.Admin.ToList()[temp].ID;
+                _adminlist.UserName = dbAdmin.Admin.ToList()[temp].UserName;
+                _adminlist.Password = dbAdmin.Admin.ToList()[temp].Password;
+                _adminlist.CreateDate = Convert.ToDateTime(dbAdmin.Admin.ToList()[temp].CreateDate);
 
                 Models.AdminBilgileri.adminList.Add(_adminlist);
             }

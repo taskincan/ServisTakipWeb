@@ -12,7 +12,8 @@
     @Html.ValidationSummary()
 
     @Html.HiddenFor(model => model.FyID)
-
+    @Html.HiddenFor(model => model.FirmaID)
+    
     <div class="row">
         <div class="col-md-2">
             @Html.LabelFor(model => model.UserName)
@@ -75,7 +76,7 @@
         <div class="col-md-6">
         </div>
     </div>
-    <div class="row" style="margin-top: 10px">
+    @*<div class="row" style="margin-top: 10px">
         <div class="col-md-2">
             @Html.LabelFor(model => model.FirmaID)
         </div>
@@ -84,16 +85,16 @@
         </div>
         <div class="col-md-6">
         </div>
-    </div>
+    </div>*@
 
 
     <div class="row" style="margin-top:10px ">
         <div class="col-md-4"></div>
 
-        <div class="col-md-2">
-            <button class=" btn btn-outline-primary btn-block" type="submit" value="Kaydet">
-                Kaydet
-            </button>
+        <div class="col-md-2"> 
+            <button class="btn btn-success btn-block" type="submit" value="Kaydet">
+                <span class="glyphicon glyphicon-ok"></span> Kaydet
+            </button> 
         </div>
     </div>
 

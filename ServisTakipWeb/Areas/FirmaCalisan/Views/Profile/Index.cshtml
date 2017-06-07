@@ -1,17 +1,19 @@
-﻿@using ServisTakipWeb.Areas.Firma.Models
-@model FirmaYönetici 
+﻿@using ServisTakipWeb.Areas.FirmaYonetici.Models
+@model CalisanBilgileri
 
 @{
-    ViewBag.Title = "Create";
-    Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/FirmaCalisan/Views/Shared/FirmaCalisanLayout.cshtml";
 }
- 
-@using (Html.BeginForm("Create", "YoneticiBilgileri", FormMethod.Post, new { id = "frmCreate", enctype = "multipart/form-data" }))
+  
+@using (Html.BeginForm("Index", "", FormMethod.Post, new { id = "frmIndex", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
-     
+
+    @Html.HiddenFor(model => model.FcID)
     @Html.HiddenFor(model => model.FirmaID)
+    @Html.HiddenFor(model => model.CreateUserID)
 
     <div class="row">
         <div class="col-md-2">
@@ -19,7 +21,9 @@
         </div>
         <div class="col-md-4">
             <input class="form-control" placeholder="Kullanıcı Adı" name="UserName" type="text" value="@Model.UserName" required>
+            @ViewBag.Message
         </div>
+
         <div class="col-md-6">
         </div>
     </div>
@@ -28,7 +32,7 @@
             @Html.LabelFor(model => model.Password)
         </div>
         <div class="col-md-4">
-            <input class="form-control" placeholder="Şifre" name="Password" type="password" value="@Model.Password" required>
+            <input class="form-control" placeholder="Şifre" name="Password" type="text" value="@Model.Password" required>
         </div>
         <div class="col-md-6">
         </div>
@@ -58,7 +62,7 @@
             @Html.LabelFor(model => model.Gsm)
         </div>
         <div class="col-md-4">
-            <input class="form-control" placeholder="Telefon" name="Gsm" type="text" value="@Model.Gsm" required>
+            <input class="form-control" placeholder="Gsm" name="Gsm" type="text" value="@Model.Gsm" required>
         </div>
         <div class="col-md-6">
         </div>
@@ -72,14 +76,16 @@
         </div>
         <div class="col-md-6">
         </div>
-    </div>  
+    </div>
+
+
     <div class="row" style="margin-top:10px ">
         <div class="col-md-4"></div>
 
         <div class="col-md-2">
             <button class="btn btn-success btn-block" type="submit" value="Kaydet">
                 <span class="glyphicon glyphicon-ok"></span> Kaydet
-            </button> 
+            </button>
         </div>
     </div>
 
@@ -87,6 +93,6 @@
 
 <script>
     function SubmitForm() {
-        $("#frmCreate").submit();
+        $("#frmIndex").submit();
     }
 </script>

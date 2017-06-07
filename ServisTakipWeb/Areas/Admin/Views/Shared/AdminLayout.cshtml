@@ -14,9 +14,9 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/Content/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
-    <link href="~/Content/css/jquery.dataTables.min.css" rel="stylesheet" />
-    <link href="~/Content/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Content/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
+    <link href="~/Content/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+    @*<link href="~/Content/css/dataTables.bootstrap.min.css" rel="stylesheet" />*@
     <link href="~/Content/css/colReorder.bootstrap.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="~/Content/css/sb-admin.css" rel="stylesheet">
@@ -54,14 +54,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                            </li>
-                            <li class="divider"></li>
+                            </li> 
                             <li>
                                 <a href="/"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                             </li>
@@ -72,22 +65,11 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
                         <li>
-                            <a href="/Admin/AdminBilgileri"><i class="fa fa-fw fa-edit"></i> Admin Bilgileri</a>
+                            <a href="/Admin/AdminBilgileri"><i class="fa fa-fw fa-desktop"></i> Admin Bilgileri</a>
                         </li>
                         <li>
-                            <a href="/Admin/FirmaBilgileri"><i class="fa fa-fw fa-desktop"></i> Firma Bilgileri</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                            <ul id="demo" class="collapse">
-                                <li>
-                                    <a href="#">Dropdown Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Dropdown Item</a>
-                                </li>
-                            </ul>
-                        </li>
+                            <a href="/Admin/FirmaBilgileri"><i class="fa fa-fw fa-users"></i> Firma Bilgileri</a>
+                        </li> 
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -119,13 +101,13 @@
        @* @Scripts.Render("~/js/dataTable.js")*@ 
 
     <!-- Morris Charts JavaScript --> 
-    @Scripts.Render("~/js/morris.min.js")
+    @*@Scripts.Render("~/js/morris.min.js")
     @Scripts.Render("~/js/plugins/morris/raphael.min.js")
-    @Scripts.Render("~/js/plugins/morris/morris-data.js")
+    @Scripts.Render("~/js/plugins/morris/morris-data.js")*@
 
-    @Scripts.Render("~/js/dataTables.bootstrap.min.js")
+    @*@Scripts.Render("~/js/dataTables.bootstrap.min.js")
     @Scripts.Render("~/js/dataTables.colReorder.min.js")
-    @Scripts.Render("~/js/jquery.dataTables.min.js")
+    @Scripts.Render("~/js/jquery.dataTables.min.js")*@
     
     @RenderSection("scripts",required:false)
      

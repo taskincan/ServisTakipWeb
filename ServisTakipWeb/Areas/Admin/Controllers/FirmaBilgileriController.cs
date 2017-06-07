@@ -42,27 +42,22 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
         {
             var _firmaList = new FirmaBilgileri();
 
-            foreach (var item in FirmaBilgileri.firmaList)
-            {
-                if (item.ID == id)
-                {
-                    _firmaList.ID = item.ID;
-                    _firmaList.FirmaKodu = item.FirmaKodu;
-                    _firmaList.FirmaAdi = item.FirmaAdi;
-                    _firmaList.YetkiliKisi = item.YetkiliKisi;
-                    _firmaList.Gsm = item.Gsm;
-                    _firmaList.FirmaTel = item.FirmaTel;
-                    _firmaList.WebSite = item.WebSite;
-                    _firmaList.UserName = item.UserName;
-                    _firmaList.Password = item.Password;
-                    _firmaList.Adres = item.Adres;
-                    _firmaList.Email = item.Email;
-                    _firmaList.AdminID = item.AdminID;
-                    _firmaList.CreateDate = Convert.ToDateTime(item.CreateDate.ToShortDateString());
-                }
-            } 
-           
-
+            var firma = FirmaBilgileri.firmaList.SingleOrDefault(x=>x.ID == id);
+             
+            _firmaList.ID = firma.ID;
+            _firmaList.FirmaKodu = firma.FirmaKodu;
+            _firmaList.FirmaAdi = firma.FirmaAdi;
+            _firmaList.YetkiliKisi = firma.YetkiliKisi;
+            _firmaList.Gsm = firma.Gsm;
+            _firmaList.FirmaTel = firma.FirmaTel;
+            _firmaList.WebSite = firma.WebSite;
+            _firmaList.UserName = firma.UserName;
+            _firmaList.Password = firma.Password;
+            _firmaList.Adres = firma.Adres;
+            _firmaList.Email = firma.Email;
+            _firmaList.AdminID = firma.AdminID;
+            _firmaList.CreateDate = Convert.ToDateTime(firma.CreateDate.ToShortDateString());
+                 
             if (_firmaList == null)
             {
                 return HttpNotFound();
@@ -73,51 +68,35 @@ namespace ServisTakipWeb.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(FirmaBilgileri _firmaBilgileri)
         {
-            int temp, count = 0;
-            bool firmaKoduVarMi = false;
+            int  count = 0; 
             ViewBag.Message = "";
- 
+
             count = db.Firma.Count();
 
-            for (temp = 0; temp < count; temp++)
+            if (ModelState.IsValid)
             {
-                if (_firmaBilgileri.FirmaKodu == db.Firma.ToList()[temp].FirmaKodu)
-                {
-                    firmaKoduVarMi = true; //database de ayni firma kodu var.
-                }
-            }
-            if (firmaKoduVarMi == true) //aynı kullanici isminden varsa kayit yapmadan sayfaya ViewBag.Message yolluyor.
-            {
-                ViewBag.Message = "Farklı bir Firma Kodu deneyiniz.";
-                return View(_firmaBilgileri);
-            }
-            else
-            {
-                if (ModelState.IsValid)
-                {
-                    var _firma = new Context.Firma();
+                var _firma = new Context.Firma();
 
-                    _firma.ID = _firmaBilgileri.ID;
-                    _firma.FirmaKodu = _firmaBilgileri.FirmaKodu;
-                    _firma.FirmaAdi = _firmaBilgileri.FirmaAdi;
-                    _firma.YetkiliKisi = _firmaBilgileri.YetkiliKisi;
-                    _firma.Gsm = _firmaBilgileri.Gsm;
-                    _firma.FirmaTel = _firmaBilgileri.FirmaTel;
-                    _firma.webSitesi = _firmaBilgileri.WebSite;
-                    _firma.UserName = _firmaBilgileri.UserName;
-                    _firma.Password = _firmaBilgileri.Password;
-                    _firma.Adres = _firmaBilgileri.Adres;
-                    _firma.Email = _firmaBilgileri.Email;
-                    _firma.AdminID = _firmaBilgileri.AdminID;
-                    _firma.CreateDate = DateTime.Now;
+                _firma.ID = _firmaBilgileri.ID;
+                _firma.FirmaKodu = _firmaBilgileri.FirmaKodu;
+                _firma.FirmaAdi = _firmaBilgileri.FirmaAdi;
+                _firma.YetkiliKisi = _firmaBilgileri.YetkiliKisi;
+                _firma.Gsm = _firmaBilgileri.Gsm;
+                _firma.FirmaTel = _firmaBilgileri.FirmaTel;
+                _firma.webSitesi = _firmaBilgileri.WebSite;
+                _firma.UserName = _firmaBilgileri.UserName;
+                _firma.Password = _firmaBilgileri.Password;
+                _firma.Adres = _firmaBilgileri.Adres;
+                _firma.Email = _firmaBilgileri.Email;
+                _firma.AdminID = _firmaBilgileri.AdminID;
+                _firma.CreateDate = DateTime.Now;
+                 
+                db.Entry(_firma).State = EntityState.Modified;
+                db.SaveChanges();
+                ModelState.Clear();
 
-                    //TODO : Güncelleme yapmıyor. same primary key hatası alıyor.
-                    db.Entry(_firma).State = EntityState.Modified;
-                    db.SaveChanges();
-                    ModelState.Clear(); 
+                return RedirectToAction("Index");
 
-                    return RedirectToAction("Index");
-                }
             }
 
             return View(_firmaBilgileri);

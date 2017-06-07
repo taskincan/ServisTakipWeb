@@ -22,6 +22,16 @@ namespace ServisTakipWeb.Areas.FirmaCalisan.Controllers
             return View(CagriTamamlamaBilgileri.cagriTamamlamaList);
         }
 
+        public ActionResult Goruntule(int _cagriNo = -1)
+        {
+            var tamamlananCagri = CagriTamamlamaBilgileri.cagriTamamlamaList.SingleOrDefault(x => x.CagriKayitNo == _cagriNo);
+
+            if (tamamlananCagri == null)
+                return View("Index");
+            else
+                return View(tamamlananCagri);
+        }
+
         private void TamamlananCagriListYarat()
         {
             CagriTamamlamaBilgileri.cagriTamamlamaList.Clear();

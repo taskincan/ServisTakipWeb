@@ -14,7 +14,7 @@
     @Html.HiddenFor(model => model.ID) 
     @Html.HiddenFor(model => model.AtayanID)
 
-    <div class="row">
+    <div class="row form-group">
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-3">
@@ -193,17 +193,19 @@
                 <div class="col-md-1">
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="col-md-1">
-                    @Html.LabelFor(model => model.AcilMi)
-                </div>
-                <div class="col-md-4">
-                    @Html.CheckBoxFor(model => model.AcilMi, new { onclick = "return false" })
-                </div>
+            <div class="row" style="margin-top:10px">
                 <div class="col-md-6">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.AcilMi)
+                    </div>
+                    <div class="col-md-8">
+                        @Html.CheckBoxFor(model => model.AcilMi, new { onclick = "return false" })
+                    </div>
+                    <div class="col-md-1">
+                    </div>
                 </div>
             </div>
-        </div>
+            </div>
     </div>
      
     <div class="row" style="margin-top:10px">
@@ -216,13 +218,13 @@
     </div>
 
     <div class="row" style="margin-top:10px ">
-        <div class="col-md-2">
+        <div class="col-md-2 form-group">
             <a href="@Url.Action("Goruntule", "AtanmisCagrilar", new { _atanmisCagriNo = @Model.CagriNo })" class="btn btn-default">
                 <span class="glyphicon glyphicon-chevron-left"></span>
                 Kapat
             </a>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 form-group">
             <button class=" btn btn-outline-primary btn-danger" type="submit" value="Kaydet">
                 Çağrıyı Bekleyeme Al
             </button>

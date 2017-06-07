@@ -10,12 +10,15 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
+    @Html.HiddenFor(model => model.CreateUserID)
+    @Html.HiddenFor(model => model.FirmaID)
+    
     <div class="row">
         <div class="col-md-2">
             @Html.LabelFor(model => model.UserName)
         </div>
         <div class="col-md-4">
-            <input class="form-control" placeholder="User Name" name="UserName" type="text" value="@Model.UserName" required>
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @required = "required", placeholder = "Kullanıcı Adı" }) 
         </div>
         <div class="col-md-6">
         </div>
@@ -24,8 +27,8 @@
         <div class="col-md-2">
             @Html.LabelFor(model => model.Password)
         </div>
-        <div class="col-md-4">
-            <input class="form-control" placeholder="Password" name="Password" type="password" value="@Model.Password" required>
+        <div class="col-md-4"> 
+            @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @required = "required", placeholder = "Şifre" }) 
         </div>
         <div class="col-md-6">
         </div>
@@ -35,7 +38,8 @@
             @Html.LabelFor(model => model.Ad)
         </div>
         <div class="col-md-4">
-            <input class="form-control" placeholder="Ad" name="Ad" type="text" value="@Model.Ad" required>
+            @Html.TextBoxFor(model => model.Ad, new { @class = "form-control", @required = "required", placeholder = "Ad" })
+            
         </div>
         <div class="col-md-6">
         </div>
@@ -45,7 +49,7 @@
             @Html.LabelFor(model => model.Soyad)
         </div>
         <div class="col-md-4">
-            <input class="form-control" placeholder="Soyad" name="Soyad" type="text" value="@Model.Soyad" required>
+            @Html.TextBoxFor(model => model.Soyad, new { @class = "form-control", @required = "required", placeholder = "Soyad" }) 
         </div>
         <div class="col-md-6">
         </div>
@@ -55,7 +59,7 @@
             @Html.LabelFor(model => model.Gsm)
         </div>
         <div class="col-md-4">
-            <input class="form-control" placeholder="Gsm" name="Gsm" type="text" value="@Model.Gsm" required>
+            @Html.TextBoxFor(model => model.Gsm, new { @class = "form-control", @required = "required", placeholder = "Telefon" })  
         </div>
         <div class="col-md-6">
         </div>
@@ -65,41 +69,19 @@
             @Html.LabelFor(model => model.Email)
         </div>
         <div class="col-md-4">
-            <input class="form-control" placeholder="Email" name="Email" type="text" value="@Model.Email">
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @required = "required", placeholder = "Email" })  
         </div>
         <div class="col-md-6">
         </div>
-    </div>
-    <div class="row" style="margin-top: 10px">
-        <div class="col-md-2">
-            @Html.LabelFor(model => model.FirmaID)
-        </div>
-        <div class="col-md-4">
-            <input class="form-control" placeholder="FirmaID" name="FirmaID" type="text" value="@Model.FirmaID" readonly>
-        </div>
-        <div class="col-md-6">
-        </div>
-    </div>
-    <div class="row" style="margin-top: 10px">
-        <div class="col-md-2">
-            @Html.LabelFor(model => model.CreateUserID)
-        </div>
-        <div class="col-md-4">
-            <input class="form-control" placeholder="FirmaID" name="CreateUserID" type="text" value="@Model.CreateUserID" readonly>
-        </div>
-        <div class="col-md-6">
-        </div>
-    </div>
-
-
-
+    </div> 
+     
     <div class="row" style="margin-top:10px ">
         <div class="col-md-4"></div>
 
         <div class="col-md-2">
-            <button class=" btn btn-outline-primary btn-block" type="submit" value="Kaydet">
-                Kaydet
-            </button>
+            <button class="btn btn-success btn-block" type="submit" value="Kaydet">
+                <span class="glyphicon glyphicon-ok"></span> Kaydet
+            </button> 
         </div>
     </div>
 
