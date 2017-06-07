@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ServisTakipWeb.Areas.FirmaYonetici.Models.SozlesmeBilgileri>
+
+@{
+    ViewBag.Title = "FileDetails";
+    Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
+}
+ 
+<table class="table table-bordered">
+    <tr>
+        <th class="col-md-4">
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+
+        <th class="col-md-2"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+
+            <td>
+                @Html.ActionLink("Downlaod", "DownLoadFile", new { id = item.Idpdf })
+
+            </td>
+        </tr>
+    }
+
+</table> 

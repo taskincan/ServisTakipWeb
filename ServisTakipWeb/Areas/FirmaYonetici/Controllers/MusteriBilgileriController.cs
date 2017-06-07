@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Dapper;
 using ServisTakipWeb.Areas.FirmaYonetici.Models;
 using ServisTakipWeb.Controllers;
 
@@ -80,7 +85,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
             try
             {
                 if (ModelState.IsValid)
-                { 
+                {
                     MusteriBilgileri musteri = MusteriBilgileri.musteriList.SingleOrDefault(x => x.ID == _musteriBilgileri.ID);
 
                     musteri.ID = _musteriBilgileri.ID;
@@ -95,8 +100,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     musteri.VergiNumarasi = _musteriBilgileri.VergiNumarasi;
                     musteri.YetkiliKisi = _musteriBilgileri.YetkiliKisi;
                     musteri.CreateDate = DateTime.Now;
-                     
-                    return RedirectToAction("Sozlesme", "MusteriBilgileri", new { id = _musteriBilgileri.ID, id2 = "" }); 
+
+                    return RedirectToAction("Sozlesme", "MusteriBilgileri", new { id = _musteriBilgileri.ID, id2 = "" });
                 }
                 return View(_musteriBilgileri);
             }
@@ -114,15 +119,6 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
             SozlesmeBilgileri _sozlesme2 = new SozlesmeBilgileri();
             try
             {
-                /*if(id== -2 || kod == "0")
-                {
-                    _sozlesme2.MusteriKodu = kod;
-                    _sozlesme2.BaslangicTarih = DateTime.Now;
-                    _sozlesme2.BitisTarih = DateTime.Now; 
-                    return View(_sozlesme2);
-                }
-                else
-                {*/
                 MusteriBilgileri musteri = MusteriBilgileri.musteriList.SingleOrDefault(x => x.ID == id);
 
                 SozlesmeYapma sozlesmeYapma = SozlesmeYapma.sozlesmeYapmaList.SingleOrDefault(x => x.MID == id);
@@ -130,7 +126,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 
                 //var sozlesmeYapma = dbFirmaYonetici.SozlesmeYapma.SingleOrDefault(x => x.MID == id);
                 var sozlesme = dbFirmaYonetici.Sozlesme.SingleOrDefault(c => c.ID == sozlesmeYapma.SozlesmeID);
-
+                
                 var _sozlesme = SozlesmeBilgileri.sozlesmeList.SingleOrDefault(x => x.SozlesmeID == sozlesme.ID);
 
                 if (sozlesme != null)
@@ -146,6 +142,13 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     _sozlesme.ParcaDahilMi = sozlesme.ParcaDahilMi;
                     _sozlesme.MusteriID = musteri.ID;
 
+                    var pdf = GetFileList(musteri.ID);
+
+                    _sozlesme.FileContent = pdf.ToList()[0].FileContent;
+                    _sozlesme.FileName = pdf.ToList()[0].FileName;
+                    _sozlesme.files = pdf.ToList()[0].files;
+                    _sozlesme.Idpdf = pdf.ToList()[0].Idpdf;
+                       
                     //Burayı dusun.
                 }
                 else
@@ -161,6 +164,29 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 return View(_sozlesme2);
             }
 
+        }
+
+        [HttpGet]
+        public FileResult DownLoadFile(int id)
+        {
+            List<SozlesmeBilgileri> ObjFiles = GetFileList(id);
+
+            var FileById = (from FC in ObjFiles
+                            where FC.MusteriID.Equals(id)
+                            select new { FC.FileName, FC.FileContent }).ToList().FirstOrDefault();
+
+            return File(FileById.FileContent, "application/pdf", FileById.FileName);
+
+        }
+
+        [HttpGet]
+        public PartialViewResult FileDetails()
+        {
+            List<SozlesmeBilgileri> DetList = GetFileList(1);
+
+            var yeniList = DetList.Where(x => x.MusteriID == 1);
+
+            return PartialView("FileDetails", DetList);
         }
 
         [HttpPost]
@@ -184,6 +210,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 
                         if (_sozlesmeBilgileri != null)
                         {
+
                             sozlesme.ID = _sozlesmeBilgileri.SozlesmeID;
                             sozlesme.SozlesmeAdi = _sozlesmeBilgileri.SozlesmeAdi;
                             sozlesme.SlaSuresi = _sozlesmeBilgileri.SlaSuresi;
@@ -212,6 +239,9 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                             dbFirmaYonetici.Entry(musteri).State = EntityState.Modified;
                             dbFirmaYonetici.SaveChanges();
                             ModelState.Clear();
+
+                           
+
                         }
 
 
@@ -282,10 +312,10 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 if (ModelState.IsValid)
                 {
                     MusteriBilgileri musteri = new MusteriBilgileri();
-                     
+
                     var updatedUser = MusteriBilgileri.musteriList.SingleOrDefault(x => x.MusteriKodu == _musteriBilgileri.MusteriKodu);
 
-                    if(updatedUser == null)
+                    if (updatedUser == null)
                     {
                         musteri.Adres = _musteriBilgileri.Adres;
                         musteri.Email = _musteriBilgileri.Email;
@@ -320,7 +350,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                         MusteriBilgileri.musteriList.ToList()[index].CreateUserID = Connection.ID;
                         MusteriBilgileri.musteriList.ToList()[index].CreateDate = DateTime.Now;
                     }
-                    
+
 
                     return RedirectToAction("SozlesmeEkle", "MusteriBilgileri", new { _musteriKodu = _musteriBilgileri.MusteriKodu });
                 }
@@ -421,6 +451,30 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                         var sozlesmeAdi = dbFirmaYonetici.Sozlesme.SingleOrDefault(c => c.SozlesmeAdi == _sozlesme.SozlesmeAdi);
 
                         sozlesmeYapma.MID = _musteri.ID;
+
+                        //EKLEME YAP PDF
+                        String FileExt = Path.GetExtension(_sozlesme.files.FileName).ToUpper();
+
+                        if (FileExt == ".PDF")
+                        {
+                            Stream str = _sozlesme.files.InputStream;
+                            BinaryReader Br = new BinaryReader(str);
+                            Byte[] FileDet = Br.ReadBytes((Int32)str.Length);
+
+                            SozlesmeBilgileri Fd = new SozlesmeBilgileri();
+                            Fd.FileName = _sozlesme.files.FileName;
+                            Fd.FileContent = FileDet;
+                            Fd.MusteriID = _musteri.ID;
+                            SaveFileDetails(Fd);
+                        }
+                        else
+                        {
+                            ViewBag.FileStatus = "Invalid file format.";
+                            return View();
+                        }
+
+
+
                         sozlesmeYapma.FyID = Connection.ID;
                         sozlesmeYapma.SozlesmeID = sozlesmeAdi.ID;
 
@@ -449,7 +503,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
 
                 return View(_sozlesme);
             }
-        } 
+        }
 
         private void MusteriListYarat()
         {
@@ -478,6 +532,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                         var _sozlesmeYapmaList = new SozlesmeYapma();
                         var _sozlesmeList = new SozlesmeBilgileri();
                         var _musteriList = new MusteriBilgileri();
+                        
 
                         _SozlesmeId = dbFirmaYonetici.SozlesmeYapma.ToList()[temp].SozlesmeID;
                         _MId = dbFirmaYonetici.SozlesmeYapma.ToList()[temp].MID;
@@ -497,7 +552,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                         _sozlesmeList.SozlesmeID = sozlesme.ID;
                         _sozlesmeList.MusteriKodu = musteri.MusteriKodu;
                         _sozlesmeList.MusteriID = musteri.ID;
-
+                           
                         _musteriList.Adres = musteri.Adres;
                         _musteriList.CreateDate = musteri.CreateDate;
                         _musteriList.Email = musteri.Email;
@@ -511,7 +566,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                         _musteriList.VergiNumarasi = musteri.VergiNumarasi;
                         _musteriList.YetkiliKisi = musteri.YetkiliKisi;
                         _musteriList.CreateUserID = dbFirmaYonetici.SozlesmeYapma.ToList()[temp].FyID;
-
+                          
                         passLength = (musteri.Password).Length;
 
                         for (temp2 = 0; temp2 < passLength; temp2++)
@@ -526,7 +581,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     }
                 }
             }
-             
+
             MusteriBilgileri.musteriList = MusteriBilgileri.musteriList.OrderBy(x => x.CreateDate).ToList();
         }
 
@@ -545,6 +600,43 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                 return sozlesme.FyID;
             else
                 return -1;
+        }
+
+        private List<SozlesmeBilgileri> GetFileList(int mID)
+        {
+            List<SozlesmeBilgileri> DetList = new List<SozlesmeBilgileri>();
+            //List<SozlesmeBilgileri> DetList2 = new List<SozlesmeBilgileri>();
+
+            DbConnection();
+            con.Open();
+            DetList = SqlMapper.Query<SozlesmeBilgileri>(con, "GetSozlesmePdf", commandType: CommandType.StoredProcedure).ToList().Where(x => x.MusteriID == mID).ToList();
+            con.Close();
+
+            //DetList2 = DetList.Where(x => x.MusteriID == mID).ToList();
+
+            return DetList;
+        }
+
+        private void SaveFileDetails(SozlesmeBilgileri objDet)
+        {
+            DynamicParameters Parm = new DynamicParameters();
+            Parm.Add("@FileName", objDet.FileName);
+            Parm.Add("@FileContent", objDet.FileContent);
+            Parm.Add("@MusteriID", objDet.MusteriID);
+            DbConnection();
+            con.Open();
+            con.Execute("AddSozlesmePdf", Parm, commandType: System.Data.CommandType.StoredProcedure);
+            con.Close();
+        }
+
+        private SqlConnection con;
+        private string constr;
+        private void DbConnection()
+        {
+            //constr = ConfigurationManager.ConnectionStrings["dbcon"].ToString();
+            constr = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
+            con = new SqlConnection(constr);
+
         }
     }
 }

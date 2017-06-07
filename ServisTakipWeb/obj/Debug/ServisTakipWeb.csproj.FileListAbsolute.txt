@@ -70,3 +70,5 @@ C:\Users\Edicom\Documents\Visual Studio 2013\Projects\ServisTakipWeb\ServisTakip
 C:\Users\Edicom\Documents\Visual Studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\obj\Debug\ServisTakipWeb.csprojResolveAssemblyReference.cache
 C:\Users\Edicom\Documents\Visual Studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\obj\Debug\ServisTakipWeb.dll
 C:\Users\Edicom\Documents\Visual Studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\obj\Debug\ServisTakipWeb.pdb
+C:\Users\Edicom\Documents\Visual Studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\Dapper.dll
+C:\Users\Edicom\Documents\Visual Studio 2013\Projects\ServisTakipWeb\ServisTakipWeb\bin\Dapper.xml

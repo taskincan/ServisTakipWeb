@@ -42,6 +42,22 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
 
         [Display(Name = "Bitiş Tarihi")]
         public DateTime BitisTarih { get; set; }
+         
+        
+        
+        [DataType(DataType.Upload)]
+        [Display(Name = "Sözleşme Seç")]
+        public HttpPostedFileBase files { get; set; }
+
+        public int Idpdf { get; set; }
+
+        [Display(Name = "Sözleşme")]
+        public String FileName { get; set; }
+
+        public byte[] FileContent { get; set; }
+
+
+        public static List<SozlesmeBilgileri> pdfList = new List<SozlesmeBilgileri>();
 
 
         public static List<SozlesmeBilgileri> sozlesmeList = new List<SozlesmeBilgileri>();

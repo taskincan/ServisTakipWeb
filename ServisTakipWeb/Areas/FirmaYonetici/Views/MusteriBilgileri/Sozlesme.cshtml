@@ -108,6 +108,31 @@
         </div>
     </div>
 
+
+    <table class="table table-bordered">
+        <tr>
+            <th class="col-md-4">
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+
+            <th class="col-md-2"></th>
+        </tr>
+         
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.FileName)
+                </td>
+
+                <td> 
+                    <a href="@Url.Action("DownLoadFile", "MusteriBilgileri", new { id = @Model.MusteriID })" class="btn btn-default btn-block"> 
+                        DOWNLOAD
+                    </a>
+                </td>
+            </tr> 
+    </table>
+
+
+
     <div class="row" style="margin-top:10px ">
         <div class="col-md-2 form-group">
             <a href="@Url.Action("Index", "MusteriBilgileri")" class="btn btn-default btn-block">
