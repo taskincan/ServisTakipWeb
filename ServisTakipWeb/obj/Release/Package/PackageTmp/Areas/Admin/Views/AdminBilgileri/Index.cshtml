@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ServisTakipWeb.Areas.Admin.Models.AdminBilgileri>
+
+@{
+    ViewBag.Title = "Admin | Admin Bilgileri";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+  
+<title>Admin Bilgileri</title>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-table fa-fw"></i> Admin Bilgileri</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row form-group">
+                <div class="col-md-2"> 
+                    <a href="@Url.Action("", "")" class="btn btn-success">
+                        Admin Ekle <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="data" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-md-5">
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </th>
+                            <th class="col-md-5">
+                                @Html.DisplayNameFor(model => model.Password)
+                            </th>
+                            <th class="col-md-2">
+                                @Html.DisplayNameFor(model => model.CreateDate)
+                            </th>
+                            <th class="col-md-1">
+                            </th>
+                            <th class="col-md-1">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr></tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="col-md-5">
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+                                <td class="col-md-5">
+                                    @Html.DisplayFor(modelItem => item.Password)
+                                </td>
+                                <td class="col-md-2">
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td> 
+                                <td class="col-md-1">
+                                    <a href="@Url.Action("Edit", "AdminBilgileri", new { id = item.ID })" class="btn btn-success">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                                <td class="col-md-1">
+                                    <a href="@Url.Action("", "AdminBilgileri", new { id = item.ID })" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </a>
+                                </td>  
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>  
+ 

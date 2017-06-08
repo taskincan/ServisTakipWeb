@@ -1,0 +1,98 @@
+﻿@using ServisTakipWeb.Areas.Musteri.Models
+@model MusteriYoneticiBilgileri
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/MusteriYonetici/Views/Shared/MusteriYoneticiLayout.cshtml";
+}
+<title>Profil</title>
+ 
+@using (Html.BeginForm("Index", "Profile", FormMethod.Post, new { id = "frmProfile", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    @Html.HiddenFor(model => model.MyID)
+    @Html.HiddenFor(model => model.MusteriID)
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="col-md-4 form-group">
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control ", placeholder = "Kullanıcı Adı", @required = "required" })
+        </div>
+
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="col-md-4 form-group">
+            @Html.TextBoxFor(model => model.Password, new { @class = "form-control ", placeholder = "Şifre", @required = "required" }) 
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Ad)
+        </div>
+        <div class="col-md-4 form-group">
+            @Html.TextBoxFor(model => model.Ad, new { @class = "form-control ", placeholder = "Ad", @required = "required" }) 
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Soyad)
+        </div>
+        <div class="col-md-4 form-group">
+            @Html.TextBoxFor(model => model.Soyad, new { @class = "form-control ", placeholder = "Soyad", @required = "required" })
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Gsm)
+        </div>
+        <div class="col-md-4 form-group">
+            @Html.TextBoxFor(model => model.Gsm, new { @class = "form-control ", placeholder = "Telefon", @required = "required" })
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="col-md-4 form-group">
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control ", placeholder = "Email", @required = "required" })
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4"></div>
+
+        <div class="col-md-2">
+            <button class=" btn btn-outline-primary btn-block" type="submit" value="Kaydet">
+                Kaydet
+            </button>
+        </div>
+    </div>
+
+}
+
+<script>
+    function SubmitForm() {
+        $("#frmProfile").submit();
+    }
+</script>
+

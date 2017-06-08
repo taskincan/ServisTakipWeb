@@ -64,8 +64,8 @@ namespace ServisTakipWeb.Areas.Musteri.Controllers
                 body.AppendLine("Yeni Şifreniz : " + password);
 
                 MailSender(body.ToString(), Musteri.Email.ToString());
-            } 
-            return View("Index", "CalisanBilgileri"); 
+            }
+            return RedirectToAction("Index");
         }
 
         public ActionResult SifreYenile(int id = -1)
@@ -136,12 +136,10 @@ namespace ServisTakipWeb.Areas.Musteri.Controllers
             if (ModelState.IsValid)
             {
                 var _user = dbMusteri.MusteriCalisani.SingleOrDefault(x => x.McID == _musteriCalisan.McID);
-
-                string PasswordMD5 = MD5Hash(_musteriCalisan.Password.ToString());
-
+                
                 _user.McID = _musteriCalisan.McID;
                 _user.UserName = _musteriCalisan.UserName;
-                _user.Password = PasswordMD5;
+                _user.Password = _musteriCalisan.Password;
                 _user.MusteriID = _musteriCalisan.MusteriID;
                 _user.CreateDate = DateTime.Now;
 

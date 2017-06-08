@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ServisTakipMusteriCalisanDBModelStoreContainer" CdmEntityContainer="ServisTakipMusteriCalisanDBEntities">
+    <EntitySetMapping Name="AcilanCagri">
+      <EntityTypeMapping TypeName="ServisTakipMusteriCalisanDBModel.AcilanCagri">
+        <MappingFragment StoreEntitySet="AcilanCagri">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CagriNo" ColumnName="CagriNo" />
+          <ScalarProperty Name="YetkiliKisi" ColumnName="YetkiliKisi" />
+          <ScalarProperty Name="Gsm" ColumnName="Gsm" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CihazTipi" ColumnName="CihazTipi" />
+          <ScalarProperty Name="Marka" ColumnName="Marka" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="SeriNo" ColumnName="SeriNo" />
+          <ScalarProperty Name="BarkodNo" ColumnName="BarkodNo" />
+          <ScalarProperty Name="AcilisTarihi" ColumnName="AcilisTarihi" />
+          <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="CagriDetayi" ColumnName="CagriDetayi" />
+          <ScalarProperty Name="IslemGorduMu" ColumnName="IslemGorduMu" />
+          <ScalarProperty Name="SarfMalzemeTalebi" ColumnName="SarfMalzemeTalebi" />
+          <ScalarProperty Name="McID" ColumnName="McID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

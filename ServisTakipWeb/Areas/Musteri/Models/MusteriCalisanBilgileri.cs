@@ -21,17 +21,14 @@ namespace ServisTakipWeb.Areas.Musteri.Models
         [MaxLength(30)]
         public string UserName { get; set; }
 
-        [Display(Name = "Kullanılan Şifre")]
-        [Required]
+        [Display(Name = "Kullanılan Şifre")] 
         [DataType(DataType.Password)]
-        [MinLength(6)]
-        [MaxLength(20)]
+        [MinLength(6)] 
         public string Password { get; set; }
 
         [Display(Name = "Yeni Şifre")] 
         [DataType(DataType.Password)]
-        [MinLength(6)]
-        [MaxLength(20)]
+        [MinLength(6)] 
         public string PasswordYeni { get; set; }
   
         [Display(Name = "Müşteri ID")]

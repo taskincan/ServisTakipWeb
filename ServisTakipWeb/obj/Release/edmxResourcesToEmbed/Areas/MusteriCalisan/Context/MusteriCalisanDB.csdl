@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ServisTakipMusteriCalisanDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AcilanCagri">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CagriNo" Type="Int32" Nullable="false" />
+    <Property Name="YetkiliKisi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gsm" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CihazTipi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Marka" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="SeriNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="BarkodNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="AcilisTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Aciklama" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CagriDetayi" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IslemGorduMu" Type="Boolean" Nullable="false" />
+    <Property Name="SarfMalzemeTalebi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="McID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ServisTakipMusteriCalisanDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AcilanCagri" EntityType="Self.AcilanCagri" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ServisTakipWeb.Areas.FirmaCalisan.Models.CagriTamamlamaBilgileri>
+    
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/FirmaCalisan/Views/Shared/FirmaCalisanLayout.cshtml";
+}
+
+<title>Tamamlanan Çağrılar</title>
+ 
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-table fa-fw"></i> @ServisTakipWeb.Connection.tamamlananCagrilar.ToString()</h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table id="data" class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.CagriKayitNo)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.MusteriKodu)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.MusteriAdi)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.YapilanIsinAciklamasi)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.HizmetBitisTarihi)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.Sonuc)</th>
+                            <th class="col-md-2">@Html.DisplayNameFor(model => model.AnketYapildiMiTablo)</th>
+                            <th class="col-md-2"></th>
+
+                            @*tamamlananCagri.CagriKayitNo = _cagri.CagriKayitNo;
+                                tamamlananCagri.TamamlayanCalisanID = Convert.ToInt32(_cagri.TamamlayanCalisanID);
+
+                                tamamlananCagri.TamamlayanYoneticiID = Convert.ToInt32(_cagri.TamamlayanYoneticiID);
+
+                                tamamlananCagri.FormNo = _cagri.FormNo;
+                                tamamlananCagri.MusteriID = _musteri.ID;
+                                tamamlananCagri.Sonuc = _cagri.Sonuc;
+                                tamamlananCagri.Durum = "Tamamlandı";
+                                tamamlananCagri.Email = _musteri.Email;
+                                tamamlananCagri.MusteriAdi = _musteri.MusteriAdi;
+                                tamamlananCagri.YetkiliKisi = _cagri.YetkiliKisi;
+                                tamamlananCagri.Telefon = _cagri.Gsm;
+                                tamamlananCagri.Adres = _musteri.Adres;
+                                tamamlananCagri.VergiDairesi = _musteri.VergiDairesi;
+                                tamamlananCagri.VergiNumarasi = _musteri.VergiNumarasi;
+                                tamamlananCagri.MusteriKodu = _musteri.MusteriKodu;
+                                tamamlananCagri.BildirilenAriza = _cagri.BildirilenAriza;
+                                tamamlananCagri.HizmetTipi = _cagri.HizmetTipi;
+                                tamamlananCagri.CihazinHizmetDurumu = _cagri.CihazinHizmetDurumu;
+
+                                tamamlananCagri.CagriBildirildigiTarih = _cagri.CagrininBildirigiTarih;
+                                tamamlananCagri.HizmetBaslangicTarihi = _cagri.HizmetBaslangicTarihi;
+                                tamamlananCagri.HizmetBitisTarihi = _cagri.HizmetBitisTarihi;
+                                tamamlananCagri.MesaiSaatiIcindeMi = _cagri.MesaiSaatiIcindeMi;
+                                tamamlananCagri.YapilanIsinAciklamasi = _cagri.YapılanIsinAciklamasi;
+                                tamamlananCagri.CreateDate = _cagri.CreateDate;
+                                tamamlananCagri.AnketYapildiMi = _cagri.AnketYapildiMi;*@
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.CagriKayitNo)</td>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.MusteriKodu)</td>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.MusteriAdi)</td>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.YapilanIsinAciklamasi)</td>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.HizmetBitisTarihi)</td>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.Sonuc)</td>
+                                <td class="col-md-2">@Html.DisplayFor(modelItem => item.AnketYapildiMiTablo)</td>
+                                <td class="col-md-2">
+                                    <a href="@Url.Action("Goruntule", "TamamlananCagrilar", new { _cagriNo = item.CagriKayitNo })" class="btn btn-success">
+                                        Görüntüle
+                                        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div> 
+        </div>
+    </div>
+</div>

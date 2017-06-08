@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ServisTakipMusteriYoneticiDBModelStoreContainer" CdmEntityContainer="ServisTakipMusteriYoneticiDBEntities">
+    <EntitySetMapping Name="Anket">
+      <EntityTypeMapping TypeName="ServisTakipMusteriYoneticiDBModel.Anket">
+        <MappingFragment StoreEntitySet="Anket">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Soru1" ColumnName="Soru1" />
+          <ScalarProperty Name="Soru2" ColumnName="Soru2" />
+          <ScalarProperty Name="Soru3" ColumnName="Soru3" />
+          <ScalarProperty Name="Soru4" ColumnName="Soru4" />
+          <ScalarProperty Name="Soru5" ColumnName="Soru5" />
+          <ScalarProperty Name="TamamlananCagriID" ColumnName="TamamlananCagriID" />
+          <ScalarProperty Name="MusteriGorus" ColumnName="MusteriGorus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnketYapma">
+      <EntityTypeMapping TypeName="ServisTakipMusteriYoneticiDBModel.AnketYapma">
+        <MappingFragment StoreEntitySet="AnketYapma">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AnketID" ColumnName="AnketID" />
+          <ScalarProperty Name="TamamlananCagriID" ColumnName="TamamlananCagriID" />
+          <ScalarProperty Name="MyID" ColumnName="MyID" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

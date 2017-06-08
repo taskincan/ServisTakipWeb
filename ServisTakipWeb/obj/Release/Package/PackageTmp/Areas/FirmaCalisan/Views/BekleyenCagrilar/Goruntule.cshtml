@@ -1,0 +1,203 @@
+﻿@using ServisTakipWeb.Areas.FirmaCalisan.Models
+@model AtanmisCagrilar
+    
+@{
+    ViewBag.Title = "Goruntule";
+    Layout = "~/Areas/FirmaCalisan/Views/Shared/FirmaCalisanLayout.cshtml";
+}
+ 
+<title>Çağrı Görüntüle</title>
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary()
+
+@Html.HiddenFor(model => model.ID)
+
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.CagriNo)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.CagriNo, new { @class = "form-control", @readonly = "readonly", placeholder = "Çağrı No" })
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.MusteriAdi)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.MusteriAdi, new { @class = "form-control", @readonly = "readonly", placeholder = "Müşteri Adı" })
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Adres)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.Adres, new { @class = "form-control", @readonly = "readonly", placeholder = "Adres" })
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.IlgiliKisi)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.IlgiliKisi, new { @class = "form-control", @readonly = "readonly", placeholder = "İlgili Kişi" })
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Telefon)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.Telefon, new { @class = "form-control", @readonly = "readonly", placeholder = "Telefon No" })
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Email)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @readonly = "readonly", placeholder = "E-mail" })
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.CihazTipi)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.CihazTipi, new { @class = "form-control", @readonly = "readonly", placeholder = "Cihaz Tipi" })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Marka)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.Marka, new { @class = "form-control", @readonly = "readonly", placeholder = "Marka" })
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Model)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.Model, new { @class = "form-control", @readonly = "readonly", placeholder = "Model" })
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.SeriNo)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.SeriNo, new { @class = "form-control", @readonly = "readonly", placeholder = "Seri No" })
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.BarkodNo)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.BarkodNo, new { @class = "form-control", @readonly = "readonly", placeholder = "Barkod No" })
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Aciklama)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.Aciklama, new { @class = "form-control", @readonly = "readonly", placeholder = "Açıklama" })
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.CagriDetayi)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.CagriDetayi, new { @class = "form-control", @readonly = "readonly", placeholder = "Çağrı Detayı" })
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.SarfMalzemeTalebi)
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.SarfMalzemeTalebi, new { @class = "form-control", @readonly = "readonly", placeholder = "Sarf Malzeme Talebi" })
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<div class="row" style="margin-top:10px">
+    <div class="col-md-6">
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.VarisTarih)
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </span>
+                    @Html.TextBoxFor(model => model.VarisTarih, new { @class = "form-control datepicker", id = "datetimepickerSaatli", @readonly = "readonly" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Not)
+        </div>
+        <div class="col-md-8">
+            @Html.TextBoxFor(model => model.Not, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="col-md-1">
+            @Html.LabelFor(model => model.AcilMi)
+        </div>
+        <div class="col-md-4">
+            @Html.CheckBoxFor(model => model.AcilMi, new { onclick = "return false" })
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+</div>
+ 
+<br />
+<div class="row" style="margin-top:10px">
+    <div class="col-md-2">
+        @Html.LabelFor(model => model.BeklemeyeAlmaNedeni)
+    </div>
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.BeklemeyeAlmaNedeni, new { @class = "form-control", @readonly = "readonly", placeholder = "Çağrı Bekletmeye Alma Nedeni" })
+    </div>
+</div>
+
+<div class="row" style="margin-top:10px ">
+    <div class="col-md-2" style="margin-top:10px">
+        <a href="@Url.Action("Index", "BekleyenCagrilar")" class="btn btn-default">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            Kapat
+        </a>
+    </div> 
+
+    <div class="col-md-4" style="margin-top:10px">
+        <a href="@Url.Action("Tamamla", "BekleyenCagrilar", new { _bekleyenCagriNo = @Model.CagriNo })" class="btn btn-primary">
+            Tamamla
+            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+        </a>
+    </div>
+
+</div>
+
+

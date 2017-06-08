@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ServisTakipMusteriYoneticiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Anket">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Soru1" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Soru2" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Soru3" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Soru4" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Soru5" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TamamlananCagriID" Type="Int32" Nullable="false" />
+    <Property Name="MusteriGorus" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AnketYapma" Relationship="Self.FK__AnketYapm__Anket__6D9742D9" FromRole="Anket" ToRole="AnketYapma" />
+  </EntityType>
+  <EntityType Name="AnketYapma">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AnketID" Type="Int32" Nullable="false" />
+    <Property Name="TamamlananCagriID" Type="Int32" Nullable="false" />
+    <Property Name="MyID" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Anket" Relationship="Self.FK__AnketYapm__Anket__6D9742D9" FromRole="AnketYapma" ToRole="Anket" />
+  </EntityType>
+  <Association Name="FK__AnketYapm__Anket__6D9742D9">
+    <End Role="Anket" Type="Self.Anket" Multiplicity="1" />
+    <End Role="AnketYapma" Type="Self.AnketYapma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anket">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AnketYapma">
+        <PropertyRef Name="AnketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ServisTakipMusteriYoneticiDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Anket" EntityType="Self.Anket" />
+    <EntitySet Name="AnketYapma" EntityType="Self.AnketYapma" />
+    <AssociationSet Name="FK__AnketYapm__Anket__6D9742D9" Association="Self.FK__AnketYapm__Anket__6D9742D9">
+      <End Role="Anket" EntitySet="Anket" />
+      <End Role="AnketYapma" EntitySet="AnketYapma" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

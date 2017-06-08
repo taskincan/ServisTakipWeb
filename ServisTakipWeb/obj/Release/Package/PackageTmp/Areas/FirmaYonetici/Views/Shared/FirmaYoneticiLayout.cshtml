@@ -1,0 +1,237 @@
+﻿@{
+    ViewBag.Title = "FirmaYoneticiLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="shortcut icon" href="~/Content/img/LoginUserLogo.png" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="~/Content/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="~/Content/css/jquery.datetimepicker.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <section id="container">
+
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/FirmaYonetici/AnaSayfa">Firma Yönetici</a>
+                </div>
+
+                <!-- Top Menu Items -->
+                <ul class="nav navbar-right top-nav">
+                    <li class="dropdown">
+                        <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-user"></i> @ServisTakipWeb.Connection.adi.ToString()
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/FirmaYonetici/Profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav side-nav">
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#cagrilar">
+                                <i class="fa fa-fw fa-briefcase"></i> @ServisTakipWeb.Connection.cagrilar.ToString() <i class="fa fa-fw fa-caret-down"></i>
+                            </a>
+                            <ul id="cagrilar" class="collapse">
+                                <li>
+                                    <a href="/FirmaYonetici/GelenCagrilar">
+                                        <i class="fa fa-fw fa-envelope-o"> </i> @ServisTakipWeb.Connection.gelenCagrilar.ToString()
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/FirmaYonetici/AtanmisCagrilar">
+                                        <i class="fa fa-fw fa-share-square-o"></i> @ServisTakipWeb.Connection.atanmisCagrilar.ToString()
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/FirmaYonetici/BekleyenCagrilar">
+                                        <i class="fa fa-fw fa-pencil-square-o"></i> @ServisTakipWeb.Connection.bekleyenCagrilar.ToString()
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/FirmaYonetici/TamamlananCagrilar">
+                                        <i class="fa fa-fw fa-check-square-o"></i> @ServisTakipWeb.Connection.tamamlananCagrilar.ToString()
+                                    </a>
+                                </li>
+                            </ul>
+                        </li> 
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#musteriler">
+                                <i class="fa fa-fw fa-desktop"></i> @ServisTakipWeb.Connection.musteriler.ToString() <i class="fa fa-fw fa-caret-down"></i>
+                            </a>
+                            <ul id="musteriler" class="collapse">
+                                <li>
+                                    <a href="/FirmaYonetici/MusteriBilgileri">  <i class="fa fa-fw fa-table"></i> @ServisTakipWeb.Connection.musteriBilgileri.ToString() </a>
+                                </li>
+                                <li>
+                                    <a href="/FirmaYonetici/MusteriBilgileri/MusteriEkle">  <i class="fa fa-fw fa-edit"></i> @ServisTakipWeb.Connection.musteriEkle.ToString() </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#yoneticiler">
+                                <i class="fa fa-fw fa-user"></i> @ServisTakipWeb.Connection.yoneticiler.ToString() <i class="fa fa-fw fa-caret-down"></i>
+                            </a>
+                            <ul id="yoneticiler" class="collapse">
+                                <li>
+                                    <a href="/FirmaYonetici/YoneticiBilgileri">  <i class="fa fa-fw fa-table"></i> @ServisTakipWeb.Connection.yoneticiBilgileri.ToString() </a>
+                                </li>
+                                <li>
+                                    <a href="/FirmaYonetici/YoneticiBilgileri/Create">  <i class="fa fa-fw fa-edit"></i> @ServisTakipWeb.Connection.yoneticiEkle.ToString() </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#calisanlar">
+                                <i class="fa fa-fw fa-users"></i> @ServisTakipWeb.Connection.calisanlar.ToString() <i class="fa fa-fw fa-caret-down"></i>
+                            </a>
+                            <ul id="calisanlar" class="collapse">
+                                <li>
+                                    <a href="/FirmaYonetici/CalisanBilgileri">  <i class="fa fa-fw fa-table"></i> @ServisTakipWeb.Connection.calisanBilgileri.ToString() </a>
+                                </li>
+                                <li>
+                                    <a href="/FirmaYonetici/CalisanBilgileri/Create">  <i class="fa fa-fw fa-edit"></i> @ServisTakipWeb.Connection.calisanEkle.ToString() </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+
+            <div id="page-wrapper">
+
+                <div class="container-fluid">
+
+                    @RenderBody()
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+    </section>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    @Scripts.Render("~/js/jquery.js")
+
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@          
+      
+    <!-- Bootstrap Core JavaScript -->
+    @Scripts.Render("~/js/bootstrap.min.js")
+
+    <script language="JavaScript" type="text/javascript" src="~/js/jquery.datetimepicker.full.js"></script>
+      
+    <script>
+        $(function () {
+            $("#datetimepicker").datetimepicker({ format: 'd.m.Y', });
+
+        }); 
+
+        $(function () {
+            $("#datetimepicker2").datetimepicker({ format: 'd.m.Y', });
+        });
+
+        $(function () {
+            $("#datetimepickerSaatli").datetimepicker({ format: 'd.m.Y H:i', });
+
+        });
+
+        $(function () {
+            $("#datetimepickerSaatli2").datetimepicker({ format: 'd.m.Y H:i', });
+
+        });
+
+        $(function () {
+            $("#datetimepickerSaatli3").datetimepicker({ format: 'd.m.Y H:i', });
+
+        });
+         
+          
+        $("input[type='radio']").change(function ()
+        {
+
+            if ($(this).val() == "Other")
+            {
+                $("#otherAnswer").show();
+            }
+            else if ($(this).val() == "Ariza")
+            {
+                $("#otherAnswer").hide();
+            }
+            else if ($(this).val() == "Kurulus")
+            {
+                $("#otherAnswer").hide();
+            }
+            else if ($(this).val() == "GeriAlim")
+            {
+                $("#otherAnswer").hide();
+            }
+            else if ($(this).val() == "Bakim")
+            {
+                $("#otherAnswer2").hide();
+            }
+            else if ($(this).val() == "Garantili")
+            {
+                $("#otherAnswer2").hide();
+            }
+            else if ($(this).val() == "Ucretli")
+            {
+                $("#otherAnswer2").hide();
+            } 
+            else if ($(this).val() == "Other2")
+            {
+                $("#otherAnswer2").show();
+            }
+        });
+    </script>  
+
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>
+

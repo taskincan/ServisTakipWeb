@@ -1,0 +1,379 @@
+﻿@using ServisTakipWeb.Areas.MusteriYonetici.Models
+@model AnketSorulari
+
+@{
+    ViewBag.Title = "Anket";
+    Layout = "~/Areas/MusteriYonetici/Views/Shared/MusteriYoneticiLayout.cshtml";
+}
+
+<title>Anket Sistemi</title>
+
+@using (Html.BeginForm("Anket", "TamamlananCagrilar", FormMethod.Post, new { id = "frmAnket", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    @Html.HiddenFor(model => model.CagriNo)
+
+    <div class="row form-group">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(model => model.Aciklama)
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+
+    @*Soru1*@
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.Soru1)
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("1")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru1" value="1" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Ariza")*@
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("2")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru1" value="2" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Ariza")*@
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("3")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru1" checked="checked" value="3" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Kurulus")*@
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-6">
+                            @Html.Label("4")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru1" value="4" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "GeriAlim")*@
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("5")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru1" value="5" />
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    @*Soru2*@
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.Soru2)
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("1")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru2" value="1" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Ariza")*@
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("2")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru2" value="2" />
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("3")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru2" checked="checked" value="3" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-6">
+                            @Html.Label("4")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru2" value="4" />
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <div class=" col-md-4">
+                            @Html.Label("5")
+
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru2" value="5" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*Soru3*@
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.Soru3)
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("1")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru3" value="1" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("2")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru3" value="2" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Ariza")*@
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("3")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru3" checked="checked" value="3" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Kurulus")*@
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-6">
+                            @Html.Label("4")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru3" value="4" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "GeriAlim")*@
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("5")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru3" value="5" />
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    @*Soru4*@
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.Soru4)
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("1")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru4" value="1" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Ariza")*@
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("2")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru4" value="2" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Ariza")*@
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("3")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru4" checked="checked" value="3" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Kurulus")*@
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-6">
+                            @Html.Label("4")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru4" value="4" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "GeriAlim")*@
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("5")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru4" value="5" />
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    @*Soru5*@
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        @Html.LabelFor(model => model.Soru5)
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("1")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru5" value="1" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Ariza")*@
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("2")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru5" value="2" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Ariza")*@
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("3")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru5" checked="checked" value="3" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Kurulus")*@
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-6">
+                            @Html.Label("4")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru5" value="4" />
+                            @*@Html.RadioButtonFor(model => model.BildirilenAriza, "GeriAlim")*@
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <div class="col-md-4">
+                            @Html.Label("5")
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="Soru5" value="5" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*Yapilan Isin Aciklamasi*@
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.MusteriGorusu)
+            </div>
+            <div class="col-md-9">
+                @Html.TextBoxFor(model => model.MusteriGorusu, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+
+    @*TODO: Ucretli Iscilikler Yazilacak*@
+
+
+    <div class="row" style="margin-top:10px ">
+        <div class="col-md-4" style="margin-top:10px">
+            <button class=" btn btn-success btn-block" type="submit" value="Kaydet">
+                Tamamla
+            </button>
+        </div>
+
+    </div>
+}
+
+<script>
+    function SubmitForm() {
+        $("#frmAnket").submit();
+    }
+</script>
+

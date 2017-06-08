@@ -1,0 +1,349 @@
+﻿@using ServisTakipWeb.Areas.MusteriYonetici.Models
+@model AnketSorulari
+
+@{
+    ViewBag.Title = "AnketSonuclari";
+    Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
+}
+<title>Anket Sonuçları</title>
+  
+<div class="row form-group">
+    <div class="col-md-6">
+
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.MyAdiSoyadi)
+        </div>
+
+        <div class="col-md-9">
+            @Html.TextBoxFor(model => model.MyAdiSoyadi, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+
+    </div>
+</div>
+
+@*Soru1*@
+<div class="row ">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Soru1)
+                </div>
+
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("1")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru1, "1", new { disabled = "disabled" })
+
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("2")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru1, "2", new { disabled = "disabled" })
+
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("3")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru1, "3", new { disabled = "disabled" })
+
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-6">
+                        @Html.Label("4")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru1, "4", new { disabled = "disabled" })
+
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("5")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru1, "5", new { disabled = "disabled" })
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+@*Soru2*@
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Soru2)
+                </div>
+
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("1")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru2, "1", new { disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("2")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru2, "2", new { disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("3")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru2, "3", new { disabled = "disabled" })
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-6">
+                        @Html.Label("4")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru2, "4", new { disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class=" col-md-4">
+                        @Html.Label("5")
+
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru2, "5", new { disabled = "disabled" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Soru3*@
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Soru3)
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("1")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru3, "1", new { disabled = "disabled" })
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("2")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru3, "2", new { disabled = "disabled" })
+
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("3")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru3, "3", new { disabled = "disabled" })
+
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-6">
+                        @Html.Label("4")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru3, "4", new { disabled = "disabled" })
+
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("5")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru3, "5", new { disabled = "disabled" })
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+@*Soru4*@
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Soru4)
+                </div>
+
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("1")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru4, "1", new { disabled = "disabled" })
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("2")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru4, "2", new { disabled = "disabled" })
+
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("3")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru4, "3", new { disabled = "disabled" })
+
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-6">
+                        @Html.Label("4")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru4, "4", new { disabled = "disabled" })
+
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("5")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru4, "5", new { disabled = "disabled" })
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+@*Soru5*@
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Soru5)
+                </div>
+
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("1")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru5, "1", new { disabled = "disabled" })
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("2")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru5, "2", new { disabled = "disabled" })
+
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("3")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru5, "3", new { disabled = "disabled" })
+
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-6">
+                        @Html.Label("4")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru5, "4", new { disabled = "disabled" })
+
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-2">
+                    <div class="col-md-4">
+                        @Html.Label("5")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.RadioButtonFor(model => model.Soru5, "5", new { disabled = "disabled" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Yapilan Isin Aciklamasi*@
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-3">
+            @Html.LabelFor(model => model.MusteriGorusu)
+        </div>
+        <div class="col-md-9">
+            @Html.TextBoxFor(model => model.MusteriGorusu, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+    </div>
+</div>
+
+
+@*TODO: Ucretli Iscilikler Yazilacak*@
+
+
+<div class="row" style="margin-top:10px ">
+    <div class="col-md-6">
+        <a href="@Url.Action("Goruntule", "TamamlananCagrilar", new { _cagriNo = Model.CagriNo })" class="btn btn-default btn-block"> 
+            <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+            Geri
+        </a>
+    </div>
+
+</div>

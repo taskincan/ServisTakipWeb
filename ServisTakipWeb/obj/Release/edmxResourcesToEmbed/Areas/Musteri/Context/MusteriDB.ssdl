@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ServisTakipMusteriDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Musteri">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MusteriKodu" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MusteriAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="YetkiliKisi" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="VergiDairesi" Type="nvarchar" MaxLength="50" />
+    <Property Name="VergiNumarasi" Type="nvarchar" MaxLength="15" />
+    <Property Name="Email" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Adres" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="MusteriTel" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="MusteriTel2" Type="varchar" MaxLength="11" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MusteriCalisani">
+    <Key>
+      <PropertyRef Name="McID" />
+    </Key>
+    <Property Name="McID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="MusteriID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MusteriYonetici">
+    <Key>
+      <PropertyRef Name="MyID" />
+    </Key>
+    <Property Name="MyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Gsm" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="MusteriID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__MusteriCa__Muste__45F365D3">
+    <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+    <End Role="MusteriCalisani" Type="Self.MusteriCalisani" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musteri">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MusteriCalisani">
+        <PropertyRef Name="MusteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MusteriYo__Muste__3E52440B">
+    <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+    <End Role="MusteriYonetici" Type="Self.MusteriYonetici" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musteri">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MusteriYonetici">
+        <PropertyRef Name="MusteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ServisTakipMusteriDBModelStoreContainer">
+    <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MusteriCalisani" EntityType="Self.MusteriCalisani" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MusteriYonetici" EntityType="Self.MusteriYonetici" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__MusteriCa__Muste__45F365D3" Association="Self.FK__MusteriCa__Muste__45F365D3">
+      <End Role="Musteri" EntitySet="Musteri" />
+      <End Role="MusteriCalisani" EntitySet="MusteriCalisani" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MusteriYo__Muste__3E52440B" Association="Self.FK__MusteriYo__Muste__3E52440B">
+      <End Role="Musteri" EntitySet="Musteri" />
+      <End Role="MusteriYonetici" EntitySet="MusteriYonetici" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

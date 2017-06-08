@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ServisTakipMusteriYoneticiDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Anket">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Soru1" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="Soru2" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="Soru3" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="Soru4" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="Soru5" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="TamamlananCagriID" Type="int" Nullable="false" />
+    <Property Name="MusteriGorus" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="AnketYapma">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AnketID" Type="int" Nullable="false" />
+    <Property Name="TamamlananCagriID" Type="int" Nullable="false" />
+    <Property Name="MyID" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__AnketYapm__Anket__6D9742D9">
+    <End Role="Anket" Type="Self.Anket" Multiplicity="1" />
+    <End Role="AnketYapma" Type="Self.AnketYapma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anket">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AnketYapma">
+        <PropertyRef Name="AnketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ServisTakipMusteriYoneticiDBModelStoreContainer">
+    <EntitySet Name="Anket" EntityType="Self.Anket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnketYapma" EntityType="Self.AnketYapma" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__AnketYapm__Anket__6D9742D9" Association="Self.FK__AnketYapm__Anket__6D9742D9">
+      <End Role="Anket" EntitySet="Anket" />
+      <End Role="AnketYapma" EntitySet="AnketYapma" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
