@@ -6,6 +6,8 @@
     Layout = "~/Areas/Musteri/Views/Shared/MusteriLayout.cshtml";
 }
 
+<title>Çalışan Bilgileri</title>
+
 @using (Html.BeginForm("Create", "CalisanBilgileri", FormMethod.Post, new { id = "frmCreate", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()

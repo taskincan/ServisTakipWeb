@@ -15,18 +15,24 @@ namespace ServisTakipWeb.Areas.Musteri.Models
         public int McID { get; set; }
 
         [Display(Name = "Kullanıcı Adı")]
-        [DataType(DataType.Text)]
+        [DataType(DataType.Password)]
         [Required]
         [MinLength(6)]
         [MaxLength(30)]
         public string UserName { get; set; }
 
-        [Display(Name = "Şifre")]
+        [Display(Name = "Kullanılan Şifre")]
         [Required]
         [DataType(DataType.Password)]
         [MinLength(6)]
         [MaxLength(20)]
         public string Password { get; set; }
+
+        [Display(Name = "Yeni Şifre")] 
+        [DataType(DataType.Password)]
+        [MinLength(6)]
+        [MaxLength(20)]
+        public string PasswordYeni { get; set; }
   
         [Display(Name = "Müşteri ID")]
         [Required]

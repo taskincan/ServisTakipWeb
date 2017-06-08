@@ -6,6 +6,8 @@
     Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
 } 
 
+<title>Çalışan Bilgileri</title>
+
 @using (Html.BeginForm("Edit", "CalisanBilgileri", FormMethod.Post, new { id = "frmEdit", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()

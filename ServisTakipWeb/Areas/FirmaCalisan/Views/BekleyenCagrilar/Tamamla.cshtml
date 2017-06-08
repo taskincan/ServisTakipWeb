@@ -6,6 +6,8 @@
     Layout = "~/Areas/FirmaCalisan/Views/Shared/FirmaCalisanLayout.cshtml";
 }
  
+<title>Çağrı Tamamla</title>
+
 @using (Html.BeginForm("Tamamla", "BekleyenCagrilar", FormMethod.Post, new { id = "frmTamamla", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()

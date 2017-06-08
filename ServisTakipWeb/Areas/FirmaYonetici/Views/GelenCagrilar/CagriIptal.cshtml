@@ -6,6 +6,8 @@
     Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
 }
 
+<title>Çağrı İptal Etme</title>
+
 @using (Html.BeginForm("CagriIptal", "GelenCagrilar", FormMethod.Post, new { id = "frmCancel", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()

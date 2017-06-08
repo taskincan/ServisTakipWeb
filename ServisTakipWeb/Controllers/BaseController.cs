@@ -8,7 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using ServisTakipWeb.Areas.Musteri.Context;
 using ServisTakipWeb.Areas.MusteriCalisan.Context;
-using ServisTakipWeb.Areas.MusteriYonetici.Context; 
+using ServisTakipWeb.Areas.MusteriYonetici.Context;
+using System.Security.Cryptography;
+using System.Text;
+using System.Net.Mail;
+using System.Net; 
 
 namespace ServisTakipWeb.Controllers
 {
@@ -100,6 +104,49 @@ namespace ServisTakipWeb.Controllers
                     _dbMusteriYonetici.Database.Connection.ConnectionString = System.Configuration.ConfigurationManager.AppSettings["ConStr"].ToString();
                 }
                 return _dbMusteriYonetici;
+            }
+        }
+
+        public static string MD5Hash(string text)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+
+            //compute hash from the bytes of text
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
+
+            //get hash result after compute it
+            byte[] result = md5.Hash;
+
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                //change it into 2 hexadecimal digits
+                //for each byte
+                strBuilder.Append(result[i].ToString("x2"));
+            }
+
+            return strBuilder.ToString();
+        }
+
+        public static void MailSender(string body, string email)
+        {
+            var fromAddress = new MailAddress("servistakipyonetimi@gmail.com");
+            var toAddress = new MailAddress(email.ToString());
+            const string subject = "Servis Takip Sistemi";
+            using (var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, "servistakipbitirme")
+            })
+            {
+                using (var message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body })
+                {
+                    smtp.Send(message);
+                }
             }
         }
 

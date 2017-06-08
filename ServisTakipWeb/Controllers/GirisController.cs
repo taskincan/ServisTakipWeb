@@ -87,7 +87,8 @@ namespace ServisTakipWeb.Controllers
                 musteriYoneticisiMi = false;
                 musteriCalisaniMi = false;
 
-                ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
+                ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz."); 
+
                 return View("Index", _girisModel);
             }
 
@@ -107,7 +108,7 @@ namespace ServisTakipWeb.Controllers
 
                 if (user == null)
                 { 
-                    ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                    ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz."); 
                     return View("Index", _girisModel);
                 }
                 else
@@ -125,7 +126,7 @@ namespace ServisTakipWeb.Controllers
                     }
                     else
                     {
-                        ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                        ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                         return View("Index", _girisModel);
                     }
                 }
@@ -145,8 +146,8 @@ namespace ServisTakipWeb.Controllers
                 var user = dbFirma.Firma.SingleOrDefault(x => x.UserName == firmaUserName);
 
                 if (user == null)
-                { 
-                    ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                {
+                    ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                     return RedirectToAction("Index", _girisModel);
                 }
                 else
@@ -165,8 +166,8 @@ namespace ServisTakipWeb.Controllers
                             return RedirectToAction("Index", "AnaSayfa", new { area = "Firma" });
                         }
                         else
-                        { 
-                            ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                        {
+                            ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                             return View("Index", _girisModel);
                         }
                     }
@@ -188,8 +189,8 @@ namespace ServisTakipWeb.Controllers
                 var user = dbFirmaYonetici.FirmaYonetici.SingleOrDefault(x => x.UserName == firmaYoneticiUserName);
 
                 if (user == null)
-                { 
-                    ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                {
+                    ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                     return View("Index", _girisModel);
                 }
                 else
@@ -209,7 +210,7 @@ namespace ServisTakipWeb.Controllers
                         }
                         else
                         {
-                            ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                            ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                             return View("Index", _girisModel);
                         }
                     }
@@ -230,8 +231,8 @@ namespace ServisTakipWeb.Controllers
                 var User = dbFirmaYonetici.FirmaCalisani.SingleOrDefault(x => x.UserName == firmaCalisanUserName);
 
                 if (User == null)
-                { 
-                    ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                {
+                    ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                     return View("Index", _girisModel);
                 }
                 else //Database de aynı kullanıcı adıyla kayıt var.
@@ -249,8 +250,8 @@ namespace ServisTakipWeb.Controllers
                         return RedirectToAction("Index", "AnaSayfa", new { area = "FirmaCalisan" });
                     }
                     else
-                    {  
-                        ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                    {
+                        ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                         return View("Index", _girisModel);
                     }
                 }
@@ -270,8 +271,8 @@ namespace ServisTakipWeb.Controllers
                 var User = dbFirmaYonetici.Musteri.SingleOrDefault(x => x.MusteriKodu == musteriUserName);
 
                 if (User == null)
-                { 
-                    ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                {
+                    ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                     return View("Index", _girisModel);
                 }
                 else //Database de aynı kullanıcı adıyla kayıt var.
@@ -289,8 +290,8 @@ namespace ServisTakipWeb.Controllers
                         return RedirectToAction("Index", "AnaSayfa", new { area = "Musteri" });
                     }
                     else
-                    { 
-                        ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                    {
+                        ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                         return View("Index", _girisModel);
                     }
                 }
@@ -311,13 +312,16 @@ namespace ServisTakipWeb.Controllers
                 var User = dbMusteri.MusteriCalisani.SingleOrDefault(x => x.UserName == musteriCalisanUserName);
 
                 if (User == null) // Girilen bilgiler ile musteri calisani yok.
-                { 
-                    ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                {
+                    ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                     return View("Index", _girisModel);
                 }
                 else //Database de aynı kullanıcı adıyla kayıt var.
-                { 
-                    if (_girisModel.Password == User.Password.ToString()) //Database de ki kullanici adinin şifresi ile eşleşiyor mu sorgusu.
+                {
+
+                    string passwordMD5 = MD5Hash(_girisModel.Password.ToString());
+                     
+                    if (User.Password.ToString() == passwordMD5) //Database de ki kullanici adinin şifresi ile eşleşiyor mu sorgusu.
                     { 
                         girisIzni = true;
                         musteriCalisaniMi = true;
@@ -332,8 +336,8 @@ namespace ServisTakipWeb.Controllers
                         return RedirectToAction("Index", "AnaSayfa", new { area = "MusteriCalisan" });
                     }
                     else
-                    { 
-                        ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                    {
+                        ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                         return View("Index", _girisModel);
                     }
                 }
@@ -354,7 +358,7 @@ namespace ServisTakipWeb.Controllers
 
                 if (User == null) // Girilen bilgiler ile musteri calisani yok.
                 {
-                    ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                    ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                     return View("Index", _girisModel);
                 }
                 else //Database de aynı kullanıcı adıyla kayıt var.
@@ -370,7 +374,7 @@ namespace ServisTakipWeb.Controllers
                     }
                     else
                     {
-                        ViewBag.Message = "Bilgilerinizi Kontrol Ediniz";
+                        ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                         return View("Index", _girisModel);
                     }
                 }
@@ -380,8 +384,8 @@ namespace ServisTakipWeb.Controllers
                 ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                 return View("Index", _girisModel);
             }
- 
-                ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
+
+            ModelState.AddModelError("", "Giriş bilgilerinizi kontrol ediniz.");
                 return View("Index", _girisModel);
             
         }

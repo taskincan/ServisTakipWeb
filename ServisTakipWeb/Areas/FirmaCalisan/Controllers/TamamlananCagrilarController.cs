@@ -36,7 +36,7 @@ namespace ServisTakipWeb.Areas.FirmaCalisan.Controllers
         {
             CagriTamamlamaBilgileri.cagriTamamlamaList.Clear();
 
-            int temp = 0, countCagri = 0;
+            int temp = 0,temp2=0,countCihaz=0, countCagri = 0;
             int firmaID = 0;
             int _MID = -1;
 
@@ -91,18 +91,38 @@ namespace ServisTakipWeb.Areas.FirmaCalisan.Controllers
                 else
                     tamamlananCagri.AnketYapildiMiTablo = "Yapılmamış";
 
-                /*cagriTamamla.Marka1 = "";
-                tamamlananCagri.Marka2 = "";
-                tamamlananCagri.Marka3 = "";
-                tamamlananCagri.Marka4 = "";
-                tamamlananCagri.Model1 = "";
-                tamamlananCagri.Model2 = "";
-                tamamlananCagri.Model3 = "";
-                tamamlananCagri.Model4 = "";
-                tamamlananCagri.SeriNo1 = "";
-                tamamlananCagri.SeriNo2 = "";
-                tamamlananCagri.SeriNo3 = "";
-                tamamlananCagri.SeriNo4 = "";*/
+                var cihazBilgileri = dbFirmaYonetici.CihazBilgileri.Where(x => x.CagriNo == _tamamlananCagri.CagriKayitNo);
+                countCihaz = cihazBilgileri.Count();
+
+                for (temp2 = 0; temp2 < countCihaz; temp2++)
+                {
+                    if (temp2 == 0)
+                    {
+                        tamamlananCagri.Marka1 = cihazBilgileri.ToList()[temp2].Marka;
+                        tamamlananCagri.Model1 = cihazBilgileri.ToList()[temp2].Model;
+                        tamamlananCagri.SeriNo1 = cihazBilgileri.ToList()[temp2].SeriNo;
+                    }
+                    else if (temp2 == 1)
+                    {
+                        tamamlananCagri.Marka2 = cihazBilgileri.ToList()[temp2].Marka;
+                        tamamlananCagri.Model2 = cihazBilgileri.ToList()[temp2].Model;
+                        tamamlananCagri.SeriNo2 = cihazBilgileri.ToList()[temp2].SeriNo;
+                    }
+                    else if (temp2 == 2)
+                    {
+                        tamamlananCagri.Marka3 = cihazBilgileri.ToList()[temp2].Marka;
+                        tamamlananCagri.Model3 = cihazBilgileri.ToList()[temp2].Model;
+                        tamamlananCagri.SeriNo3 = cihazBilgileri.ToList()[temp2].SeriNo;
+                    }
+                    else if (temp2 == 3)
+                    {
+                        tamamlananCagri.Marka4 = cihazBilgileri.ToList()[temp2].Marka;
+                        tamamlananCagri.Model4 = cihazBilgileri.ToList()[temp2].Model;
+                        tamamlananCagri.SeriNo4 = cihazBilgileri.ToList()[temp2].SeriNo;
+                    }
+                }
+
+                //TODO: Ucretli iscilikleri yap
 
                 /*tamamlananCagri.ParcaNo1 = "";
                 tamamlananCagri.ParcaNo2 = "";

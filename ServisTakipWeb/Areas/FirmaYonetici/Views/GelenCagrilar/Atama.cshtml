@@ -6,6 +6,8 @@
     Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
 }
 
+<title>Çağrı Atama</title>
+
 @using (Html.BeginForm("Atama", "GelenCagrilar", FormMethod.Post, new { id = "frmAtama", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()

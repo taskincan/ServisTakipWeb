@@ -285,6 +285,7 @@
     <Compile Include="Areas\MusteriCalisan\Controllers\AnaSayfaController.cs" />
     <Compile Include="Areas\MusteriCalisan\Controllers\CagriOlusturController.cs" />
     <Compile Include="Areas\MusteriCalisan\Models\CagriBilgileri.cs" />
+    <Compile Include="Areas\MusteriCalisan\Models\Contact.cs" />
     <Compile Include="Areas\MusteriCalisan\MusteriCalisanAreaRegistration.cs" />
     <Compile Include="Areas\MusteriYonetici\Context\Anket.cs">
       <DependentUpon>MusteriYoneticiDB.tt</DependentUpon>
@@ -307,7 +308,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MusteriYoneticiDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Areas\MusteriYonetici\Controllers\AcilanCagrilarController.cs" />
     <Compile Include="Areas\MusteriYonetici\Controllers\AnaSayfaController.cs" />
+    <Compile Include="Areas\MusteriYonetici\Controllers\BekleyenCagrilarController.cs" />
     <Compile Include="Areas\MusteriYonetici\Controllers\ProfileController.cs" />
     <Compile Include="Areas\MusteriYonetici\Controllers\TamamlananCagrilarController.cs" />
     <Compile Include="Areas\MusteriYonetici\Models\AnketSorulari.cs" />
@@ -378,6 +381,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\LoginUserLogo.png" />
+    <Content Include="Content\img\LoginUserLogoIcon.ico" />
     <Content Include="Content\img\sort_asc.png" />
     <Content Include="Content\img\sort_asc_disabled.png" />
     <Content Include="Content\img\sort_both.png" />
@@ -738,27 +742,6 @@
     <Content Include="Areas\FirmaCalisan\Views\AtanmisCagrilar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FirmaYoneticiDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
-      <LastGenOutput>FirmaYoneticiDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.edmx.diagram">
-      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
-      <LastGenOutput>FirmaYoneticiDB.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\FirmaCalisan\Views\AtanmisCagrilar\Goruntule.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -840,7 +823,40 @@
     <Content Include="Areas\FirmaCalisan\Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\FirmaYonetici\Views\MusteriBilgileri\FileDetails.cshtml" />
+    <Content Include="Areas\MusteriYonetici\Views\AcilanCagrilar\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriYonetici\Views\AcilanCagrilar\Goruntule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriYonetici\Views\BekleyenCagrilar\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\MusteriYonetici\Views\BekleyenCagrilar\Goruntule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FirmaYoneticiDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
+      <LastGenOutput>FirmaYoneticiDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.edmx.diagram">
+      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\FirmaYonetici\Context\FirmaYoneticiDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FirmaYoneticiDB.edmx</DependentUpon>
+      <LastGenOutput>FirmaYoneticiDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Musteri\Views\CalisanBilgileri\SifreYenile.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

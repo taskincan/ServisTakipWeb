@@ -26,6 +26,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
         public Nullable<int> Sure { get; set; }
         public Nullable<decimal> BirimFiyati { get; set; }
         public string Aciklama { get; set; }
+        public int CagriNo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TamamlananCagrilar> TamamlananCagrilar { get; set; }

@@ -6,6 +6,8 @@
     Layout = "~/Areas/MusteriYonetici/Views/Shared/MusteriYoneticiLayout.cshtml";
 }
 
+<title>Anket Sistemi</title>
+
 @using (Html.BeginForm("Anket", "TamamlananCagrilar", FormMethod.Post, new { id = "frmAnket", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()

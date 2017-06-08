@@ -1,0 +1,65 @@
+﻿@using ServisTakipWeb.Areas.Musteri.Models
+@model MusteriCalisanBilgileri
+
+@{
+    ViewBag.Title = "SifreYenile";
+    Layout = "~/Areas/Musteri/Views/Shared/MusteriLayout.cshtml";
+} 
+
+<title>Şifre Yenile</title>
+
+@using (Html.BeginForm("SifreYenile", "CalisanBilgileri", FormMethod.Post, new { id = "frmEdit", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken() 
+
+    
+    
+    @Html.HiddenFor(model => model.McID)
+    @Html.HiddenFor(model => model.MusteriID)
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Kullanılan Şifre" name="Password" type="password" value="" required> 
+        </div>
+
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.PasswordYeni)
+        </div>
+        <div class="col-md-4">
+            <input class="form-control" placeholder="Yeni Şifre" name="PasswordYeni" type="password" value="" required>
+            @ViewBag.Message
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:10px ">
+        <div class="col-md-2"> 
+            <a href="@Url.Action("SifreYolla", "CalisanBilgileri", new { id = @Model.McID })" class="btn btn-danger">
+                Şifremi Unuttum
+            </a>
+        </div>
+        <div class="col-md-2"> 
+            
+        </div>
+        <div class="col-md-2"> 
+            <button class="btn btn-default" type="submit" value="Kaydet">
+                Şifre Yenile
+            </button>  
+        </div> 
+    </div>
+
+}
+
+<script>
+    function SubmitForm() {
+        $("#frmEdit").submit();
+    }
+</script>

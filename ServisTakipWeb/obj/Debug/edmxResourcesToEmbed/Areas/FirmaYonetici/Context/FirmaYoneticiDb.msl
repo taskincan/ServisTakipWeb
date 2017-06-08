@@ -34,6 +34,7 @@
           <ScalarProperty Name="Marka" ColumnName="Marka" />
           <ScalarProperty Name="Model" ColumnName="Model" />
           <ScalarProperty Name="SeriNo" ColumnName="SeriNo" />
+          <ScalarProperty Name="CagriNo" ColumnName="CagriNo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -152,6 +153,7 @@
           <ScalarProperty Name="Sure" ColumnName="Sure" />
           <ScalarProperty Name="BirimFiyati" ColumnName="BirimFiyati" />
           <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+          <ScalarProperty Name="CagriNo" ColumnName="CagriNo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -163,6 +165,7 @@
           <ScalarProperty Name="ParcaNo" ColumnName="ParcaNo" />
           <ScalarProperty Name="Miktar" ColumnName="Miktar" />
           <ScalarProperty Name="BirimFiyati" ColumnName="BirimFiyati" />
+          <ScalarProperty Name="CagriNo" ColumnName="CagriNo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

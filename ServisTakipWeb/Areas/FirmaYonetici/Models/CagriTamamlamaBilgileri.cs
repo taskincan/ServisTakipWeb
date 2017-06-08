@@ -63,12 +63,24 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Models
         [MaxLength(30)]
         public string HizmetTipi { get; set; }
 
+        [Display(Name = "Hizmet Tipi")]
+        [DataType(DataType.Text)] 
+        [MinLength(1)]
+        [MaxLength(30)]
+        public string HizmetTipi2 { get; set; }
+
         [Display(Name = "Cihazın Hizmet Durumu")]
         [DataType(DataType.Text)]
         [Required]
         [MinLength(1)]
         [MaxLength(30)]
         public string CihazinHizmetDurumu { get; set; }
+
+        [Display(Name = "Cihazın Hizmet Durumu")]
+        [DataType(DataType.Text)] 
+        [MinLength(1)]
+        [MaxLength(30)]
+        public string CihazinHizmetDurumu2 { get; set; }
          
         [Display(Name = "Çağrının Bildirildiği Tarih")]
         [Required]

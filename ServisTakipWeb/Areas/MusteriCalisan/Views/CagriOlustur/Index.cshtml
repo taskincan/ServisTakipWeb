@@ -6,6 +6,8 @@
     Layout = "~/Areas/MusteriCalisan/Views/Shared/MusteriCalisanLayout.cshtml";
 } 
 
+<title>Çağrı Oluştur</title>
+
 @using (Html.BeginForm("Index", "CagriOlustur", FormMethod.Post, new { id = "frmIndex", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -183,9 +185,9 @@
         <div class="col-md-4"></div>
 
         <div class="col-md-2">
-            <button class=" btn btn-outline-primary btn-block" type="submit" value="Kaydet">
-                Kaydet
-            </button>
+            <button class="btn btn-success btn-block" type="submit" value="Kaydet">
+                Çağrıyı Oluştur <span class="glyphicon glyphicon-ok"></span> 
+            </button> 
         </div>
     </div>
 

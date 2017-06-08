@@ -6,6 +6,8 @@
     Layout = "~/Areas/FirmaYonetici/Views/Shared/FirmaYoneticiLayout.cshtml";
 }
 
+<title>Çağrı Tamamlama</title>
+
 @using (Html.BeginForm("Tamamla", "GelenCagrilar", FormMethod.Post, new { id = "frmTamamla", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -183,13 +185,15 @@
                     <div class="col-md-4">
                         @Html.Label("Diğer:")
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-8">
                         @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Diger", new { type = "radio", value = "other" })*@
 
-                        <input type="radio" name="HizmetTipi" value="Other" />
-                    </div>
-                    <div class="col-md-4">
-                        @Html.TextBoxFor(model => model.HizmetTipi, new { @class = "form-control", style = "display:none;", type = "text", name = "otherAnswer", id = "otherAnswer" })
+                        <div class="col-md-2">
+                            <input type="radio" name="HizmetTipi" value="Other" />
+                        </div>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.HizmetTipi2, new { @class = "form-control", style = "display:none;", type = "text", name = "otherAnswer", id = "otherAnswer" })
+                        </div>
                     </div>
                 </div>
             </div>
@@ -224,7 +228,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="col-md-6">
                         @Html.Label("Ücretli:")
                     </div>
@@ -234,17 +238,20 @@
 
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="col-md-4">
                         @Html.Label("Diğer:")
                     </div>
                     <div class="col-md-8">
                         @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Diger", new { type = "radio", value = "other" })*@
 
-                        <input type="radio" name="CihazinHizmetDurumu" value="Other2" />
+                        <div class="col-md-2">
+                            <input type="radio" name="CihazinHizmetDurumu" value="Other2" />
+                        </div>
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.CihazinHizmetDurumu2, new { @class = "form-control", style = "display:none;", type = "text", name = "otherAnswer2", id = "otherAnswer2" })
+                        </div>
 
-                        @Html.TextBoxFor(model => model.HizmetTipi, new { @class = "form-control", style = "display:none;", type = "text", name = "otherAnswer2", id = "otherAnswer2" })
-                        @*TODO: sayfa submit edilirken otheranswer ne diye geri dönecek iyi bakk.*@
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@
     Layout = "~/Areas/MusteriYonetici/Views/Shared/MusteriYoneticiLayout.cshtml";
 }
 
+<title>Çağrı Görüntüle</title>
  
 <div class="row">
     <div class="col-md-1">
@@ -481,11 +482,15 @@
             Geri
         </a>
     </div>
-    <div class="col-md-6 form-group">
-        <a href="@Url.Action("Anket", "TamamlananCagrilar", new { _cagriNo = @Model.CagriKayitNo })" class="btn btn-default btn-block"> 
-            Anket Yap
-            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
-        </a>
-    </div>
+    @if (@Model.AnketYapildiMi == false)
+    {
+        <div class="col-md-6 form-group">
+            <a href="@Url.Action("Anket", "TamamlananCagrilar", new { _cagriNo = @Model.CagriKayitNo })" class="btn btn-default btn-block">
+                Anket Yap
+                <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+            </a>
+        </div>
+    }
+    
 </div> 
  

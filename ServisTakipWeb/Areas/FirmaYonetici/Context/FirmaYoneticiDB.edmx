@@ -37,6 +37,7 @@
           <Property Name="Marka" Type="nvarchar" MaxLength="30" />
           <Property Name="Model" Type="nvarchar" MaxLength="30" />
           <Property Name="SeriNo" Type="nvarchar" MaxLength="30" />
+          <Property Name="CagriNo" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="FirmaCalisani">
           <Key>
@@ -148,6 +149,7 @@
           <Property Name="Sure" Type="int" />
           <Property Name="BirimFiyati" Type="money" />
           <Property Name="Aciklama" Type="nvarchar" MaxLength="200" />
+          <Property Name="CagriNo" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UcretliParca">
           <Key>
@@ -158,6 +160,7 @@
           <Property Name="ParcaNo" Type="nvarchar" MaxLength="30" />
           <Property Name="Miktar" Type="int" />
           <Property Name="BirimFiyati" Type="money" />
+          <Property Name="CagriNo" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK__AtananCag__Atana__1E6F845E">
           <End Role="FirmaCalisani" Type="Self.FirmaCalisani" Multiplicity="1" />
@@ -501,6 +504,7 @@
           <Property Name="Marka" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Model" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="SeriNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CagriNo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TamamlananCagrilar" Relationship="Self.FK__Tamamlana__Cihaz__00DF2177" FromRole="CihazBilgileri" ToRole="TamamlananCagrilar" />
           <NavigationProperty Name="TamamlananCagrilar1" Relationship="Self.FK__Tamamlana__Cihaz__01D345B0" FromRole="CihazBilgileri" ToRole="TamamlananCagrilar" />
           <NavigationProperty Name="TamamlananCagrilar2" Relationship="Self.FK__Tamamlana__Cihaz__02C769E9" FromRole="CihazBilgileri" ToRole="TamamlananCagrilar" />
@@ -638,6 +642,7 @@
           <Property Name="Sure" Type="Int32" />
           <Property Name="BirimFiyati" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Aciklama" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CagriNo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TamamlananCagrilar" Relationship="Self.FK__Tamamlana__Ucret__078C1F06" FromRole="UcretliIscilik" ToRole="TamamlananCagrilar" />
           <NavigationProperty Name="TamamlananCagrilar1" Relationship="Self.FK__Tamamlana__Ucret__0880433F" FromRole="UcretliIscilik" ToRole="TamamlananCagrilar" />
           <NavigationProperty Name="TamamlananCagrilar2" Relationship="Self.FK__Tamamlana__Ucret__09746778" FromRole="UcretliIscilik" ToRole="TamamlananCagrilar" />
@@ -651,6 +656,7 @@
           <Property Name="ParcaNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Miktar" Type="Int32" />
           <Property Name="BirimFiyati" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CagriNo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TamamlananCagrilar" Relationship="Self.FK__Tamamlana__Ucret__04AFB25B" FromRole="UcretliParca" ToRole="TamamlananCagrilar" />
           <NavigationProperty Name="TamamlananCagrilar1" Relationship="Self.FK__Tamamlana__Ucret__05A3D694" FromRole="UcretliParca" ToRole="TamamlananCagrilar" />
           <NavigationProperty Name="TamamlananCagrilar2" Relationship="Self.FK__Tamamlana__Ucret__0697FACD" FromRole="UcretliParca" ToRole="TamamlananCagrilar" />
@@ -995,6 +1001,7 @@
                 <ScalarProperty Name="Marka" ColumnName="Marka" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="SeriNo" ColumnName="SeriNo" />
+                <ScalarProperty Name="CagriNo" ColumnName="CagriNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1113,6 +1120,7 @@
                 <ScalarProperty Name="Sure" ColumnName="Sure" />
                 <ScalarProperty Name="BirimFiyati" ColumnName="BirimFiyati" />
                 <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="CagriNo" ColumnName="CagriNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1124,6 +1132,7 @@
                 <ScalarProperty Name="ParcaNo" ColumnName="ParcaNo" />
                 <ScalarProperty Name="Miktar" ColumnName="Miktar" />
                 <ScalarProperty Name="BirimFiyati" ColumnName="BirimFiyati" />
+                <ScalarProperty Name="CagriNo" ColumnName="CagriNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

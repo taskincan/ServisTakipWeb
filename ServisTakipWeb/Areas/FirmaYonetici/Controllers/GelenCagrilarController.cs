@@ -17,8 +17,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
         public ActionResult Index()
         {
             GelenCagriListYarat();
-             
-  
+              
             Connection.sayfaAdi = "Gelen Çağrılar";
             return View(CagriBilgileri.cagriList);
         }
@@ -59,6 +58,8 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
             cagriTamamla.VergiNumarasi = musteri.VergiNumarasi;
             cagriTamamla.MusteriKodu = cagri.MusteriKodu;
             cagriTamamla.BildirilenAriza = cagri.Aciklama + " - " + cagri.CagriDetayi;
+
+
             cagriTamamla.HizmetTipi = "";
             cagriTamamla.CihazinHizmetDurumu = "";
             cagriTamamla.Marka1 = "";
@@ -118,9 +119,12 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    int cihazCount = 0, temp = 0;
+
                     _cagriTamamlama.Sonuc = "Tamamlandı";
 
                     var cagriTamamla = new Context.TamamlananCagrilar();
+                    var cihazBilgileri = new FirmaYonetici.Context.CihazBilgileri();
 
                     cagriTamamla.TamamlayanYoneticiID = Connection.ID; //Firma Yonetici Panelindeyiz.
                     cagriTamamla.TamamlayanCalisanID = -1; //Firma Yonetici Panelindeyiz.
@@ -142,57 +146,76 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Controllers
                     cagriTamamla.CreateDate = DateTime.Now;
                     cagriTamamla.AnketYapildiMi = _cagriTamamlama.AnketYapildiMi;
 
-                    /*cagriTamamla.Marka1 = "";
-                    cagriTamamla.Marka2 = "";
-                    cagriTamamla.Marka3 = "";
-                    cagriTamamla.Marka4 = "";
-                    cagriTamamla.Model1 = "";
-                    cagriTamamla.Model2 = "";
-                    cagriTamamla.Model3 = "";
-                    cagriTamamla.Model4 = "";
-                    cagriTamamla.SeriNo1 = "";
-                    cagriTamamla.SeriNo2 = "";
-                    cagriTamamla.SeriNo3 = "";
-                    cagriTamamla.SeriNo4 = "";*/
+                    if (_cagriTamamlama.HizmetTipi == "Other")
+                        cagriTamamla.HizmetTipi = _cagriTamamlama.HizmetTipi2;
+                    else
+                        cagriTamamla.HizmetTipi = _cagriTamamlama.HizmetTipi;
 
-                    /*cagriTamamla.ParcaNo1 = "";
-                    cagriTamamla.ParcaNo2 = "";
-                    cagriTamamla.ParcaNo3 = "";
-                    cagriTamamla.ParcaAdi1 = "";
-                    cagriTamamla.ParcaAdi2 = "";
-                    cagriTamamla.ParcaAdi3 = "";
-                    cagriTamamla.Miktar1 = 0;
-                    cagriTamamla.Miktar2 = 0;
-                    cagriTamamla.Miktar3 = 0;
-                    cagriTamamla.BirimFiyati1 = 0;
-                    cagriTamamla.BirimFiyati2 = 0;
-                    cagriTamamla.BirimFiyati3 = 0;
+                    if (_cagriTamamlama.CihazinHizmetDurumu == "Other2")
+                        cagriTamamla.CihazinHizmetDurumu = _cagriTamamlama.CihazinHizmetDurumu2;
+                    else
+                        cagriTamamla.CihazinHizmetDurumu = _cagriTamamlama.CihazinHizmetDurumu;
 
-                    cagriTamamla.AciklamaIscilik1 = "";
-                    cagriTamamla.AciklamaIscilik2 = "";
-                    cagriTamamla.AciklamaIscilik3 = "";
-                    cagriTamamla.Sure1 = 0;
-                    cagriTamamla.Sure2 = 0;
-                    cagriTamamla.Sure3 = 0;
-                    cagriTamamla.BirimFiyatiIscilik1 = 0;
-                    cagriTamamla.BirimFiyatiIscilik2 = 0;
-                    cagriTamamla.BirimFiyatiIscilik3 = 0;*/
-
-                    bool kayitBasarili = false;
-
-                    dbFirmaYonetici.TamamlananCagrilar.Add(cagriTamamla);
-                    dbFirmaYonetici.SaveChanges();
-
-                    kayitBasarili = true;
-
-                    if (kayitBasarili == true)
+                    if (_cagriTamamlama.Marka1 != null || _cagriTamamlama.SeriNo1 != null || _cagriTamamlama.Model1 != null)
                     {
-                        var acilanCagri = dbMusteriCalisan.AcilanCagri.SingleOrDefault(x => x.CagriNo == cagriTamamla.CagriKayitNo);
+                        cihazBilgileri.CagriNo = _cagriTamamlama.CagriKayitNo;
+                        cihazBilgileri.Marka = _cagriTamamlama.Marka1;
+                        cihazBilgileri.Model = _cagriTamamlama.Model1;
+                        cihazBilgileri.SeriNo = _cagriTamamlama.SeriNo1;
 
-                        dbMusteriCalisan.AcilanCagri.Remove(acilanCagri);
-                        dbMusteriCalisan.SaveChanges();
+                        dbFirmaYonetici.CihazBilgileri.Add(cihazBilgileri);
+                        dbFirmaYonetici.SaveChanges();
+                    }
+                    if (_cagriTamamlama.Marka2 != null || _cagriTamamlama.SeriNo2 != null || _cagriTamamlama.Model2 != null)
+                    {
+                        cihazBilgileri.CagriNo = _cagriTamamlama.CagriKayitNo;
+                        cihazBilgileri.Marka = _cagriTamamlama.Marka2;
+                        cihazBilgileri.Model = _cagriTamamlama.Model2;
+                        cihazBilgileri.SeriNo = _cagriTamamlama.SeriNo2;
+
+                        dbFirmaYonetici.CihazBilgileri.Add(cihazBilgileri);
+                        dbFirmaYonetici.SaveChanges();
+                    }
+                    if (_cagriTamamlama.Marka3 != null || _cagriTamamlama.SeriNo3 != null || _cagriTamamlama.Model3 != null)
+                    {
+                        cihazBilgileri.CagriNo = _cagriTamamlama.CagriKayitNo;
+                        cihazBilgileri.Marka = _cagriTamamlama.Marka3;
+                        cihazBilgileri.Model = _cagriTamamlama.Model3;
+                        cihazBilgileri.SeriNo = _cagriTamamlama.SeriNo3;
+
+                        dbFirmaYonetici.CihazBilgileri.Add(cihazBilgileri);
+                        dbFirmaYonetici.SaveChanges();
+                    }
+                    if (_cagriTamamlama.Marka4 != null || _cagriTamamlama.SeriNo4 != null || _cagriTamamlama.Model4 != null)
+                    {
+                        cihazBilgileri.CagriNo = _cagriTamamlama.CagriKayitNo;
+                        cihazBilgileri.Marka = _cagriTamamlama.Marka4;
+                        cihazBilgileri.Model = _cagriTamamlama.Model4;
+                        cihazBilgileri.SeriNo = _cagriTamamlama.SeriNo4;
+
+                        dbFirmaYonetici.CihazBilgileri.Add(cihazBilgileri);
+                        dbFirmaYonetici.SaveChanges();
                     }
 
+                    var _cihazBilgileri = dbFirmaYonetici.CihazBilgileri.Where(x => x.CagriNo == _cagriTamamlama.CagriKayitNo);
+
+                    cihazCount = _cihazBilgileri.Count();
+
+                    for (temp = 0; temp < cihazCount; temp++)
+                    {
+                        if (temp == 0)
+                            cagriTamamla.Cihaz1 = _cihazBilgileri.ToList()[temp].CihazID;
+                        else if (temp == 1)
+                            cagriTamamla.Cihaz2 = _cihazBilgileri.ToList()[temp].CihazID;
+                        else if (temp == 2)
+                            cagriTamamla.Cihaz3 = _cihazBilgileri.ToList()[temp].CihazID;
+                        else if (temp == 3)
+                            cagriTamamla.Cihaz4 = _cihazBilgileri.ToList()[temp].CihazID;
+                    }
+                      
+                    dbFirmaYonetici.TamamlananCagrilar.Add(cagriTamamla);
+                    dbFirmaYonetici.SaveChanges();
+                      
                     return RedirectToAction("Index");
                 }
             }

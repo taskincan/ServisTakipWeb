@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using ServisTakipWeb.Areas.Musteri.Models;
@@ -21,7 +22,99 @@ namespace ServisTakipWeb.Areas.Musteri.Controllers
 
             Connection.sayfaAdi = "Çalışan Bilgileri";
 
-            return View(MusteriCalisanBilgileri.musteriCalisanList); 
+            return View(MusteriCalisanBilgileri.musteriCalisanList);
+        }
+
+        public ActionResult SifreYolla(int id = -1)
+        {
+            var calisan = MusteriCalisanBilgileri.musteriCalisanList.SingleOrDefault(x => x.McID == id);
+            var Musteri = dbMusteri.Musteri.SingleOrDefault(x => x.ID == calisan.MusteriID);
+
+            string password = "";
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var stringChars = new char[6];
+            var random = new Random();
+
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+
+            var finalString = new String(stringChars);
+            password = finalString;
+
+            string passwordYeni = MD5Hash(password);
+
+            var _user = dbMusteri.MusteriCalisani.SingleOrDefault(x => x.McID == calisan.McID);
+              
+            _user.McID = calisan.McID;
+            _user.Password = passwordYeni;
+            _user.MusteriID = calisan.MusteriID;
+
+            dbMusteri.Entry(_user).State = EntityState.Modified;
+            dbMusteri.SaveChanges();
+            ModelState.Clear();
+             
+            if (Musteri.Email != "")
+            {
+                var body = new StringBuilder(); 
+                body.AppendLine("Müşteri Çalışanı");
+                body.AppendLine(" ");
+                body.AppendLine("Kullanıcı Adınız : " + calisan.UserName);
+                body.AppendLine("Yeni Şifreniz : " + password);
+
+                MailSender(body.ToString(), Musteri.Email.ToString());
+            } 
+            return View("Index", "CalisanBilgileri"); 
+        }
+
+        public ActionResult SifreYenile(int id = -1)
+        {
+            var calisan = MusteriCalisanBilgileri.musteriCalisanList.SingleOrDefault(x => x.McID == id);
+
+            if (calisan != null)
+                return View(calisan);
+            else
+                return View("Index", "CalisanBilgileri");
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SifreYenile(MusteriCalisanBilgileri _musteriCalisan)
+        {
+            try
+            {
+                string passwordMD5 = MD5Hash(_musteriCalisan.Password);
+
+                var calisan = MusteriCalisanBilgileri.musteriCalisanList.SingleOrDefault(x => x.McID == _musteriCalisan.McID);
+
+                if (calisan.Password == passwordMD5) // sifre degistirilebilir.
+                {
+                    var _user = dbMusteri.MusteriCalisani.SingleOrDefault(x => x.McID == _musteriCalisan.McID);
+
+                    string passwordYeniMD5 = MD5Hash(_musteriCalisan.PasswordYeni);
+
+                    _user.McID = _musteriCalisan.McID;
+                    _user.Password = passwordYeniMD5;
+                    _user.MusteriID = _musteriCalisan.MusteriID;
+
+                    dbMusteri.Entry(_user).State = EntityState.Modified;
+                    dbMusteri.SaveChanges();
+                    ModelState.Clear();
+
+                    return RedirectToAction("Index");
+                }
+                else // girilen sifre yanlis
+                {
+                    ViewBag.Message = "Şifrenizi kontrol ediniz.";
+                    return View(_musteriCalisan);
+                } 
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
         }
 
         public ActionResult Edit(int id = 0)
@@ -44,9 +137,11 @@ namespace ServisTakipWeb.Areas.Musteri.Controllers
             {
                 var _user = dbMusteri.MusteriCalisani.SingleOrDefault(x => x.McID == _musteriCalisan.McID);
 
+                string PasswordMD5 = MD5Hash(_musteriCalisan.Password.ToString());
+
                 _user.McID = _musteriCalisan.McID;
                 _user.UserName = _musteriCalisan.UserName;
-                _user.Password = _musteriCalisan.Password;
+                _user.Password = PasswordMD5;
                 _user.MusteriID = _musteriCalisan.MusteriID;
                 _user.CreateDate = DateTime.Now;
 
@@ -65,7 +160,7 @@ namespace ServisTakipWeb.Areas.Musteri.Controllers
 
             count = MusteriCalisanBilgileri.musteriCalisanList.Count();
 
-            if(count == 0) // Yeni Kayıt Yapılabilir.
+            if (count == 0) // Yeni Kayıt Yapılabilir.
             {
                 var musteri = new MusteriCalisanBilgileri();
 
@@ -75,7 +170,7 @@ namespace ServisTakipWeb.Areas.Musteri.Controllers
             {
                 return RedirectToAction("Index");
             }
-             
+
         }
 
         [HttpPost]
@@ -83,11 +178,13 @@ namespace ServisTakipWeb.Areas.Musteri.Controllers
         public ActionResult Create(MusteriCalisanBilgileri _musteriCalisan)
         {
             var musteriCalisan = new Context.MusteriCalisani();
-              
+
+            string PasswordMD5 = MD5Hash(_musteriCalisan.Password.ToString());
+
             musteriCalisan.UserName = _musteriCalisan.UserName.Trim();
-            musteriCalisan.Password = _musteriCalisan.Password.Trim();
+            musteriCalisan.Password = PasswordMD5;
             musteriCalisan.MusteriID = Connection.ID;
-            musteriCalisan.CreateDate = DateTime.Now; 
+            musteriCalisan.CreateDate = DateTime.Now;
 
             dbMusteri.MusteriCalisani.Add(musteriCalisan);
             dbMusteri.SaveChanges();
@@ -99,7 +196,7 @@ namespace ServisTakipWeb.Areas.Musteri.Controllers
         {
             MusteriCalisanBilgileri.musteriCalisanList.Clear();
 
-            int temp, passLength = 0, count = 0;
+            int temp, count = 0;
             count = dbMusteri.MusteriCalisani.Count();
 
             for (temp = 0; temp < count; temp++)
@@ -113,14 +210,7 @@ namespace ServisTakipWeb.Areas.Musteri.Controllers
                     _musteriCalisan.UserName = musteriCalisan.UserName;
                     _musteriCalisan.Password = musteriCalisan.Password;
                     _musteriCalisan.MusteriID = musteriCalisan.MusteriID;
-
-                    passLength = (musteriCalisan.Password).Length;
-
-                    for (int temp2 = 0; temp2 < passLength; temp2++)
-                    {
-                        _musteriCalisan.Password2 += "*";
-                    }
-
+                    _musteriCalisan.Password2 = "****";
                     _musteriCalisan.CreateDate = musteriCalisan.CreateDate;
 
                     MusteriCalisanBilgileri.musteriCalisanList.Add(_musteriCalisan);

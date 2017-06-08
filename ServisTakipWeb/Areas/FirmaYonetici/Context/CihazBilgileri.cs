@@ -27,6 +27,7 @@ namespace ServisTakipWeb.Areas.FirmaYonetici.Context
         public string Marka { get; set; }
         public string Model { get; set; }
         public string SeriNo { get; set; }
+        public int CagriNo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TamamlananCagrilar> TamamlananCagrilar { get; set; }

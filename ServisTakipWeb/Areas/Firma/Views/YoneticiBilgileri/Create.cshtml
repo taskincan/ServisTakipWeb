@@ -6,12 +6,14 @@
     Layout = "~/Areas/Firma/Views/Shared/FirmaLayout.cshtml";
 }
  
-<h2>Create</h2>
+<title>Yönetici Bilgileri</title>
 
 @using (Html.BeginForm("Create", "YoneticiBilgileri", FormMethod.Post, new { id = "frmCreate", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
+     
+    @Html.HiddenFor(model => model.FirmaID)
 
     <div class="row">
         <div class="col-md-2">
@@ -72,27 +74,14 @@
         </div>
         <div class="col-md-6">
         </div>
-    </div>
-    <div class="row" style="margin-top: 10px">
-        <div class="col-md-2">
-            @Html.LabelFor(model => model.FirmaID)
-        </div>
-        <div class="col-md-4">
-            <input class="form-control" placeholder="FirmaID" name="FirmaID" type="text" value="@Model.FirmaID" readonly>
-        </div>
-        <div class="col-md-6">
-        </div>
-    </div>
-    
-   
-
+    </div> 
     <div class="row" style="margin-top:10px ">
         <div class="col-md-4"></div>
 
-        <div class="col-md-2">
-            <button class=" btn btn-outline-primary btn-block" type="submit" value="Kaydet">
-                Kaydet
-            </button>
+        <div class="col-md-2"> 
+            <button class="btn btn-success btn-block" type="submit" value="Kaydet">
+                <span class="glyphicon glyphicon-ok"></span> Kaydet
+            </button> 
         </div>
     </div>
 

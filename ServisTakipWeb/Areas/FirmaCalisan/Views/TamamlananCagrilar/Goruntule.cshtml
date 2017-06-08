@@ -6,6 +6,7 @@
     Layout = "~/Areas/FirmaCalisan/Views/Shared/FirmaCalisanLayout.cshtml";
 }
 
+<title>Tamamlanan Çağrı Görüntüle</title>
   
 <div class="row">
     <div class="col-md-1">
@@ -145,6 +146,7 @@
                     @Html.Label("Arıza:")
                 </div>
                 <div class="col-md-6">
+                    @*TODO: goruntuleme yaparken hep ariza seçili geliyor duzelt.*@
                     <input type="radio" name="HizmetTipi" checked="checked" disabled="disabled" value="Ariza" />
                     @*@Html.RadioButtonFor(model => model.BildirilenAriza, "Ariza")*@
 

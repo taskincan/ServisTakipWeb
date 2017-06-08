@@ -4,8 +4,10 @@
 @{
     ViewBag.Title = "Beklet";
     Layout = "~/Areas/FirmaCalisan/Views/Shared/FirmaCalisanLayout.cshtml";
-}
- 
+} 
+
+<title>Çağrı Beklet</title> 
+
 @using (Html.BeginForm("Beklet", "AtanmisCagrilar", FormMethod.Post, new { id = "frmWait", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()

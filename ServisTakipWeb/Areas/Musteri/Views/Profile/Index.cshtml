@@ -5,9 +5,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Musteri/Views/Shared/MusteriLayout.cshtml";
 } 
-
-<h2>MÜŞTERİ PROFİLE</h2>
- 
+<title>Profil</title>
+  
 @using (Html.BeginForm("Index", "Profile", FormMethod.Post, new { id = "frmProfile", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -139,9 +138,9 @@
         <div class="col-md-4"></div>
 
         <div class="col-md-2">
-            <button class=" btn btn-outline-primary btn-block" type="submit" value="Kaydet">
-                Kaydet
-            </button>
+            <button class="btn btn-success btn-block" type="submit" value="Kaydet">
+                <span class="glyphicon glyphicon-ok"></span> Kaydet
+            </button> 
         </div>
     </div>
 

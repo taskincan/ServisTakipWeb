@@ -6,8 +6,11 @@
     ViewBag.Description = "Servis Takip Giriş Sayfası";
 }
 <title>Servis Takip | Giriş</title>
+<link rel="shortcut icon" href="~/Content/img/LoginUserLogo.png" />
 
 <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+
+
 
 @using (Html.BeginForm("Giris", "Giris", FormMethod.Post, new { id = "frmWhereWeGo", enctype = "multipart/form-data" }))
 {
@@ -42,6 +45,10 @@
                                             <input class="form-control" placeholder="Firma Kodu" name="FirmaKodu" type="text" value="@Model.FirmaKodu" autofocus required>
                                         </div>
                                     </div>*@
+
+                                    @Html.AntiForgeryToken()
+                                   @Html.ValidationSummary(true)
+
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon">

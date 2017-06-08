@@ -32,6 +32,7 @@
     <Property Name="Marka" Type="nvarchar" MaxLength="30" />
     <Property Name="Model" Type="nvarchar" MaxLength="30" />
     <Property Name="SeriNo" Type="nvarchar" MaxLength="30" />
+    <Property Name="CagriNo" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="FirmaCalisani">
     <Key>
@@ -143,6 +144,7 @@
     <Property Name="Sure" Type="int" />
     <Property Name="BirimFiyati" Type="money" />
     <Property Name="Aciklama" Type="nvarchar" MaxLength="200" />
+    <Property Name="CagriNo" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UcretliParca">
     <Key>
@@ -153,6 +155,7 @@
     <Property Name="ParcaNo" Type="nvarchar" MaxLength="30" />
     <Property Name="Miktar" Type="int" />
     <Property Name="BirimFiyati" Type="money" />
+    <Property Name="CagriNo" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK__AtananCag__Atana__1E6F845E">
     <End Role="FirmaCalisani" Type="Self.FirmaCalisani" Multiplicity="1" />

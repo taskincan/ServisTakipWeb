@@ -6,6 +6,8 @@
     Layout = "~/Areas/FirmaCalisan/Views/Shared/FirmaCalisanLayout.cshtml";
 }
   
+<title>Profil</title>
+
 @using (Html.BeginForm("Index", "", FormMethod.Post, new { id = "frmIndex", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
